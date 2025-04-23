@@ -26,13 +26,114 @@ body {
     color: #333;
 }
 
+.navbar {
+    border-radius: 25px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+}
+
 .thuus {
     font-family: monospace;
     font-size: 16px;
     line-height: 1.6;
-    color: #444;
+    color: #444444;
 }
 
-.thuzinhos {
+.thu1 {
     margin: 5px 0;
+    width: 175px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu2 {
+    margin: 5px 0;
+    width: 155px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu3 {
+    margin: 5px 0;
+    width: 175px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu4 {
+    margin: 5px 0;
+    width: 135px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu5 {
+    margin: 5px 0;
+    width: 175px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu6 {
+    margin: 5px 0;
+    width: 125px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu7 {
+    margin: 5px 0;
+    width: 175px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.thu8 {
+    margin: 5px 0;
+    width: 175px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(184, 184, 184, 0.8);
+    padding: 10px 30px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

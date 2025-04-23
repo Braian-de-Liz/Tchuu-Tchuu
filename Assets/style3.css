@@ -1,69 +1,83 @@
-/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Estilo do header */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  header .time {
-    font-size: 1rem;
-  }
-  
-  header .battery img {
-    width: 24px;
-    height: 24px;
-  }
-  
-  /* Estilo do container principal */
-  .container {
-    display: flex;
-    height: calc(100vh - 50px); /* Altura total menos o header */
-  }
-  
-  /* Estilo da sidebar */
-  .sidebar {
-    width: 250px;
-    background-color: #f4f4f4;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-  }
-  
-  .sidebar ul li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    color: #333;
-  }
-  
-  .sidebar ul li i {
-    margin-right: 10px;
-    color: #007bff; /* Cor dos ícones */
-  }
-  
-  /* Estilo do placeholder do mapa */
-  .map-placeholder {
-    flex-grow: 1;
-    background-color: #e0e0e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    color: #666;
-    font-size: 1.2rem;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #333;
+  margin-right: 15px;
+}
+
+.content {
+  flex: 1;
+}
+
+.content p {
+  margin: 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.download {
+  background-color: #28a745;
+}
+
+.download:hover {
+  background-color: #1e7e34;
+}
