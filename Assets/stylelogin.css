@@ -1,9 +1,10 @@
 body{
+    margin: 0;
     width: 375px ;
     height: 812px ;
     background-color: antiquewhite;
-    text-align: center;
     align-items: center;
+    position: absolute;
 }
 
 #cabe{
@@ -11,7 +12,13 @@ body{
     background-color: aqua;
     height: 30px;
     width: 375px;
+}
 
+#login{
+    height: 30px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-group{
