@@ -1,0 +1,15 @@
+body{
+    width: 375px ;
+    height: 812px ;
+    background-color: antiquewhite;
+    text-align: center;
+    align-items: center;
+}
+
+#cabe{
+    text-align: center;
+    background-color: aqua;
+    height: 30px;
+    width: 375px;
+
+}
