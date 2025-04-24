@@ -44,10 +44,3 @@ function validateForm(event){
     }
 }
 
-
-function lu(){
-    let i = 1
-    while(i < 100){
-        alert = i
-    }
-}
