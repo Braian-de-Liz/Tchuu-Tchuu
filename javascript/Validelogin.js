@@ -43,3 +43,11 @@ function validateForm(event){
         console.log("Deu certo")
     }
 }
+
+
+function lu(){
+    let i = 1
+    while(i < 100){
+        alert = i
+    }
+}
