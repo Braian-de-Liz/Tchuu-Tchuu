@@ -21,23 +21,24 @@ body {
 }
 
 #Login {
-    margin: 30px 40px;
+    margin: 120px 40px;
     border-radius: 20px;
     height:  300px;
-    background-color: gold;
+    background-color: whitesmoke;
     
 }
 
 #Login h2 {
-    margin: 10px 10px;
+    margin: 20px 10px;
 }
 
-#Login h3 {
-    margin: 10px;
-}
 
 #Registro{
     margin: 30px 40px;
     background-color: powderblue;
     border-radius: 30px;
+}
+
+fieldset{
+    margin: 8px;
 }
