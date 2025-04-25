@@ -32,17 +32,6 @@ body {
     margin: 20px 10px;
 }
 
-
-#Registro{
-    margin: 30px 40px;
-    background-color: powderblue;
-    border-radius: 30px;
-}
-
-fieldset{
-    margin: 8px;
-}
-
-checkbox {
+#check{
     
 }
