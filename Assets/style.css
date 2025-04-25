@@ -163,20 +163,41 @@ body {
     margin: 24px;
 }
 
-.informacoes3 {
+.informacoes2 {
     margin: 30px;
     height: 100px;
     width: 175px;
-    text-align: left;
     padding: 1px 20px;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: rgba(0, 117, 117, 0.719);
     color: rgba(255, 255, 255, 0.719);
     position: relative;
-    font-size: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.informacoes3 a {
-    margin: 50 20px;
-    padding: 50px;
+.informacoes2tl {
+    text-align: left;
+    display:flex;
+    width:50px;
+
+}
+
+.informacoes2c {
+    text-align: center;
+    display:flex;
+    width:50px;
+    font-size:50px;
+    padding: 10px;
+    padding-left: 5px;
+}
+
+.informacoes2tr {
+    text-align: right;
+    display:flex;
+    width:50px;
+}
+
+.tremimagem {
 }
