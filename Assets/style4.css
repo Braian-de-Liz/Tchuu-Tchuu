@@ -7,23 +7,45 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f0f8ff; /* Cor de fundo suave */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+  overflow: hidden; /* Evita rolagem indesejada */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 300px;
 }
 
 .chat-container {
-  width: 90%;
-  max-width: 400px;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .chat-header {
@@ -31,6 +53,8 @@ body {
   color: white;
   padding: 15px;
   text-align: center;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ddd;
 }
 
 .chat-messages {
@@ -43,8 +67,9 @@ body {
 .chat-messages div {
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   max-width: 80%;
+  word-break: break-word; /* Quebra de linha para texto longo */
 }
 
 .chat-messages .message-user {
@@ -61,6 +86,17 @@ body {
   display: flex;
   padding: 10px;
   background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.chat-input img.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .chat-input input {
@@ -69,6 +105,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  font-size: 1rem;
 }
 
 .chat-input button {
@@ -79,6 +116,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .chat-input button:hover {
