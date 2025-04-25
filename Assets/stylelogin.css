@@ -50,6 +50,7 @@ body {
 
 fieldset {
     margin: 8px;
+    border: none;
 }
 
 .envia {
@@ -90,4 +91,19 @@ form p {
     gap: 30px;
     padding: 10px;
     background-color: whitesmoke;
+}
+
+.oplog {
+    padding-left: 120px;
+}
+
+.oplog img {
+    width: 20px;
+    height: 20px;
+}
+
+a {
+    justify-content: center;
+    text-align: center;
+    color: darkgrey;
 }
