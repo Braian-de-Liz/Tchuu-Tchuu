@@ -35,3 +35,9 @@ body {
 #Login h3 {
     margin: 10px;
 }
+
+#Registro{
+    margin: 30px 40px;
+    background-color: powderblue;
+    border-radius: 30px;
+}
