@@ -35,10 +35,23 @@ body {
 
 #Registro{
     margin: 30px 40px;
-    background-color: powderblue;
     border-radius: 30px;
+    width: 375px;
+    height: 800px;
+    margin: 0 auto;
+    text-align: center;
+    gap: 30px;
+    
+}
+
+#voltar{
+  
 }
 
 fieldset{
     margin: 8px;
+}
+
+checkbox {
+    
 }

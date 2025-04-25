@@ -26,20 +26,23 @@ document.addEventListener("DOMContentLoaded", () => {
         messageElement.textContent = message;
         messageElement.classList.add("message", `message-${sender}`);
         chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Rolar para baixo automaticamente
+        chatMessages.scrollTop = chatMessages.scrollHeight; 
     }
 
-    // Envio de mensagem
+    // Evento de envio de mensagem
     sendButton.addEventListener("click", () => {
         const message = messageInput.value.trim();
-        if (message !== "" && username !== "") {
-            const fullMessage = `${username}: ${message}`;
-            addMessage(fullMessage, "user");
-            messageInput.value = "";
+        if (message !== "") {
+            addMessage(message, "user"); // Envia a mensagem do usuário
+            messageInput.value = ""; // Limpa o campo de entrada
+
+            // Simula uma resposta do bot (apenas para demonstração)
+            setTimeout(() => {
+                addMessage("Recebi sua mensagem!", "bot");
+            }, 1000);
         }
     });
 
-    // Permitir envio com Enter
     messageInput.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
             sendButton.click();

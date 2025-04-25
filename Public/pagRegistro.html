@@ -14,7 +14,6 @@
         <div id="Registro">
             <h1>Cadastro de Usuario  </h1>
             <form id="formCadasterUser" onsubmit="return valideRegistro()">
-                <legend>Cadastro Usuario</legend>
 
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
@@ -28,12 +27,17 @@
 
                 <div class="form-group">
                     <label for="tel">Digite seu Telefone </label>
-                    <input style="width:11ch" type="number" id="tel">
+                    <input type="number" id="tel"> 
                 </div>
 
                 <div class="form-group">
                     <label for="Registro">Digite seu registro de Funcionario</label>
                     <input type="number" id="RegistroFun">
+                </div>
+
+                <div class="form-group">
+                    <label for="DataNasc">Data de nascimento</label>
+                    <input type="date" id="DataNasc">
                 </div>
 
                 <button>  Registar </button>
