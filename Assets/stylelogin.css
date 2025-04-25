@@ -23,7 +23,7 @@ body {
 #Login {
     margin: 120px 40px;
     border-radius: 20px;
-    height:  400px;
+    height:  300px;
     background-color: whitesmoke;
     
 }
@@ -50,4 +50,8 @@ body {
 
 fieldset{
     margin: 8px;
+}
+
+checkbox {
+    
 }
