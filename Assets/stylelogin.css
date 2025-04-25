@@ -46,17 +46,8 @@ body {
 
 }
 
-#Voltar{
-  text-decoration: none;
-}
-
-fieldset {
-    margin: 8px;
-    border: none;
-}
-
-.envia {
-   background-color: whitesmoke;
+#Voltar {
+    background-color: whitesmoke;
     background: #438082;
     color: white;
     border: none;
@@ -69,7 +60,34 @@ fieldset {
     text-decoration: none;
     text-align: center;
     min-width: 150px;
-}  
+}
+
+#voltar:hover {
+    transform: scale(1.15);
+    background-color: #4FC1E9;
+    color: #12181C;
+}
+
+fieldset {
+    margin: 8px;
+    border: none;
+}
+
+.envia {
+    background-color: whitesmoke;
+    background: #438082;
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    min-width: 150px;
+}
 
 
 .envia:hover {
@@ -78,7 +96,7 @@ fieldset {
     color: #12181C;
 }
 
-.center{
+.center {
     text-align: center;
 }
 
@@ -89,7 +107,7 @@ form p {
 }
 
 
-.form-group{
+.form-group {
     gap: 30px;
     padding: 10px;
     background-color: whitesmoke;
@@ -121,7 +139,8 @@ a {
     }
 }
 
-#container, #Registro{
+#container,
+#Registro {
     animation: aparecer 1s ease-in-out;
 }
 
@@ -137,34 +156,42 @@ a {
     }
 }
 
-fieldset, .form-group {
+fieldset,
+.form-group {
     animation: vem-de-lado 2s ease-in-out;
 }
 
-#check{
+#check {
     accent-color: #438082;
 }
 
 @keyframes envia {
     from {
         transform: scale(1.5);
-      }
-      to {
+    }
+
+    to {
         transform: scale(1);
-}
+    }
 }
 
-.envia{
+.envia {
     animation: envia 2s ease-in-out;
 }
 
 @keyframes surge {
-    from{
+    from {
         opacity: 0%;
     }
-    to{
+
+    to {
         opacity: 100%;
     }
 }
 
+nav {
+    text-align: center;
+    align-items: center;
+    margin-top: 60px;
 
+}
