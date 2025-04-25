@@ -126,7 +126,7 @@ a {
 @keyframes vem-de-lado {
     from {
         opacity: 0;
-        transform: translatex(200px);
+        transform: translatex(100px);
     }
 
     to {
