@@ -23,7 +23,7 @@ body {
 #Login {
     margin: 120px 40px;
     border-radius: 20px;
-    height: 350px;
+    height: 400px;
     background-color: whitesmoke;
 
 }
@@ -75,4 +75,10 @@ fieldset {
 
 .center{
     text-align: center;
+}
+
+
+form p {
+    padding-left: 160px;
+    color: darkgrey;
 }
