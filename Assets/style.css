@@ -142,23 +142,41 @@ body {
 .informacoes {
     margin: 10px;
     width: 175px;
-    border-radius: 15px;
+    text-align: left;
+    padding: 1px 20px;
+    color: rgba(0, 0, 0, 0.719);
+    position: relative;
+}
+
+.informacoeslinha {
+    width: 365px;
+    border-radius: 0px;
     text-align: left;
     background-color: rgba(216, 216, 216, 0.8);
-    padding: 30px 20px;
+    padding: 5px;
     color: rgba(0, 0, 0, 0.719);
     position: relative;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.informacoes2\ {
-    margin: 10px;
+.informacoeslinha a {
+    margin: 24px;
+}
+
+.informacoes3 {
+    margin: 30px;
+    height: 100px;
     width: 175px;
-    border-radius: 15px;
     text-align: left;
-    background-color: rgba(216, 216, 216, 0.8);
-    padding: 30px 20px;
-    color: rgba(0, 0, 0, 0.719);
+    padding: 1px 20px;
+    border-radius: 15px;
+    background-color: rgba(0, 117, 117, 0.719);
+    color: rgba(255, 255, 255, 0.719);
     position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 10px;
+}
+
+.informacoes3 a {
+    margin: 50 20px;
+    padding: 50px;
 }
