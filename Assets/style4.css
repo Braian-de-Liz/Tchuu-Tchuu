@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f0f8ff; /* Cor de fundo suave */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,8 +67,9 @@ body {
 .chat-messages div {
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   max-width: 80%;
+  word-break: break-word; /* Quebra de linha para texto longo */
 }
 
 .chat-messages .message-user {
@@ -86,6 +87,16 @@ body {
   padding: 10px;
   background-color: #f9f9f9;
   border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.chat-input img.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .chat-input input {
@@ -110,12 +121,4 @@ body {
 
 .chat-input button:hover {
   background-color: #0056b3;
-}
-
-#emojiButton {
-  background-color: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  margin-right: 10px;
 }
