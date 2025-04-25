@@ -14,7 +14,7 @@ body {
 
 #cabe {
     text-align: center;
-    background-color: #999  ;
+    background-color: #999;
     height: 40px;
     line-height: 40px;
     width: 100%;
@@ -23,9 +23,9 @@ body {
 #Login {
     margin: 120px 40px;
     border-radius: 20px;
-    height:  300px;
+    height: 400px;
     background-color: whitesmoke;
-    
+
 }
 
 #Login h2 {
@@ -33,7 +33,7 @@ body {
 }
 
 
-#Registro{
+#Registro {
     margin: 30px 40px;
     border-radius: 30px;
     width: 375px;
@@ -41,18 +41,54 @@ body {
     margin: 0 auto;
     text-align: center;
     gap: 30px;
+
 }
 
 #Voltar{
   text-decoration: none;
 }
 
-fieldset{
+fieldset {
     margin: 8px;
 }
 
-checkbox {
+.envia {
     
+}
+
+
+.form-class{
+
+    background-color: whitesmoke;
+    background: #438082;
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    min-width: 150px;
+}
+
+
+.envia:hover {
+    transform: scale(1.15);
+    background-color: #4FC1E9;
+    color: #12181C;
+}
+
+.center{
+    text-align: center;
+}
+
+
+form p {
+    padding-left: 160px;
+    color: darkgrey;
 }
 
 
