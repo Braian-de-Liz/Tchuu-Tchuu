@@ -23,7 +23,7 @@ body {
 #Login {
     margin: 120px 40px;
     border-radius: 20px;
-    height: 400px;
+    height: 500px;
     background-color: whitesmoke;
 
 }
@@ -93,4 +93,12 @@ form p {
 
 .oplog{
     display: flex;
+    align-items: center;
+    padding-left: 110px;
+}
+
+.oplog img{
+    padding: 0px 10px;
+    width: 20px;
+    height: 20px;
 }
