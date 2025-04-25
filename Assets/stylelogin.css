@@ -44,7 +44,9 @@ body {
 
 }
 
-#voltar {}
+#Voltar{
+  text-decoration: none;
+}
 
 fieldset {
     margin: 8px;
@@ -52,6 +54,12 @@ fieldset {
 
 .envia {
     
+}
+
+
+.form-class{
+
+    background-color: whitesmoke;
     background: #438082;
     color: white;
     border: none;
