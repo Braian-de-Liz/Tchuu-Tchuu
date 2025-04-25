@@ -15,15 +15,15 @@ body {
 #cabe {
     text-align: center;
     background-color: #999;
-    height: 40px;
-    line-height: 40px;
+    height: 60px;
+    line-height: 60px;
     width: 100%;
 }
 
 #Login {
     margin: 120px 40px;
     border-radius: 20px;
-    height: 400px;
+    height: 500px;
     background-color: whitesmoke;
 
 }
@@ -69,7 +69,6 @@ fieldset {
 }  
 
 
-
 .envia:hover {
     transform: scale(1.15);
     background-color: #4FC1E9;
@@ -82,7 +81,7 @@ fieldset {
 
 
 form p {
-    padding-left: 160px;
+    text-align: center;
     color: darkgrey;
 }
 
