@@ -15,8 +15,8 @@ body {
 #cabe {
     text-align: center;
     background-color: #999;
-    height: 40px;
-    line-height: 40px;
+    height: 60px;
+    line-height: 60px;
     width: 100%;
 }
 
@@ -50,6 +50,7 @@ body {
 
 fieldset {
     margin: 8px;
+    border: none;
 }
 
 
