@@ -17,41 +17,20 @@
     <header></header>
 
 
-    <main><div class="container">
-    
-        <div class="container-chat">
-                <img src="../Assets/imagens/imagemchat1.jpg" alt="Avatar">
-                <p>Hello. How are you today?</p>
-                <span class="time-right">11:00</span>
-            </div>
-    
-    
-            <div class="container-darker">
-                <img src="../Assets/imagens/imagemchat2.jpg" alt="Avatar" class="right">
-                <p>Hey! I'm fine. Thanks for asking!</p>
-                <span class="time-left">11:01</span>
-            </div>
-    
-    
-            <div class="container-chat">
-                <img src="../Assets/imagens/imagemchat1.jpg" alt="Avatar">
-                <p>Sweet! So, what do you wanna do today?</p>
-                <span class="time-right">11:02</span>
-            </div>
-    
-            <div class="container-darker">
-                <img src="../Assets/imagens/imagemchat2.jpg" alt="Avatar" class="right">
-                <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-                <span class="time-left">11:05</span>
-            </div>
-
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat Online</h2>
         </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- As mensagens serão exibidas aqui -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
+            <button id="sendButton">Enviar</button>
+        </div>
+    </div>
 
-
-    </main>
-
-
-
+    <script src="script.js"></script>
 </body>
 
 </html>
