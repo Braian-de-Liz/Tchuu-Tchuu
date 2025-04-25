@@ -13,17 +13,39 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  overflow: hidden; /* Evita rolagem indesejada */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 300px;
 }
 
 .chat-container {
-  width: 90%;
-  max-width: 400px;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .chat-header {
@@ -31,6 +53,8 @@ body {
   color: white;
   padding: 15px;
   text-align: center;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ddd;
 }
 
 .chat-messages {
@@ -61,6 +85,7 @@ body {
   display: flex;
   padding: 10px;
   background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
 }
 
 .chat-input input {
@@ -69,6 +94,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  font-size: 1rem;
 }
 
 .chat-input button {
@@ -79,8 +105,17 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .chat-input button:hover {
   background-color: #0056b3;
+}
+
+#emojiButton {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 10px;
 }
