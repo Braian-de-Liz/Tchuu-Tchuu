@@ -41,11 +41,10 @@ body {
     margin: 0 auto;
     text-align: center;
     gap: 30px;
-    
 }
 
-#voltar{
-  
+#Voltar{
+  text-decoration: none;
 }
 
 fieldset{
@@ -54,4 +53,10 @@ fieldset{
 
 checkbox {
     
+}
+
+
+.form-class{
+
+    background-color: whitesmoke;
 }
