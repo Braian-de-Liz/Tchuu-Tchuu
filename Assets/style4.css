@@ -1,7 +1,7 @@
 /* Reset básico */
 * {
-  margin: 0;
-  padding: 0;
+  margin: 320px;
+  padding: 600px;
   box-sizing: border-box;
 }
 
@@ -11,8 +11,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  margin: 50px;
+  height: 320px;
+  margin: 600px;
   overflow: hidden; /* Evita rolagem indesejada */
 }
 
@@ -39,8 +39,8 @@ body {
 }
 
 .chat-container {
-  width: 100%;
-  height: 100%;
+  width: 320px;
+  height: 600px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   max-width: 80%;
-  word-break: break-word; /* Quebra de linha para texto longo */
+  word-break: break-word; /*3 Quebra de linha para texto longo */
 }
 
 .chat-messages .message-user {
