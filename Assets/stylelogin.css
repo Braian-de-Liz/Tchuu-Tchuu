@@ -95,7 +95,7 @@ fieldset {
 }
 
 input{
-    width: 50%;
+    width: 40%;
 }
 
 
@@ -172,7 +172,8 @@ fieldset,
 
 #check {
     accent-color: #438082;
-    text-align: center;
+    text-align:left;
+    align-items: first baseline;
 
 }
 
@@ -204,3 +205,4 @@ nav {
     margin-top: 60px;
 
 }
+
