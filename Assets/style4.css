@@ -49,7 +49,7 @@ body {
 }
 
 .chat-header {
-  background-color: #007bff;
+  background-color: #438082;
   color: white;
   padding: 15px;
   text-align: center;
@@ -111,7 +111,7 @@ body {
 .chat-input button {
   margin-left: 10px;
   padding: 10px 15px;
-  background-color: #007bff;
+  background-color: #438082;
   color: white;
   border: none;
   border-radius: 5px;
