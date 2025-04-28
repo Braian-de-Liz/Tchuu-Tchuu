@@ -2,7 +2,6 @@ body {
     margin: 10px 30px;
     padding: 30px;
     background-color: antiquewhite;
-    height: 800px;
 }
 
 #container {
@@ -41,7 +40,7 @@ body {
     margin: 0 auto;
     border-radius: 20px;
     width: 70%;
-    height: 812px;
+    height: 842px;
     gap: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     background-color: white;
@@ -98,6 +97,10 @@ input{
     width: 40%;
 }
 
+form{
+    margin: 10px;
+}
+
 
 .envia:hover {
     transform: scale(1.15);
@@ -117,16 +120,20 @@ form p {
 
 
 .form-group {
+    border-radius: 10px;
+    margin-left: 10px;
     gap: 30px;
     padding: 10px;
-    background-color: whitesmoke;
 }
 
 .oplog {
-    padding-left: 120px;
+    justify-content: center;
+    display: flex;
 }
 
 .oplog img {
+    align-items: center;
+    justify-content: center;
     width: 20px;
     height: 20px;
 }
@@ -206,3 +213,7 @@ nav {
 
 }
 
+hr{
+    max-width: 900px;
+    width: 50%;
+}
