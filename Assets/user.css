@@ -5,23 +5,18 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  margin: 10px 30px;
+  padding: 30px;
+  background-color: antiquewhite;
+  height: 800px;
 }
 
-.container {
-  width: 90%;
-  max-width: 600px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+#container {
+  margin: 0 auto;
+  width: 375px;
+  height: 812px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 h1 {
