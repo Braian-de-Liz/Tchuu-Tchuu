@@ -7,10 +7,23 @@ body {
 
 #container {
   margin: 0 auto;
+  max-width: 30%;
   width: 375px;
   height: 812px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
+.nav{
+  text-align: center;
+  align-items: center;
+}
 
+.fot {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  background-color: whitesmoke;
+  margin-top: 10px;
+}
