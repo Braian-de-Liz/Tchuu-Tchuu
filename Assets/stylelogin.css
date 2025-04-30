@@ -77,13 +77,13 @@ fieldset {
 
 .envia {
     background-color: whitesmoke;
-    background: #438082;
+    background:  linear-gradient(to right, #00bfa5, #009688);
+    transition: background 1.5s ease;
     color: white;
     border: none;
     padding: 10px 5px;
     cursor: pointer;
     border-radius: 15px;
-    transition: transform 0.3s, background-color 0.3s;
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
@@ -93,20 +93,23 @@ fieldset {
     width: 30%;
 }
 
+.envia:hover {
+    transform: scale(1.2);
+    background: linear-gradient( #6a11cb, #2575fc);
+    color: #12181C;
+}
+
 input{
     width: 40%;
+    text-align: center;
 }
 
 form{
     margin: 10px;
+    
 }
 
 
-.envia:hover {
-    transform: scale(1.15);
-    background-color: #4FC1E9;
-    color: #12181C;
-}
 
 .center {
     text-align: center;
