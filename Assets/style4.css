@@ -39,8 +39,8 @@ body {
 }
 
 .chat-container {
-  width: 320px;
-  height: 600px;
+  width: 50x;
+  height: 300px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
