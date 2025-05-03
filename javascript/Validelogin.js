@@ -4,7 +4,8 @@ function validateCPF(cpf){
 }
 
 function validadeEmail(email){
-    return /^[^\s@]+@[^s@]+$/test(email);
+    email = email.replace( /^[^\s@]+@[^s@]+$/test(email));
+    return email;
 }
 
 function ValidateTelefone(telefone){
@@ -12,7 +13,13 @@ function ValidateTelefone(telefone){
     return telefone.length >= 10 
 }
 
+function validaLogin(email, senha){
+    const email = document.getElementById('email').value;
+    const telefone = document.getElementById('telefone').value;
 
+    
+
+}
 
 
 function validateForm(event){
