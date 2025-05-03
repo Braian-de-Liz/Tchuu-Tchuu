@@ -1,5 +1,5 @@
 function gui(){
     let p = document.getElementById("Registro");
-    p.append('fasfefasfefesfseaf');
+    p.append('Guilherme Gay');
 }
 
