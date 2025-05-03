@@ -24,9 +24,12 @@ body {
 }
 
 #Login {
-    margin: 120px 40px;
+    align-items: center;
+    text-align: center;
+    margin: 100px 50px;
     border-radius: 20px;
-    height: 500px;
+    height: 90%;
+    max-height: 900px;
     background-color: whitesmoke;
 
 }
@@ -40,7 +43,9 @@ body {
     margin: 0 auto;
     border-radius: 20px;
     width: 70%;
-    height: 842px;
+    min-height: 900px;
+    max-height: 1080px;
+    height: 100%;
     gap: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     background-color: white;
@@ -49,7 +54,7 @@ body {
 
 #Voltar {
     background-color: whitesmoke;
-    background: #438082;
+    background:  linear-gradient(to right, #00bfa5, #009688);
     color: white;
     border: none;
     padding: 10px 5px;
@@ -60,14 +65,21 @@ body {
     font-weight: 600;
     text-decoration: none;
     text-align: center;
+    display: inline-block;
     min-width: 150px;
     
 }
 
 #Voltar:hover {
     transform: scale(1.15);
-    background-color: #4FC1E9;
+    background: linear-gradient(to right, #4FC1E9, #2575fc);
     color: #12181C;
+}
+#voltap{
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 fieldset {
@@ -78,7 +90,7 @@ fieldset {
 .envia {
     background-color: whitesmoke;
     background:  linear-gradient(to right, #00bfa5, #009688);
-    transition: background 1.5s ease;
+    transition: background 1.5s ease, transform 0.5s ease; 
     color: white;
     border: none;
     padding: 10px 5px;
@@ -90,12 +102,13 @@ fieldset {
     text-align: center;
     min-width: 150px;
     animation: envia 2s ease-in-out;
+    display: inline-block;
     width: 30%;
-}
+} 
 
 .envia:hover {
     transform: scale(1.2);
-    background: linear-gradient( #6a11cb, #2575fc);
+    background: linear-gradient(to right, #4FC1E9, #2575fc);
     color: #12181C;
 }
 
@@ -107,6 +120,14 @@ input{
 form{
     margin: 10px;
     
+}
+
+.link{
+    transition: 2s;
+}
+.link :hover{
+    color: #2575fc;
+
 }
 
 
