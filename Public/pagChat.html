@@ -17,50 +17,38 @@
     <header></header>
 
 
-    <!-- Modal de Login -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <h2>Entrar no Chat</h2>
-            <input type="text" id="usernameInput" placeholder="Digite seu nome de usuário" />
-            <button id="loginButton">Entrar</button>
-        </div>
-    </div>
-
-    <!-- Interface do Chat -->
     <div class="chat-container">
-        <div class="chat-header">
-            <h2>Chat Online</h2>
+        <div class="login-form">
+          <h2>Entrar no Chat</h2>
+          <input type="text" placeholder="Digite seu nome de usuário">
+          <button>Entrar</button>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            <!-- Mensagens falsas -->
-            <div class="message message-bot">
-                Olá! Bem-vindo ao chat. Como posso ajudar você?
-            </div>
-            <div class="message message-user">
-                Oi, estou precisando de ajuda com um problema.
-            </div>
-            <div class="message message-bot">
-                Claro! Pode me explicar qual é o problema?
-            </div>
-            <div class="message message-user">
-                Meu celular não está conectando ao Wi-Fi.
-            </div>
-            <div class="message message-bot">
-                Entendido. Já tentou reiniciar o roteador e o celular?
-            </div>
-            <div class="message message-user">
-                Sim, já tentei, mas ainda não funciona.
-            </div>
-            <div class="message message-bot">
-                Certo. Vamos verificar algumas configurações. Você pode me confirmar o modelo do seu celular?
-            </div>
+        <div class="chat-box">
+          <div class="chat-header">
+            <h3>Chat Online</h3>
+          </div>
+          <div class="messages">
+            <!-- Aqui serão exibidas as mensagens -->
+            <p>Olá! Bem-vindo ao chat. Como posso ajudar você?</p>
+            <br>
+            <p>Oi, estou precisando de ajuda com um problema.</p>
+            <br>
+            <p>Claro! Pode me explicar qual é o problema?</p>
+            <br>
+            <p>Meu celular não está conectando ao Wi-Fi.</p>
+            <br>
+            <p>Entendido. Já tentou reiniciar o roteador e o celular?</p>
+            <br>
+            <p>Sim, já tentei, mas ainda não funciona.</p>
+            <br>
+            <p>Certo. Vamos verificar algumas configurações. Você pode me confirmar o modelo do seu celular?</p>
+          </div>
+          <div class="message-input">
+            <textarea placeholder="Digite sua mensagem..."></textarea>
+            <button>Enviar</button>
+          </div>
         </div>
-        <div class="chat-input">
-            <img src="..//Assets/imagens/imagens-de-uso/imagemchat1.jpg" alt="Usuário" class="user-avatar" />
-            <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
-            <button id="sendButton">Enviar</button>
-        </div>
-    </div>
+      </div>
 
    </body>
 
