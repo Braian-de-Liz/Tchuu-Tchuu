@@ -27,13 +27,20 @@ header{
 
 .fot {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 50px;
   align-items: center;
   padding: 10px 0;
-  background-color: whitesmoke;
-  margin-top: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
+.fot img {
+  width: 28px;
+  transition: transform 0.3s;
+}
 
 
 @media (min-width : 765px){
