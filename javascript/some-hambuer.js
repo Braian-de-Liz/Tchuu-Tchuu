@@ -2,6 +2,7 @@ const menu_icon = document.querySelector('.menu-icon')
 const midia_pequena = window.matchMedia('(max-width: 900px)')
 
 function escondeHamburguer (e){
+    
     if(e.matches){
         menu_icon.style.display = 'none';
     }

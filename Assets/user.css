@@ -12,6 +12,7 @@ body {
   width: 100%; 
   max-width: 375px;
   margin: auto;
+  height: 90%;
   overflow: hidden;
 }
 
@@ -40,6 +41,28 @@ header{
 .fot img {
   width: 28px;
   transition: transform 0.3s;
+}
+
+#fundo-decont{
+  
+  text-align: center;
+  align-items: center;
+  
+  width: 350px;
+  margin: 20px ;
+}
+
+.container-dado{
+  display: flex;
+  border-radius: 12px;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #D9D9D9;
+  height: 76px;
+  width: 346px;
+  display: flex;
+  justify-content: space-between;
 }
 
 
