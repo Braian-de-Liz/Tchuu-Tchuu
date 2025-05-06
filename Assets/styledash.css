@@ -37,6 +37,11 @@ html, body {
     color: #333;
     cursor: pointer;
     transition: color 0.3s;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    
 }
 
 .menu-icon:hover {
