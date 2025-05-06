@@ -241,3 +241,26 @@ hr{
     max-width: 900px;
     width: 50%;
 }
+
+@media (max-width: 750px) {
+    #Registro {
+        width: 100%;
+        margin: 0;
+    }
+
+    body{
+        margin: 0;
+    }
+    input{
+        width: 90%;
+    }
+    
+    #login{
+        margin: 0;
+    }
+
+    #container{
+        margin: 0;
+        width: 100%;
+    }
+}
