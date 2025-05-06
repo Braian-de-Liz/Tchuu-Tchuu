@@ -9,19 +9,19 @@ body {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%; 
+  width: 100%;
   max-width: 375px;
   margin: auto;
   height: 90%;
   overflow: hidden;
 }
 
-header{
+header {
   justify-content: center;
   text-align: center;
 }
 
-.nav{
+.nav {
   text-align: center;
   align-items: center;
 }
@@ -39,20 +39,20 @@ header{
 }
 
 .fot img {
-  width: 28px;
+  width: 26px;
   transition: transform 0.3s;
 }
 
-#fundo-decont{
-  
+#fundo-decont {
+
   text-align: center;
   align-items: center;
-  
+
   width: 350px;
-  margin: 20px ;
+  margin: 20px;
 }
 
-.container-dado{
+.container-dado {
   display: flex;
   border-radius: 12px;
   gap: 12px;
@@ -66,6 +66,17 @@ header{
 }
 
 
-@media (min-width : 765px){
+@media (min-width : 765px) {
+  #container {
+    margin: 0;
+    width: 100%;
+  }
+
+  body {
+    margin: 0;
+    width: 100%;
+  }
+
+
 
 }

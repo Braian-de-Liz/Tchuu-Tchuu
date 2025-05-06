@@ -206,33 +206,6 @@ html, body {
 
 
 
-@media (max-width: 900px) {
-    .container {
-        padding: 15px;
-    }
-    
-    .menu-icon {
-        display: none;
-    }
-
-    .informacoeslinha {
-        font-size: 16px;
-    }
-
-    .informacoes2 {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .informacoes2c {
-        font-size: 28px;
-    }
-
-    .ok-btn {
-        font-size: 14px;
-    }
-}
-
 
 
 @media (min-width: 901px) {
