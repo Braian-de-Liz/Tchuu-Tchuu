@@ -17,13 +17,19 @@ body {
 }
 
 header {
-  justify-content: center;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.nav {
-  text-align: center;
-  align-items: center;
+.menu-icon{
+  font-size: 26px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: flex;
 }
 
 .fot {
