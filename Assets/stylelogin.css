@@ -117,11 +117,6 @@ input{
     text-align: center;
 }
 
-form{
-    margin: 10px;
-    
-}
-
 .link{
     transition: 2s;
 }
@@ -179,8 +174,7 @@ a {
     }
 }
 
-#container,
-#Registro {
+#container,#Registro {
     animation: aparecer 1s ease-in-out;
 }
 
