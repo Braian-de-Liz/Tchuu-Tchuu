@@ -58,7 +58,7 @@ body {
 
 .menu-lateral {
     position: fixed;
-    left: -250px; 
+    left: -250px;
     height: 100%;
     width: 250px;
     background-color: #999999;
@@ -68,15 +68,16 @@ body {
     z-index: 1000;
     color: #eee;
 }
-.txt-link{
+
+.txt-link {
     color: #ddd;
 }
 
-.txt-link a:hover{
+.txt-link a:hover {
     color: #00796b;
 }
 
-.item-menu{
+.item-menu {
     margin: 10px;
     padding-left: 10px;
     margin-left: 40px;
