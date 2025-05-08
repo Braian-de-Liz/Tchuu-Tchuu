@@ -9,28 +9,34 @@
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
+        <div class="header">
+            <h2>Relatório de Desempenho</h2>
+        </div>
+        <div class="chart-container">
+            <label for="coefficient">Coeficiente Eficiência da Ferrovia</label>
+            <input type="text" id="coefficient" placeholder="Valor">
+        </div>
+        <div class="chart-container">
+            <label for="average_stop_time">Tempo Média Parada</label>
+            <input type="text" id="average_stop_time" placeholder="Valor">
+        </div>
+        <!-- Novo container para as caixas de texto -->
+        <div class="additional-inputs">
+            <div class="input-box">
+                <label for="extension">Extensão</label>
+                <input type="text" id="extension" placeholder="Valor">
+            </div>
 
-<!-- Cabeçalho -->
-<div class="header">
-    <h2>Relatório de Desempenho</h2>
-</div>
-
-<!-- Gráfico de Consumo de Bateria -->
-<div class="chart-container">
-    <h3>Consumo da Bateria</h3>
-    <canvas id="batteryChart"></canvas>
-</div>
-
-<!-- Gráfico de Consumo de Dados -->
-<div class="chart-container">
-    <h3>Consumo de Dados</h3>
-    <canvas id="dataUsageChart"></canvas>
-</div>
-</div>
+            
+            <div class="input-box">
+                <label for="initial_final_platform">Pátio Inicial e Final</label>
+                <input type="text" id="initial_final_platform" placeholder="Valor">
+            </div>
+        </div>
+    </div>
 
 
-<script src="../javascript/GraficoDesempenho.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
