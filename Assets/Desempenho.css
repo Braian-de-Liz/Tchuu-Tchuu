@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Espaçamento entre os elementos */
+    gap: 20px; /* Espaçamento entre os elementos principais */
 }
 
 .header {
@@ -39,14 +39,15 @@ body {
     background-color: #f9f9f9;
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .additional-inputs {
-    display: block;
-    justify-content: center;
-    gap: 90px; /* Espaçamento entre as caixas de texto */
+    display: flex;
+    flex-direction: column; /* Organiza as caixas de texto verticalmente */
+    align-items: center;
+    gap: 40px; /* Espaçamento vertical entre as caixas de texto */
 }
 
 .input-box {
