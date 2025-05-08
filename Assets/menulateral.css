@@ -1,0 +1,21 @@
+.menu-lateral {
+    position: fixed;
+    left: -250px; 
+    height: 100vh;
+    width: 250px;
+    background-color: slategray;
+    padding-top: 20px;
+    transition: left 0.3s;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.menu-lateral.aberto {
+    left: 0;
+}
+
+
+.container.menu-aberto {
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
