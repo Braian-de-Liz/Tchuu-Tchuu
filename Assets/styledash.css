@@ -72,11 +72,14 @@ body {
     color: #ddd;
 }
 
-.txt
+.txt-link a:hover{
+    color: #00796b;
+}
 
 .item-menu{
-    margin: 20px;
+    margin: 10px;
     padding-left: 10px;
+    margin-left: 40px;
 }
 
 .menu-lateral.aberto {
