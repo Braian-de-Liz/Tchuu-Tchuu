@@ -1,4 +1,4 @@
-  /* Reset básico */
+ /* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +22,10 @@ body {
     height: 812px;
     text-align: center;
     overflow-y: auto; /* Permite rolagem vertical se necessário */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os elementos principais */
 }
 
 .header {
@@ -39,6 +43,21 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.additional-inputs {
+    display: flex;
+    flex-direction: column; /* Organiza as caixas de texto verticalmente */
+    align-items: center;
+    gap: 40px; /* Espaçamento vertical entre as caixas de texto */
+}
+
+.input-box {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 150px; /* Tamanho das caixas de texto */
+}
+
 h2, h3 {
     margin: 0;
     font-weight: bold;
@@ -46,4 +65,17 @@ h2, h3 {
 
 canvas {
     max-width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
