@@ -1,15 +1,15 @@
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #ffffff);
     justify-content: center;
     align-items: start;
+    display: flex;
 
 }
 
@@ -17,7 +17,7 @@ html, body {
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    width: 100%;
+    width: 80%;
     min-width: 280px;
     overflow: hidden;
     padding: 20px;
@@ -52,6 +52,13 @@ html, body {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+
+.menu-lateral{
+    width: 300px;
+    height: 100%;
+    background-color: ;
 }
 
 .informacoeslinha {
