@@ -1,27 +1,45 @@
 .menu-lateral {
     position: fixed;
-    left: -250px; 
+    top: 0;
+    border-right: #00ffdd 2px solid;
+    border-bottom: #00ffdd 2px solid;
+    border-top: #00ffdd 2px solid;
+    left: -15%;
     height: 100%;
-    width: 250px;
-    background-color: #999999;
-    padding-top: 20px;
-    transition: left 0.3s;
+    width: 15%;
+    background-color: #D9D9D9;
+    transition: left 0.4s;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 9999;
     color: #eee;
 }
-.txt-link{
-    color: #ddd;
+
+.menu-lateral ul{
+    list-style: none;
 }
 
-.txt-link a:hover{
+.menu-lateral :hover{
+    text-decoration: none;   
+}
+
+.txt-link {
+    color: #000000;
+    margin: auto;
+    text-decoration: none;
+    font-size: 24px;
+    list-style: none;
+    transition: 0.4s;
+}
+
+a:hover .txt-link  {
     color: #00796b;
+    transform: scale(1.1);
 }
 
-.item-menu{
-    margin: 20px;
+.item-menu {
+    margin: 10px;
     padding-left: 10px;
-    margin-left: 80px;
+    margin-left: 40px;
 }
 
 .menu-lateral.aberto {

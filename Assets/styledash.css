@@ -70,13 +70,13 @@ body {
 .menu-lateral {
     position: fixed;
     top: 0;
-    border-right: #00ffdd 2px solid;
-    border-bottom: #00ffdd 2px solid;
-    border-top: #00ffdd 2px solid;
+    border-right: #1da190  4px solid;
+    border-bottom: #1da190 4px solid;
+    border-top: #1da190  4px solid;
     left: -15%;
     height: 100%;
     width: 15%;
-    background-color: linear-gradient(180deg, #00796b, #009688);
+    background-color: #999;
     transition: left 0.4s;
     overflow-y: auto;
     z-index: 9999;
@@ -138,6 +138,7 @@ a:hover .txt-link  {
 }
 
 .info-principal {
+    margin: 0;
     padding: 20px 10px;
     text-align: center;
     display: flex;
@@ -155,7 +156,7 @@ a:hover .txt-link  {
 }
 
 .informacoes2 {
-    background: linear-gradient(to right, #03ddc0, #006b60);
+    background: linear-gradient(to right, #03ddc0, #0d4d46);
     color: white;
     display: flex;
     justify-content: space-around;
@@ -165,7 +166,7 @@ a:hover .txt-link  {
     border-radius: 10px;
     margin: 20px 0;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 100);
     flex-wrap: wrap;
 }
 
@@ -286,12 +287,14 @@ a:hover .txt-link  {
 
 
 
-@media (min-width: 901px) {
+@media (max-width: 901px) {
     body {
         justify-content: center;
         align-items: start;
         display: flex;
         padding: 40px;
+        margin: 0;
+
     }
 
     #container {
