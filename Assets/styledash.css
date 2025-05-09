@@ -14,7 +14,8 @@ body {
 }
 
 #container {
-    background-color: #fff;
+    /*background-color: #fff;*/
+    background-color: linear-gradient(180deg, #00796b, #009688);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 80%;
@@ -31,6 +32,7 @@ body {
     justify-content: center;
     align-items: center;
     position: fixed;
+    z-index: 10;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -53,7 +55,7 @@ body {
 }
 
 .menu-icon:hover {
-    color: linear-gradient(to right, #00ffdd, #385e5a);
+    color: #00ffdd;
 }
 
 .header-icons {
@@ -67,24 +69,40 @@ body {
 
 .menu-lateral {
     position: fixed;
-    left: -250px;
+    top: 0;
+    border-right: #00ffdd 2px solid;
+    border-bottom: #00ffdd 2px solid;
+    border-top: #00ffdd 2px solid;
+    left: -15%;
     height: 100%;
-    width: 250px;
-    background-color: #999999;
-    padding-top: 20px;
-    transition: left 0.3s;
+    width: 15%;
+    background-color: linear-gradient(180deg, #00796b, #009688);
+    transition: left 0.4s;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 9999;
     color: #eee;
+}
+
+.menu-lateral ul{
+    list-style: none;
+}
+
+.menu-lateral :hover{
+    text-decoration: none;   
 }
 
 .txt-link {
     color: #000000;
-    font-size: 24;
+    margin: auto;
+    text-decoration: none;
+    font-size: 24px;
+    list-style: none;
+    transition: 0.4s;
 }
 
 a:hover .txt-link  {
     color: #00796b;
+    transform: scale(1.1);
 }
 
 .item-menu {
@@ -137,7 +155,7 @@ a:hover .txt-link  {
 }
 
 .informacoes2 {
-    background: linear-gradient(to right, #00bfa5, #009688);
+    background: linear-gradient(to right, #03ddc0, #006b60);
     color: white;
     display: flex;
     justify-content: space-around;
@@ -147,7 +165,7 @@ a:hover .txt-link  {
     border-radius: 10px;
     margin: 20px 0;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     flex-wrap: wrap;
 }
 
@@ -164,6 +182,7 @@ a:hover .txt-link  {
 
 .tremimagem img {
     width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     max-width: 300px;
     border-radius: 10px;
     transition: transform 0.3s;
@@ -275,8 +294,8 @@ a:hover .txt-link  {
         padding: 40px;
     }
 
-    .container {
-        width: 80%;
-        max-width: 1200px;
+    #container {
+        margin: 0;
+        width: 100%;
     }
 }
