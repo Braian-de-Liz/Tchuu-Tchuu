@@ -13,7 +13,7 @@ body {
 
 }
 
-.container {
+#container {
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -53,7 +53,7 @@ body {
 }
 
 .menu-icon:hover {
-    color: #00796b;
+    color: linear-gradient(to right, #00ffdd, #385e5a);
 }
 
 .header-icons {
@@ -79,10 +79,11 @@ body {
 }
 
 .txt-link {
-    color: #ddd;
+    color: #000000;
+    font-size: 24;
 }
 
-.txt-link a:hover {
+a:hover .txt-link  {
     color: #00796b;
 }
 
@@ -279,5 +280,3 @@ body {
         max-width: 1200px;
     }
 }
-
-/* braian viado
