@@ -1,13 +1,36 @@
+
+.menu-icon {
+    position: fixed;
+    font-size: 26px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 9999;
+    top: 15px;
+    left: 15px;
+}
+
+.menu-icon:hover {
+    color: #00ffdd;
+}
+
+.header-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 .menu-lateral {
     position: fixed;
     top: 0;
-    border-right: #00ffdd 2px solid;
-    border-bottom: #00ffdd 2px solid;
-    border-top: #00ffdd 2px solid;
+    border-right: #1da190  4px solid;
+    border-bottom: #1da190 4px solid;
+    border-top: #1da190  4px solid;
     left: -15%;
     height: 100%;
     width: 15%;
-    background-color: #D9D9D9;
+    background-color: #999;
     transition: left 0.4s;
     overflow-y: auto;
     z-index: 9999;
