@@ -74,12 +74,8 @@ body {
 }
 
 .chat-header {
-<<<<<<< HEAD
-  background-color: #6c757d; /* Verde claro */
-=======
   background-color: #4FC1E9;
   /* Verde claro */
->>>>>>> 3ca7802575c269f4da4e63e8f73618eebfe1bf87
   color: white;
   text-align: center;
   padding: 10px;
