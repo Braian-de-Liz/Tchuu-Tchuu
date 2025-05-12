@@ -12,6 +12,7 @@ body {
   width: 100%;
   max-width: 95%;
   align-items: center;
+  justify-content: center;
   margin: auto;
   height: 90%;
   overflow: hidden;
