@@ -1,190 +1,81 @@
- /* Reset básico */
- * {
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
   font-family: Arial, sans-serif;
-  background-color: antiquewhite; /* Azul claro de fundo */
+  background-color: antiquewhite;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 80%;
-}
-
-.chat-container {
-  display: flex;
-  width: 80%;
-  max-width: 375px;
-  height: 90%;
-  padding: 500px;
-}
-
-.login-form {
-  background-color: #6c757d; /* Cinza escuro */
-  color: white;
-  padding: 20px;
-  width: 50%;
-  min-width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  text-align: center;
-  font-size: x-large;
-}
-
-.login-form h2 {
-  margin-top: 150px;
-}
-
-.login-form input {
-  padding: 8px;
-  width: 80%;
-  border: none;
-  border-radius: 4px;
-}
-
-.login-form button {
-  padding: 8px 16px;
-  background-color:#438082; /* Verde claro */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.chat-box {
+  align-items: flex-start;
+  padding: 40px;
+  min-height: 100vh;
+  }
+  
+  #chat-box {
   background-color: white;
-  border: 1px solid #dee2e6;
-  border-radius: 8px;
-  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
   width: 90%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.chat-header {
-  background-color: #438082; /* Verde claro */
+  max-width: 800px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #chat-header {
+  background-color: #438082;
   color: white;
-  text-align: center;
   padding: 10px;
   border-radius: 8px 8px 0 0;
-  display: flex;
-}
-
-.messages {
+  }
+  
+  #messages {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 0 0 8px 8px;
   padding: 20px;
-  height: 300px; /* Altura fixa inicial */
-  overflow-y: auto; /* Permite rolagem vertical */
-  height: 880px;
-}
-
-.message-input {
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  }
+  
+  .message-input {
   display: flex;
   gap: 10px;
-}
-
-.message-input textarea {
-  resize: none; /* Impede redimensionamento */
+  }
+  
+  .message-input textarea {
+  flex: 1;
+  resize: none;
   padding: 10px;
-  width: 100%;
-  border: 1px solid #dee2e6;
   border-radius: 4px;
-}
-
-.message-input button {
+  border: 1px solid #ccc;
+  }
+  
+  .send-button {
   padding: 10px 20px;
-  background-color: #4FC1E9; /* Verde claro */
+  background: linear-gradient(180deg, #00796b, #009688);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #ffffff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  padding: 20px;
-  display: flex;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+  #chat-box {
+  width: 100%;
+  padding: 15px;
+  margin: 10px;
+  }
+  
+  .message-input {
   flex-direction: column;
-  gap: 20px;
-  border-right: 1px solid #dee2e6;
-  z-index: 1000;
-}
-
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo {
-  width: 30px;
-  height: 30px;
-}
-
-.contacts h4 {
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #333;
-}
-
-.contacts ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.contacts li {
-  padding: 8px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.contacts li:hover {
-  background-color: #f0f0f0;
-}
-
-/* Responsividade */
-@media (max-width: 480px) {
-  .sidebar {
-      display: none; /* Oculta a sidebar em telas pequenas */
   }
-
-  .chat-container {
-      width: 100%; /* O chat ocupa toda a largura */
-      margin-left: 0; /* Remove margem esquerda */
+  
+  .send-button {
+  width: 100%;
   }
-
-  .chat-box {
-      width: 100%; /* Ajusta o chat para ocupar toda a largura */
   }
-
-  .messages {
-      height: calc(100vh - 150px); /* Ajusta altura do chat para caber na tela */
-  }
-}
-
-#container {
-  /*background-color: #fff;*/
-  background-color: linear-gradient(180deg, #00796b, #009688);
-  border-radius: 15px;
-  width: 80%;
-  min-width: 280px;
-  overflow: hidden;
-  padding: 50px;
-}
