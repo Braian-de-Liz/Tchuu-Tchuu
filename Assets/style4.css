@@ -183,7 +183,6 @@ body {
   /*background-color: #fff;*/
   background-color: linear-gradient(180deg, #00796b, #009688);
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 80%;
   min-width: 280px;
   overflow: hidden;
