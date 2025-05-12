@@ -10,7 +10,6 @@ body {
     justify-content: center;
     align-items: start;
     display: flex;
-
 }
 
 #container {
@@ -54,7 +53,10 @@ body {
     z-index: 9999;
     top: 15px;
     left: 15px;
+    bottom: unset;
+    background-color: none;
 }
+
 
 .menu-icon:hover {
     color: #00ffdd;
