@@ -1,3 +1,6 @@
+*{
+    text-decoration: none;
+}
 
 .menu-icon {
     position: fixed;
@@ -8,7 +11,10 @@
     z-index: 9999;
     top: 15px;
     left: 15px;
+    bottom: unset;
+    background-color: none;
 }
+
 
 .menu-icon:hover {
     color: #00ffdd;
@@ -24,13 +30,13 @@
 .menu-lateral {
     position: fixed;
     top: 0;
-    border-right: #1da190  4px solid;
-    border-bottom: #1da190 4px solid;
-    border-top: #1da190  4px solid;
+    border-right: #1da190  2px solid;
+    border-bottom: #1da190 2px solid;
+    border-top: #1da190  2px solid;
     left: -15%;
     height: 100%;
     width: 15%;
-    background-color: #999;
+    background-color: #e6e6e6;
     transition: left 0.4s;
     overflow-y: auto;
     z-index: 9999;
@@ -46,21 +52,23 @@
 }
 
 .txt-link {
-    color: #000000;
+    color: #308661;
     margin: auto;
     text-decoration: none;
     font-size: 24px;
     list-style: none;
     transition: 0.4s;
+    text-decoration: none;
 }
 
 a:hover .txt-link  {
     color: #00796b;
     transform: scale(1.1);
+    
 }
 
 .item-menu {
-    margin: 10px;
+    margin: 30px;
     padding-left: 10px;
     margin-left: 40px;
 }
