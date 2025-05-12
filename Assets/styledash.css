@@ -20,6 +20,7 @@ body {
     width: 80%;
     min-width: 280px;
     overflow: hidden;
+    margin-top: 100px;
     padding: 50px;
 }
 
@@ -78,11 +79,12 @@ body {
     left: -15%;
     height: 100%;
     width: 15%;
-    background-color: #999;
+    background-color:  #00796b;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: left 0.4s;
     overflow-y: auto;
     z-index: 9999;
-    color: #eee;
+    color: #ffffff;
 }
 
 .menu-lateral ul{
@@ -103,7 +105,7 @@ body {
 }
 
 a:hover .txt-link  {
-    color: #00796b;
+    color: #ffffff;
     transform: scale(1.1);
 }
 
@@ -186,7 +188,7 @@ a:hover .txt-link  {
 .tremimagem img {
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    max-width: 300px;
+    max-width: 500px;
     border-radius: 10px;
     transition: transform 0.3s;
 }
