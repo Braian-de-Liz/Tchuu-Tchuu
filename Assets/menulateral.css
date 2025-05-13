@@ -17,7 +17,7 @@
 
 
 .menu-icon:hover {
-    color: #00ffdd;
+    color: #2d8a63;
 }
 
 .header-icons {
@@ -53,7 +53,6 @@
 
 .txt-link {
     color: #308661;
-    margin: auto;
     text-decoration: none;
     font-size: 24px;
     list-style: none;
