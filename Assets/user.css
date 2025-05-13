@@ -8,7 +8,7 @@ body {
 }
 
 #container {
-  background-color: linear-gradient(180deg, #00796b, #009688);
+  background-color: #ffff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 80%;
@@ -16,6 +16,12 @@ body {
   overflow: hidden;
   margin-top: 100px;
   padding: 50px;
+}
+
+.container-dado{
+  background-color: #888;
+  border-radius: 10px;
+
 }
 
 
