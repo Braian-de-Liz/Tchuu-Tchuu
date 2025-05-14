@@ -17,7 +17,7 @@
 
 
 .menu-icon:hover {
-    color: #00ffdd;
+    color: linear-gradient(90deg, #03ddc0, #0d4d46);
 }
 
 .header-icons {
@@ -72,7 +72,7 @@
     width: 100%;
     height: 2px;
     background-color: #00796b;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .txt-link:hover::after {
