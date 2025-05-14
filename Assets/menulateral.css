@@ -17,7 +17,7 @@
 
 
 .menu-icon:hover {
-    color: #2d8a63;
+    color: #00ffdd;
 }
 
 .header-icons {
@@ -52,12 +52,18 @@
 }
 
 .txt-link {
+    position: relative;
     color: #308661;
+    margin: auto;
     text-decoration: none;
     font-size: 24px;
     list-style: none;
     transition: 0.4s;
     text-decoration: none;
+}
+
+.txt-link ::after{
+    content: ;
 }
 
 a:hover .txt-link  {
