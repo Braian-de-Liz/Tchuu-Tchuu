@@ -17,7 +17,7 @@
 
 
 .menu-icon:hover {
-    color: #2d8a63;
+    color: linear-gradient(90deg, #03ddc0, #0d4d46);
 }
 
 .header-icons {
@@ -52,20 +52,32 @@
 }
 
 .txt-link {
+    position: relative;
+    display: inline-block;
     color: #308661;
-    text-decoration: none;
+    margin: auto;
     font-size: 24px;
     list-style: none;
     transition: 0.4s;
     text-decoration: none;
 }
 
-a:hover .txt-link  {
-    color: #00796b;
-    transform: scale(1.1);
-    
+.txt-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -5px; 
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: 2px;
+    background-color: #00796b;
+    transition: transform 0.4s ease;
 }
 
+.txt-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
 .item-menu {
     margin: 30px;
     padding-left: 10px;

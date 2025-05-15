@@ -12,17 +12,32 @@ body {
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 80%;
+  height: 100%;
   min-width: 280px;
   overflow: hidden;
   margin-top: 100px;
   padding: 50px;
 }
 
-.container-dado{
-  background-color: #888;
-  border-radius: 10px;
+#titulo-usuario{
+  text-align: center;
 
 }
+
+#fundo-decont{
+  background-color: rgb(185, 185, 185);
+  max-width: 98%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.container-dado{
+  background-color: #999;
+  margin: 30px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
 
 
 @media (min-width : 765px) {
