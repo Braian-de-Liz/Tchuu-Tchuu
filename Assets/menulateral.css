@@ -90,6 +90,7 @@
 
 
 .container.menu-aberto {
-    margin-left: 250px;
+    padding: auto;
+    margin-left: 1%;
     transition: margin-left 0.3s;
 }

@@ -11,46 +11,56 @@ body {
   background-color: #ffff;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  width: 80%;
+  width: 98%;
   height: 100%;
   min-width: 280px;
   overflow: hidden;
-  margin-top: 100px;
-  padding: 50px;
+  margin-top: 20px;
+  padding: 3px;
 }
 
-#titulo-usuario{
+#titulo-usuario {
   text-align: center;
 
 }
 
-#fundo-decont{
-  background-color: rgb(185, 185, 185);
+#fundo-decont {
+  background-color: #F2F2F2;
+  margin: 3px;
   max-width: 98%;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
 }
 
-.container-dado{
+
+.flex {
+  display: flex;
+  gap: 2%;
+}
+
+.container-dado {
   background-color: #999;
-  margin: 30px;
+  margin: 10px;
   margin-top: 20px;
+  padding: 2px;
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgb(94, 94, 94);
+}
+
+.container-dado img{
+  width: 3%;
+  height: 3%;
 }
 
 
 
-@media (min-width : 765px) {
+
+
+@media (min-width: 901px) {
+
   #container {
-    margin: 0;
+    margin: 10%;
+    margin-top: 10px;
     width: 100%;
   }
-
-  body {
-    margin: 0;
-    width: 100%;
-  }
-
-
-
 }
