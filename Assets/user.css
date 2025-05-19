@@ -53,13 +53,18 @@ body {
 }
 
 
+details{
+  
+}
+
+
 
 
 
 @media (min-width: 901px) {
 
   #container {
-    margin: 10%;
+    margin: 15%;
     margin-top: 10px;
     width: 100%;
   }
