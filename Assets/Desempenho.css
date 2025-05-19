@@ -8,14 +8,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: antiquewhite;
     justify-content: center;
-<<<<<<< HEAD
-    align-items: center;
-    height: 100vh;
-    gap: ;
-=======
     align-items: start;
     display: flex;
->>>>>>> c89d7d76be5b3fbfc283162079ff2954c5161a8f
 }
 
 #container {
