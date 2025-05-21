@@ -86,14 +86,20 @@ details{
 
 
 
-@media (min-width: 901px) {
+@media (max-width: 901px) {
 
   body{
     padding: 0%;
   }
+  body {
+      justify-content: center;
+      align-items: start;
+      display: flex;
+      margin: 0;
+
+  }
 
   #container {
-
     margin: 15%;
     margin-top: 10px;
     width: 100%;
