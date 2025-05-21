@@ -20,7 +20,7 @@ body {
   width: 95%;
   min-width: 280px;
   overflow: hidden;
-  margin-top: 200px;
+  margin-top: 100px;
   padding: 10px;
 }
 
@@ -73,8 +73,8 @@ body {
 }
 
 .container-dado img{
-  width: 7%;
-  height: 7%;
+  width: 10%;
+  height: 10%;
 }
 
 
@@ -86,17 +86,10 @@ details{
 
 
 
-@media (max-width: 901px) {
+@media (min-width: 901px) {
 
   body{
     padding: 0%;
-  }
-  body {
-      justify-content: center;
-      align-items: start;
-      display: flex;
-      margin: 0;
-
   }
 
   #container {
@@ -105,8 +98,5 @@ details{
     width: 100%;
   }
 
-  .container-dado img{
-    width: 3%;
-    height: 3%;
-  }
+  
 }
