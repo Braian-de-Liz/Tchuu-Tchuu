@@ -63,6 +63,10 @@ body {
   gap: 2%;
 }
 
+.flex img{
+  border-radius: 100px;
+}
+
 .container-dado {
   background-color: #f0f0f0;
   margin: 10px;
