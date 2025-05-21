@@ -17,11 +17,11 @@ body {
   background-color: linear-gradient(180deg, #00796b, #009688);
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  width: 80%;
+  width: 95%;
   min-width: 280px;
   overflow: hidden;
-  margin-top: 100px;
-  padding: 50px;
+  margin-top: 200px;
+  padding: 10px;
 }
 
 .header {
@@ -73,8 +73,8 @@ body {
 }
 
 .container-dado img{
-  width: 3%;
-  height: 3%;
+  width: 7%;
+  height: 7%;
 }
 
 
@@ -88,9 +88,19 @@ details{
 
 @media (min-width: 901px) {
 
+  body{
+    padding: 0%;
+  }
+
   #container {
+
     margin: 15%;
     margin-top: 10px;
     width: 100%;
+  }
+
+  .container-dado img{
+    width: 3%;
+    height: 3%;
   }
 }
