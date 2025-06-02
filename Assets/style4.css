@@ -10,18 +10,20 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px;
+  padding: 20px;
   min-height: 100vh;
   }
-  
+
+
   #chat-box {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 800px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: linear-gradient(180deg, #00796b, #009688);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 95%;
+    min-width: 280px;
+    overflow: hidden;
+    margin-top: 120px ;
+    padding: 0px;
   }
   
   #chat-header {
@@ -64,7 +66,7 @@
   }
 
 
-  
+
   
   /* Responsivo */
   @media (max-width: 768px) {
