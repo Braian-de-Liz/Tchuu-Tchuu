@@ -55,10 +55,12 @@ body {
 }
 
 .menu-segunda {
-    gap: 20px;
+    gap: 40px;
     width: auto;
     padding: 30px;
     height: 100%;
+    opacity: 90%;
+    border-radius: 30px;
 }
 
 aside {
@@ -103,3 +105,5 @@ aside {
     width: 20% ;
 }
 
+.conteudo {
+    display: block;}
