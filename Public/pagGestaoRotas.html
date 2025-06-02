@@ -77,43 +77,27 @@
 
             <aside id="lado">
                 <ul class="lado">
-                    <li class="menu-segunda">
+                    <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">
                         <span> Painel de analises</span>
+                        
                     </li>
 
-                    <li class="menu-segunda">
+                    <li class="menu-segunda" onclick="mostrarConteudo('veiculos')">
                         <span> Veiculos ativos</span>
                     </li>
 
-                    <li class="menu-segunda">
+                    <li class="menu-segunda" onclick="mostrarConteudo('mapa')">
                         <span>Mapa</span>
                     </li>
 
-                    <li class="menu-segunda">
+                    <li class="menu-segunda" onclick="mostrarConteudo('ajuda')">
                         <span>Introdução e Ajuda</span>
                     </li>
 
-                    <li class="menu-segunda">
-                        <span> Motor e Manutenção</span>
-                    </li>
-
-                    <li class="menu-segunda">
-                        <span> Zonas e mensagens</span>
-                    </li>
-
-                    <li class="menu-segunda">
-                        <span> Regras e Grupos</span>
-
-                    </li>
-
-                    <li class="menu-segunda">
-                        <span> Administração </span>
-
-                    </li>
                 </ul>
             </aside>
 
-            <section>
+            <section id="mapa" class="conteudo">
                 <div class="Rota">
                 <details class="Rotas">
                     <summary>Rotas de Trens</summary>
@@ -134,6 +118,23 @@
                 </details>
        
             </section>
+
+            <section id="painel-analise" class="conteudo"  style="display: none;">
+                <h1>Painel de Analises</h1>
+                <img src="https://www.slideteam.net/wp/wp-content/uploads/2023/02/Painel-de-estatisticas-de-negocios-de-marketing-de-conteudo-1-1-1024x576.png">
+            </section>
+
+            <section id="veiculos" class="conteudo"  style="display: none;">
+                <h1>Veiculos ativos</h1>
+
+                
+            </section>
+
+            <section id="ajuda" class="conteudo" style="display: none;">
+                <h1>AJUDA</h1>
+            </section>
+
+
         </div>
 
 
@@ -151,6 +152,8 @@
 
     <script src="../javascript/some-hambuer.js"></script>
     <script src="../javascript/sume-rodape.js"></script>
+    <script src="../javascript/gestaoRotas.js"></script>
+    
 
 
 </body>
