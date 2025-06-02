@@ -6,7 +6,7 @@ function mostrarconteudo(id) {
 
     const secaoAtiva = document.getElementById(id);
     if (secaoAtiva) {
-        secaoAtiva.style.display = 'block'
+        secaoAtiva.style.display = 'block' ;
     }
 
 }
