@@ -18,10 +18,10 @@ body {
     background-color: linear-gradient(180deg, #00796b, #009688);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    width: 95%;
+    width: 100%;
     min-width: 280px;
     overflow: hidden;
-    margin-top: 120px;
+    margin-top: 120px ;
     padding: 0px;
 }
 
@@ -33,16 +33,16 @@ body {
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.header h2 {
+    
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .header h2 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
-}
+  }
 
 .lado {
     margin: 0px;
@@ -79,7 +79,7 @@ aside {
     align-items: center;
     text-align: center;
     z-index: 1;
-
+    
 }
 
 .flex {
@@ -89,7 +89,7 @@ aside {
     margin-top: 100px;
 }
 
-#maps {
+#maps{
     width: 70%;
     opacity: 90%;
     height: 80%;
@@ -102,15 +102,61 @@ aside {
 }
 
 
-#lado {
+#lado{
     height: 100%;
-    width: 20%;
+    width: 20% ;
 }
 
 .conteudo {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+    display: block;}
 
+
+    @media (max-width: 768px) {
+        .flex {
+            flex-direction: column;
+            align-items: center;
+            margin-top: 90px;
+        }
+    
+        aside#lado {
+            width: 90%;
+            min-width: unset;
+            margin-bottom: 20px;
+        }
+    
+        #maps {
+            width: auto;
+            height: 30%;
+        }
+    
+        .Rotas {
+            width: 90%;
+            margin: 10px 0;
+        }
+    
+        .header {
+            height: 60px;
+        }
+    
+        .header h2 {
+            font-size: 1.2rem;
+        }
+    
+        .menu-lateral {
+            width: 60px;
+        }
+    
+        .menu-lateral .txt-link {
+            display: none;
+        }
+    
+        .menu-lateral .item-menu {
+            justify-content: center;
+        }
+    
+        .container {
+            width: 100%;
+            margin-top: 70px;
+        }
+    
+    }
