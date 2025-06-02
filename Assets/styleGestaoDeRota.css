@@ -12,6 +12,7 @@ body {
     display: flex;
 }
 
+
 #container {
     /*background-color: #fff;*/
     background-color: linear-gradient(180deg, #00796b, #009688);
