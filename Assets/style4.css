@@ -1,0 +1,16 @@
+#container {
+    /*background-color: #fff;*/
+    background-color: linear-gradient(180deg, #00796b, #009688);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 95%;
+    min-width: 280px;
+    overflow: hidden;
+    margin-top: 120px;
+    padding: 0px;
+
+}
+
+#chat-box{
+    justify-content: space-around;
+}
