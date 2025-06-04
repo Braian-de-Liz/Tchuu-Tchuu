@@ -21,7 +21,7 @@ body {
   min-width: 280px;
   overflow: hidden;
   margin-top: 100px;
-  padding: 10px;
+  padding: 2px;
 }
 
 .header {
@@ -73,9 +73,9 @@ body {
 
 .container-dado {
   background-color: #f0f0f0;
-  margin: 10px;
+  margin: 5px;
   margin-top: 20px;
-  padding: 2px;
+  padding: 0px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
