@@ -11,17 +11,22 @@ body{
     /*background-color: #fff;*/
     background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 2);
     width: 95%;
     min-width: 280px;
     overflow: hidden;
-    padding: 0px;
+    padding: 10px;
     justify-content: center;
     align-items: center;
     margin: 0;
 
     justify-content: space-between;
 
+}
+
+
+#messages{
+    height: 70vh;
 }
 
 #chat-header{
@@ -73,5 +78,9 @@ body{
         margin-top: 120px;
         width: 75%;
         padding: 50px;
+    }
+
+    #messages{
+        height: 30vh;
     }
 }
