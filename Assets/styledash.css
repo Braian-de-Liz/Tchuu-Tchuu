@@ -99,12 +99,14 @@ body {
 .tremimagem {
     margin-top: 15px;
     text-align: center;
+    display: flex;
 }
 
 .tremimagem img {
+    margin: 0.5%;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    max-width: 500px;
+    max-width: 32.5%;
     border-radius: 10px;
     transition: transform 0.3s;
 }
