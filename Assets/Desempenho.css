@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: start;
     display: flex;
+    margin: 0;
 }
 
 #container {
@@ -36,7 +37,6 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-
 .header h2 {
     position: absolute;
     left: 50%;
@@ -44,14 +44,37 @@ body {
     margin: 0;
 }
 
+.informacoes2 {
+    background: linear-gradient(to top, #03ddc0, #0d4d46);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    margin-bottom: 50px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 100);
+    flex-wrap: wrap;
+  }
+  
+  .informacoes2c {
+    font-size: 36px;
+    font-weight: bold;
+    word-break: break-word;
+  }
+
 .chart-container {
     background-color: #f9f9f9;
-    padding: 15px;
+    padding: 50px;
+    font-size: 20px;
     border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .additional-inputs {
