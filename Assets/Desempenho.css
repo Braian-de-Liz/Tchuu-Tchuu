@@ -50,7 +50,7 @@ body {
     border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 1200px;
+    width: 100%;
     margin-bottom: 20px;
 }
 
@@ -93,10 +93,10 @@ input {
     border-radius: 5px;
 }
 
-@media (max-width: 452px) {
+@media (max-width: 700px) {
  
     .chart-container {
-        width: 200px;
+        width: 100%;
 
     }
 
