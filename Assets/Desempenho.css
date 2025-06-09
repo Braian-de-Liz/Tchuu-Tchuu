@@ -18,7 +18,7 @@ body {
     background-color: linear-gradient(180deg, #00796b, #009688);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    width: 80%;
+    width: 95%;
     min-width: 280px;
     overflow: hidden;
     margin-top: 100px;
@@ -116,11 +116,21 @@ input {
     border-radius: 5px;
 }
 
-@media (max-width: 700px) {
- 
-    .chart-container {
-        width: 100%;
+
+
+@media (min-width: 901px) {
+    body {
+        justify-content: center;
+        align-items: start;
+        display: flex;
+        margin: 0;
 
     }
 
+    #container {
+        margin: 0;
+        margin-top: 120px;
+        width: 75%;
+        padding: 50px;
+    }
 }
