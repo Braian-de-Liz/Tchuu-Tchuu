@@ -44,6 +44,11 @@ body {
     margin: 0;
 }
 
+.info-btn {
+    font-size: 30px;
+    border-radius: 5px;
+    border-color: #009688;
+}
 
 .informacoeslinha {
     width: 100%;
