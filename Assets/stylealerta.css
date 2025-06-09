@@ -83,6 +83,11 @@ body {
   margin: 0;
 }
 
+.info-btn {
+  font-size: 30px;
+  border-radius: 5px;
+  border-color: #009688;
+}
 
 .informacoeslinha {
   width: 100%;
@@ -202,6 +207,10 @@ body {
 
 .menu-mini {
   font-size: 20px;
+  background-color: transparent;
+  border-radius: 5px;
+  width: 5%;
+  border-color:#009688;
 }
 
 

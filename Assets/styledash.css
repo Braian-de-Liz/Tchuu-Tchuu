@@ -44,7 +44,10 @@ body {
     margin: 0;
 }
 
-.header-icons {
+.info-btn {
+    font-size: 30px;
+    border-radius: 5px;
+    border-color: #009688;
 }
 
 .informacoeslinha {
