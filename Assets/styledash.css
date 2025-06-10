@@ -194,29 +194,6 @@ body {
     background-color: #b71c1c;
 }
 
-.fot {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    align-items: center;
-    padding: 10px 0;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.fot img {
-    width: 28px;
-    transition: transform 0.3s;
-}
-
-.fot img:hover {
-    transform: scale(1.2);
-}
-
-
-
 
 
 

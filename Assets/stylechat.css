@@ -1,5 +1,4 @@
-
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,11 +24,11 @@ body{
 }
 
 
-#messages{
+#messages {
     height: 70vh;
 }
 
-#chat-header{
+#chat-header {
     background: linear-gradient(to bottom, #03ddc0, #0d4d46);
     color: white;
     padding: 10px;
@@ -51,15 +50,23 @@ body{
 
 .message-input button {
     padding: 10px 20px;
-    background-color: gradient #03ddc0;
+    background: linear-gradient(to right, #00bfa5, #41978c);
+    /* Gradiente correto */
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 1s ease, transform 0.3s ease, color 0.3s ease;
 }
 
-
-
+.message-input button:hover {
+    background: linear-gradient(to right, #4FC1E9, #8aca40);
+    /* Gradiente alternativo no hover */
+    color: #12181C;
+    transform: scale(1.05);
+}
 
 
 
@@ -80,7 +87,7 @@ body{
         padding: 50px;
     }
 
-    #messages{
+    #messages {
         height: 30vh;
     }
 }

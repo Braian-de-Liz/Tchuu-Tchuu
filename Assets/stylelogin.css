@@ -8,7 +8,7 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 70%; 
+    width: 70%;
     margin: auto;
     overflow: hidden;
 
@@ -54,7 +54,7 @@ body {
 
 #Voltar {
     background-color: whitesmoke;
-    background:  linear-gradient(to right, #00bfa5, #009688);
+    background: linear-gradient(to right, #00bfa5, #009688);
     color: white;
     border: none;
     padding: 10px 5px;
@@ -67,7 +67,7 @@ body {
     text-align: center;
     display: inline-block;
     min-width: 150px;
-    
+
 }
 
 #Voltar:hover {
@@ -76,7 +76,7 @@ body {
     color: #12181C;
 }
 
-#Voltar p{
+#Voltar p {
     margin-top: 20px;
     align-items: center;
     text-align: center;
@@ -89,39 +89,77 @@ fieldset {
 }
 
 .envia {
-    background-color: whitesmoke;
-    background:  linear-gradient(to right, #00bfa5, #009688);
-    transition: background 1.5s ease, transform 0.5s ease; 
+    position: relative;
     color: white;
     border: none;
     padding: 10px 5px;
     cursor: pointer;
     border-radius: 15px;
     font-size: 18px;
+    align-items: center;
     font-weight: 600;
     text-decoration: none;
     text-align: center;
     min-width: 150px;
-    animation: envia 1.3s linear;
     display: inline-block;
     width: 20%;
-} 
+    background: linear-gradient(to right, #00bfa5, #2a5c57);
+    transition: transform 0.4s ease, color 0.4s ease;
+    z-index: 1;
+}
+
+.envia::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, #4FC1E9, #408cca);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+
+.envia:hover::before {
+    opacity: 1;
+}
+
+.envia span {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    width: 100%;
+}
 
 .envia:hover {
-    transform: scale(1.3);
-    background: linear-gradient(to right, #4FC1E9, #2575fc);
+    transform: scale(1.1);
     color: #12181C;
 }
 
-input{
+
+
+
+
+
+
+
+
+
+
+
+input {
     width: 40%;
     text-align: center;
 }
 
-.link{
+.link {
     transition: 2s;
 }
-.link :hover{
+
+.link :hover {
     color: #2575fc;
 
 }
@@ -175,7 +213,8 @@ a {
     }
 }
 
-#container,#Registro {
+#container,
+#Registro {
     animation: aparecer 1s ease-in-out;
 }
 
@@ -198,7 +237,7 @@ fieldset,
 
 #check {
     accent-color: #438082;
-    text-align:left;
+    text-align: left;
     align-items: first baseline;
 
 }
@@ -232,7 +271,7 @@ nav {
 
 }
 
-hr{
+hr {
     max-width: 900px;
     width: 50%;
 }
@@ -244,35 +283,34 @@ hr{
         padding: 1px;
     }
 
-    #container{
+    #container {
         width: 100%;
         margin: 0;
         padding: 1px;
     }
 
-    #login{
+    #login {
         border-radius: 20px;
         height: 90%;
         max-height: 900px;
         margin: 8%;
-        padding: 0  ;
+        padding: 0;
         background-color: whitesmoke;
     }
 
-    #Login{
-        
-    }
-    
-    body{
+    #Login {}
+
+    body {
         margin: 0;
         padding: 1px;
     }
-    input{
+
+    input {
         width: 90%;
         padding: 1px;
     }
 
-    #container{
+    #container {
         margin: 0;
         padding: 1px;
         width: 100%;
