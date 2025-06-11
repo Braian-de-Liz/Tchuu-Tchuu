@@ -136,7 +136,7 @@ input {
     min-width: 150px;
     display: inline-block;
     width: 20%;
-    background: linear-gradient(to right, #00bfa5, #009688);
+    background: linear-gradient(to left, #00bfa5, #04443e);
     transition: transform 0.4s ease, color 0.4s ease;
     z-index: 1;
 
@@ -154,16 +154,11 @@ input {
     border-radius: 15px;
 }
 
+
 .botao:hover::before {
-    opacity: 1;
+    opacity: 2;
 }
 
-.botao span {
-    position: relative;
-    z-index: 2;
-    display: inline-block;
-    width: 100%;
-}
 
 .botao:hover {
     transform: scale(1.1); 
