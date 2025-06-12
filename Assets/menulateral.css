@@ -17,7 +17,8 @@
 
 
 .menu-icon:hover {
-    color: linear-gradient(90deg, #03ddc0, #0d4d46);
+    transform: scale(1.1); 
+    color: #03ddc0;
 }
 
 .header-icons {
