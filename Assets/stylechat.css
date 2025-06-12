@@ -18,15 +18,14 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-
     justify-content: space-between;
-
 }
 
 
 #messages {
     height: 70vh;
 }
+
 
 #chat-header {
     background: linear-gradient(to bottom, #03ddc0, #0d4d46);
@@ -40,6 +39,7 @@ body {
     gap: 10px;
 }
 
+
 .message-input textarea {
     flex: 1;
     resize: none;
@@ -47,6 +47,7 @@ body {
     border-radius: 8px;
     border: 1px solid #ccc;
 }
+
 
 .message-input button {
     padding: 10px 20px;
@@ -61,9 +62,10 @@ body {
     transition: background 1s ease, transform 0.3s ease, color 0.3s ease;
 }
 
+
+/* Gradiente alternativo no hover */
 .message-input button:hover {
     background: linear-gradient(to right, #4FC1E9, #8aca40);
-    /* Gradiente alternativo no hover */
     color: #12181C;
     transform: scale(1.05);
 }
