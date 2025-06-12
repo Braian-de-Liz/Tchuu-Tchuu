@@ -1,21 +1,12 @@
 body {
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #ffffff);
-    justify-content: center;
-    align-items: start;
-    display: flex;
-    margin: 0;
+        background-color: antiquewhite;
 }
 
 #container {
-
     margin: 0 auto;
     border-radius: 20px;
     width: 70%;
-    min-height: 900px;
-    max-height: 1080px;
-    height: 100%;
+    height: 70%;
     gap: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     background-color: white;
@@ -30,6 +21,70 @@ body {
     animation: surge 2s ease-in-out;
 }
 
+#Login {
+    align-items: center;
+    text-align: center;
+    margin: 100px 50px;
+    border-radius: 20px;
+    height: 90%;
+    max-height: 900px;
+    background-color: whitesmoke;
+
+}
+
+#Login h2 {
+    margin: 20px 10px;
+}
+
+
+#Registro {
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 70%;
+    min-height: 900px;
+    max-height: 1080px;
+    height: 100%;
+    gap: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    background-color: white;
+
+}
+
+#Voltar {
+    background-color: whitesmoke;
+    background: linear-gradient(to right, #00bfa5, #009688);
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    min-width: 150px;
+
+}
+
+#Voltar:hover {
+    transform: scale(1.3);
+    background: linear-gradient(to right, #4FC1E9, #2575fc);
+    color: #12181C;
+}
+
+#Voltar p {
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+fieldset {
+    margin: 8px;
+    border: none;
+}
 
 .envia {
     position: relative;
@@ -83,9 +138,48 @@ body {
 }
 
 
-fieldset {
-    margin: 8px;
-    border: none;
+
+
+
+
+
+
+
+
+
+
+input {
+    width: 40%;
+    text-align: center;
+}
+
+.link {
+    transition: 2s;
+}
+
+.link :hover {
+    color: #2575fc;
+
+}
+
+
+
+.center {
+    text-align: center;
+}
+
+
+form p {
+    text-align: center;
+    color: darkgrey;
+}
+
+
+.form-group {
+    border-radius: 10px;
+    margin-left: 10px;
+    gap: 30px;
+    padding: 10px;
 }
 
 .oplog {
@@ -100,10 +194,85 @@ fieldset {
     height: 20px;
 }
 
+a {
+    text-align: center;
+    color: darkgrey;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#container,
+#Registro {
+    animation: aparecer 1s ease-in-out;
+}
+
+@keyframes vem-de-lado {
+    from {
+        opacity: 0;
+        transform: translatex(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+fieldset,
+.form-group {
+    animation: vem-de-lado 2s ease-in-out;
+}
+
+#check {
+    accent-color: #438082;
+    text-align: left;
+    align-items: first baseline;
+
+}
+
+@keyframes envia {
+    from {
+        transform: scale(1.5);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
 
 
 
+@keyframes surge {
+    from {
+        opacity: 0%;
+    }
 
+    to {
+        opacity: 100%;
+    }
+}
+
+nav {
+    text-align: center;
+    align-items: center;
+    margin-top: 60px;
+
+}
+
+hr {
+    max-width: 900px;
+    width: 50%;
+}
 
 @media (min-width: 901px) {
     body {
