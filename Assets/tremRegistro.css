@@ -9,34 +9,95 @@ body {
 }
 
 #container {
-    /*background-color: #fff;*/
-    background-color: linear-gradient(180deg, #00796b, #009688);
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    width: 95%;
-    min-width: 280px;
-    overflow: hidden;
-    margin-top: 120px ;
-    padding: 0px;
+
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 70%;
+    min-height: 900px;
+    max-height: 1080px;
+    height: 100%;
+    gap: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    background-color: white;
 }
 
-.header {
+#cabe {
+    text-align: center;
+    background-color: #999;
+    height: 60px;
+    line-height: 60px;
     width: 100%;
-    height: 75px;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    animation: surge 2s ease-in-out;
 }
 
-.header h2 {
+
+.envia {
+    position: relative;
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 18px;
+    align-items: center;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    min-width: 150px;
+    display: inline-block;
+    width: 20%;
+    background: linear-gradient(to right, #00bfa5, #2a5c57);
+    transition: transform 0.4s ease, color 0.4s ease;
+    z-index: 1;
+}
+
+.envia::before {
+    content: "";
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, #4FC1E9, #408cca);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+
+.envia:hover::before {
+    opacity: 1;
+}
+
+.envia span {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    width: 100%;
+}
+
+.envia:hover {
+    transform: scale(1.1);
+    color: #12181C;
+}
+
+
+fieldset {
+    margin: 8px;
+    border: none;
+}
+
+.oplog {
+    justify-content: center;
+    display: flex;
+}
+
+.oplog img {
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
 }
 
 

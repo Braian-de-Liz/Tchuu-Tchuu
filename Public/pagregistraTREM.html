@@ -1,83 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../Assets/imagens/logos/logo THUU.png" type="image/x-icon">
     <link rel="stylesheet" href="../Assets/menulateral.css">
     <link rel="stylesheet" href="../Assets/fot.css">
+    <link rel="stylesheet" href="../Assets/tremRegistro.css">
     <title>Registrar trem</title>
 </head>
+
 <body>
 
+    <body>
 
-    <div id="container">
-        <nav class="menu-lateral">
-            <div class="btn-expandir">
-                <i class="bi bi-list"></i>
-            </div>
+        <section>
+            <div id="container">
 
-            <div class="menu-icon">☰</div>
-            <br><br>
-            <ul>
-                <li class="item-menu">
-                    <a href="../Public/pagChat.html">
-                        <span class="icon"><i class="acesso-chat"><img src="../Assets/imagens/barras/chat.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Chat </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagGestaoRotas.html">
-                        <span class="icon"><i class="acesso-rotas"><img src="../Assets/imagens/barras/mapa.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Mapas </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagGeralDashboard.html">
-                        <span class="icon"><i class="acesso-dash"><img src="../Assets/imagens/barras/home.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Home </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagMonitora.html">
-                        <span class="icon"><i class="acesso-desemp"><img src="../Assets/imagens/barras/desempenho.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Monitoramento </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagUsuario.html">
-                        <span class="icon"><i class="acesso-user"><img src="../Assets/imagens/barras/user.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Usuario </span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                <nav class="menu-lateral">
+                    <div class="btn-expandir">
+                        <i class="bi bi-list"></i>
+                    </div>
 
-
-        <main>
-            
-        </main>
+                    <div class="menu-icon">☰</div>
+                    <br><br>
+                    <ul>
+                        <li class="item-menu">
+                            <a href="../Public/pagChat.html">
+                                <span class="icon"><i class="acesso-chat"><img src="../Assets/imagens/barras/chat.png"
+                                            alt=""></i></span>
+                                <span class="txt-link"> Chat </span>
+                            </a>
+                        </li>
+                        <br>
+                        <li class="item-menu">
+                            <a href="../Public/pagGestaoRotas.html">
+                                <span class="icon"><i class="acesso-rotas"><img src="../Assets/imagens/barras/mapa.png"
+                                            alt=""></i></span>
+                                <span class="txt-link"> Mapas </span>
+                            </a>
+                        </li>
+                        <br>
+                        <li class="item-menu">
+                            <a href="../Public/pagGeralDashboard.html">
+                                <span class="icon"><i class="acesso-dash"><img src="../Assets/imagens/barras/home.png"
+                                            alt=""></i></span>
+                                <span class="txt-link"> Home </span>
+                            </a>
+                        </li>
+                        <br>
+                        <li class="item-menu">
+                            <a href="../Public/pagMonitora.html">
+                                <span class="icon"><i class="acesso-desemp"><img
+                                            src="../Assets/imagens/barras/desempenho.png" alt=""></i></span>
+                                <span class="txt-link"> Monitoramento </span>
+                            </a>
+                        </li>
+                        <br>
+                        <li class="item-menu">
+                            <a href="../Public/pagUsuario.html">
+                                <span class="icon"><i class="acesso-user"><img src="../Assets/imagens/barras/user.png"
+                                            alt=""></i></span>
+                                <span class="txt-link"> Usuario </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
 
 
-    </div>
+                <h1 id="cabe">Adiocionar Novo Trem </h1>
 
-    <footer class="fot">
-        <div><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt=""></a></div>
-        <div><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt=""></a></div>
-        <div><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt=""></a></div>
-        <div><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt=""></a></div>
-        <div><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt=""></a></div>
-    </footer>
+                <form id="Login" onsubmit="return valideRegistro()">
+
+                    <div class="form-group">
+                        <fieldset>
+                            <label for="nome">Nome </label>
+                            <br>
+                            <input type="text" id="nome">
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <label for="cpf"> CPF</label>
+                            <br>
+                            <input type="text" id="cpf">
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <label for="tel">Telefone </label>
+                            <br>
+                            <input type="number" id="tel">
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <label for="Registro">Registro de Funcionario</label>
+                            <br>
+                            <input type="number" id="RegistroFun">
+                        </fieldset>
+
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <label for="DataNasc">Data de nascimento</label>
+                            <br>
+                            <input type="date" id="DataNasc">
+                        </fieldset>
+
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <label for="Senha">Senha</label>
+                            <br>
+                            <input type="text" id="Senha">
+                        </fieldset>
+
+                    </div>
+                    <br>
+                    <div class="center">
+                        <button class="envia" type="submit"> Registrar </button>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="oplog">
+                        <img src="../Assets/imagens/imagens-de-uso/Googleimg.png" alt="#" onclick="">
+                        <img src="../Assets/imagens/imagens-de-uso/linkdin.png" alt="">
+                    </div>
+
+                    <br>
+
+                    <div id="voltap">
+                        <a href="paglogin.html" id="Voltar">← Voltar</a>
+                    </div>
+
+                    <br>
+
+                </form>
+
+
+        </section>
+
+        </div>
+
+
+    </body>
+    <script src="../javascript/Validelogin.js"></script>
+    <script src="../javascript/mudanca.js"></script>
+
+
+</html>
+</div>
+
+<footer class="fot">
+    <div><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt=""></a></div>
+    <div><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt=""></a></div>
+    <div><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt=""></a></div>
+    <div><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt=""></a></div>
+    <div><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt=""></a></div>
+</footer>
 
 </body>
 
@@ -85,4 +173,5 @@
 <script src="../javascript/menu-hamburguer-PC.js"></script>
 <script src="../javascript/some-hambuer.js"></script>
 <script src="../javascript/sume-rodape.js"></script>
+
 </html>
