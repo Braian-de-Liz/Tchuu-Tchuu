@@ -139,15 +139,6 @@ fieldset {
 
 
 
-
-
-
-
-
-
-
-
-
 input {
     width: 40%;
     text-align: center;
@@ -274,19 +265,43 @@ hr {
     width: 50%;
 }
 
-@media (min-width: 901px) {
-    body {
-        justify-content: center;
-        align-items: start;
-        display: flex;
+@media (max-width: 768px) {
+    #Registro {
+        width: 100%;
         margin: 0;
+        padding: 1px;
+    }
 
+    #container {
+        width: 100%;
+        margin: 0;
+        padding: 1px;
+    }
+
+    #login {
+        border-radius: 20px;
+        height: 90%;
+        max-height: 900px;
+        margin: 8%;
+        padding: 0;
+        background-color: whitesmoke;
+    }
+
+    #Login {}
+
+    body {
+        margin: 0;
+        padding: 1px;
+    }
+
+    input {
+        width: 90%;
+        padding: 1px;
     }
 
     #container {
         margin: 0;
-        margin-top: 120px;
-        width: 75%;
-        padding: 50px;
+        padding: 1px;
+        width: 100%;
     }
 }
