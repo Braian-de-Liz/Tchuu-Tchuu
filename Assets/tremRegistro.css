@@ -1,5 +1,5 @@
 body {
-        background-color: antiquewhite;
+        background-color: #fff;
 }
 
 #container {
@@ -102,7 +102,7 @@ fieldset {
     display: inline-block;
     width: 20%;
     background: linear-gradient(to right, #00bfa5, #2a5c57);
-    transition: transform 0.4s ease, color 0.4s ease;
+    transition: transform 0.3s ease, color 0.4s ease;
     z-index: 1;
 }
 
