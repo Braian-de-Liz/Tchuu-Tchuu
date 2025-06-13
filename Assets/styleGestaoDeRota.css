@@ -58,14 +58,13 @@ body {
 
 
 .menu-segunda {
-    gap: 50px;
     width: 100%;
     padding: 20px;
     height: 100%;
     opacity: 90%;
     border-radius: 15px;
     background-color: whitesmoke;
-    margin-top: 4%;
+    margin-top: 50%;
     align-items: center;
     
 }
@@ -80,6 +79,7 @@ body {
     list-style: none;
     padding: 30px ;
     margin: 0;
+
     min-width: 120px;
     z-index: 100;
     font-family: 'Times New Roman', Times, serif;
