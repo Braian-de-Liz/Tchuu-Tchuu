@@ -15,77 +15,83 @@
 
     <body>
 
-            <div id="container">
+        <div id="container">
 
 
 
 
-                <h1 id="cabe">Adiocionar Novo Trem </h1>
+            <h1 id="cabe">Adiocionar Novo Trem </h1>
 
-                <form id="Login" onsubmit="return valideRegistro()">
+            <form id="Login" onsubmit="return validaRegistroTrem()">
 
-                    <div class="form-group">
-                        <fieldset>
-                            <label for="nome">Nome </label>
-                            <br>
-                            <input type="text" id="nome">
-                        </fieldset>
-                    </div>
+                <div class="form-group">
+                    <fieldset>
+                        <label for="nome">Nome </label>
+                        <br>
+                        <input type="text" id="nome">
+                    </fieldset>
+                </div>
 
-                    <div class="form-group">
-                        <fieldset>
-                            <label for="NRT"> Numero de Registro </label>
-                            <br>
-                            <input type="number" id="Numero de Trem">
-                        </fieldset>
-                    </div>
+                <div class="form-group">
+                    <fieldset>
+                        <label for="NRT"> Numero de Registro </label>
+                        <br>
+                        <input type="number" id="Numero_de-Trem">
+                    </fieldset>
+                </div>
 
-                    <div class="form-group">
-                        <fieldset>
-                            <label for="FBT"> Fabricante </label>
-                            <br>
-                            <input type="text" id="Fabricante">
-                        </fieldset>
-                    </div>
-
-
-                    <div class="form-group">
-                        <fieldset>
-                            <label for="DataNasc">Data de Registro</label>
-                            <br>
-                            <input type="date" id="DataNasc">
-                        </fieldset>
-
-                    </div>
-
- 
-                    <br>
-                    <div class="center">
-                        <button class="envia" type="submit"> Registrar </button>
-                    </div>
-                    <br>
-                    <hr>
+                <div class="form-group">
+                    <fieldset>
+                        <label for="FBT"> Fabricante </label>
+                        <br>
+                        <input type="text" id="Fabricante">
+                    </fieldset>
+                </div>
 
 
-                    <br>
+                <div class="form-group">
+                    <fieldset>
+                        <label for="DataNasc">Data de Registro</label>
+                        <br>
+                        <input type="date" id="DataRe">
+                    </fieldset>
 
-                    <div id="voltap">
-                        <a href="pagMonitora.html" id="Voltar">← Voltar</a>
-                    </div>
+                </div>
 
-                    <br>
+                <div class="form-group">
+                    <fieldset>
+                        <label for="Registro-User">Numero de Registro do Usuário Registrador</label>
+                        <br>
+                        <input type="number" id="RegistroUser">
+                    </fieldset>
+                </div>
 
-                </form>
 
+                <br>
+                <div class="center">
+                    <button class="envia" type="submit"> Registrar </button>
+                </div>
+                <br>
+                <hr>
+
+
+                <br>
+
+                <div id="voltap">
+                    <a href="pagMonitora.html" id="Voltar">← Voltar</a>
+                </div>
+
+                <br>
+
+            </form>
+        </div>
 
 
         </div>
 
 
     </body>
-    <script src="../javascript/menu-hamburguer-PC.js"></script>
-    <script src="../javascript/Validelogin.js"></script>
-    <script src="../javascript/mudanca.js"></script>
+
 
 
 </html>
@@ -98,5 +104,6 @@
 <script src="../javascript/menu-hamburguer-PC.js"></script>
 <script src="../javascript/some-hambuer.js"></script>
 <script src="../javascript/sume-rodape.js"></script>
+<script src="../javascript/registroTrem.js"></script>
 
 </html>
