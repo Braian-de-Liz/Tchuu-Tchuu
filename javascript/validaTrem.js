@@ -1,40 +1,69 @@
-window.onload = function () {
-    document.getElementById("Login").addEventListener("submit", validaRegistroTrem);
-};
-
 function validaRegistroTrem(event) {
     event.preventDefault();
 
-    const nome = document.getElementById("nome").value.trim();
-    const numeroTrem = document.getElementById("numeroTrem").value.trim();
-    const fabricante = document.getElementById("fabricante").value.trim();
-    const dataRegistro = document.getElementById("dataRe").value.trim();
 
-    if (nome === "") {
-        alert("Por favor, preencha o nome do trem.");
-        return;
+    const nomeTrem = document.getElementById('nomeTrem').value.trim();
+    const numero_de_Trem = document.getElementById('numero_de_Trem').value.trim();
+    const fabricante = document.getElementById('fabricante').value.trim();
+    const dataRegistro = document.getElementById('DataRe').value.trim();
+    const RegistroUser = document.getElementById('RegistroUser').value.trim();
+
+
+    if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !RegistroUser) {
+        alert("todos os dados são necessários, PREENCHA OS CAMPOS");
+        return false;
     }
 
-    if (numeroTrem === "" || isNaN(numeroTrem) || Number(numeroTrem) <= 0) {
-        alert("Por favor, insira um número de registro válido.");
-        return;
+    if (isNaN(numero_de_Trem) || Number(numero_de_Trem) <= 0) {
+        alert('O campo deve ser preenchido e com números acima de 0');
+        return false;
     }
 
-    if (fabricante === "") {
-        alert("Por favor, preencha o nome do fabricante.");
-        return;
+
+    if (!/^\d{12}$/.test(RegistroUser)) { //Quem foi que inventou isso PELO O AMOR DEUS
+        alert("Número de Registro do usuário deve conter exatamente 12 dígitos numéricos.");
+        return false;
     }
 
-    if (dataRegistro === "") {
-        alert("Por favor, selecione a data de registro.");
-        return;
+
+    const data_parte = dataRegistro.split('-');
+
+    if(data_parte.length !== 3){
+        alert("Data inválida");
+        return false;
     }
 
-    const hoje = new Date().toISOString().split('T')[0];
-    if (dataRegistro > hoje) {
-        alert("A data de registro não pode ser no futuro.");
-        return;
+
+    const dia = parseInt(data_parte[0], 10);
+    const mes = parseInt(data_parte[1], 10);
+    const ano = parseInt(data_parte[2], 10);
+
+
+    if(isNaN(dia) || isNaN(mes) || isNaN(ano)){
+        alert('Sua data não é um número');
+        return false;
     }
 
-    document.getElementById("Login").submit();
+    if (dia < 31 && dia > 0){
+        alert('Seu dia não é válido');
+        return false;
+    }
+
+    if (mes > 12){
+       alert("Seu Mês não é válido");
+       return false;
+    }
+
+    if (ano > 1900) {
+        alert("Seu ano é inválido");
+        return false;
+    }
+
+
+
+    alert("Trem Registrado com sucesso");
+    return true;
 }
+
+
+
