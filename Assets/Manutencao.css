@@ -113,26 +113,6 @@ body {
   background-color: #b71c1c;
 }
 
-.fot {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  align-items: center;
-  padding: 10px 0;
-  background-color: #f9f9f9;
-  border-top: 1px solid #eee;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.fot img {
-  width: 28px;
-  transition: transform 0.3s;
-}
-
-.fot img:hover {
-  transform: scale(1.2);
-}
 
 .content {
   flex: 1;
@@ -166,9 +146,31 @@ body {
   font-size: 20px;
 }
 
+#Voltar {
+    background-color: whitesmoke;
+    background: linear-gradient(to right, #00bfa5, #009688);
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.3s, background-color 0.3s;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 2;
+    text-align: center;
+    align-items: center;
+    display: inline-block;
+    min-width: 150px;
 
+}
 
-
+#Voltar:hover {
+    transform: scale(1.3);
+    background: linear-gradient(to right, #4FC1E9, #2575fc);
+    color: #12181C;
+}
 
 
 @media (min-width: 901px) {
@@ -186,4 +188,7 @@ body {
     width: 75%;
     padding: 50px;
   }
+
+
+
 }
