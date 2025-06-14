@@ -28,33 +28,32 @@ function validaRegistroTrem(event) {
 
     const data_parte = dataRegistro.split('-');
 
-    if(data_parte.length !== 3){
+    if (data_parte.length !== 3) {
         alert("Data inválida");
         return false;
     }
 
-
-    const dia = parseInt(data_parte[0], 10);
+    const ano = parseInt(data_parte[0], 10);
     const mes = parseInt(data_parte[1], 10);
-    const ano = parseInt(data_parte[2], 10);
+    const dia = parseInt(data_parte[2], 10);
 
 
-    if(isNaN(dia) || isNaN(mes) || isNaN(ano)){
+    if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
         alert('Sua data não é um número');
         return false;
     }
 
-    if (dia < 31 && dia > 0){
-        alert('Seu dia não é válido');
+    if (dia < 1 || dia > 31) {
+        alert("Seu dia não é válido");
+        return false;
+    }
+    
+    if (mes > 12) {
+        alert("Seu Mês não é válido");
         return false;
     }
 
-    if (mes > 12){
-       alert("Seu Mês não é válido");
-       return false;
-    }
-
-    if (ano > 1900) {
+    if (ano < 1900) {
         alert("Seu ano é inválido");
         return false;
     }
