@@ -48,6 +48,7 @@ function ValidaRegistro(event) {
     }
 
     const data_parte = dataNasc.split('-');
+    
     if (data_parte.length !== 3) {
         alert("Data inválida.");
         return false;
