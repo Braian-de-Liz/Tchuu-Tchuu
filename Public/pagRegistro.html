@@ -13,10 +13,10 @@
 <body>
 
     <section>
-        <div id="Registro" >
+        <div id="Registro">
             <h1 id="cabe">Cadastro de Usuario </h1>
 
-            <form id="Login" onsubmit="return valideRegistro()">
+            <form id="Login" onsubmit="return ValidaRegistro(event)">
 
                 <div class="form-group">
                     <fieldset>
@@ -62,15 +62,27 @@
 
                 <div class="form-group">
                     <fieldset>
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="text" id="email">
+                    </fieldset>
+                </div>
+
+                <br>
+                <div class="form-group">
+                    <fieldset>
                         <label for="Senha">Senha</label>
                         <br>
-                        <input type="text" id="Senha">
+                        <input type="password" id="Senha">
                     </fieldset>
 
                 </div>
-                <br>
+
+
+
+
                 <div class="center">
-                    <button class="envia" type="submit" > Registrar </button>
+                    <button class="envia" type="submit"> Registrar </button>
                 </div>
                 <br>
                 <hr>
@@ -82,9 +94,9 @@
                 <br>
 
                 <div id="voltap">
-                    <a href="paglogin.html" id="Voltar">← Voltar</a> 
+                    <a href="paglogin.html" id="Voltar">← Voltar</a>
                 </div>
-                
+
                 <br>
 
             </form>

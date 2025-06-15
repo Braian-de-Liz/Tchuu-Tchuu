@@ -27,6 +27,8 @@ function ValidaLogin(event) {
     document.getElementById('passou').innerHTML = "Seu login foi autorizado";
 
 
+        window.location.href='../Public/pagGeralDashboard.html';
+
 
     return true;
 }

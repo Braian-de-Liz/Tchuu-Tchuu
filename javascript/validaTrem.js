@@ -60,8 +60,16 @@ function validaRegistroTrem(event) {
 
 
 
+
     alert("Trem Registrado com sucesso");
+
+
+
     return true;
+
+
+
+
 }
 
 
