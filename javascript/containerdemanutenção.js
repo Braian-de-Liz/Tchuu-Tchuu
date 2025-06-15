@@ -1,4 +1,5 @@
 document.querySelectorAll('.menu-mini').forEach(botao => {
+  
   botao.addEventListener('click', function () {
     const item = this.closest('.item');
     const expansivel = item.querySelector('.conteudo-expansivel');

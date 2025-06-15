@@ -49,6 +49,22 @@ body {
 
 }
 
+.informacoes2 {
+    background: linear-gradient(to top, #03ddc0, #0d4d46);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+    margin-bottom: 50px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 100);
+    flex-wrap: wrap;
+  }
+
 #fundo-decont {
   background-color: #F2F2F2;
   margin: 3px;
