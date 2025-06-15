@@ -18,7 +18,7 @@
             </header>
             <main>
                 <section id="login">
-                    <form id="Login">
+                    <form id="Login" onsubmit="ValidaLogin(event)">
                         <div>
                             <h2>Login</h2>
                             <br>
@@ -35,10 +35,12 @@
                             <fieldset>
                                 <label for="senha">Senha</label>
                                 <br>
-                                <input type="text" id="senha">
+                                <input type="password" id="senha">
                                 <br><br>
+
                                 <label for="lembrar" class="checkbox-custom"></label>
                                 <input type="checkbox" id="check">
+
                                 <span>Lembre-me</span>
                             </fieldset>
                         </div>
@@ -50,9 +52,16 @@
 
 
                         <div class="center">
-                            <button type="submit" class="envia" onclick="">
+                            <button type="submit" class="envia">
                                 Enviar
                             </button>
+                            <br>
+                            <br>
+
+
+                            <div id="passou">
+                                <!--Aqui será escrito com o Javascript-->
+                            </div>
 
                         </div>
                         <br>
@@ -64,10 +73,10 @@
                         
                         <hr>
                         
-                        <div class="oplog">
+<!--                         <div class="oplog">
                             <img src="../Assets/imagens/imagens-de-uso/Googleimg.png" alt="">
                             <img src="../Assets/imagens/imagens-de-uso/linkdin.png" alt="">
-                        </div>
+                        </div> -->
 
                         <div>
                             <p> <a href="../Public/pagRegistro.html" class="link">Criar usuário</a></p>
@@ -91,7 +100,7 @@
     </body>
 
 
-    <script src="../javascript/Validelogin.js"></script>
+    <script src="../javascript/validaLogin.js"></script>
 </body>
 
 </html>
