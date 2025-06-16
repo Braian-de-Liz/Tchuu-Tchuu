@@ -20,7 +20,7 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   margin: 0 2%;
   width: 96%;
- 
+
   min-width: 280px;
   overflow: hidden;
   margin-top: 120px;
@@ -80,7 +80,7 @@ body {
   border-radius: 10px;
   margin: 20px 0;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 100);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
   flex-wrap: wrap;
 }
 
