@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestão de Rotas</title>
-  <link rel="stylesheet" href="..//Assets/styleGestaoDeRota.css">
-  <link rel="stylesheet" href="../Assets/menulateral.css">
-  <link rel="stylesheet" href="../Assets/fot.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Rotas</title>
+    <link rel="stylesheet" href="..//Assets/styleGestaoDeRota.css">
+    <link rel="stylesheet" href="../Assets/menulateral.css">
+    <link rel="stylesheet" href="../Assets/fot.css">
 </head>
+
 <body>
 
-  <header class="header">
-    <h2>Gestão de Rotas</h2>
-  </header>
-  
-  <div class="container">
-    
-    <nav class="menu-lateral">
+    <header class="header">
+        <h2>Gestão de Rotas</h2>
+    </header>
+
+    <div class="container">
+
+        <nav class="menu-lateral">
             <button id="menu-toggle" class="menu-toggle"></button>
             <div class="btn-expandir">
                 <i class="bi bi-list"></i>
@@ -67,46 +69,49 @@
             </ul>
         </nav>
 
-  <nav class="menu-lateral hidden" id="menu">
-    <ul>
-      <li><a href="#">Chat</a></li>
-      <li><a href="#">Mapas</a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Monitoramento</a></li>
-      <li><a href="#">Usuário</a></li>
-    </ul>
-  </nav>
+        <nav class="menu-lateral hidden" id="menu">
+            <ul>
+                <li><a href="#">Chat</a></li>
+                <li><a href="#">Mapas</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Monitoramento</a></li>
+                <li><a href="#">Usuário</a></li>
+            </ul>
+        </nav>
 
-  <div class="flex">
-    <button class="menu-toggle-secundario" id="toggle-lado">☰</button>
-    <aside id="lado" class="hidden-lado">
-      <ul id="container-op">
-        <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">Painel de análises</li>
-        <li class="menu-segunda" onclick="mostrarConteudo('veiculos')">Veículos ativos</li>
-        <li class="menu-segunda" onclick="mostrarConteudo('mapa')">Mapa</li>
-        <li class="menu-segunda" onclick="mostrarConteudo('ajuda')">Introdução e Ajuda</li>
-      </ul>
-    </aside>
+        <div class="flex">
+            <button class="menu-toggle-secundario" id="toggle-lado">☰</button>
+            <aside id="lado" class="hidden-lado">
+                <ul id="container-op">
+                    <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">Painel de análises</li>
+                    <li class="menu-segunda" onclick="mostrarConteudo('veiculos')">Veículos ativos</li>
+                    <li class="menu-segunda" onclick="mostrarConteudo('mapa')">Mapa</li>
+                    <li class="menu-segunda" onclick="mostrarConteudo('ajuda')">Introdução e Ajuda</li>
+                </ul>
+            </aside>
 
-    <main id="mapa" class="conteudo">
-      <h1>Rotas de Trens</h1>
-      <img src="https://img.nsctotal.com.br/wp-content/uploads/2022/10/TrilhosSC-1.jpg" alt="Mapa" />
-    </main>
-  </div>
-</div>
+            <main id="mapa" class="conteudo">
+                <h1>Rotas de Trens</h1>
+                <img src="https://img.nsctotal.com.br/wp-content/uploads/2022/10/TrilhosSC-1.jpg" alt="Mapa" />
+            </main>
+        </div>
 
-  <footer class="fot">
+        <footer class="fot">
             <div class="iconf"><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt=""></a></div>
             <div class="iconf"><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt=""></a></div>
             <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt=""></a></div>
             <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt=""></a></div>
             <div class="iconf"><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt=""></a></div>
-    </footer>
+        </footer>
+
+    </div>
+
 
     <script src="../javascript/menu-hamburguer-PC.js"></script>
     <script src="../javascript/some-hambuer.js"></script>
     <script src="../javascript/mudanca.js"></script>
-    <script src="../javascript/sume-rodape.js"></script> 
-  <script src="../javascript/GestaoDeRotaMenu.js"></script>
+    <script src="../javascript/sume-rodape.js"></script>
+    <script src="../javascript/GestaoDeRotaMenu.js"></script>
 </body>
+
 </html>
