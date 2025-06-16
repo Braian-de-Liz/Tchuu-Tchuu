@@ -64,7 +64,7 @@
         </ul>
       </aside>
 
-      
+
       <main id="mapa" class="conteudo">
         <h1>Rotas de Trens</h1>
         <img src="https://img.nsctotal.com.br/wp-content/uploads/2022/10/TrilhosSC-1.jpg" alt="Mapa" />
@@ -89,67 +89,25 @@
     <footer class="fot">
       <div class="iconf"><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt="" /></a></div>
       <div class="iconf"><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt="" /></a></div>
-      <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt="" /></a></div>
-      <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt="" /></a></div>
+      <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt="" /></a>
+      </div>
+      <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt="" /></a>
+      </div>
       <div class="iconf"><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt="" /></a></div>
     </footer>
   </div>
 
-  <script>
-    // Alternância de subpáginas
-    function mostrarConteudo(id) {
-      const todos = document.querySelectorAll('.conteudo');
-      todos.forEach(el => el.style.display = 'none');
-      const alvo = document.getElementById(id);
-      if (alvo) alvo.style.display = 'block';
 
-      // Se for o painel de análise, renderiza o gráfico
-      if (id === 'painel-analise') desenharGrafico();
-    }
-
-    // Gráfico Chart.js
-    function desenharGrafico() {
-      if (window.myChart2) return; // Evita recriar o gráfico
-      const ctx = document.getElementById('myChart2');
-      if (!ctx) return;
-
-      window.myChart2 = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-            label: '# de votos',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-            backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'orange']
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    }
-
-    // Menu hamburguer
-    document.addEventListener("DOMContentLoaded", () => {
-      const togglePrincipal = document.getElementById("menu-toggle");
-      const menuPrincipal = document.getElementById("menu");
-      togglePrincipal.addEventListener("click", () => {
-        menuPrincipal.classList.toggle("hidden");
-      });
-
-      const toggleSecundario = document.getElementById("toggle-lado");
-      const menuLado = document.getElementById("lado");
-      toggleSecundario.addEventListener("click", () => {
-        menuLado.classList.toggle("hidden-lado");
-      });
-    });
-  </script>
 </body>
+
+<script src="../javascript/sume-rodape.js"></script>
+<script src="../javascript/some-hambuer.js"></script>
+<script src="../javascript/menu-hamburguer-PC.js"></script>
+<script src="../javascript/alteraSUB-ROTAS.js"></script>
+<script src="../javascript/GestaoDeRotaMenu.js"></script>
+<script src="../javascript/GestaoRota.js"></script>
+<script src="../javascript/gestaoRotas.js"></script>
+<script src="../javascript/GestaoRota2.js"></script>
+
 
 </html>

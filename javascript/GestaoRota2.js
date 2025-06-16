@@ -1,6 +1,6 @@
 
 ; function desenharGrafico() {
-  if (window.myChart2) return; // Evita recriar o gráfico
+  if (window.myChart2) return; 
   const ctx = document.getElementById('myChart2');
   if (!ctx) return;
 
