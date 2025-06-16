@@ -3,6 +3,8 @@
     box-sizing: border-box;
 }
 
+
+
 body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,15 +12,14 @@ body {
     justify-content: center;
     align-items: start;
     display: flex;
+    margin: 0;
 }
-
 
 #container {
     /*background-color: #fff;*/
     background-color: linear-gradient(180deg, #00796b, #009688);
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    width: 100%;
     min-width: 280px;
     overflow: hidden;
     margin-top: 120px ;
@@ -33,165 +34,87 @@ body {
     justify-content: center;
     align-items: center;
     position: fixed;
-    
+    z-index: 10;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .header h2 {
+}
+
+.header h2 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
-  }
-
-.lado {
-    margin: 0%;
-    padding: 2%;
-    text-decoration: none;
-    list-style: none;
-    gap: 20px;
-    background-color: #D9D9D9;
-    width: 100%;
-    height: 2000;
-}
-
-
-
-.menu-segunda {
-    width: 100%;
-    padding: 20px;
-    height: 100%;
-    opacity: 90%;
-    border-radius: 15px;
-    background-color: whitesmoke;
-    margin-top: 50%;
-    align-items: center;
-    
-}
-
-.menu-opcoes {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    list-style: none;
-    padding: 30px ;
-    margin: 0;
-
-    min-width: 120px;
-    z-index: 100;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-
-aside {
-    background-color: #d9d9d9;
-    padding: 20px;
-    min-width: 200px;
-    text-align: center;
-    height: 100%;
-
-    
-}
-
-#container-op{
-    background-color: darkgrey;
-    padding: 10px;
-    border-radius: 10px;
-    min-height: 100vh;
-}
-
-.Rotas {
-    background-color: #D9D9D9;
-    width: 50%;
-    margin: 0px;
-    border-radius: 30PX;
-    padding: 0px 10px 0;
-    align-items: center;
-    text-align: center;
-    z-index: 1;
-    
-}
-
-.flex {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin-top: 100px;
-}
-
-#maps{
-    width: 90%;
-    opacity: 90%;
-    height: 80%;
-}
-
-#maps img {
-    width: 100%;
-    height: 60%;
-    
-}
-
-
-#aside, .lado{
-    height: 100%;
-    width: 20% ;
 }
 
 .conteudo {
-    display: block;}
+    text-align: center;
+    flex: 1;
+    padding-top: 1%;
+    background: #fff;
+    border-radius: 5px;
+}
 
+.menu-toggle-secundario {
+  top: 70px;
+  font-size: 22px;
+  background: #009688;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
 
-  /*  @media (max-width: 768px) {
-        .flex {
-            flex-direction: column;
-            align-items: center;
-            margin-top: 90px;
-        }
-    
-        aside#lado {
-            width: 90%;
-            min-width: unset;
-            margin-bottom: 20px;
-        }
-    
-        #maps {
-            width: auto;
-            height: 30%;
-        }
-    
-        .Rotas {
-            width: 90%;
-            margin: 10px 0;
-        }
-    
-        .header {
-            height: 60px;
-        }
-    
-        .header h2 {
-            font-size: 1.2rem;
-        }
-    
-        .menu-lateral {
-            width: 60px;
-        }
-    
-        .menu-lateral .txt-link {
-            display: none;
-        }
-    
-        .menu-lateral .item-menu {
-            justify-content: center;
-        }
-    
-        .container {
-            width: 100%;
-            margin-top: 70px;
-        }
-    
-    }
+#lado {
+  background: #e4e4e4;
+  padding: 10px;
+}
 
-    */
+.hidden-lado {
+  display: none;
+}
+
+.menu-segunda {
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Conteúdo ---------- */
+.flex {
+  padding-top: 5%;
+  display: flex;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 768px) {
+  .menu-lateral {
+    position: fixed;
+    width: 200px;
+    transform: translateX(-100%);
+  }
+
+  .menu-toggle-secundario {
+    left: 20px;
+    top: 70px;
+  }
+
+  #lado {
+    position: fixed;
+    top: 120px;
+    left: 0;
+    z-index: 998;
+    margin-left: 0;
+    width: 80%;
+  }
+
+  .flex {
+    margin-left: 0;
+    flex-direction: column;
+    padding: 20px;
+  }
+}
