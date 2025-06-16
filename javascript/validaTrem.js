@@ -68,8 +68,6 @@ function validaRegistroTrem(event) {
     return true;
 
 
-
-
 }
 
 
