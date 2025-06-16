@@ -1,12 +1,9 @@
 function mostrarConteudo(id) {
-    const secoes = document.querySelectorAll('.conteudo');
-    secoes.forEach(secao => {
-        secao.style.display = 'none';
-    });
+    // Oculta todos os conteúdos
+    const todos = document.querySelectorAll('.conteudo');
+    todos.forEach(el => el.style.display = 'none');
 
-    const secaoAtiva = document.getElementById(id);
-    if (secaoAtiva) {
-        secaoAtiva.style.display = 'block' ;
-    }
-
+    // Mostra o conteúdo com o ID correspondente
+    const alvo = document.getElementById(id);
+    if (alvo) alvo.style.display = 'block';
 }

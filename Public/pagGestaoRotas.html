@@ -2,116 +2,154 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Rotas</title>
-    <link rel="stylesheet" href="..//Assets/styleGestaoDeRota.css">
-    <link rel="stylesheet" href="../Assets/menulateral.css">
-    <link rel="stylesheet" href="../Assets/fot.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestão de Rotas</title>
+  <link rel="stylesheet" href="../Assets/styleGestaoDeRota.css" />
+  <link rel="stylesheet" href="../Assets/menulateral.css" />
+  <link rel="stylesheet" href="../Assets/fot.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- IMPORTAÇÃO DO CHART.JS -->
 </head>
 
 <body>
+  <header class="header">
+    <h2>Gestão de Rotas</h2>
+  </header>
 
-    <header class="header">
-        <h2>Gestão de Rotas</h2>
-    </header>
+  <div class="container">
+    <nav class="menu-lateral">
+      <button id="menu-toggle" class="menu-toggle"></button>
+      <div class="btn-expandir">
+        <i class="bi bi-list"></i>
+      </div>
 
-    <div class="container">
+      <div class="menu-icon">☰</div>
+      <br /><br />
+      <ul>
+        <li class="item-menu">
+          <a href="../Public/pagChat.html"><span class="icon"><img src="../Assets/imagens/barras/chat.png"
+                alt="" /></span><span class="txt-link"> Chat </span></a>
+        </li>
+        <br />
+        <li class="item-menu">
+          <a href="../Public/pagGestaoRotas.html"><span class="icon"><img src="../Assets/imagens/barras/mapa.png"
+                alt="" /></span><span class="txt-link"> Mapas </span></a>
+        </li>
+        <br />
+        <li class="item-menu">
+          <a href="../Public/pagGeralDashboard.html"><span class="icon"><img src="../Assets/imagens/barras/home.png"
+                alt="" /></span><span class="txt-link"> Home </span></a>
+        </li>
+        <br />
+        <li class="item-menu">
+          <a href="../Public/pagMonitora.html"><span class="icon"><img src="../Assets/imagens/barras/desempenho.png"
+                alt="" /></span><span class="txt-link"> Monitoramento </span></a>
+        </li>
+        <br />
+        <li class="item-menu">
+          <a href="../Public/pagUsuario.html"><span class="icon"><img src="../Assets/imagens/barras/user.png"
+                alt="" /></span><span class="txt-link"> Usuario </span></a>
+        </li>
+      </ul>
+    </nav>
 
-        <nav class="menu-lateral">
-            <button id="menu-toggle" class="menu-toggle"></button>
-            <div class="btn-expandir">
-                <i class="bi bi-list"></i>
-            </div>
+    <div class="flex">
+      <button class="menu-toggle-secundario" id="toggle-lado">☰</button>
+      <aside id="lado" class="hidden-lado">
+        <ul id="container-op">
+          <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">Painel de análises</li>
+          <li class="menu-segunda" onclick="mostrarConteudo('veiculos')">Veículos ativos</li>
+          <li class="menu-segunda" onclick="mostrarConteudo('mapa')">Mapa</li>
+          <li class="menu-segunda" onclick="mostrarConteudo('ajuda')">Introdução e Ajuda</li>
+        </ul>
+      </aside>
 
-            <div class="menu-icon">☰</div>
-            <br><br>
-            <ul>
-                <li class="item-menu">
-                    <a href="../Public/pagChat.html">
-                        <span class="icon"><i class="acesso-chat"><img src="../Assets/imagens/barras/chat.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Chat </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagGestaoRotas.html">
-                        <span class="icon"><i class="acesso-rotas"><img src="../Assets/imagens/barras/mapa.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Mapas </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagGeralDashboard.html">
-                        <span class="icon"><i class="acesso-dash"><img src="../Assets/imagens/barras/home.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Home </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagMonitora.html">
-                        <span class="icon"><i class="acesso-desemp"><img src="../Assets/imagens/barras/desempenho.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Monitoramento </span>
-                    </a>
-                </li>
-                <br>
-                <li class="item-menu">
-                    <a href="../Public/pagUsuario.html">
-                        <span class="icon"><i class="acesso-user"><img src="../Assets/imagens/barras/user.png"
-                                    alt=""></i></span>
-                        <span class="txt-link"> Usuario </span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+      
+      <main id="mapa" class="conteudo">
+        <h1>Rotas de Trens</h1>
+        <img src="https://img.nsctotal.com.br/wp-content/uploads/2022/10/TrilhosSC-1.jpg" alt="Mapa" />
+      </main>
 
-        <nav class="menu-lateral hidden" id="menu">
-            <ul>
-                <li><a href="#">Chat</a></li>
-                <li><a href="#">Mapas</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Monitoramento</a></li>
-                <li><a href="#">Usuário</a></li>
-            </ul>
-        </nav>
+      <main id="veiculos" class="conteudo" style="display: none;">
+        <h1>Veículos Ativos</h1>
+        <p>Conteúdo sobre veículos ativos.</p>
+      </main>
 
-        <div class="flex">
-            <button class="menu-toggle-secundario" id="toggle-lado">☰</button>
-            <aside id="lado" class="hidden-lado">
-                <ul id="container-op">
-                    <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">Painel de análises</li>
-                    <li class="menu-segunda" onclick="mostrarConteudo('veiculos')">Veículos ativos</li>
-                    <li class="menu-segunda" onclick="mostrarConteudo('mapa')">Mapa</li>
-                    <li class="menu-segunda" onclick="mostrarConteudo('ajuda')">Introdução e Ajuda</li>
-                </ul>
-            </aside>
+      <main id="painel-analise" class="conteudo" style="display: none;">
+        <h1>Painel de Análises</h1>
+        <canvas id="myChart2" width="400" height="200"></canvas>
+      </main>
 
-            <main id="mapa" class="conteudo">
-                <h1>Rotas de Trens</h1>
-                <img src="https://img.nsctotal.com.br/wp-content/uploads/2022/10/TrilhosSC-1.jpg" alt="Mapa" />
-            </main>
-        </div>
-
-        <footer class="fot">
-            <div class="iconf"><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt=""></a></div>
-            <div class="iconf"><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt=""></a></div>
-            <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt=""></a></div>
-            <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt=""></a></div>
-            <div class="iconf"><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt=""></a></div>
-        </footer>
-
+      <main id="ajuda" class="conteudo" style="display: none;">
+        <h1>Introdução e Ajuda</h1>
+        <p>Informações introdutórias e suporte.</p>
+      </main>
     </div>
 
+    <footer class="fot">
+      <div class="iconf"><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt="" /></a></div>
+      <div class="iconf"><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt="" /></a></div>
+      <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt="" /></a></div>
+      <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt="" /></a></div>
+      <div class="iconf"><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt="" /></a></div>
+    </footer>
+  </div>
 
-    <script src="../javascript/menu-hamburguer-PC.js"></script>
-    <script src="../javascript/some-hambuer.js"></script>
-    <script src="../javascript/mudanca.js"></script>
-    <script src="../javascript/sume-rodape.js"></script>
-    <script src="../javascript/GestaoDeRotaMenu.js"></script>
+  <script>
+    // Alternância de subpáginas
+    function mostrarConteudo(id) {
+      const todos = document.querySelectorAll('.conteudo');
+      todos.forEach(el => el.style.display = 'none');
+      const alvo = document.getElementById(id);
+      if (alvo) alvo.style.display = 'block';
+
+      // Se for o painel de análise, renderiza o gráfico
+      if (id === 'painel-analise') desenharGrafico();
+    }
+
+    // Gráfico Chart.js
+    function desenharGrafico() {
+      if (window.myChart2) return; // Evita recriar o gráfico
+      const ctx = document.getElementById('myChart2');
+      if (!ctx) return;
+
+      window.myChart2 = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+            label: '# de votos',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+            backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'orange']
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    // Menu hamburguer
+    document.addEventListener("DOMContentLoaded", () => {
+      const togglePrincipal = document.getElementById("menu-toggle");
+      const menuPrincipal = document.getElementById("menu");
+      togglePrincipal.addEventListener("click", () => {
+        menuPrincipal.classList.toggle("hidden");
+      });
+
+      const toggleSecundario = document.getElementById("toggle-lado");
+      const menuLado = document.getElementById("lado");
+      toggleSecundario.addEventListener("click", () => {
+        menuLado.classList.toggle("hidden-lado");
+      });
+    });
+  </script>
 </body>
 
 </html>
