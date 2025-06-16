@@ -115,6 +115,16 @@ aside {
     
 }
 
+.tamanhoGrafico{
+
+height: 80%;
+width: 100%;
+padding: 20px;
+
+}
+
+
+
 .flex {
     display: flex;
     width: 100%;
