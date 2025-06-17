@@ -45,7 +45,7 @@ function validaRegistroTrem(event) {
 
 
 
-    //DAQUI PARA BAIXO É BRAIAN QUERENDO INVENTAR MODA, MAS SE DER CERTO JÁ PODEREMOS PASSAR O TREM INTEIRO PARA O ANCO DE DADOS 
+    //DAQUI PARA BAIXO É BRAIAN QUERENDO INVENTAR MODA, MAS SE DER CERTO JÁ PODEREMOS PASSAR O TREM INTEIRO PARA O BANCO DE DADOS 
 
     class Trem {
         constructor(nome, numero, fabricante, registroUser, dataRegistro) {
@@ -62,9 +62,11 @@ function validaRegistroTrem(event) {
 
     const novoTrem = new Trem(nomeTrem, numero_de_Trem, fabricante, registroUser, dataRegistro);
 
+    //A APARENTE INVENÇÃO DE MODA PARECE TER DADO CERTO AGORA É SÓ ESPERAR
+
+
     alert("Trem Registrado com sucesso");
-
-
+    
     window.location.href = '../Public/pagMonitora.html';
 
     return true;

@@ -261,6 +261,12 @@ nav {
 
 }
 
+
+.espaco{
+    height: 2rem;
+}
+
+
 hr {
     max-width: 900px;
     width: 50%;
