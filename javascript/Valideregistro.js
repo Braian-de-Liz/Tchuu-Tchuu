@@ -103,7 +103,7 @@ function ValidaRegistro(event) {
     }
 
 
-    const NovoUsuário = new Usuário(nome, cpf, RegistroFun,)
+    const NovoUsuário = new Usuário(nome, cpf, RegistroFun, dataNasc, email, senha);
 
 
 
