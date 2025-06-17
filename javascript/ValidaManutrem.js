@@ -6,7 +6,7 @@ function ValidaManutrem(event){
     const numero_de_Trem = document.getElementById('numero_de_Trem').value.trim();
     const DataMANU = document.getElementById('DataMANU').value.trim();
     const ProblemaTrem = document.getElementById('ProblemaTrem').value.trim();
-    const tremDescri =document.getElementById('tremDescri').value.trim();
+    const tremDescri =document.getElementById('tremDescri').value;
 
 
 
@@ -51,11 +51,19 @@ function ValidaManutrem(event){
     }
 
 
-    const
+    if(ProblemaTrem ===''){
+        alert('O trem deve ter algum problema');
+        return false;
+    }
+
+
+        
 
 
 
-    alert('Seu Trem poderá ir para manu');
+    alert('Seu Trem poderá ir para manu, iremos arrumar o/os ' + ProblemaTrem);
+
+    window.location.href = '../Public/pagMonitora.html';
     return true;
 
 
