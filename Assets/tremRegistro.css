@@ -139,10 +139,22 @@ fieldset {
 }
 
 
+select{
+    border-radius: 8px;
+}
+
+
+textarea{
+    width: 40%;
+    text-align: center;
+    border-radius: 8px;
+}
+
 
 input {
     width: 40%;
     text-align: center;
+    border-radius: 8px;
 }
 
 .link {
