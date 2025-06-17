@@ -22,6 +22,7 @@ function ValidaRegistro(event) {
 
     const cpf = document.getElementById('cpf').value.trim();
     const email = document.getElementById('email').value.trim();
+    const nome = document.getElementById('nome').value.trim();
     const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
     const RegistroFun = document.getElementById('RegistroFun').value.trim();
@@ -87,6 +88,24 @@ function ValidaRegistro(event) {
         alert("Senha deve ter no mínimo 8 caracteres.");
         return false;
     }
+
+
+
+    class Usuário{
+        constructor(cpf, email, senha, RegistroFun, dataNasc, nome) {
+            this.nome = nome;
+            this.RegistroFun = RegistroFun;
+            this.email = email;
+            this.senha = senha;
+            this.cpf = cpf;
+            this.dataNasc = dataNasc;
+        }
+    }
+
+
+    const NovoUsuário = new Usuário(nome, cpf, RegistroFun,)
+
+
 
     alert("Cadastro realizado com sucesso!");
     window.location.href = '../Public/paglogin.html';
