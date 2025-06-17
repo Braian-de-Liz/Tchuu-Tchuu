@@ -84,7 +84,14 @@ body {
 }
 
 
+#mapa{
 
+}
+
+#mapa img{
+    width: 90%;
+    height: 80%;
+}
 
 
 .flex {
