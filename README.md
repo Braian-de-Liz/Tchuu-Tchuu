@@ -1,1 +1,1 @@
-O TCHUU-TCHUU é um trabalho do Curso de Desenvolvimento de sistemas da Escola SESI de Referência que tem como objetiv simular o desenvolvimento de um sistema ferroviário
+O TCHUU-TCHUU é um trabalho do Curso de Desenvolvimento de sistemas da Escola SESI de Referência que tem como objetivo simular o desenvolvimento de um sistema ferroviário, Então criamos o projeto que envolve técnologias WEB de front-end e Back-end como uma forma de aprimorar nossas habilidades.
