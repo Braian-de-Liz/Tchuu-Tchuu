@@ -22,7 +22,7 @@ body {
     width: 95%;
     min-width: 280px;
     overflow: hidden;
-    margin-top: 120px ;
+    margin-top: 120px;
     padding: 0px;
 }
 
@@ -35,7 +35,7 @@ body {
     align-items: center;
     position: fixed;
     z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header h2 {
@@ -79,6 +79,16 @@ body {
     font-size: 14px;
     color: #666;
     margin-bottom: 10px;
+}
+
+#climadash {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .informacoes2 {
@@ -127,7 +137,7 @@ body {
     color: #777;
 }
 
-#entra-alert{
+#entra-alert {
     color: #03ddc0;
 
 }
