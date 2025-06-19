@@ -15,45 +15,68 @@
     <h2>Gestão de Rotas</h2>
   </header>
 
-  <div class="container">
+
+
+  <div id="container">
     <nav class="menu-lateral">
-      <button id="menu-toggle" class="menu-toggle"></button>
       <div class="btn-expandir">
         <i class="bi bi-list"></i>
       </div>
 
       <div class="menu-icon">☰</div>
-      <br /><br />
+      <br><br>
       <ul>
         <li class="item-menu">
-          <a href="../Public/pagChat.html"><span class="icon"><img src="../Assets/imagens/barras/chat.png"
-                alt="" /></span><span class="txt-link"> Chat </span></a>
+          <a href="../Public/pagChat.html">
+            <span class="icon"><i class="acesso-chat"><img src="../Assets/imagens/barras/chat.png" alt=""></i></span>
+            <span class="txt-link"> Chat </span>
+          </a>
         </li>
-        <br />
+        <br>
         <li class="item-menu">
-          <a href="../Public/pagGestaoRotas.html"><span class="icon"><img src="../Assets/imagens/barras/mapa.png"
-                alt="" /></span><span class="txt-link"> Mapas </span></a>
+          <a href="../Public/pagGestaoRotas.html">
+            <span class="icon"><i class="acesso-rotas"><img src="../Assets/imagens/barras/mapa.png" alt=""></i></span>
+            <span class="txt-link"> Mapas </span>
+          </a>
         </li>
-        <br />
+        <br>
         <li class="item-menu">
-          <a href="../Public/pagGeralDashboard.html"><span class="icon"><img src="../Assets/imagens/barras/home.png"
-                alt="" /></span><span class="txt-link"> Home </span></a>
+          <a href="../Public/pagGeralDashboard.html">
+            <span class="icon"><i class="acesso-dash"><img src="../Assets/imagens/barras/home.png" alt=""></i></span>
+            <span class="txt-link"> Home </span>
+          </a>
         </li>
-        <br />
+        <br>
         <li class="item-menu">
-          <a href="../Public/pagMonitora.html"><span class="icon"><img src="../Assets/imagens/barras/desempenho.png"
-                alt="" /></span><span class="txt-link"> Monitoramento </span></a>
+          <a href="../Public/pagMonitora.html">
+            <span class="icon"><i class="acesso-desemp"><img src="../Assets/imagens/barras/desempenho.png"
+                  alt=""></i></span>
+            <span class="txt-link"> Monitoramento </span>
+          </a>
         </li>
-        <br />
+        <br>
         <li class="item-menu">
-          <a href="../Public/pagUsuario.html"><span class="icon"><img src="../Assets/imagens/barras/user.png"
-                alt="" /></span><span class="txt-link"> Usuario </span></a>
+          <a href="../Public/pagUsuario.html">
+            <span class="icon"><i class="acesso-user"><img src="../Assets/imagens/barras/user.png" alt=""></i></span>
+            <span class="txt-link"> Usuario </span>
+          </a>
         </li>
       </ul>
     </nav>
 
+
+
+    <section id="mapaContainer">
+      <div>
+        <img src="../Assets/imagens/imagens-de-uso/mapa_metro_depoisobras.webp" alt="">
+        <div class=""></div>
+      </div>
+
+    </section>
+
+
     <div class="flex">
-      <button class="menu-toggle-secundario" id="toggle-lado">☰</button>
+      <button class="menu-secundario" id="toggle-lado">☰</button>
       <aside id="lado" class="hidden-lado">
         <ul id="container-op">
           <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">Painel de análises</li>
@@ -63,37 +86,21 @@
         </ul>
       </aside>
 
-
-      <main id="mapa" class="conteudo">
-        <h1>Rotas de Trens</h1>
-        <img src="https://img.nsctotal.com.br/wp-content/uploads/2022/10/TrilhosSC-1.jpg" alt="Mapa" />
-      </main>
-
-      <main id="veiculos" class="conteudo" style="display: none;">
-        <h1>Veículos Ativos</h1>
-        <p>Conteúdo sobre veículos ativos.</p>
-      </main>
-
-      <main id="painel-analise" class="conteudo" style="display: none;">
-        <h1>Painel de Análises</h1>
-        <canvas id="myChart2" width="400" height="200"></canvas>
-      </main>
-
-      <main id="ajuda" class="conteudo" style="display: none;">
-        <h1>Introdução e Ajuda</h1>
-        <p>Informações introdutórias e suporte.</p>
-      </main>
     </div>
 
-    <footer class="fot">
-      <div class="iconf"><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt="" /></a></div>
-      <div class="iconf"><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt="" /></a></div>
-      <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt="" /></a>
-      </div>
-      <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt="" /></a>
-      </div>
-      <div class="iconf"><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt="" /></a></div>
-    </footer>
+  </div>
+
+
+  <footer class="fot">
+    <div class="iconf"><a href="pagGestaoRotas.html"><img src="../Assets/imagens/barras/mapa.png" alt="" /></a>
+    </div>
+    <div class="iconf"><a href="pagChat.html"><img src="../Assets/imagens/barras/chat.png" alt="" /></a></div>
+    <div class="iconf"><a href="pagGeralDashboard.html"><img src="../Assets/imagens/barras/home.png" alt="" /></a>
+    </div>
+    <div class="iconf"><a href="pagMonitora.html"><img src="../Assets/imagens/barras/desempenho.png" alt="" /></a>
+    </div>
+    <div class="iconf"><a href="pagUsuario.html"><img src="../Assets/imagens/barras/user.png" alt="" /></a></div>
+  </footer>
   </div>
 
 
@@ -107,7 +114,7 @@
 <script src="../javascript/GestaoRota.js"></script>
 <script src="../javascript/gestaoRotas.js"></script>
 <script src="../javascript/GestaoRota2.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </html>
