@@ -17,7 +17,7 @@
 
         <main>
             <section>
-                <form action="" id="senha">
+                <form action="" id="senha" onsubmit="return ValidaSenhaRecuperacao(event)">
                     <div>
                         <h2>Digite Email ou Telefone</h2>
                         <br>
@@ -29,9 +29,12 @@
                         </fieldset>
                     </div>
 
+                    <div id="passou">
+                        
+                    </div>
 
                     <div class="center">
-                        <button type="submit" class="envia" onclick="">
+                        <button type="submit" class="envia" >
                             Enviar
                         </button>
 
@@ -68,6 +71,9 @@
         </footer>
     </div>
 
+
 </body>
+
+<script src="../javascript/validaEmailSenhaRecupera.js"></script>
 
 </html>
