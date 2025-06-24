@@ -13,7 +13,7 @@ function ValidaSenhaRecuperacao(event) {
 
 
     const email = document.getElementById('email').value.trim();
-    const NumFun = document.getElementById('Numfun').value.trim();
+    const NumFun = document.getElementById('NumFun').value.trim();
 
 
     if (!validadeEmail(email)) {
@@ -33,27 +33,25 @@ function ValidaSenhaRecuperacao(event) {
     alert('Dados Aprovados com Sucesso');
     document.getElementById('passou').innerHTML = ('Funcionou');
 
+    document.getElementById("senhaVeio").style.display = 'block';
+    document.getElementById('senhaVeio').style.animation = "aparecer 1s ease-in-out";
 
 
-    return true
-    //AGORA ME PERDI.
 
 
 }
 
-const id = document.getElementById('senhaVeio');
 
-function mostrarSenhaDiv(id) {
+function SalvarNovaSenha() {
+    const senhaNova = document.getElementById('senhaNova').value.trim();
 
-    if (ValidaSenhaRecuperacao = true){
-        // Oculta todos os conteúdos
-        const todos = document.querySelectorAll('#senhaVeio');
-        todos.forEach(el => el.style.display = 'none');
-    
-        // Mostra o conteúdo com o ID correspondente
-        const alvo = document.getElementById(id);
-        if (alvo) alvo.style.display = 'block';
-
+    if (senhaNova.length < 8) {
+        alert('Senha inválida. Ela deve conter no mínimo 8 caracteres.');
+        return ;
     }
+
+    alert('Senha redefinida com sucesso!');
+  
+    window.location.href = '../Public/paglogin.html';
 }
 

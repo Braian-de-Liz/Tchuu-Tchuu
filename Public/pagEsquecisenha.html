@@ -27,45 +27,54 @@
                             <br>
                             <input type="email" id="email">
                         </fieldset>
-                        
-                        
+
+
                         <br>
-                        
+
                         <fieldset>
                             <label for="numfun">Número de Funcionário</label>
                             <br>
                             <input type="number" id="NumFun">
                         </fieldset>
-                        
+
                     </div>
 
                     <div id="passou">
                         <!--InnerHTML que vai aparecer-->
                     </div>
 
-                    <div id="senhaVeio" onsubmit="return mostrarSenhaDiv(event)">
+
+                    <div class="center">
+                        <button type="submit" class="envia">
+                            Enviar
+                        </button>
+
+                    </div>
+                    <br>
+
+
+
+                    <div id="senhaVeio">
                         <h2></h2>
                         <br>
 
                         <fieldset>
                             <label for="">Digite sua nova Senha</label>
                             <br>
-                            <input type="password">
+                            <input type="password" id="senhaNova">
                         </fieldset>
-                    </div>
 
-                    <div class="center">
-                        <button type="submit" class="envia" >
-                            Enviar
+
+
+                        <br>
+
+                        <button class="envia" type="button" onclick="SalvarNovaSenha()">
+                            Salvar senha
                         </button>
 
                     </div>
-                    <br>
-                    <div>
-                        
-                    </div>
 
-                    <br>
+
 
                     <hr>
 
@@ -77,13 +86,13 @@
                     <br>
                     <br><br>
                     <div id="voltap">
-                        <a href="paglogin.html" id="Voltar">← Voltar</a> 
+                        <a href="paglogin.html" id="Voltar">← Voltar</a>
                     </div>
-    
+
                 </form>
             </section>
 
-            
+
         </main>
 
 
