@@ -89,6 +89,14 @@
     margin-left: 40px;
 }
 
+.item-menu img {
+  transition: transform 0.3s ease;
+}
+
+.item-menu:hover img {
+  transform: scale(1.1) rotate(360deg);
+}
+
 .menu-lateral.aberto {
     left: 0;
 }
