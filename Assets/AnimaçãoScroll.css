@@ -1,0 +1,13 @@
+.aparecerScroll{
+    opacity: 0;
+    animation: aparecer-Rolando;
+}
+
+
+@keyframes  aparecer-Rolando {
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    };
+}
+
