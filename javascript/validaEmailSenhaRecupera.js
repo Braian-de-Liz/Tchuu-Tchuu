@@ -31,12 +31,10 @@ function ValidaSenhaRecuperacao(event) {
 
 
     alert('Dados Aprovados com Sucesso');
-    document.getElementById('passou').innerHTML = ('Funcionou');
+    document.getElementById('passou').innerHTML = ('André é Gay');
 
     document.getElementById("senhaVeio").style.display = 'block';
     document.getElementById('senhaVeio').style.animation = "aparecer 1s ease-in-out";
-
-
 
 
 }
