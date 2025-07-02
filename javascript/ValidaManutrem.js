@@ -60,7 +60,6 @@ function ValidaManutrem(event){
         
 
 
-
     alert('Seu Trem poderá ir para manu, iremos arrumar o/os ' + ProblemaTrem);
 
     window.location.href = '../Public/pagMonitora.html';
