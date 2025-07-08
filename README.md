@@ -4,24 +4,25 @@ TCHUU-TCHUU é um projeto desenvolvido pelos alunos do Curso Técnico em Desenvo
 🎯 Propósito
 Este projeto tem como foco o aprimoramento das habilidades em tecnologias Web, tanto de Front-end quanto de Back-end, por meio da criação de uma aplicação completa e funcional.
 
-🛠️ Tecnologias Utilizadas
-Front-end:
+🛠️ Tecnologias Utilizadas:
 
-HTML5
+🖌️ Front-end:
 
-CSS3
+    HTML5
 
-JavaScript
+    CSS3
 
-Back-end:
+    JavaScript
 
-Node.js
+⚙️ Back-end:
 
-PHP
+    Node.js
 
-Banco de Dados:
+    PHP
 
-MySQL
+📁 Banco de Dados:
+
+    MySQL
 
 💡 Funcionalidades do Sistema
 Simulação de rotas e estações ferroviárias
