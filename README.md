@@ -6,6 +6,7 @@ Este projeto tem como foco o aprimoramento das habilidades em tecnologias Web, t
 
 🛠️ Tecnologias Utilizadas
 Front-end:
+
 HTML5
 
 CSS3
@@ -13,11 +14,13 @@ CSS3
 JavaScript
 
 Back-end:
+
 Node.js
 
 PHP
 
 Banco de Dados:
+
 MySQL
 
 💡 Funcionalidades do Sistema
