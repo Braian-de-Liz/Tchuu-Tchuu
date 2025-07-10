@@ -49,7 +49,7 @@ function ValidaRegistro(event) {
     }
 
     const data_parte = dataNasc.split('-');
-    
+
     if (data_parte.length !== 3) {
         alert("Data inválida.");
         return false;
@@ -91,7 +91,7 @@ function ValidaRegistro(event) {
 
 
 
-    class Usuário{
+    class Usuário {
         constructor(cpf, email, senha, RegistroFun, dataNasc, nome) {
             this.nome = nome;
             this.RegistroFun = RegistroFun;
@@ -107,7 +107,14 @@ function ValidaRegistro(event) {
 
 
 
+
+
+
+
     alert("Cadastro realizado com sucesso!");
     window.location.href = '../Public/paglogin.html';
     return true;
+
+
+
 }
