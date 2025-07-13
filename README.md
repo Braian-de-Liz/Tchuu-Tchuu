@@ -1,5 +1,5 @@
 🚆 Projeto TCHUU-TCHUU
-TCHUU-TCHUU é um projeto desenvolvido pelos alunos do Curso Técnico em Desenvolvimento de Sistemas da Escola SESI de Referência. O objetivo principal é simular o funcionamento de um sistema ferroviário, aplicando na prática os conhecimentos adquiridos ao longo do curso.
+ é um projeto desenvolvido pelos alunos do Curso Técnico em Desenvolvimento de Sistemas da Escola SESI de Referência. O objetivo principal é simular o funcionamento de um sistema ferroviário, aplicando na prática os conhecimentos adquiridos ao longo do curso.
 
 🎯 Propósito
 Este projeto tem como foco o aprimoramento das habilidades em tecnologias Web, tanto de Front-end quanto de Back-end, por meio da criação de uma aplicação completa e funcional.
