@@ -1,95 +1,203 @@
+/* Reset e estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    background-color: #f5f5f5;
 }
 
+/* Container principal */
 #container {
-    /*background-color: #fff;*/
     background-color: #fff;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 95%;
+    max-width: 1200px;
     min-width: 280px;
+    height: 95vh;
     overflow: hidden;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
-
-#messages {
-    height: 70vh;
+/* Área do chat */
+#chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
-
+/* Cabeçalho do chat */
 #chat-header {
     background: linear-gradient(to bottom, #03ddc0, #0d4d46);
     color: white;
-    padding: 10px;
+    padding: 15px 20px;
     border-radius: 10px 10px 0 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
 }
 
+#chat-header h3 {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Área de mensagens */
+#messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f9f9f9;
+    scrollbar-width: thin;
+    scrollbar-color: #03ddc0 #f1f1f1;
+}
+
+/* Estilização da scrollbar */
+#messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background-color: #03ddc0;
+    border-radius: 3px;
+}
+
+/* Área de input */
 .message-input {
     display: flex;
     gap: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
 }
-
 
 .message-input textarea {
     flex: 1;
     resize: none;
-    padding: 10px;
+    padding: 12px 15px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+    min-height: 50px;
+    max-height: 120px;
+    transition: border 0.3s ease;
 }
 
+.message-input textarea:focus {
+    outline: none;
+    border-color: #03ddc0;
+    box-shadow: 0 0 0 2px rgba(3, 221, 192, 0.2);
+}
 
 .message-input button {
-    padding: 10px 20px;
+    padding: 0 20px;
     background: linear-gradient(to right, #00bfa5, #41978c);
-    /* Gradiente correto */
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    transition: background 1s ease, transform 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+    min-width: 80px;
 }
 
-
-/* Gradiente alternativo no hover */
 .message-input button:hover {
     background: linear-gradient(to right, #4FC1E9, #8aca40);
     color: #12181C;
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
 
+/* Estilos das mensagens */
+.mensagem-user {
+    background-color: #e3f2fd;
+    border-radius: 15px 15px 0 15px;
+    padding: 12px 16px;
+    margin-left: auto;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;
+}
 
+.mensagem-outro {
+    background-color: #ffffff;
+    border-radius: 15px 15px 15px 0;
+    padding: 12px 16px;
+    margin-right: auto;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
 
+.mensagem-user p,
+.mensagem-outro p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
 
+.system-message {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 0.85rem;
+    align-self: center;
+}
+
+/* Responsividade */
 @media (min-width: 901px) {
     body {
-        justify-content: center;
-        align-items: start;
-        display: flex;
-        margin: 0;
-
+        padding: 20px;
+        align-items: flex-start;
     }
 
     #container {
-        margin: 0;
-        margin-top: 120px;
-        width: 75%;
-        padding: 50px;
+        height: 85vh;
+        margin-top: 20px;
     }
 
     #messages {
-        height: 30vh;
+        padding: 20px;
+    }
+
+    .message-input {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #container {
+        height: 100vh;
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .message-input button {
+        padding: 0 15px;
+        min-width: 60px;
     }
 }
