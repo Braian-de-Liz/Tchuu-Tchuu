@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             sendMessage();
         }
+
     });
 
     function sendMessage() {

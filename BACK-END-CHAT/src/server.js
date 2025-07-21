@@ -9,7 +9,6 @@ wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         const data = JSON.parse(message);
         
-        // Primeira mensagem é o registro do usuário
         if (data.type === 'register') {
             userId = data.userId;
             users.set(userId, {
@@ -21,7 +20,6 @@ wss.on('connection', (ws) => {
             return;
         }
 
-        // Mensagens normais
         if (data.type === 'message') {
             broadcastMessage({
                 senderId: userId,
