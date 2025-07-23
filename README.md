@@ -25,13 +25,9 @@ Este projeto tem como foco o aprimoramento das habilidades em tecnologias Web, t
     MySQL
 
  Funcionalidades do Sistema
-Simulação de rotas e estações ferroviárias
-
-Cadastro e consulta de trens, passageiros e itinerários
-
-Interface web interativa e responsiva
-
-Integração entre front-end, back-end e banco de dados
+--Simulação de rotas e estações ferroviárias
+--Interface web interativa e responsiva
+--Integração entre front-end, back-end e banco de dados
 
  Aprendizados Envolvidos
 Durante o desenvolvimento do TCHUU-TCHUU, a equipe colocou em prática conceitos fundamentais de:
