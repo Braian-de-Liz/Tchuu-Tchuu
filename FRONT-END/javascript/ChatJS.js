@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
         ws = new WebSocket('ws://localhost:8080');
+        // ws = new WebSocket('https://chat-braian-de-liz.onrender.com');
 
         ws.onopen = () => {
             ws.send(JSON.stringify({
