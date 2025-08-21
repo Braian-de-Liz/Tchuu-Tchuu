@@ -1,0 +1,59 @@
+# Dependências
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.pnpm-debug.log*
+
+# Ambiente
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build
+/dist
+/build
+/out
+/.next
+/nuxt
+/.nuxt
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Editor
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.cache
+temp
+tmp
+
+# Cobertura de testes
+coverage
+.nyc_output
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+
+# IDEs e editores
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependência local (opcional)
+!**/node_modules/my-local-package/**  # descomente se precisar incluir um pacote local
