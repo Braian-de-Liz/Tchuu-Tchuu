@@ -1,4 +1,4 @@
-# Dependências
+# Node.js
 node_modules/
 npm-debug.log
 yarn-error.log
@@ -42,18 +42,15 @@ lerna-debug.log*
 temp
 tmp
 
-# Cobertura de testes
+# Cobertura
 coverage
 .nyc_output
 
-# Sistema operacional
+# Sistema
 Thumbs.db
 .DS_Store
 
-# IDEs e editores
+# IDEs
 .idea/
 *.sublime-project
 *.sublime-workspace
-
-# Dependência local (opcional)
-!**/node_modules/my-local-package/**  # descomente se precisar incluir um pacote local
