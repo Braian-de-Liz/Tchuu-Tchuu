@@ -1,101 +1,102 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const campoMensagem = document.querySelector('.message-input textarea');
-    const botaoEnviar = document.querySelector('.message-input button');
-    const containerMensagens = document.getElementById('messages');
-    let conexaoWebSocket;
-    let idUsuario;
+    const messageInput = document.querySelector('.message-input textarea');
+    const sendButton = document.querySelector('.message-input button');
+    const messagesContainer = document.getElementById('messages');
+    let ws;
+    let userId;
 
-    const coresUsuarios = [
+    const userColors = [
         '#03A9F4', '#4CAF50', '#FF5722', 
         '#9C27B0', '#607D8B', '#FFC107'
     ];
 
-    function conectarWebSocket() {
-        idUsuario = crypto.randomUUID();
-        const nomeUsuario = `Usuário_${Math.floor(Math.random() * 1000)}`;
-        const corUsuario = coresUsuarios[Math.floor(Math.random() * coresUsuarios.length)];
+    function connectWebSocket() {
+        userId = crypto.randomUUID();
+        const userName = `Usuário_${Math.floor(Math.random() * 1000)}`;
+        const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
-        // conexaoWebSocket = new WebSocket('ws://localhost:8080');
-        conexaoWebSocket = new WebSocket('https://tchuu-tchuu-2.onrender.com');
+        // ws = new WebSocket('ws://localhost:8080');
+        ws = new WebSocket('https://tchuu-tchuu-2.onrender.com');
 
-        conexaoWebSocket.onopen = () => {
-            conexaoWebSocket.send(JSON.stringify({
+        ws.onopen = () => {
+            ws.send(JSON.stringify({
                 type: 'register',
-                userId: idUsuario,
-                name: nomeUsuario,
-                color: corUsuario
+                userId: userId,
+                name: userName,
+                color: userColor
             }));
         };
 
-        conexaoWebSocket.onmessage = (evento) => {
-            const mensagem = JSON.parse(evento.data);
+        ws.onmessage = (event) => {
+            const message = JSON.parse(event.data);
             
-            if (mensagem.type === 'system') {
-                adicionarMensagemSistema(mensagem.content);
-            } else if (mensagem.type === 'message') {
-                adicionarMensagem(
-                    mensagem.sender,
-                    mensagem.content,
-                    mensagem.color,
-                    mensagem.isYou
+            if (message.type === 'system') {
+                addSystemMessage(message.content);
+            } else if (message.type === 'message') {
+                addMessage(
+                    message.sender,
+                    message.content,
+                    message.color,
+                    message.isYou
                 );
             }
         };
 
-        conexaoWebSocket.onclose = () => {
-            adicionarMensagemSistema("Conexão perdida. Reconectando...");
-            setTimeout(conectarWebSocket, 3000);
+        ws.onclose = () => {
+            addSystemMessage("Conexão perdida. Reconectando...");
+            setTimeout(connectWebSocket, 3000);
         };
     }
 
-    function adicionarMensagem(remetente, texto, cor, ehVoce) {
-        const divMensagem = document.createElement('div');
-        divMensagem.className = ehVoce ? 'mensagem-user' : 'mensagem-outro';
+    function addMessage(sender, text, color, isYou) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = isYou ? 'mensagem-user' : 'mensagem-outro';
         
-        const spanRemetente = document.createElement('span');
-        spanRemetente.textContent = remetente + ': ';
-        spanRemetente.style.color = cor;
-        spanRemetente.style.fontWeight = 'bold';
+        const senderSpan = document.createElement('span');
+        senderSpan.textContent = sender + ': ';
+        senderSpan.style.color = color;
+        senderSpan.style.fontWeight = 'bold';
         
-        const paragrafoTexto = document.createElement('p');
-        paragrafoTexto.appendChild(spanRemetente);
-        paragrafoTexto.appendChild(document.createTextNode(texto));
+        const textP = document.createElement('p');
+        textP.appendChild(senderSpan);
+        textP.appendChild(document.createTextNode(text));
         
-        divMensagem.appendChild(paragrafoTexto);
-        containerMensagens.appendChild(divMensagem);
-        rolarParaBaixo();
+        messageDiv.appendChild(textP);
+        messagesContainer.appendChild(messageDiv);
+        scrollToBottom();
     }
 
-    function adicionarMensagemSistema(texto) {
-        const divSistema = document.createElement('div');
-        divSistema.className = 'system-message';
-        divSistema.textContent = texto;
-        containerMensagens.appendChild(divSistema);
-        rolarParaBaixo();
+    function addSystemMessage(text) {
+        const systemDiv = document.createElement('div');
+        systemDiv.className = 'system-message';
+        systemDiv.textContent = text;
+        messagesContainer.appendChild(systemDiv);
+        scrollToBottom();
     }
 
-    function rolarParaBaixo() {
-        containerMensagens.scrollTop = containerMensagens.scrollHeight;
+    function scrollToBottom() {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    botaoEnviar.addEventListener('click', enviarMensagem);
-    campoMensagem.addEventListener('keypress', (e) => {
+    sendButton.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            enviarMensagem();
+            sendMessage();
         }
+
     });
 
-    function enviarMensagem() {
-        const texto = campoMensagem.value.trim();
-        if (texto && conexaoWebSocket && conexaoWebSocket.readyState === WebSocket.OPEN) {
-            conexaoWebSocket.send(JSON.stringify({
+    function sendMessage() {
+        const text = messageInput.value.trim();
+        if (text && ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({
                 type: 'message',
-                content: texto
+                content: text
             }));
-            campoMensagem.value = '';
+            messageInput.value = '';
         }
     }
 
-    conectarWebSocket();
+    connectWebSocket();
 });
