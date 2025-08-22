@@ -50,6 +50,6 @@ function SalvarNovaSenha() {
 
     alert('Senha redefinida com sucesso!');
   
-    window.location.href = '../Public/paglogin.html';
+    window.location.href = '../index.html';
 }
 
