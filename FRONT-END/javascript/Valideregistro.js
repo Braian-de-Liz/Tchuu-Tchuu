@@ -112,7 +112,8 @@ function ValidaRegistro(event) {
 
 
     alert("Cadastro realizado com sucesso!");
-    window.location.href = '../Public/paglogin.html';
+    // window.location.href = 'FRONT-END/index.html';
+    window.location.href = '../index.html';
     return true;
 
 
