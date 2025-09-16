@@ -1,7 +1,7 @@
 // src/modulos/chatServer.js
 import { WebSocketServer } from 'ws';
 
-const servidorWebSocket = new WebSocketServer({ port: 8080 });
+const servidorWebSocket = new WebSocketServer({ port: 8080  });
 
 const usuarios = new Map();
 
@@ -68,9 +68,4 @@ function transmitirMensagemSistema(conteudo) {
     });
 }
 
-export { 
-    servidorWebSocket, 
-    transmitirMensagem, 
-    transmitirMensagemSistema, 
-    usuarios 
-};
+export { servidorWebSocket, transmitirMensagem, transmitirMensagemSistema, usuarios };

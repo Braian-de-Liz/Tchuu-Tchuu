@@ -5,10 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let ws;
     let userId;
 
-    const userColors = [
-        '#03A9F4', '#4CAF50', '#FF5722', 
-        '#9C27B0', '#607D8B', '#FFC107'
-    ];
+    const userColors = ['#03A9F4', '#4CAF50', '#FF5722', '#9C27B0', '#607D8B', '#FFC107'];
 
     function connectWebSocket() {
         userId = crypto.randomUUID();
@@ -16,17 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
         // ws = new WebSocket('ws://localhost:8080');
-        // ws = new WebSocket('https://tchuu-tchuu-2.onrender.com');
         ws = new WebSocket('https://tchuu-tchuu-server-chat.onrender.com');
 
 
         ws.onopen = () => {
-            ws.send(JSON.stringify({
-                type: 'register',
-                userId: userId,
-                name: userName,
-                color: userColor
-            }));
+            ws.send(JSON.stringify({type: 'register', userId: userId, name: userName, color: userColor}));
         };
 
         ws.onmessage = (event) => {
