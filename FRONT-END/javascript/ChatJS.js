@@ -13,16 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
         // ws = new WebSocket('ws://localhost:8080');
-        ws = new WebSocket('https://tchuu-tchuu-server-chat.onrender.com');
-
+        ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com');
 
         ws.onopen = () => {
-            ws.send(JSON.stringify({type: 'register', userId: userId, name: userName, color: userColor}));
+            ws.send(JSON.stringify({ type: 'register', userId: userId, name: userName, color: userColor }));
         };
 
         ws.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            
+
             if (message.type === 'system') {
                 addSystemMessage(message.content);
             } else if (message.type === 'message') {
@@ -44,16 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMessage(sender, text, color, isYou) {
         const messageDiv = document.createElement('div');
         messageDiv.className = isYou ? 'mensagem-user' : 'mensagem-outro';
-        
+
         const senderSpan = document.createElement('span');
         senderSpan.textContent = sender + ': ';
         senderSpan.style.color = color;
         senderSpan.style.fontWeight = 'bold';
-        
+
         const textP = document.createElement('p');
         textP.appendChild(senderSpan);
         textP.appendChild(document.createTextNode(text));
-        
+
         messageDiv.appendChild(textP);
         messagesContainer.appendChild(messageDiv);
         scrollToBottom();
