@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const userName = `Usuário_${Math.floor(Math.random() * 1000)}`;
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
-        ws = new WebSocket('ws://localhost:8080');
+        // ws = new WebSocket('ws://localhost:8080');
+        // ws = new WebSocket('ws://localhost:8084');
         ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com');
 
         ws.onopen = () => {
