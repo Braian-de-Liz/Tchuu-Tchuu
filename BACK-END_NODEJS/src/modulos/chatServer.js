@@ -78,9 +78,4 @@ function transmitirMensagemSistema(conteudo) {
   });
 }
 
-export { 
-  servidorWebSocket, 
-  transmitirMensagem, 
-  transmitirMensagemSistema, 
-  usuarios 
-};
+export { servidorWebSocket, transmitirMensagem, transmitirMensagemSistema, usuarios };
