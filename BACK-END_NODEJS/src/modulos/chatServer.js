@@ -1,7 +1,7 @@
 // src/modulos/chatServer.js
 import { WebSocketServer } from 'ws';
-
-const servidorWebSocket = new WebSocketServer({ port: 8080 });
+const PORTA = process.env.PORT || 8080; 
+const servidorWebSocket = new WebSocketServer({ port: PORTA });
 const usuarios = new Map();
 
 servidorWebSocket.on('connection', (conexao) => {
