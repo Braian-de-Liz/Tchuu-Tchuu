@@ -1,81 +1,81 @@
 // src/modulos/chatServer.js
 import { WebSocketServer } from 'ws';
-const PORTA = process.env.PORT || 8080; 
-const servidorWebSocket = new WebSocketServer({ port: PORTA });
-const usuarios = new Map();
+const PORTA = process.env.PORT || 8080;
+const wss = new WebSocketServer({ port: PORTA });
+const users = new Map();
 
-servidorWebSocket.on('connection', (conexao) => {
-  let idUsuario = null;
+wss.on('connection', (ws) => {
+  let userId = null;
 
-  conexao.on('message', (dados) => {
-    let mensagem;
+  ws.on('message', (data) => {
+    let message;
     try {
-      mensagem = JSON.parse(dados);
-    } catch (erro) {
-      console.error('❌ Mensagem inválida:', dados.toString());
+      message = JSON.parse(data);
+    } catch (err) {
+      console.error(' Invalid message:', data.toString());
       return;
     }
 
-    if (mensagem.tipo === 'registrar') {
-      idUsuario = mensagem.idUsuario;
-      usuarios.set(idUsuario, {
-        conexao,
-        nome: mensagem.nome,
-        cor: mensagem.cor
+    if (message.type === 'register') {
+      userId = message.userId;
+      users.set(userId, {
+        ws,
+        name: message.name,
+        color: message.color
       });
-      transmitirMensagemSistema(`${mensagem.nome} entrou no chat`);
+      broadcastSystemMessage(`${message.name} entrou no chat`);
       return;
     }
 
-    if (mensagem.tipo === 'mensagem') {
-      transmitirMensagem({
-        remetenteId: idUsuario,
-        conteudo: mensagem.conteudo,
-        horario: new Date().toLocaleTimeString()
+    if (message.type === 'message') {
+      broadcastMessage({
+        senderId: userId,
+        content: message.content,
+        timestamp: new Date().toLocaleTimeString()
       });
     }
   });
 
-  conexao.on('close', () => {
-    if (idUsuario && usuarios.has(idUsuario)) {
-      const usuario = usuarios.get(idUsuario);
-      transmitirMensagemSistema(`${usuario.nome} saiu do chat`);
-      usuarios.delete(idUsuario);
+  ws.on('close', () => {
+    if (userId && users.has(userId)) {
+      const user = users.get(userId);
+      broadcastSystemMessage(`${user.name} saiu do chat`);
+      users.delete(userId);
     }
   });
 });
 
-function transmitirMensagem(mensagem) {
-  const remetente = usuarios.get(mensagem.remetenteId);
-  if (!remetente) return;
+function broadcastMessage(message) {
+  const sender = users.get(message.senderId);
+  if (!sender) return;
 
-  servidorWebSocket.clients.forEach((cliente) => {
-    if (cliente.readyState === WebSocket.OPEN) {
-      cliente.send(
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
         JSON.stringify({
-          tipo: 'mensagem',
-          remetente: remetente.nome,
-          cor: remetente.cor,
-          conteudo: mensagem.conteudo,
-          horario: mensagem.horario,
-          ehVoce: cliente === remetente.conexao
+          type: 'message',
+          sender: sender.name,
+          color: sender.color,
+          content: message.content,
+          time: message.timestamp,
+          isYou: client === sender.ws
         })
       );
     }
   });
 }
 
-function transmitirMensagemSistema(conteudo) {
-  servidorWebSocket.clients.forEach((cliente) => {
-    if (cliente.readyState === WebSocket.OPEN) {
-      cliente.send(
+function broadcastSystemMessage(content) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
         JSON.stringify({
-          tipo: 'sistema',
-          conteudo: conteudo
+          type: 'system',
+          content: content
         })
       );
     }
   });
 }
 
-export { servidorWebSocket, transmitirMensagem, transmitirMensagemSistema, usuarios };
+export { wss, broadcastMessage, broadcastSystemMessage, users };

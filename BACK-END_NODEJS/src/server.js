@@ -1,3 +1,3 @@
-import { servidorWebSocket } from './modulos/chatServer.js';
+import { wss } from './modulos/chatServer.js';
 
 console.log('Chat server carregado e rodando!');
