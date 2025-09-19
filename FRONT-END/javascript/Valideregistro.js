@@ -91,7 +91,7 @@ function ValidaRegistro(event) {
 
 
 
-    class Usuário {
+    class Usuario {
         constructor(cpf, email, senha, RegistroFun, dataNasc, nome) {
             this.nome = nome;
             this.RegistroFun = RegistroFun;
@@ -103,9 +103,26 @@ function ValidaRegistro(event) {
     }
 
 
-    const NovoUsuário = new Usuário(nome, cpf, RegistroFun, dataNasc, email, senha);
 
+    const NovoUsuario = new Usuario(nome, cpf, RegistroFun, dataNasc, email, senha);
 
+    // feito por I.A. 
+    fetch('salvar_user.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify(NovoUsuário)
+})
+.then(response => response.text())
+.then(data => {
+    console.log('Resposta do servidor:', data);
+    alert("Usuário salvo com sucesso!");
+})
+.catch(error => {
+    console.error('Erro ao salvar:', error);
+    alert("Erro ao salvar usuário!");
+});
 
 
 
