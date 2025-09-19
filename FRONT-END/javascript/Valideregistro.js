@@ -25,7 +25,7 @@ function ValidaRegistro(event) {
     const nome = document.getElementById('nome').value.trim();
     const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
-    const RegistroFun = document.getElementById('RegistroFun').value.trim();
+    const RegistroFun = crypto.randomUUID();
     const dataNasc = document.getElementById('DataNasc').value.trim();
 
     if (!cpf || !email || !telefone || !senha || !RegistroFun || !dataNasc) {
@@ -38,10 +38,10 @@ function ValidaRegistro(event) {
         return false;
     }
 
-    if (!ValidaNumRegistro(RegistroFun)) {
+/*     if (!ValidaNumRegistro(RegistroFun)) {
         alert("Número de registro inválido. Deve conter exatamente 12 dígitos.");
         return false;
-    }
+    } */
 
     if (!ValidateTelefone(telefone)) {
         alert("Telefone inválido. Deve conter pelo menos 10 dígitos.");
@@ -92,37 +92,36 @@ function ValidaRegistro(event) {
 
 
     class Usuario {
-        constructor(cpf, email, senha, RegistroFun, dataNasc, nome) {
+        constructor(nome, cpf, email, senha, RegistroFun, dataNasc) {
             this.nome = nome;
-            this.RegistroFun = RegistroFun;
+            this.cpf = cpf;
             this.email = email;
             this.senha = senha;
-            this.cpf = cpf;
+            this.RegistroFun = RegistroFun;
             this.dataNasc = dataNasc;
         }
     }
 
 
-
-    const NovoUsuario = new Usuario(nome, cpf, RegistroFun, dataNasc, email, senha);
+    const NovoUsuario = new Usuario(nome, cpf, email, senha, RegistroFun, dataNasc);
 
     // feito por I.A. 
     fetch('salvar_user.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-    },
-    body: JSON.stringify(NovoUsuário)
-})
-.then(response => response.text())
-.then(data => {
-    console.log('Resposta do servidor:', data);
-    alert("Usuário salvo com sucesso!");
-})
-.catch(error => {
-    console.error('Erro ao salvar:', error);
-    alert("Erro ao salvar usuário!");
-});
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(NovoUsuário)
+    })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Resposta do servidor:', data);
+            alert("Usuário salvo com sucesso!");
+        })
+        .catch(error => {
+            console.error('Erro ao salvar:', error);
+            alert("Erro ao salvar usuário!");
+        });
 
 
 
