@@ -2,7 +2,8 @@
 import { Router } from 'express';
 import bcrypt from "bcrypt";
 
-import conexao from "../databases/conectar_banco.js";
+// import conexao from "../databases/conectar_banco.js";
+import conexao from "../../databases/conectar_banco.js";
 
 const router = Router();
 const SALT_ROUNDS = 10;
