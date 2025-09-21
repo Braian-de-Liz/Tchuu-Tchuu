@@ -3,21 +3,22 @@ function validateCPF(cpf) {
     return cpf.length === 11;
 }
 
-function validadeEmail(email) {
+function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
-function ValidateTelefone(telefone) {
+function validateTelefone(telefone) {
     telefone = telefone.replace(/[^\d]/g, '');
     return telefone.length >= 10;
 }
 
-function ValidaNumRegistro(RegistroFun) {
-    return /^\d{12}$/.test(RegistroFun);
+function validaNumRegistro(registro) {
+    return /^\d{12}$/.test(registro);
 }
 
-function ValidaRegistro(event) {
+
+async function ValidaRegistro(event) {
     event.preventDefault();
 
     const cpf = document.getElementById('cpf').value.trim();
@@ -25,61 +26,38 @@ function ValidaRegistro(event) {
     const nome = document.getElementById('nome').value.trim();
     const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
-    const RegistroFun = crypto.randomUUID();
     const dataNasc = document.getElementById('DataNasc').value.trim();
+    const RegistroFun = crypto.randomUUID(); 
 
-    if (!cpf || !email || !telefone || !senha || !RegistroFun || !dataNasc) {
+
+    if (!cpf || !email || !telefone || !senha || !dataNasc || !nome) {
         alert("Preencha todos os campos.");
         return false;
     }
 
     if (!validateCPF(cpf)) {
-        alert('CPF inválido. Deve conter exatamente 11 dígitos numéricos.');
+        alert('CPF inválido. Deve conter exatamente 11 dígitos.');
         return false;
     }
 
-/*     if (!ValidaNumRegistro(RegistroFun)) {
-        alert("Número de registro inválido. Deve conter exatamente 12 dígitos.");
-        return false;
-    } */
-
-    if (!ValidateTelefone(telefone)) {
+    if (!validateTelefone(telefone)) {
         alert("Telefone inválido. Deve conter pelo menos 10 dígitos.");
         return false;
     }
 
-    const data_parte = dataNasc.split('-');
+    const [ano, mes, dia] = dataNasc.split('-').map(Number);
 
-    if (data_parte.length !== 3) {
+    if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
         alert("Data inválida.");
         return false;
     }
 
-    const ano = parseInt(data_parte[0], 10);
-    const mes = parseInt(data_parte[1], 10);
-    const dia = parseInt(data_parte[2], 10);
-
-    if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
-        alert("Data contém valores inválidos.");
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900) {
+        alert("Data de nascimento inválida.");
         return false;
     }
 
-    if (dia < 1 || dia > 31) {
-        alert("Dia inválido.");
-        return false;
-    }
-
-    if (mes < 1 || mes > 12) {
-        alert("Seu mês nem existe, inválido.");
-        return false;
-    }
-
-    if (ano < 1900) {
-        alert("Seu ano é inválido.");
-        return false;
-    }
-
-    if (!validadeEmail(email)) {
+    if (!validateEmail(email)) {
         alert("Email inválido.");
         return false;
     }
@@ -88,8 +66,6 @@ function ValidaRegistro(event) {
         alert("Senha deve ter no mínimo 8 caracteres.");
         return false;
     }
-
-
 
     class Usuario {
         constructor(nome, cpf, email, senha, RegistroFun, dataNasc) {
@@ -102,36 +78,27 @@ function ValidaRegistro(event) {
         }
     }
 
-
     const NovoUsuario = new Usuario(nome, cpf, email, senha, RegistroFun, dataNasc);
 
-    // feito por I.A. 
-    fetch('salvar_user.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify(NovoUsuário)
-    })
-        .then(response => response.text())
-        .then(data => {
-            console.log('Resposta do servidor:', data);
-            alert("Usuário salvo com sucesso!");
-        })
-        .catch(error => {
-            console.error('Erro ao salvar:', error);
-            alert("Erro ao salvar usuário!");
+    try {
+        const response = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/usuarios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(NovoUsuario)
         });
 
+        const data = await response.text();
 
-
-
-
-    alert("Cadastro realizado com sucesso!");
-    // window.location.href = 'FRONT-END/index.html';
-    window.location.href = '../index.html';
-    return true;
-
-
-
+        if (response.ok) {
+            alert('Usuário cadastrado com sucesso!');
+            window.location.href = '../index.html';
+        } else {
+            alert('Erro: ' + data);
+        }
+    } catch (error) {
+        console.error('Erro na conexão:', error);
+        alert('Falha ao conectar ao servidor.');
+    }
 }
