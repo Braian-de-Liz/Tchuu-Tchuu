@@ -18,7 +18,7 @@ wss.attachServer(server);
 app.use(express.json());
 
 app.use('/api', usuariosRoutes); 
-app.use('/api', deletarUsuariosRoutes)
+// app.use('/api', deletarUsuariosRoutes);
 
 const PORT = process.env.PORT || 3000;
 
