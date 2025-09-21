@@ -1,6 +1,8 @@
+// src/routers/usuario/registrarUsuario.js
 import { Router } from 'express';
 import bcrypt from "bcrypt";
-import conecxao from "../databases/conexao.js";
+
+import conexao from "../databases/conectar_banco.js";
 
 const router = Router();
 const SALT_ROUNDS = 10;
@@ -17,7 +19,7 @@ router.post('/usuarios', async (req, res) => {
     }
 
     try {
-        const [existente] = await conecxao.execute('SELECT cpf, email FROM usuarios WHERE cpf = ? OR email = ?',
+        const [existente] = await conexao.execute('SELECT cpf, email FROM usuarios WHERE cpf = ? OR email = ?',
             [cpf, email]
         );
 
