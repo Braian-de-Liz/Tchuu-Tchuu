@@ -23,7 +23,7 @@ router.post('/usuarios', async (req, res) => {
 
 
         if (existente.length > 0) {
-            const campo = existe[0].cpf === cpf ? 'CPF' : 'e-mail';
+            const campo = existente[0].cpf === cpf ? 'CPF' : 'e-mail';
             return res.status(409).json({
                 status: 'erro',
                 mensagem: `${campo} já cadastrado.`
@@ -34,7 +34,7 @@ router.post('/usuarios', async (req, res) => {
 
         await conexao.execute(
             `INSERT INTO usuarios (nome, cpf, email, senha, registro_fun, data_nasc) VALUES (?, ?, ?, ?, ?, ?)`,
-            [nome, cpf, email, senhaHash, RegistroFun, dataNasc]
+            [nome, cpf, email, senha_segura, RegistroFun, dataNasc]
         );
 
         res.status(201).json({
@@ -52,4 +52,4 @@ router.post('/usuarios', async (req, res) => {
 
 });
 
-export {router};
+export default router;
