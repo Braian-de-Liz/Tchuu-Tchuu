@@ -1,18 +1,14 @@
 // src/server.js
 import express from 'express';
 import { createServer } from 'http';
-import { WebSocketServer } from 'ws';
 
-import { wss } from './modulos/chatServer.js';
+import { setupWebSocket } from './modulos/chatServer.js';
 import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
-// import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js'; 
-
-
+// import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 
 const app = express();
 const server = createServer(app);
-
-wss.attachServer(server);
+const { wss } = setupWebSocket(server);
 
 
 app.use(express.json());
