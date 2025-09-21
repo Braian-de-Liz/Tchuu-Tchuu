@@ -5,7 +5,7 @@ import { WebSocketServer } from 'ws';
 
 import { wss } from './modulos/chatServer.js';
 import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
-import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js'; 
+// import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js'; 
 
 
 
