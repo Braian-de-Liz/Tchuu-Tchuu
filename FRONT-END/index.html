@@ -20,7 +20,7 @@
                 <section id="login">
                     <form id="Login" onsubmit="ValidaLogin(event)">
                         <div>
-                            <h2>Login</h2>
+                            <h2 style="padding-top: 5%;">Login</h2>
                             <br>
 
                             <fieldset>
@@ -38,10 +38,10 @@
                                 <input type="password" id="senha">
                                 <br><br>
 
-                                <label for="lembrar" class="checkbox-custom"></label>
-                                <input type="checkbox" id="check">
-
-                                <span>Lembre-me</span>
+                                <div class="remember" style="display: inline-flex; gap: 10px;">
+                                    <input type="checkbox" id="check">
+                                    <span style="font-family: sans-serif;">Lembrar</span>
+                                </div>
                             </fieldset>
                         </div>
                         <br>
@@ -81,7 +81,7 @@
                         -->
 
                         <div>
-                            <p> <a href="/FRONT-END/Public/pagRegistro.html" class="link">Criar usuário</a></p>
+                            <p style="padding-bottom: 5%;"> <a href="/FRONT-END/Public/pagRegistro.html" class="link">Criar usuário</a></p>
                         </div>
 
                     </form>

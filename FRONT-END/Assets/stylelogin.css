@@ -17,7 +17,7 @@ body {
 
 #cabe {
     text-align: center;
-    background-color: #999;
+    background-color: rgb(253, 231, 202);
     height: 60px;
     line-height: 60px;
     width: 100%;
@@ -35,8 +35,12 @@ body {
 
 }
 
+h1 {
+    font-family: sans-serif;
+}
+
 #Login h2 {
-    margin: 20px 10px;
+    font-family: sans-serif;
 }
 
 
@@ -95,7 +99,7 @@ fieldset {
     border: none;
     padding: 10px 5px;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 5px;
     font-size: 18px;
     align-items: center;
     font-weight: 600;
@@ -104,7 +108,7 @@ fieldset {
     min-width: 150px;
     display: inline-block;
     width: 20%;
-    background: linear-gradient(to right, #00bfa5, #2a5c57);
+    background: linear-gradient(to right, #207e71, #308179);
     transition: transform 0.4s ease, color 0.4s ease;
     z-index: 1;
 }
@@ -157,8 +161,18 @@ textarea{
 input {
     width: 40%;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 2px;
+    border:0;
+    padding: 8px;
 }
+
+label {
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #383838;
+}
+
+
 .link {
     transition: 2s;
 }
@@ -201,8 +215,10 @@ form p {
 }
 
 a {
+    font-family: sans-serif;
     text-align: center;
-    color: darkgrey;
+    color: #222;
+    font-weight: 500;
 }
 
 @keyframes aparecer {
@@ -240,10 +256,11 @@ fieldset,
 }
 
 #check {
+    padding: 0px;
+    width: 50%;
     accent-color: #438082;
     text-align: left;
     align-items: first baseline;
-
 }
 
 @keyframes envia {
@@ -290,7 +307,6 @@ hr {
     #container {
         width: 100%;
         margin: 0;
-        padding: 1px;
     }
 
     #login {
@@ -309,14 +325,8 @@ hr {
         padding: 1px;
     }
 
-    input {
-        width: 90%;
-        padding: 1px;
-    }
-
     #container {
         margin: 0;
-        padding: 1px;
         width: 100%;
     }
 }
