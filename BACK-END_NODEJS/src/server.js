@@ -1,12 +1,15 @@
 // src/server.js
 import express from 'express';
 import { createServer } from 'http';
-
+import {cors} from 'cors';
 import { setupWebSocket } from './modulos/chatServer.js';
 import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
 // import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 
 const app = express();
+
+
+app.use(cors());
 const server = createServer(app);
 const { wss } = setupWebSocket(server);
 
