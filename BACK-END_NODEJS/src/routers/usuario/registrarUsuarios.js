@@ -52,7 +52,7 @@ router.post('/usuarios', async (req, res) => {
       mensagem: "Erro interno do servidor"
     });
   } finally {
-    if (db) db.end(); // Fecha conexão
+    if (db) db.end(); 
   }
 });
 
