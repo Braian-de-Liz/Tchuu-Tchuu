@@ -80,6 +80,9 @@ async function ValidaRegistro(event) {
 
     const NovoUsuario = new Usuario(nome, cpf, email, senha, RegistroFun, dataNasc);
 
+
+
+
     try {
         const response = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/usuarios', {
             method: 'POST',
@@ -94,7 +97,8 @@ async function ValidaRegistro(event) {
         if (response.ok) {
             alert('Usuário cadastrado com sucesso!');
             window.location.href = '../index.html';
-        } else {
+        } 
+        else {
             alert('Erro: ' + data);
         }
     } catch (error) {
