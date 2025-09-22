@@ -53,4 +53,105 @@ Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu hab
 
 ---
 
+##
+
+Estrurura do Projeto
+
+````
+TCHUU-TCHUU/
+├── BACK-END-NODEJS/                  
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   └── src/
+│       ├── .env
+│       ├── databases/
+│       │   └── conectar_banco.js
+│       ├── modulos/
+│       │   ├── chatServer.js
+│       │   └── ESP_Server.js
+│       ├── routers/
+│       │   └── usuario/
+│       │       ├── deletarUsuarios.js
+│       │       └── registrarUsuarios.js
+│       └── server.js
+│
+├── BACK-END-PHP/                     
+│   ├── APIs/
+│   │   ├── salvar_trem.php
+│   │   └── salvar_user.php
+│   ├── bd.sql
+│   └── index.php
+│
+├── Documentações/                   
+│   ├── LICENSE
+│   ├── Plano de Testes Tchuu-Tchuu.pdf
+│   └── S.A requisitos Tchuu-Tchuu.pdf
+│
+└── FRONT-END/                       
+    ├── Assets/                      
+    │   ├── AnimaçãoScroll.css       
+    │   ├── Desempenho.css           
+    │   ├── fot.css                  
+    │   ├── Frota.css                
+    │   ├── Manutencao.css           
+    │   ├── menulateral.css          
+    │   ├── stylealerta.css          
+    │   ├── stylechat.css            
+    │   ├── styledash.css            
+    │   ├── styleGestaoDeRota.css    
+    │   ├── stylelogin.css           
+    │   ├── stylesenha.css           
+    │   ├── tremRegistro.css         
+    │   ├── user.css                 
+    │   └── imagens/                 ← Pasta com todas as imagens (não listadas)
+    │
+    ├── javascript/                  
+    │   ├── .gitignore
+    │   ├── alteraSUB-ROTAS.js       
+    │   ├── ChatJS.js                
+    │   ├── containerdemanutenção.js 
+    │   ├── GestaoDeRotaMenu.js      
+    │   ├── GestaoRota.js            
+    │   ├── GestaoRota2.js           
+    │   ├── gestaoRotas.js           
+    │   ├── GraficoDesempenho.js     
+    │   ├── Lista Regex              
+    │   ├── menu.js                  
+    │   ├── menu-hamburguer-PC.js    
+    │   ├── menu-Rotas.js            
+    │   ├── Monitora.js              
+    │   ├── Nodejs/                  
+    │   │   ├── package.json
+    │   │   └── package-lock.json
+    │   ├── some-hambuer.js          
+    │   ├── sume-rodape.js           
+    │   ├── tentativa-deimplementaAPIdeCLima.js 
+    │   ├── validaEmailSenhaRecupera.js 
+    │   ├── validaLogin.js           
+    │   ├── ValidaManutrem.js        
+    │   ├── validaTrem.js            
+    │   └── Valideregistro.js        
+    │
+    ├── Public/                    
+    │   ├── enviaTremManu.html       
+    │   ├── pagChat.html             
+    │   ├── pagEsquecisenha.html     
+    │   ├── pagFrota.html            
+    │   ├── pagGeralDashboard.html   
+    │   ├── pagGestaoRotas.html      
+    │   ├── pagManutencao.html       
+    │   ├── pagMonitora.html         
+    │   ├── pagregistraTREM.html     
+    │   ├── pagRegistro.html         
+    │   └── pagUsuario.html          
+    │
+    └── index.html                   
+
+├── package.json                     
+├── package-lock.json
+└── README.md                        
+
+````
+
 > 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*
