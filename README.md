@@ -104,7 +104,7 @@ TCHUU-TCHUU/
     │   ├── stylesenha.css           
     │   ├── tremRegistro.css         
     │   ├── user.css                 
-    │   └── imagens/                 ← Pasta com todas as imagens (não listadas)
+    │   └── imagens/
     │
     ├── javascript/                  
     │   ├── .gitignore
