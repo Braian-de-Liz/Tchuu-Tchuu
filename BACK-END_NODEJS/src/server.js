@@ -1,7 +1,7 @@
 // src/server.js
 import express from 'express';
 import { createServer } from 'http';
-import {cors} from 'cors';
+import cors from 'cors';
 import { setupWebSocket } from './modulos/chatServer.js';
 import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
 // import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
