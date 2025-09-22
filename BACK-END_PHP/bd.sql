@@ -1,11 +1,14 @@
 CREATE DATABASE TCHUU_TCHUU_BANCO;
 
-CREATE TABLE usuarios(
-    pk_usuario INT PRIMARY KEY AUTO_INCREMENT, 
-    nome_usuario VARCHAR(50),
-    email_usuario VARCHAR(50),
-    idade_usuario INT NOT NULL,
-    senha_usuario VARCHAR(20)
+CREATE TABLE usuarios (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  cpf CHAR(11) UNIQUE NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  senha VARCHAR(255) NOT NULL,
+  registro_fun VARCHAR(20),
+  data_nasc DATE,
+  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE trens(

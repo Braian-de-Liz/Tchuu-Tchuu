@@ -15,7 +15,7 @@ function setupWebSocket(server) {
       try {
         mensagem = JSON.parse(dados);
       } catch (erro) {
-        console.error('❌ Mensagem inválida:', dados.toString());
+        console.error('Mensagem inválida:', dados.toString());
         return;
       }
 
