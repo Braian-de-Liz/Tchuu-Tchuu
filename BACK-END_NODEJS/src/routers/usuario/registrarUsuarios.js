@@ -48,10 +48,10 @@ router.post('/usuarios', async (req, res) => {
 
     } catch (erro) {
         console.error("Erro ao cadastrar", erro);
-        res.status(500).json({
-            status: 'erro',
-            mensagem: "Erro interno do servidor"
-        });
+        // res.status(500).json({
+        //     status: 'erro',
+        //     mensagem: "Erro interno do servidor"
+        // });
     } finally {
         if (db) db.end();
     }

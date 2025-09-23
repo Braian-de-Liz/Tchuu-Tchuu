@@ -18,6 +18,7 @@ export { conectar };
 // -------------------> SEPARAÇÃO DE OPÇÕES <----------------------
 
 
+
 // src/databases/conectar_banco.js
 import { Client } from 'pg';
 
@@ -36,6 +37,7 @@ async function conectar() {
 }
 
 export { conectar };
+
 
 
 
