@@ -19,7 +19,7 @@ export { conectar };
 
 
 
-/* // src/databases/conectar_banco.js
+// src/databases/conectar_banco.js
 import { Client } from 'pg';
 
 async function conectar() {
@@ -36,14 +36,14 @@ async function conectar() {
     return client;
 }
 
-export { conectar }; */
+export { conectar };
 
 
 
 
 
 // src/databases/conectar_banco.js
-import { Client } from 'pg';
+/* import { Client } from 'pg';
 
 async function conectar() {
   const client = new Client({
@@ -60,3 +60,4 @@ async function conectar() {
 }
 
 export { conectar };
+ */
