@@ -27,7 +27,7 @@ async function ValidaRegistro(event) {
     const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
     const dataNasc = document.getElementById('DataNasc').value.trim();
-    const RegistroFun = crypto.randomUUID(); 
+    const RegistroFun = crypto.randomUUID().substring(0, 20); 
 
 
     if (!cpf || !email || !telefone || !senha || !dataNasc || !nome) {
