@@ -4,7 +4,7 @@ import { createServer } from 'http';
 import cors from 'cors';
 import { setupWebSocket } from './modulos/chatServer.js';
 import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
-// import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
+import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 
 const app = express();
 
@@ -17,10 +17,10 @@ const { wss } = setupWebSocket(server);
 app.use(express.json());
 
 app.use('/api', usuariosRoutes); 
-// app.use('/api', deletarUsuariosRoutes);
+app.use('/api', deletarUsuariosRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
-  console.log(` Servidor rodando na porta ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
