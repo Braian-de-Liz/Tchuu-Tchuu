@@ -24,10 +24,16 @@ function ValidaLogin(event) {
         return false;
     }
 
+    try {
+        
+    } catch {
+
+    }
+
     document.getElementById('passou').innerHTML = "Seu login foi autorizado";
 
 
-        window.location.href='Public/pagGeralDashboard.html';
+    window.location.href = 'Public/pagGeralDashboard.html';
 
 
     return true;
