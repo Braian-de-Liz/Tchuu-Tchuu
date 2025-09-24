@@ -23,7 +23,24 @@ router.post('/usu_login', async (req, res) => {
         db = await conectar();
         db = await db.query('SELECT cpf, email FROM usuarios WHERE cpf = $1 OR email = $2', [email, senha]);
 
-        const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+
 
         if(resultado.rows.length === 0) {
             return res.status(401).json({
