@@ -2,7 +2,7 @@
 
 **TCHUU-TCHUU** é um projeto desenvolvido pelos alunos do **Curso Técnico em Desenvolvimento de Sistemas** da **Escola SESI de Referência**. Seu principal objetivo é **Gerenciar Ferroramas**, aplicando na prática os conhecimentos adquiridos ao longo do curso.
 
-➡️ **Acesse agora:** [https://tchuu-tchuu-front-end.onrender.com/](https://tchuu-tchuu-front-end.onrender.com/)
+➡️ **Acesse agora:** [https://tchuu-tchuu-front-end.onrender.com](https://tchuu-tchuu-front-end.onrender.com)
 
 ---
 
@@ -25,7 +25,7 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="30"/> **PHP**
 
 ### 💾 Banco de Dados
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="30"/> **MySQL**
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="30"/> **PostgreSQL** (via [Neon.tech](https://neon.tech))
 
 ---
 
@@ -40,22 +40,7 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 
 ---
 
-## 📚 Aprendizados Envolvidos
-
-Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu habilidades em:
-
-- 🧠 Lógica de programação  
-- 🏗️ Estruturação de sistemas web completos  
-- 🔄 Integração cliente-servidor com WebSocket e APIs REST  
-- 🗃️ Gerenciamento de banco de dados relacional (MySQL)
-- 🛠️ Versionamento de código com Git e GitHub  
-- 🤝 Trabalho em equipe e organização com metodologias ágeis
-
----
-
-##
-
-Estrurura do Projeto
+## 📁 Estrutura do Projeto
 
 ````
 TCHUU-TCHUU/
@@ -153,5 +138,19 @@ TCHUU-TCHUU/
 └── README.md                        
 
 ````
+
+
+## 📚 Aprendizados Envolvidos
+
+Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu habilidades em:
+
+- 🧠 Lógica de programação  
+- 🏗️ Estruturação de sistemas web completos  
+- 🔄 Integração cliente-servidor com WebSocket e APIs REST  
+- 🗃️ Gerenciamento de banco de dados relacional (PostgreSQL)
+- 🛠️ Versionamento de código com Git e GitHub  
+- 🤝 Trabalho em equipe e organização com metodologias ágeis
+
+---
 
 > 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*
