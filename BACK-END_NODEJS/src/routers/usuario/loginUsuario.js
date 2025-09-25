@@ -38,7 +38,7 @@ router.post('/usu_login', async (req, res) => {
         const senhaCerta = await bcrypt.compare(senha, usuario.senha);
 
 
-        if (!senhaCorreta) {
+        if (!senhaCerta) {
             return res.status(401).json({
                 status: 'erro',
                 mensagem: 'Email ou senha incorretos.'
