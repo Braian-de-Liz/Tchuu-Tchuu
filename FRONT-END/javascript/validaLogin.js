@@ -1,4 +1,4 @@
-function ValidaLogin(event) {
+async function ValidaLogin(event) {
     event.preventDefault();
 
     const email = document.getElementById('email').value.trim();
@@ -25,16 +25,31 @@ function ValidaLogin(event) {
     }
 
     try {
-        
-    } catch {
 
+        const resposta = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/usu_login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({ email, senha })
+        });
+
+        if (!resposta.ok) {
+            const erroDate = await resposta.json();
+            throw new Error(erroDate.mensagem || 'Erro desconhecido');
+        }
+
+        document.getElementById('passou').innerHTML = "Seu login foi autorizado";
+
+
+        window.location.href = 'Public/pagGeralDashboard.html';
+
+    } catch (erro) {
+        console.error('Erro no login:', erro);
+        alert('Erro ao fazer login: ' + erro.message);
     }
 
-    document.getElementById('passou').innerHTML = "Seu login foi autorizado";
 
 
-    window.location.href = 'Public/pagGeralDashboard.html';
-
-
-    return true;
+    // return true;
 }

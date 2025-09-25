@@ -63,8 +63,9 @@ router.post('/usu_login', async (req, res) => {
             status: 'erro',
             mensagem: 'Erro interno do servidor.'
         });
-    } finally {
-        if (db) db.end(); 
+    }
+    finally {
+        if (db) db.end();
     }
 });
 
