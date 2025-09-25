@@ -21,39 +21,51 @@ router.post('/usu_login', async (req, res) => {
 
     try {
         db = await conectar();
-        db = await db.query('SELECT cpf, email FROM usuarios WHERE cpf = $1 OR email = $2', [email, senha]);
-
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
-        // const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1',[email]);
+        const resultado = await db.query('SELECT id, email, senha FROM usuarios WHERE email = $1', [email]);
 
 
-        if(resultado.rows.length === 0) {
+
+
+
+        if (resultado.rows.length === 0) {
             return res.status(401).json({
-
+                status: 'erro',
+                mensagem: 'Email ou senha incorretos.'
             });
         }
 
-        
+        const usuario = resultado.rows[0];
+        const senhaCerta = await bcrypt.compare(senha, usuario.senha);
 
-    } catch {
 
+        if (!senhaCorreta) {
+            return res.status(401).json({
+                status: 'erro',
+                mensagem: 'Email ou senha incorretos.'
+            });
+        }
+
+
+        res.json({
+            status: 'sucesso',
+            mensagem: 'Login realizado com sucesso!',
+            usuario: {
+                id: usuario.id,
+                email: usuario.email
+            }
+        });
+
+
+
+    } catch (erro) {
+        console.error('Erro no login:', erro);
+        res.status(erro).json({
+            status: 'erro',
+            mensagem: 'Erro interno do servidor.'
+        });
+    } finally {
+        if (db) db.end(); 
     }
-
 });
 
 
