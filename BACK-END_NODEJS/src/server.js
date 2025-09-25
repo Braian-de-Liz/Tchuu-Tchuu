@@ -17,12 +17,25 @@ const { wss } = setupWebSocket(server);
 
 app.use(express.json());
 
-app.use('/api', usuariosRoutes); 
+app.use('/api', usuariosRoutes);
 app.use('/api', deletarUsuariosRoutes);
-app.use('/api', logarUsuario)
+app.use('/api', logarUsuario);
+
+
+// app.use('/api', );
+// app.use('/api', );
+// app.use('/api', );
+// app.use('/api', );
+// app.use('/api', );
+// app.use('/api', );
+
+app.get('/acordar', (req, res) => {
+    res.json({ status: 'funcionando', server: 'Tchuu-Tchuu' });
+});
 
 const PORT = process.env.PORT || 3000;
 
+
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
