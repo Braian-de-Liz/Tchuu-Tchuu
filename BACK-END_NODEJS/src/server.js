@@ -30,7 +30,8 @@ app.use('/api', logarUsuario);
 // app.use('/api', );
 
 app.get('/acordar', (req, res) => {
-    res.json({ status: 'funcionando', server: 'Tchuu-Tchuu' });
+    const now = new Date().toISOString();
+    res.json({ status: 'funcionando', server: 'Tchuu-Tchuu', timestamp: now });
 });
 
 const PORT = process.env.PORT || 3000;

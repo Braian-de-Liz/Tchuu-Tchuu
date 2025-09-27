@@ -18,20 +18,6 @@ function validaNumRegistro(registro) {
 }
 
 
-const troca_senha = document.getElementById("check");
-const senha_al = document.getElementById('Senha');
-
-troca_senha.addEventListener("click", () => {
-    let senha_al = document.getElementById('Senha');
-
-    if (senha.type === "passoword") {
-
-        senha_al.type = "text";
-        troca_senha.textContent = " Ocultar senha";
-    } else {
-        senha_al.type = "password";       // Oculta a senha
-        troca_senha.textContent = " Mostrar senha";
-    }});
 
 
 

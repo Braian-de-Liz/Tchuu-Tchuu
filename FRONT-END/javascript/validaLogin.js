@@ -1,3 +1,21 @@
+
+const checkzim = document.getElementById("check");
+const senhaInput = document.getElementById('senha');
+// let ver = false;
+
+checkzim.addEventListener("change", () => {
+
+    if (checkzim.checked) {
+        senhaInput.type = "text";
+    } 
+
+    else {
+        senhaInput.type = "password";
+    }
+
+});
+
+
 async function ValidaLogin(event) {
     event.preventDefault();
 
