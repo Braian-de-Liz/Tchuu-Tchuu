@@ -56,7 +56,7 @@ async function ValidaRegistro(event) {
         return false;
     }
 
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900) {
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1920) {
         alert("Data de nascimento inválida.");
         return false;
     }
