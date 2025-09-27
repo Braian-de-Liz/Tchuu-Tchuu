@@ -140,6 +140,29 @@ TCHUU-TCHUU/
 ````
 
 
+---
+
+## 🏗️ Arquitetura Modular com Múltiplos Deploys
+
+O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e descentralizada**, onde cada componente é **independente, escalável e implantado separadamente** — seguindo práticas reais de engenharia de software.
+
+| Componente | Tecnologia | Deploy | Observações |
+|-----------|------------|--------|-------------|
+| **Front-end** | HTML, CSS, JavaScript | [https://tchuu-tchuu-front-end.onrender.com](https://tchuu-tchuu-front-end.onrender.com) | Hospedado no **Render** como site estático. Não consome horas de instância. |
+| **Back-end Node.js** | Node.js + Express + WebSocket | [https://tchuu-tchuu-server-chat.onrender.com](https://tchuu-tchuu-server-chat.onrender.com) | Serviço **24/7** com keep-alive via `/acordar`. Responsável pelo chat e autenticação. |
+| **Banco de Dados** | PostgreSQL | [Neon.tech](https://neon.tech) | Hosted em nuvem, com conexão segura via SSL. Acesso controlado por variáveis de ambiente. |
+
+### ✅ Vantagens dessa Arquitetura:
+
+- 🌐 **Escalabilidade**: Cada serviço pode ser escalado individualmente.
+- 🔐 **Segurança**: Senhas e credenciais são armazenadas em variáveis de ambiente, **nunca no código**.
+- 📈 **Profissionalismo**: Reflete arquiteturas reais de empresas como Spotify, Discord e GitHub.
+
+> 💡 **Nenhum serviço depende do outro para funcionar.**  
+> Isso é **microserviços**.
+
+---
+
 ## 📚 Aprendizados Envolvidos
 
 Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu habilidades em:
@@ -147,10 +170,14 @@ Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu hab
 - 🧠 Lógica de programação  
 - 🏗️ Estruturação de sistemas web completos  
 - 🔄 Integração cliente-servidor com WebSocket e APIs REST  
-- 🗃️ Gerenciamento de banco de dados relacional (PostgreSQL)
+- 🗃️ Gerenciamento de banco de dados relacional (PostgreSQL)  
 - 🛠️ Versionamento de código com Git e GitHub  
-- 🤝 Trabalho em equipe e organização com metodologias ágeis
+- 🤝 Trabalho em equipe e organização com metodologias ágeis  
+- 🌍 Deploy e monitoramento de aplicações em nuvem (Render, Neon.tech)  
+- 🔒 Segurança de dados e uso de variáveis de ambiente  
 
 ---
 
-> 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*
+> 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*  
+> **Não é apenas um trabalho — é um sistema funcional, em produção, e com arquitetura de nível profissional.**
+```
