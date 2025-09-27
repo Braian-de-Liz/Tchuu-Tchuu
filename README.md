@@ -159,7 +159,7 @@ O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e desce
 - 📈 **Profissionalismo**: Reflete arquiteturas reais de empresas como Spotify, Discord e GitHub.
 
 > 💡 **Nenhum serviço depende do outro para funcionar.**  
-> Isso é **microserviços na prática** — mesmo em um projeto escolar.
+> Isso é **microserviços**.
 
 ---
 
