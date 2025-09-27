@@ -153,8 +153,7 @@ O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e desce
 | **Banco de Dados** | PostgreSQL | [Neon.tech](https://neon.tech) | Hosted em nuvem, com conexão segura via SSL. Acesso controlado por variáveis de ambiente. |
 
 ### ✅ Vantagens dessa Arquitetura:
-- 🔧 **Manutenção independente**: Atualizações no PHP não afetam o Node.js.
-- ⚡ **Eficiência de recursos**: O PHP dorme quando não usado — economizando 720h/mês no limite gratuito do Render.
+
 - 🌐 **Escalabilidade**: Cada serviço pode ser escalado individualmente.
 - 🔐 **Segurança**: Senhas e credenciais são armazenadas em variáveis de ambiente, **nunca no código**.
 - 📈 **Profissionalismo**: Reflete arquiteturas reais de empresas como Spotify, Discord e GitHub.
