@@ -18,6 +18,24 @@ function validaNumRegistro(registro) {
 }
 
 
+const troca_senha = document.getElementById("check");
+const senha_al = document.getElementById('Senha');
+
+troca_senha.addEventListener("click", () => {
+    let senha_al = document.getElementById('Senha');
+
+    if (senha.type === "passoword") {
+
+        senha_al.type = "text";
+        troca_senha.textContent = " Ocultar senha";
+    } else {
+        senha_al.type = "password";       // Oculta a senha
+        troca_senha.textContent = " Mostrar senha";
+    }});
+
+
+
+
 async function ValidaRegistro(event) {
     event.preventDefault();
 
@@ -27,7 +45,7 @@ async function ValidaRegistro(event) {
     const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
     const dataNasc = document.getElementById('DataNasc').value.trim();
-    const RegistroFun = crypto.randomUUID().substring(0, 20); 
+    const RegistroFun = crypto.randomUUID().substring(0, 20);
 
 
     if (!cpf || !email || !telefone || !senha || !dataNasc || !nome) {
@@ -97,7 +115,7 @@ async function ValidaRegistro(event) {
         if (response.ok) {
             alert('Usuário cadastrado com sucesso!');
             window.location.href = '../index.html';
-        } 
+        }
         else {
             alert('Erro: ' + data);
         }
