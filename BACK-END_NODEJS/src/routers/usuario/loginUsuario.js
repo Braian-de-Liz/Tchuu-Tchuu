@@ -1,12 +1,21 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import { conectar } from "../../databases/conectar_banco.js";
+import JWT from 'jsonwebtoken';
+
 
 const router = Router();
 
 router.post('/usu_login', async (req, res) => {
 
-    const { email, senha } = req.body
+    const { email, senha } = req.body;
+
+    if (senha.length < 8) {
+        return res.status.json({
+            status: 'erro',
+            mensagem: 'senha curta demais, minimo 8 digitos'
+        });
+    }
 
     if (!email || !senha) {
         return res.status(400).json({
@@ -54,7 +63,6 @@ router.post('/usu_login', async (req, res) => {
                 email: usuario.email
             }
         });
-
 
 
     } catch (erro) {
