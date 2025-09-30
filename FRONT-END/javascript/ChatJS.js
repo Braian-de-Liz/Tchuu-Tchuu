@@ -1,14 +1,3 @@
-import { protegerRota, getUsuarioLogado } from './autentificacao.js';
-
-if (!protegerRota()) {
-  return;
-}
-
-const usuario = getUsuarioLogado();
-document.getElementById('nome-usuario').textContent = usuario.nome || 'Usuário';
-document.getElementById('email-usuario').textContent = usuario.email;
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.querySelector('.message-input textarea');
     const sendButton = document.querySelector('.message-input button');
