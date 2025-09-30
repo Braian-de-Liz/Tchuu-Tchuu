@@ -5,9 +5,9 @@ function validaRegistroTrem(event) {
     const numero_de_Trem = document.getElementById('numero_de_Trem').value.trim();
     const fabricante = document.getElementById('fabricante').value.trim();
     const dataRegistro = document.getElementById('DataRe').value.trim();
-    const registroUser = document.getElementById('RegistroUser').value.trim();
+    const cpfUser = document.getElementById('RegistroUser').value.trim();
 
-    if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !registroUser) {
+    if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !cpfUser) {
         alert("Todos os dados são necessários. PREENCHA OS CAMPOS");
         return false;
     }
@@ -17,8 +17,8 @@ function validaRegistroTrem(event) {
         return false;
     }
 
-    if (!/^\d{12}$/.test(registroUser)) { //Quem Foi que inventou isso MEU DEUS.
-        alert("Número de Registro do usuário deve conter exatamente 12 dígitos numéricos.");
+    if (!/^\d{11}$/.test(cpfUser)) { //Quem Foi que inventou isso MEU DEUS.
+        alert("CPF inválido");
         return false;
     }
 
@@ -48,11 +48,11 @@ function validaRegistroTrem(event) {
     //DAQUI PARA BAIXO É BRAIAN QUERENDO INVENTAR MODA, MAS SE DER CERTO JÁ PODEREMOS PASSAR O TREM INTEIRO PARA O BANCO DE DADOS
 
     class Trem {
-        constructor(nome, numero, fabricante, registroUser, dataRegistro) {
+        constructor(nome, numero, fabricante, cpfUser, dataRegistro) {
             this.nome = nome;
             this.numero = numero;
             this.fabricante = fabricante;
-            this.registroUser = registroUser;
+            this.cpfUser = cpfUser;
             this.dataRegistro = dataRegistro;
         }
 
@@ -60,16 +60,26 @@ function validaRegistroTrem(event) {
     }
 
 
-    const novoTrem = new Trem(nomeTrem, numero_de_Trem, fabricante, registroUser, dataRegistro);
+    const novoTrem = new Trem(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro);
 
     //A APARENTE INVENÇÃO DE MODA PARECE TER DADO CERTO AGORA É SÓ ESPERAR
 
+    try{
+        
+        const resposta = fetch("",  {
+            
+        });
 
-    alert("Trem Registrado com sucesso");
+        alert("Trem Registrado com sucesso");
+        window.location.href = '../Public/pagMonitora.html';
     
-    window.location.href = '../Public/pagMonitora.html';
+        return true;
+    }
+    catch{
 
-    return true;
+    }
+
+
 
 
 
