@@ -1,7 +1,8 @@
 body {
     margin: 10px 30px;
     padding: 30px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background: linear-gradient(to right, #4FC1E9, #2575fc);
 }
 
 #container {
