@@ -1,4 +1,4 @@
-import { protegerRota, getUsuarioLogado } from './autentificacao.js';
+/* import { protegerRota, getUsuarioLogado } from './autentificacao.js';
 
 if (!protegerRota()) {
   return;
@@ -7,7 +7,7 @@ if (!protegerRota()) {
 const usuario = getUsuarioLogado();
 document.getElementById('nome-usuario').textContent = usuario.nome || 'Usuário';
 document.getElementById('email-usuario').textContent = usuario.email;
-
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
   const climadash = document.getElementById("climadash");
