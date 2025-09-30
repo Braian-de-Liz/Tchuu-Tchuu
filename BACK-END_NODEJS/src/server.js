@@ -6,7 +6,7 @@ import { setupWebSocket } from './modulos/chatServer.js';
 import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
 import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 import logarUsuario from './routers/usuario/loginUsuario.js';
-import cadastroTREM from './routers/trens/registrar_trem.js';
+// import cadastroTREM from './routers/trens/registrar_trem.js';
 
 
 const app = express();
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use('/api', usuariosRoutes);
 app.use('/api', deletarUsuariosRoutes);
 app.use('/api', logarUsuario);
-app.use('/api', cadastroTREM);
+// app.use('/api', cadastroTREM);
 
 
 // app.use('/api', );
