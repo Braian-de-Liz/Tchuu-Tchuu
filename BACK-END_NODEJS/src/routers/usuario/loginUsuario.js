@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import { conectar } from '../../databases/conectar_banco.js';
-import JWT from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const router = Router();
 
@@ -56,7 +56,7 @@ router.post('/usu_login', async (req, res) => {
     }
 
    
-    const token = JWT.sign(
+    const token = jwt.sign(
       {
         id: usuario.id,
         email: usuario.email,
