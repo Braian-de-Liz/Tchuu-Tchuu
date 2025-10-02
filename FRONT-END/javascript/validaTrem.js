@@ -1,5 +1,5 @@
-function validaRegistroTrem(event) {
-    event.preventDefault(); 
+async function validaRegistroTrem(event) {
+    event.preventDefault();
 
     const nomeTrem = document.getElementById('nomeTrem').value.trim();
     const numero_de_Trem = document.getElementById('numero_de_Trem').value.trim();
@@ -64,20 +64,29 @@ function validaRegistroTrem(event) {
 
     //A APARENTE INVENÇÃO DE MODA PARECE TER DADO CERTO AGORA É SÓ ESPERAR
 
-    try{
-        
-        const resposta = fetch("",  {
-            
+    try {
+
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/trem_Cadastro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(nomeTrem)
         });
 
-        alert("Trem Registrado com sucesso");
-        window.location.href = '../Public/pagMonitora.html';
-    
-        return true;
-    }
-    catch{
+        
 
-    }
+
+
+
+    alert("Trem Registrado com sucesso");
+    window.location.href = '../Public/pagMonitora.html';
+
+    return true;
+}
+    catch {
+    console.log("swsw");
+}
 
 
 

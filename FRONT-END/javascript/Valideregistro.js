@@ -82,7 +82,7 @@ async function ValidaRegistro(event) {
         }
     }
 
-    const NovoUsuario = new Usuario(nome, cpf, email, senha, RegistroFun, dataNasc);
+    const NovoUsuario = new Usuario(nome, cpf, email, senha, dataNasc);
 
 
 

@@ -5,8 +5,12 @@ const router = Router();
 
 router.post("/trem_Cadastro", async (req, res) => {
     
-    console.log("Elias várzeral");
+    console.log("registrando term");
+
+    const {nome, cpf, email, senha, dataNasc} = req.body;
+
 });
+
 
 
 
