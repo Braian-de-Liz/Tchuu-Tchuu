@@ -2,11 +2,27 @@ async function validaRegistroTrem(event) {
     event.preventDefault();
 
     const nomeTrem = document.getElementById('nomeTrem').value.trim();
-    const numero_de_Trem = document.getElementById('numero_de_Trem').value.trim();
+    const numero_de_Trem = crypto.randomUUID().substring(0, 20);
     const fabricante = document.getElementById('fabricante').value.trim();
     const dataRegistro = document.getElementById('DataRe').value.trim();
     const cpfUser = document.getElementById('RegistroUser').value.trim();
-
+/*    
+    const nomeTrem = document.getElementById('nomeTrem').value.trim();
+    const nomeTrem = document.getElementById('nomeTrem').value.trim();
+    const nomeTrem = document.getElementById('nomeTrem').value.trim();
+    const numero_de_Trem = crypto.randomUUID().substring(0, 20);
+    const numero_de_Trem = crypto.randomUUID().substring(0, 20);
+    const numero_de_Trem = crypto.randomUUID().substring(0, 20);
+    const fabricante = document.getElementById('fabricante').value.trim();
+    const fabricante = document.getElementById('fabricante').value.trim();
+    const fabricante = document.getElementById('fabricante').value.trim();
+    const dataRegistro = document.getElementById('DataRe').value.trim();
+    const dataRegistro = document.getElementById('DataRe').value.trim();
+    const dataRegistro = document.getElementById('DataRe').value.trim();
+    const cpfUser = document.getElementById('RegistroUser').value.trim();
+    const cpfUser = document.getElementById('RegistroUser').value.trim();
+    const cpfUser = document.getElementById('RegistroUser').value.trim();
+*/
     if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !cpfUser) {
         alert("Todos os dados são necessários. PREENCHA OS CAMPOS");
         return false;
@@ -48,9 +64,9 @@ async function validaRegistroTrem(event) {
     //DAQUI PARA BAIXO É BRAIAN QUERENDO INVENTAR MODA, MAS SE DER CERTO JÁ PODEREMOS PASSAR O TREM INTEIRO PARA O BANCO DE DADOS
 
     class Trem {
-        constructor(nome, numero, fabricante, cpfUser, dataRegistro) {
+        constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro) {
             this.nome = nome;
-            this.numero = numero;
+            this.numero = numero_de_Trem;
             this.fabricante = fabricante;
             this.cpfUser = cpfUser;
             this.dataRegistro = dataRegistro;
