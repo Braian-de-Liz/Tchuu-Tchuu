@@ -18,6 +18,7 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "mqtt": "^5.14.1",
     "mysql2": "^3.15.0",
     "pg": "^8.16.3",
     "typescript": "^5.9.2",
