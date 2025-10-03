@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Sensor</title>
+    <link rel="stylesheet" href="../Assets/stylelogin.css">
+    <link rel="shortcut icon" href="../Assets/imagens/logos/logo THUU.png" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <section>
+        <div id="Registro">
+            <h1 id="cabe">Cadastro de Sensor </h1>
+
+            <form id="Login" onsubmit="return ValidaRegistro(event)">
+
+
+                <div class="form-group">
+                    <label for="Problema">Qual tipo do Sensor</label>
+                    <br>
+                    <br>
+                    <select name="Tipos De Sensor" id="TipoSensor">
+                        <option value="LDR1">LDR</option>
+                        <option value="DHT1">DHT11</option>
+                        <option value="UltraSom1">Ultrassônico</option>
+                        <option value="SensVelocidade">Sensor de Velocidade</option>
+                    </select>
+                </div>
+                <br>
+
+
+                <div class="form-group">
+                    <fieldset>
+                        <label for="marca">Marca</label>
+                        <br>
+                        <input type="text" id="marca_sensor">
+                    </fieldset>
+                </div>
+
+
+
+                <div class="form-group">
+                    <fieldset>
+                        <label for="DataNasc">Data de cadastro</label>
+                        <br>
+                        <input type="date" id="Data_cadast">
+                    </fieldset>
+
+                </div>
+
+
+
+
+
+
+                <div class="center">
+                    <button class="envia" type="submit"> Registrar </button>
+                </div>
+                <br>
+                <hr>
+
+
+                <br>
+
+                <div id="voltap">
+                    <a href="../Public/pagMonitora.html" id="Voltar">← Voltar</a>
+                </div>
+
+                <br>
+
+            </form>
+
+
+        </div>
+
+    </section>
+
+
+
+
+
+</body>
+
+</html>
