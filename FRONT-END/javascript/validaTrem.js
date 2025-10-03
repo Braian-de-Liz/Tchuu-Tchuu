@@ -91,7 +91,7 @@ async function validaRegistroTrem(event) {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify(nomeTrem)
+            body: JSON.stringify(novoTrem)
         });
 
         
