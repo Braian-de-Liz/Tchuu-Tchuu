@@ -6,6 +6,7 @@ async function validaRegistroTrem(event) {
     const fabricante = document.getElementById('fabricante').value.trim();
     const dataRegistro = document.getElementById('DataRe').value.trim();
     const cpfUser = document.getElementById('RegistroUser').value.trim();
+    const nomeUser = document.getElementById('NomeUser').value.trim();
 /*    
     const nomeTrem = document.getElementById('nomeTrem').value.trim();
     const nomeTrem = document.getElementById('nomeTrem').value.trim();
@@ -23,7 +24,7 @@ async function validaRegistroTrem(event) {
     const cpfUser = document.getElementById('RegistroUser').value.trim();
     const cpfUser = document.getElementById('RegistroUser').value.trim();
 */
-    if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !cpfUser) {
+    if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !cpfUser  || !nomeUser) {
         alert("Todos os dados são necessários. PREENCHA OS CAMPOS");
         return false;
     }
@@ -43,6 +44,8 @@ async function validaRegistroTrem(event) {
         alert("Data inválida");
         return false;
     }
+
+    // if(nomeUser  ){}
 
     const ano = parseInt(data_parte[0], 10);
     const mes = parseInt(data_parte[1], 10);
@@ -64,12 +67,13 @@ async function validaRegistroTrem(event) {
     //DAQUI PARA BAIXO É BRAIAN QUERENDO INVENTAR MODA, MAS SE DER CERTO JÁ PODEREMOS PASSAR O TREM INTEIRO PARA O BANCO DE DADOS
 
     class Trem {
-        constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro) {
+        constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro, nomeUser) {
             this.nome = nome;
             this.numero = numero_de_Trem;
             this.fabricante = fabricante;
             this.cpfUser = cpfUser;
             this.dataRegistro = dataRegistro;
+            this.NomeUser = nomeUser;
         }
 
 
@@ -101,11 +105,9 @@ async function validaRegistroTrem(event) {
     return true;
 }
     catch {
-    console.log("swsw");
+    console.log("babuga");
+    alert("ERRO");
 }
-
-
-
 
 
 }
