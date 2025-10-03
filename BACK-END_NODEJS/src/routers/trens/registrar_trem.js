@@ -24,6 +24,13 @@ router.post("/trem_Cadastro", async (req, res) => {
         return res.status(400).json({ status: 'erro', mensagem: 'CPF inválido.' });
     }
 
+    let db;
+
+    try {
+        db = await conectar();
+
+        const existe = await db.query("SELECT cpf FROM trens WHERE cpf = $1"), [cpfTRUE];
+    }
 
 });
 
