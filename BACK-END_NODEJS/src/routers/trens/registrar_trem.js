@@ -7,9 +7,11 @@ const router = Router();
 
 router.post("/trem_Cadastro", async (req, res) => {
     
+    
     console.log("registrando trem");
-
     const {nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro, NomeUser } = req.body;
+
+    
 
 });
 

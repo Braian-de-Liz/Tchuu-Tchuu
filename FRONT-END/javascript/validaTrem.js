@@ -68,7 +68,7 @@ async function validaRegistroTrem(event) {
 
     class Trem {
         constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro, nomeUser) {
-            this.nome = nome;
+            this.nomeTrem = nomeTrem;
             this.numero = numero_de_Trem;
             this.fabricante = fabricante;
             this.cpfUser = cpfUser;
