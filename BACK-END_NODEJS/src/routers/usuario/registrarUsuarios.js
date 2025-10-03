@@ -43,8 +43,7 @@ router.post('/usuarios', async (req, res) => {
 
         await db.query(
             `INSERT INTO usuarios (nome, cpf, email, senha, registro_fun, data_nasc)
-            VALUES ($1, $2, $3, $4, $5, $6)`,
-            [nome, cpfTRUE, email, senha_segura, RegistroFun, dataNasc]
+            VALUES ($1, $2, $3, $4, $5, $6)`, [nome, cpfTRUE, email, senha_segura, RegistroFun, dataNasc]
         );
 
         res.status(201).json({
