@@ -17,7 +17,7 @@ body {
     width: 70%;
     margin: auto;
     overflow: hidden;
-    
+
 
 }
 
@@ -154,12 +154,16 @@ fieldset {
 
 
 
-select{
-    border-radius: 8px;
+select {
+    width: 40%;
+    text-align: center;
+    border-radius: 2px;
+    border: 0;
+    padding: 8px;
 }
 
 
-textarea{
+textarea {
     width: 40%;
     text-align: center;
     border-radius: 8px;
@@ -170,7 +174,7 @@ input {
     width: 40%;
     text-align: center;
     border-radius: 2px;
-    border:0;
+    border: 0;
     padding: 8px;
 }
 
