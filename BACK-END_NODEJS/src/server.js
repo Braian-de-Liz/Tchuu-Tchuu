@@ -19,10 +19,15 @@ const { wss } = setupWebSocket(server);
 
 app.use(express.json());
 
+// Rotas de Usuários;
 app.use('/api', usuariosRoutes);
 app.use('/api', deletarUsuariosRoutes);
 app.use('/api', logarUsuario);
+
+
+// Rotas de Trens (essas são rotas de API não rotas que envolvam trilhos dos trens);
 app.use('/api', cadastroTREM);
+
 
 
 // app.use('/api', );
