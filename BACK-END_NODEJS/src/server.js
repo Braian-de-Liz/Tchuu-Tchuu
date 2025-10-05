@@ -10,18 +10,15 @@ import cadastroTREM from './routers/trens/registrar_trem.js';
 import deletarTREM from "./routers/trens/deletar_trem.js";
 import dotenv from 'dotenv';
 
-dotenv.config();
-
 
 const app = express();
-
-
+dotenv.config();
 app.use(cors());
 const server = createServer(app);
 const { wss } = setupWebSocket(server);
-
-
 app.use(express.json());
+
+
 
 // Rotas de Usuários;
 app.use('/api', usuariosRoutes);
@@ -31,9 +28,9 @@ app.use('/api', logarUsuario);
 
 // Rotas de Trens (essas são rotas de API não rotas que envolvam trilhos dos trens);
 app.use('/api', cadastroTREM);
-app.use('/api', deletarTREM);
-app.use('/api', );
-app.use('/api', );
+// app.use('/api', deletarTREM);
+// app.use('/api', );
+// app.use('/api', );
 
 
 // Rotas para cadastrar sensores;
@@ -54,9 +51,14 @@ app.get('/acordar', (req, res) => {
     console.log("elias");
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3250;
 
-// server;listen(PORT);
+
+// para testes locais
+/* server.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+}); */
+
 
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor rodando na porta ${PORT}`);
