@@ -7,6 +7,10 @@ import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
 import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 import logarUsuario from './routers/usuario/loginUsuario.js';
 import cadastroTREM from './routers/trens/registrar_trem.js';
+import deletarTREM from "./routers/trens/deletar_trem.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 const app = express();
@@ -27,7 +31,7 @@ app.use('/api', logarUsuario);
 
 // Rotas de Trens (essas são rotas de API não rotas que envolvam trilhos dos trens);
 app.use('/api', cadastroTREM);
-app.use('/api', );
+app.use('/api', deletarTREM);
 app.use('/api', );
 app.use('/api', );
 

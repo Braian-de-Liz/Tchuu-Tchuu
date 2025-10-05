@@ -20,8 +20,7 @@ router.delete('/usuarios/:cpf', async (req, res) => {
 
 
         const resultado = await db.query(
-            'DELETE FROM usuarios WHERE cpf = $1 RETURNING id',
-            [cpf]
+            'DELETE FROM usuarios WHERE cpf = $1 RETURNING id', [cpf]
         );
 
 
@@ -43,7 +42,9 @@ router.delete('/usuarios/:cpf', async (req, res) => {
             status: 'erro',
             mensagem: 'Erro interno do servidor.'
         });
-    } finally {
+
+    } 
+    finally {
         if (db) db.end();
     }
 });
