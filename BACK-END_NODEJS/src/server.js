@@ -27,10 +27,17 @@ app.use('/api', logarUsuario);
 
 // Rotas de Trens (essas são rotas de API não rotas que envolvam trilhos dos trens);
 app.use('/api', cadastroTREM);
+app.use('/api', );
+app.use('/api', );
+app.use('/api', );
+
+
+// Rotas para cadastrar sensores;
+app.use('/api', );
 
 
 
-// app.use('/api', );
+
 // app.use('/api', );
 // app.use('/api', );
 // app.use('/api', );

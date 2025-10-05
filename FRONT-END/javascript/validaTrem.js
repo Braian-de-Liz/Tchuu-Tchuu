@@ -86,7 +86,7 @@ async function validaRegistroTrem(event) {
 
     try {
 
-        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/trem_Cadastro', {
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/trem', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
