@@ -81,7 +81,23 @@
                     </div>
                 </div>
 
-                <canvas id="myChart"></canvas>
+                <!-- Carrossel de Gráficos - INÍCIO -->
+                <div
+                    style="position: relative; width: 100%; max-width: 800px; margin: 20px auto; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <button onclick="moverSlideGraficos(-1)"
+                        style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">‹</button>
+
+                    <div id="slides-graficos" style="display: flex; transition: transform 0.4s ease-in-out;">
+                        <div style="min-width: 100%; padding: 15px;"><canvas id="chart1"></canvas></div>
+                        <div style="min-width: 100%; padding: 15px;"><canvas id="chart2"></canvas></div>
+                        <div style="min-width: 100%; padding: 15px;"><canvas id="chart3"></canvas></div>
+                    </div>
+
+                    <button onclick="moverSlideGraficos(1)"
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">›</button>
+                </div>
+
+
 
 
                 <div class="informacoes2">
@@ -227,13 +243,12 @@
 
 
     <script src="../javascript/menu-hamburguer-PC.js"></script>
-    <script src="../javascript/GraficoDesempenho.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../javascript/some-hambuer.js"></script>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/sume-rodape.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
-
+    <script src="../javascript/GraficoDesempenho.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
