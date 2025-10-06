@@ -3,7 +3,15 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router.delete("/trem:id", async (req, res) => {
+router.delete("/trem/:cpf_user", async (req, res) => {
+    
+    const {cpf_user} = req.params;
+
+    if (!cpf_user || cpf_user !== 11) {
+        
+    }
+
+
     
 });
 
