@@ -3,12 +3,18 @@ import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
 import { setupWebSocket } from './modulos/chatServer.js';
-import usuariosRoutes from './routers/usuario/registrarUsuarios.js';
+
+import usuariosRegistro from './routers/usuario/registrarUsuarios.js';
 import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 import logarUsuario from './routers/usuario/loginUsuario.js';
-import cadastroTREM from './routers/trens/registrar_trem.js';
+import atualizarUser from './routers/usuario/atualizarUsuario.js';
+import Mostrar_usuario from './routers/usuario/mostrar_dadosUsuario.js';
+
 import deletarTREM from "./routers/trens/deletar_trem.js";
+import cadastroTREM from './routers/trens/registrar_trem.js';
+
 import dotenv from 'dotenv';
+
 
 
 const app = express();
@@ -21,7 +27,7 @@ app.use(express.json());
 
 
 // Rotas de Usuários;
-app.use('/api', usuariosRoutes);
+app.use('/api', usuariosRegistro);
 app.use('/api', deletarUsuariosRoutes);
 app.use('/api', logarUsuario);
 

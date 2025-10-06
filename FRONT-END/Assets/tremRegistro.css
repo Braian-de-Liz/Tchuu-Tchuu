@@ -1,5 +1,5 @@
 body {
-        background-color: #fff;
+    background-color: antiquewhite;
 }
 
 #container {
@@ -139,22 +139,15 @@ fieldset {
 }
 
 
-select{
-    border-radius: 8px;
-}
 
-
-textarea{
+input,
+select,
+textarea {
     width: 40%;
     text-align: center;
-    border-radius: 8px;
-}
-
-
-input {
-    width: 40%;
-    text-align: center;
-    border-radius: 8px;
+    border-radius: 2px;
+    border: 0;
+    padding: 8px;
 }
 
 .link {
@@ -274,7 +267,7 @@ nav {
 }
 
 
-.espaco{
+.espaco {
     height: 2rem;
 }
 

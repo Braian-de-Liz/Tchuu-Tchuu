@@ -151,26 +151,7 @@ fieldset {
 }
 
 
-
-
-
-select {
-    width: 40%;
-    text-align: center;
-    border-radius: 2px;
-    border: 0;
-    padding: 8px;
-}
-
-
-textarea {
-    width: 40%;
-    text-align: center;
-    border-radius: 8px;
-}
-
-
-input {
+input, select, textarea  {
     width: 40%;
     text-align: center;
     border-radius: 2px;
