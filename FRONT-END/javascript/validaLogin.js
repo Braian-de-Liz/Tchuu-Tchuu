@@ -7,7 +7,7 @@ checkzim.addEventListener("change", () => {
 
     if (checkzim.checked) {
         senhaInput.type = "text";
-    } 
+    }
 
     else {
         senhaInput.type = "password";
@@ -56,6 +56,13 @@ async function ValidaLogin(event) {
             const erroDate = await resposta.json();
             throw new Error(erroDate.mensagem || 'Erro desconhecido');
         }
+
+        const data = await resposta.json();
+
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('usuarioId', data.usuario.id);
+        localStorage.setItem('usuarioEmail', data.usuario.email);
+        localStorage.setItem('usuarioNome', data.usuario.nome);
 
         document.getElementById('passou').innerHTML = "Seu login foi autorizado";
 
