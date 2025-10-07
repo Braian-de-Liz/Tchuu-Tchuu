@@ -9,19 +9,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function connectWebSocket() {
         userId = crypto.randomUUID();
-        const userName = localStorage.getItem("usarioNome");
+        
+        // ✅ Corrigido: chave certa do localStorage
+        const userName = localStorage.getItem("usuarioNome") || "Usuário Anônimo";
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
-        // ws = new WebSocket('ws://localhost:8080');
-        // ws = new WebSocket('ws://localhost:8084');
-        ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com');
+        // ✅ Use wss:// para produção — ws:// para localhost (durante desenvolvimento)
+        // ws = new WebSocket('ws://localhost:8080'); // Para testar localmente
+        ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com'); // Para produção
 
         ws.onopen = () => {
-            ws.send(JSON.stringify({ type: 'register', userId: userId, name: userName, color: userColor }));
+            console.log('✅ Conectado ao WebSocket');
+            ws.send(JSON.stringify({ 
+                type: 'register', 
+                userId: userId, 
+                name: userName,     // ✅ Nome real do usuário logado
+                color: userColor 
+            }));
         };
 
         ws.onmessage = (event) => {
-            const message = JSON.parse(event.data);
+            let message;
+            try {
+                message = JSON.parse(event.data);
+            } catch (e) {
+                console.error('Erro ao parsear mensagem:', event.data);
+                return;
+            }
 
             if (message.type === 'system') {
                 addSystemMessage(message.content);
@@ -36,8 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         ws.onclose = () => {
+            console.log('❌ WebSocket desconectado. Tentando reconectar...');
             addSystemMessage("Conexão perdida. Reconectando...");
             setTimeout(connectWebSocket, 3000);
+        };
+
+        ws.onerror = (error) => {
+            console.error('Erro no WebSocket:', error);
         };
     }
 
@@ -72,12 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     sendButton.addEventListener('click', sendMessage);
+    
     messageInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
-
     });
 
     function sendMessage() {
@@ -88,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: text
             }));
             messageInput.value = '';
+        } else if (text && (!ws || ws.readyState !== WebSocket.OPEN)) {
+            console.warn('WebSocket não está aberto. Tentando reconectar...');
+            addSystemMessage("Conexão instável. Aguarde...");
         }
     }
 
