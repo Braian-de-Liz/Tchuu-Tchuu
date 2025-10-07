@@ -32,7 +32,11 @@ router.post('/usu_login', async (req, res) => {
     try {
         db = await conectar();
 
-        const resultado = await db.query('SELECT id, email, nome, senha FROM usuarios WHERE email = $1', [email]);
+        // const resultado = await db.query('SELECT id, email, nome, senha FROM usuarios WHERE email = $1', [email]);
+        const resultado = await db.query(
+            'SELECT id, email, nome, senha FROM usuarios WHERE email = $1',
+            [email]
+        );
 
         if (resultado.rows.length === 0) {
             return res.status(401).json({
