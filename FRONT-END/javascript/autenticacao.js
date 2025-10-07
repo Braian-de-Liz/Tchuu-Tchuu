@@ -24,7 +24,7 @@ export function sair() {
 
 export function protegerRota() {
   if (!estaLogado()) {
-    window.location.href = './index.html';
+    window.location.href = '../index.html';
     return false;
   }
   return true;
