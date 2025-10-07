@@ -1,3 +1,8 @@
+let botao 
+
+botao.addEvenListner()
+
+
 async function validaRegistroTrem(event) {
     event.preventDefault();
 

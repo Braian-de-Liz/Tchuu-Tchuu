@@ -1,7 +1,9 @@
-import { Router } from "express";
+import e, { Router } from "express";
 import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
+
+
 
 router.delete("/trem/:cpf_user", async (req, res) => {
 
@@ -21,10 +23,23 @@ router.delete("/trem/:cpf_user", async (req, res) => {
     try {
         
         db = await conectar();
-        const consulta =  await db.query("", [cpf_user])
-    }
-    catch {
+        const consulta =  await db.query("DELETE FROM trens WHERE ", [cpf_user]);
 
+        
+    }
+    catch (error) {
+        console,error("Erro, não foi possível delear trem", error);
+
+        res.status(500).json({
+            status:'erro',
+            mensagem: 'Erro interno desse servidor que alunos do ensimo médio programaram'
+        });
+
+
+    }
+
+    finally{
+        if (db) db.end
     }
 
 
