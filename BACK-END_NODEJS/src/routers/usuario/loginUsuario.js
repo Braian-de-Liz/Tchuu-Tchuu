@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
-import { conectar } from '../../databases/conectar_banco.js';
+import { conectar } from '../databases/conectar_banco.js';
 import jwt from 'jsonwebtoken';
 
 const router = Router();
