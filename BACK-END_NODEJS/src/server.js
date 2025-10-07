@@ -53,8 +53,9 @@ app.use('/api', cadastroTREM);
 
 app.get('/acordar', (req, res) => {
     const now = new Date().toISOString();
+    const userAgent = req.get('User-Agent') || 'Unknown';
+    console.log(`[KEEP-ALIVE] Ping recebido em: ${now} | IP: ${req.ip} | User-Agent: ${userAgent}`);
     res.json({ status: 'funcionando', server: 'Tchuu-Tchuu', timestamp: now });
-    console.log("elias");
 });
 
 const PORT = process.env.PORT || 3250;

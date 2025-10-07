@@ -21,7 +21,7 @@ router.delete("/trem/:cpf_user", async (req, res) => {
     try {
         
         db = await conectar();
-        const consulta =  await db.query("", [])
+        const consulta =  await db.query("", [cpf_user])
     }
     catch {
 
