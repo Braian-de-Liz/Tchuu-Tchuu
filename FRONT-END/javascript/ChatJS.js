@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function connectWebSocket() {
         userId = crypto.randomUUID();
-        const userName = `Usuário_${Math.floor(Math.random() * 1000)}`;
+        const userName = localStorage.getItem("usarioNome");
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
         // ws = new WebSocket('ws://localhost:8080');
