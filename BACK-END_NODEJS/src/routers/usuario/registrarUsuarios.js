@@ -22,6 +22,17 @@ router.post('/usuarios', async (req, res) => {
         return res.status(400).json({ status: 'erro', mensagem: 'CPF inválido.' });
     }
 
+    const dataNascDate = new Date(dataNasc);
+    if (isNaN(dataNascDate.getTime())) {
+        return res.status(400).json({
+            status: 'erro',
+            mensagem: 'Data de nascimento inválida.'
+        });
+    }
+
+    const dataFormatada = dataNascDate.toISOString().split('T')[0];
+
+
     let db;
     try {
         db = await conectar();
@@ -43,7 +54,8 @@ router.post('/usuarios', async (req, res) => {
 
         await db.query(
             `INSERT INTO usuarios (nome, cpf, email, senha, registro_fun, data_nasc)
-            VALUES ($1, $2, $3, $4, $5, $6)`, [nome, cpfTRUE, email, senha_segura, RegistroFun, dataNasc]
+            VALUES ($1, $2, $3, $4, $5, $6)`,
+            [nome, cpfTRUE, email, senha_segura, RegistroFun, dataFormatada] 
         );
 
         res.status(201).json({
@@ -53,10 +65,12 @@ router.post('/usuarios', async (req, res) => {
 
     } catch (erro) {
         console.error("Erro ao cadastrar", erro);
-        // res.status(500).json({
-        //     status: 'erro',
-        //     mensagem: "Erro interno do servidor"
-        // });
+        res.status(500).json({
+            status: 'erro',
+            mensagem: "Erro interno do servidor"
+        });
+
+
     } finally {
         if (db) db.end();
     }
