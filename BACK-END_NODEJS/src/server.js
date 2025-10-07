@@ -21,7 +21,7 @@ const app = express();
 dotenv.config();
 
 app.use(cors());
-app.use(cors({origin: 'https://tchuu-tchuu-front-end.onrender.com', credentials: true })); 
+// app.use(cors({origin: 'https://tchuu-tchuu-front-end.onrender.com', credentials: true })); 
 
 const server = createServer(app);
 const { wss } = setupWebSocket(server);
