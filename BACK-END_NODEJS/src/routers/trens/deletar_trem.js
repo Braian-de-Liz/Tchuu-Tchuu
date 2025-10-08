@@ -21,32 +21,38 @@ router.delete("/trem/:cpf_user", async (req, res) => {
     let db;
 
     try {
-        
-        db = await conectar();
-        const consulta =  await db.query("DELETE FROM trens WHERE ", [cpf_user]);
 
-        
+        db = await conectar();
+        const consulta = await db.query("DELETE FROM trens WHERE ", [cpf_user]);
+
+        if (consulta.rowCount === 0) {
+            return res.status(404).json({
+                status: 'erro',
+                messagem: "Trem não encontrado"
+            });
+        }
+
+        res.json({
+            status: "sucesso",
+            menssagem: "trem deletado com sucesso"
+        });
     }
     catch (error) {
-        console,error("Erro, não foi possível delear trem", error);
+        console, error("Erro, não foi possível delear trem", error);
 
         res.status(500).json({
-            status:'erro',
+            status: 'erro',
             mensagem: 'Erro interno desse servidor que alunos do ensimo médio programaram'
         });
 
 
     }
 
-    finally{
+    finally {
         if (db) db.end
     }
 
-
-
-
-    
 });
 
 
-export default router
+export default router;
