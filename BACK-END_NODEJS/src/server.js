@@ -33,6 +33,8 @@ app.use(express.json());
 app.use('/api', usuariosRegistro);
 app.use('/api', deletarUsuariosRoutes);
 app.use('/api', logarUsuario);
+app.use('/api', Mostrar_usuario);
+// app.use('/api', );
 
 
 // Rotas de Trens (essas são rotas de API não rotas que envolvam trilhos dos trens);
