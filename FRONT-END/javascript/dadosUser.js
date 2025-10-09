@@ -4,10 +4,13 @@ const data_nasc_campo = document.getElementById("data_nasc_mostrar");
 const email_campo = document.getElementById("email_mostrar");
 const telefone_campo = document.getElementById("telefone_mostrar");
 const cpf_campo = document.getElementById("cpf_mostrar");
+const nomeUser = document.getElementById("nomeUser");
 
+nomeUser.textContent = localStorage.getItem("usuarioNome");
 
 async function carregar_dados() {
     const token = localStorage.getItem('token');
+
 
     if (!token) {
         alert("você não está logad, essa página não sabe que você existe, VOLTANDOO...");
