@@ -94,3 +94,4 @@ router.post('/usu_login', async (req, res) => {
 
 
 export default router;
+// export {token};

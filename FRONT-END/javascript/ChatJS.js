@@ -10,12 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function connectWebSocket() {
         userId = crypto.randomUUID();
         
-        // ✅ Corrigido: chave certa do localStorage
+        
         const userName = localStorage.getItem("usuarioNome") || "Usuário Anônimo";
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
-        // ✅ Use wss:// para produção — ws:// para localhost (durante desenvolvimento)
-        // ws = new WebSocket('ws://localhost:8080'); // Para testar localmente
+  
         ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com'); // Para produção
 
         ws.onopen = () => {
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ws.send(JSON.stringify({ 
                 type: 'register', 
                 userId: userId, 
-                name: userName,     // ✅ Nome real do usuário logado
+                name: userName,     
                 color: userColor 
             }));
         };
@@ -50,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         ws.onclose = () => {
-            console.log('❌ WebSocket desconectado. Tentando reconectar...');
+            console.log('WebSocket desconectado. Tentando reconectar...');
             addSystemMessage("Conexão perdida. Reconectando...");
             setTimeout(connectWebSocket, 3000);
         };
