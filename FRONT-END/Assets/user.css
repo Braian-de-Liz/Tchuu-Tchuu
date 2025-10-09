@@ -132,6 +132,7 @@ body {
     background-color: lightgray;
     border-radius: 8px;
     padding: 0 10px 10px 10px;
+    
 }
 
 .conteudo-expansivel.aberto {
@@ -147,6 +148,10 @@ body {
     width: 25%;
     text-align: center;
     background-color: rgba(206, 11, 11, 0.856);
+}
+
+.item-flex{
+    display: flex;
 }
 
 .delete a{

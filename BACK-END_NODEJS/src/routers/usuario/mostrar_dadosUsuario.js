@@ -21,7 +21,7 @@ router.get("/usuario_get", async (req, res) => {
     let decoded;
     try {
         decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } 
+    }
     catch (erro) {
         return res.status(401).json({
             status: 'erro',
@@ -58,7 +58,9 @@ router.get("/usuario_get", async (req, res) => {
             status: 'erro',
             mensagem: 'Erro interno do servidor.'
         });
-    } finally {
+    }
+
+    finally {
         if (db) db.end();
     }
 });
