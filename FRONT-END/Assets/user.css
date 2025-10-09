@@ -135,7 +135,7 @@ body {
 }
 
 .conteudo-expansivel.aberto {
-    max-height: 200px;
+    max-height: 400px;
     opacity: 1;
     transition: max-height 0.4s ease-in, opacity 0.3s;
 }

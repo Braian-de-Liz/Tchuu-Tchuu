@@ -1,3 +1,4 @@
+// FRONT-END\javascript\dadosUser.js
 const nome_campo = document.getElementById("nome_mostrar");
 const data_nasc_campo = document.getElementById("data_nasc_mostrar");
 const email_campo = document.getElementById("email_mostrar");
@@ -36,7 +37,7 @@ async function carregar_dados() {
             cpf_campo.textContent = info.usuario.cpf || 'Carregando...';
 
         }
-         else {
+        else {
             alert('Erro: ' + info.mensagem);
             localStorage.removeItem('token');
             window.location.href = "../index.html";
