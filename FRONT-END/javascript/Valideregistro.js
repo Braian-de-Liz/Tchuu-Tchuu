@@ -8,10 +8,10 @@ function validateEmail(email) {
     return regex.test(email);
 }
 
-function validateTelefone(telefone) {
+/* function validateTelefone(telefone) {
     telefone = telefone.replace(/[^\d]/g, '');
     return telefone.length >= 10;
-}
+} */
 
 function validaNumRegistro(registro) {
     return /^\d{12}$/.test(registro);
@@ -28,7 +28,7 @@ async function ValidaRegistro(event) {
     const cpf = document.getElementById('cpf').value.trim();
     const email = document.getElementById('email').value.trim();
     const nome = document.getElementById('nome').value.trim();
-    const telefone = document.getElementById('tel').value.trim();
+    // const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
     const dataNasc = document.getElementById('DataNasc').value.trim();
     const RegistroFun = crypto.randomUUID().substring(0, 20);
@@ -44,11 +44,11 @@ async function ValidaRegistro(event) {
         return false;
     }
 
-    if (!validateTelefone(telefone)) {
+/*     if (!validateTelefone(telefone)) {
         alert("Telefone inválido. Deve conter pelo menos 10 dígitos.");
         return false;
     }
-
+ */
     const [ano, mes, dia] = dataNasc.split('-').map(Number);
 
     if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
