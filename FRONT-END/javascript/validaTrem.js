@@ -34,12 +34,12 @@ async function validaRegistroTrem(event) {
         return false;
     }
 
-    if (isNaN(numero_de_Trem) || Number(numero_de_Trem) <= 0) {
+ /*    if (isNaN(numero_de_Trem) || Number(numero_de_Trem) <= 0) {
         alert('O campo deve ser preenchido com números acima de 0');
         return false;
-    }
+    } */
 
-    if (!/^\d{11}$/.test(cpfUser)) { //Quem Foi que inventou isso MEU DEUS.
+    if (!/^\d{11}$/.test(cpfUser)) { 
         alert("CPF inválido");
         return false;
     }
@@ -69,7 +69,6 @@ async function validaRegistroTrem(event) {
 
 
 
-    //DAQUI PARA BAIXO É BRAIAN QUERENDO INVENTAR MODA, MAS SE DER CERTO JÁ PODEREMOS PASSAR O TREM INTEIRO PARA O BANCO DE DADOS
 
     class Trem {
         constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro, nomeUser) {
@@ -87,7 +86,6 @@ async function validaRegistroTrem(event) {
 
     const novoTrem = new Trem(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro);
 
-    //A APARENTE INVENÇÃO DE MODA PARECE TER DADO CERTO AGORA É SÓ ESPERAR
 
     try {
 
@@ -100,10 +98,6 @@ async function validaRegistroTrem(event) {
         });
 
         
-
-
-
-
     alert("Trem Registrado com sucesso");
     window.location.href = '../Public/pagMonitora.html';
 

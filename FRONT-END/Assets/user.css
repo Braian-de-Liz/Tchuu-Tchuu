@@ -175,6 +175,11 @@ ul {
     color: white;
 }
 
+#alteracao{
+    display: none;
+}
+
+
 
 @media (min-width: 901px) {
 
