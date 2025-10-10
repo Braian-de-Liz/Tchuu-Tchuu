@@ -116,6 +116,26 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.item-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.item-flex p {
+    margin: 0;
+    font-weight: 500;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
 .menu-mini {
     position: absolute;
     right: 20px;
@@ -148,10 +168,6 @@ body {
     width: 25%;
     text-align: center;
     background-color: rgba(206, 11, 11, 0.856);
-}
-
-.item-flex{
-    display: flex;
 }
 
 .delete a{
