@@ -2,6 +2,7 @@
 import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
+
 import { setupWebSocket } from './websockets/chatServer.js';
 
 import usuariosRegistro from './routers/usuario/registrarUsuarios.js';

@@ -36,7 +36,7 @@ router.get("/usuario_get", async (req, res) => {
         db = await conectar();
 
         const resultado = await db.query(
-            'SELECT nome, cpf, email, registro_fun, data_nasc FROM usuarios WHERE id = $1',
+            'SELECT nome, cpf, email, , data_nasc FROM usuarios WHERE id = $1',
             [usuarioId]
         );
 

@@ -4,7 +4,7 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router.delete('/usuarios/:cpf', async (req, res) => {
+router.delete('/usuarios/:id', async (req, res) => {
     const { cpf } = req.params;
 
     if (!cpf || cpf.length !== 11) {

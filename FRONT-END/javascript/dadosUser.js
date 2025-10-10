@@ -2,7 +2,7 @@
 const nome_campo = document.getElementById("nome_mostrar");
 const data_nasc_campo = document.getElementById("data_nasc_mostrar");
 const email_campo = document.getElementById("email_mostrar");
-const telefone_campo = document.getElementById("telefone_mostrar");
+// const telefone_campo = document.getElementById("telefone_mostrar");
 const cpf_campo = document.getElementById("cpf_mostrar");
 const nomeUser = document.getElementById("nomeUser");
 
@@ -36,7 +36,7 @@ async function carregar_dados() {
             nome_campo.textContent = info.usuario.nome || 'Carregando...';
             data_nasc_campo.textContent = info.usuario.data_nasc || 'Carregando...';
             email_campo.textContent = info.usuario.email || 'Carregando...';
-            telefone_campo.textContent = info.usuario.telefone || 'Carregando...';
+            // telefone_campo.textContent = info.usuario.telefone || 'Carregando...';
             cpf_campo.textContent = info.usuario.cpf || 'Carregando...';
 
         }
