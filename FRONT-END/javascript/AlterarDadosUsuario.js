@@ -28,7 +28,7 @@ async function alterar_envia(e) {
     }
 
     catch (erro) {
-        alert("o elias não deixou você alterar");
+        alert("o elias não deixou você alterar" + erro);
 
     }
 }
