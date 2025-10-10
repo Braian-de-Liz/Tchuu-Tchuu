@@ -25,7 +25,7 @@ async function alterar_envia(e) {
     }
 
     try {
-        resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/usuario:cpf', {
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/usuario:cpf', {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -33,10 +33,15 @@ async function alterar_envia(e) {
             },
             body: JSON.stringify(email_novo, senha_novo, id_user)
         });
+
+
+        if (resposta.ok) {
+
+        }
     }
 
     catch (erro) {
-        alert("o elias não deixou você alterar" + erro);
+        alert("Ocorreu um erro na alterações: " + erro);
 
     }
 }
