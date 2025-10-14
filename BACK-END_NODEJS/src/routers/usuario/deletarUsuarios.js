@@ -20,7 +20,7 @@ router.delete('/usuarios', async (req, res) => {
 
 
         const resultado = await db.query(
-            'DELETE FROM usuarios WHERE cpf = $1 RETURNING id', [cpf]
+            'DELETE FROM usuarios WHERE id = $1 RETURNING id', [id]
         );
 
 
