@@ -1,19 +1,32 @@
 import { Router } from 'express';
 import { conectar } from '../../databases/conectar_banco.js';
-import bcrypr from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 const router = Router();
 
-router.patch("/usuario:id", async (req, res) => {
+router.patch("/usuario", async (req, res) => {
 
-    const { id_user } = req.params;
-    const { email_novo, senha_novo } = req.body;
+    // const { id_user } = req.params;
+    const { email, senha, id } = req.body;
 
+    if (!id) {
+        return res.status(400).json({
+            status: 'erro',
+            mensagem: 'ID do usuário é obrigatório.'
+        })
+    }
+
+    if (!email && !senha) {
+        return res.status(400).json({
+            status: 'erro',
+            mensagem: 'Pelo menos um campo (email ou senha) deve ser fornecido.'
+        });
+    }
 
     let db;
 
     try {
-        db = conectar();
+        db = await conectar();
 
         const consulta = db.query("", [id_user]);
     }
