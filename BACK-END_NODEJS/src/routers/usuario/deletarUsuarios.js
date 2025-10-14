@@ -4,8 +4,8 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router.delete('/usuarios/:id,cpf', async (req, res) => {
-    const { cpf, id } = req.params;
+router.delete('/usuarios', async (req, res) => {
+    const { cpf, id } = req.body
 
     if (!cpf || cpf.length !== 11) {
         return res.status(400).json({
@@ -40,7 +40,7 @@ router.delete('/usuarios/:id,cpf', async (req, res) => {
         console.error('Erro ao excluir usuário:', erro);
         res.status(500).json({
             status: 'erro',
-            mensagem: 'Erro interno do servidor.'
+            mensagem: 'Erro interno do servidor porque isso?.'
         });
 
     } 

@@ -1,6 +1,9 @@
 const cpf_confirmacao = document.getElementById("cpf_confirmacao").value;
 const id_busca = localStorage.getItem("usuarioId");
 
+const botao_form_delete = document.getElementById("delete");
+const hyper_confirmar = document.getElementById("hyper_confirmar");
+
 async function envia_deletacao() {
 
     if (!!cpf_confirmacao || cpf_confirmacao.length !== 11) {
@@ -33,4 +36,13 @@ async function envia_deletacao() {
     }
 }
 
-addEventListener("click", envia_deletacao);
+
+
+botao_form_delete.addEventListener("click", () => {
+    const confirmar_deletacao = document.getElementById("confirmar_deletacao");
+
+    confirmar_deletacao.style.display = 'flex';
+    
+});
+
+hyper_confirmar.addEventListener("click", envia_deletacao);

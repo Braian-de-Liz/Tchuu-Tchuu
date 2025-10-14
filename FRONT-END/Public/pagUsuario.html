@@ -95,21 +95,25 @@
                     <div class="conteudo-expansivel">
 
                         <ul>
-                            <li class="item-flex">Nome : <p id="nome_mostrar"></p> </li>
+                            <li class="item-flex">Nome : <p id="nome_mostrar"></p>
+                            </li>
                             <br>
-                            
-                            <li class="item-flex">Data de Nascimento: <p id="data_nasc_mostrar"></p> </li>
+
+                            <li class="item-flex">Data de Nascimento: <p id="data_nasc_mostrar"></p>
+                            </li>
                             <br>
-                            
-                            <li class="item-flex">Email: <p id="email_mostrar"></p> </li>
-                            
+
+                            <li class="item-flex">Email: <p id="email_mostrar"></p>
+                            </li>
+
                             <br>
-                            
-                            <li class="item-flex">CPF: <p id="cpf_mostrar"></p> </li>
+
+                            <li class="item-flex">CPF: <p id="cpf_mostrar"></p>
+                            </li>
                         </ul>
 
                         <br>
-                        
+
                         <div class="Alterar">
                             <button id="Alterar">Alterar </button>
                         </div>
@@ -141,18 +145,33 @@
 
                     </form>
 
-                </section> 
+                </section>
 
                 <br>
                 <br>
 
 
-                <div class="delete">
-                    <a href="">DELETAR</a>
+                <div id="delete">
+                    <button type="submit">DELETAR</button>
                 </div>
 
-                <section id="confirmar" style="display: none;">
-                    <h2>Você têm certeza que quer </h2>
+                <section id="confirmar_deletacao" style="display: none;">
+                    <h2>Você têm certeza que quer deletar sua conta no Tchuu-Tchuu?</h2>
+                    <h4>insira senha e email</h4>
+
+                    <form>
+                        <div>
+                            <label>Senha</label>
+                            <input type="password">
+                        </div>
+                        <div>
+                            <label>CPF</label>
+                            <input type="number">
+                        </div>
+
+                        <button type="submit" id="hyper_confirmar">Deletar Definitivamente</button>
+                    </form>
+
                 </section>
 
 
