@@ -65,7 +65,7 @@ const nomeUser = document.getElementById("nomeUser");
 
 async function carregar_dados() {
     const token = localStorage.getItem('token');
-    console.log("Token encontrado no localStorage:", token); // Adicionando log
+    console.log("Token encontrado no localStorage:", token); 
 
     if (!token) {
         alert("você não está logado, essa página não sabe que você existe, VOLTANDOO...");
@@ -74,7 +74,6 @@ async function carregar_dados() {
     }
 
     try {
-        // CORREÇÃO: Remover espaços da URL
         const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/usuario_get', {
             method: 'GET',
             headers: {
@@ -91,7 +90,6 @@ async function carregar_dados() {
         if (resposta.ok) {
             const usuario = info.usuario;
 
-            // Exibe os dados nos campos
             nome_campo.textContent = usuario.nome || 'Carregando...';
             data_nasc_campo.textContent = usuario.data_nasc ? new Date(usuario.data_nasc).toLocaleDateString('pt-BR') : 'Carregando...';
             email_campo.textContent = usuario.email || 'Carregando...';
@@ -108,7 +106,7 @@ async function carregar_dados() {
         }
     }
     catch (erro) {
-        console.error("Erro na requisição:", erro); // Adicionando log
+        console.error("Erro na requisição:", erro); 
         alert(`Erro na requisição: ${erro}. Aguarde o servidor.`);
         window.location.href = "../index.html";
     }
