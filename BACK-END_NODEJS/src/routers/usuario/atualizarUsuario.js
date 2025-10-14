@@ -23,15 +23,30 @@ router.patch("/usuario", async (req, res) => {
         });
     }
 
+
     let db;
 
     try {
         db = await conectar();
 
-        const consulta = db.query("", [id_user]);
+        const consulta = db.query("SELECT email, senha FROM usuarios WHERE id = $1", [id]);
+
+        if (resultado.rows.length === 0) {
+            return res.status(404).json({
+                status: 'erro',
+                mensagem: 'Usuário não encontrado.'
+            });
+        }
+
+
+
     }
     catch (erro) {
-
+        console.error('Erro ao buscar dados do usuário:', erro);
+        res.status(500).json({
+            status: 'erro',
+            mensagem: 'Erro interno do servidor.'
+        });
     }
 });
 
