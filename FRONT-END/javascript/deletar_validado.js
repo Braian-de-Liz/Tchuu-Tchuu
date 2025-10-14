@@ -7,7 +7,7 @@ const hyper_confirmar = document.getElementById("hyper_confirmar");
 async function envia_deletacao() {
     
     const cpf_confirmacao = document.getElementById("cpf_confirmacao").value;
-    if (!!cpf_confirmacao || cpf_confirmacao.length != 11) {
+    if (!cpf_confirmacao || cpf_confirmacao.length != 11) {
         alert("CPF está inválido");
         return false;
     }
