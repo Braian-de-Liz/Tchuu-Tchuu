@@ -42,7 +42,7 @@ app.use('/api', atualizarUser);
 app.use('/api', cadastroTREM);
 // app.use('/api', deletarTREM);
 // app.use('/api', );
-// app.use('/api', );
+// app.use('/api', );x
 
 
 // Rotas para cadastrar sensores;
