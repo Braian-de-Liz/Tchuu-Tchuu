@@ -152,7 +152,7 @@ ul {
     background-color: lightgray;
     border-radius: 8px;
     padding: 0 10px 10px 10px;
-    
+
 }
 
 .conteudo-expansivel.aberto {
@@ -171,17 +171,126 @@ ul {
     background-color: rgba(206, 11, 11, 0.856);
 }
 
-.delete button{
+#delete button {
     text-decoration: none;
     color: white;
-    
-}
 
-#alteracao{
-    display: none;
 }
 
 
+
+#confirmar_deletacao {
+    position: fixed;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px 30px;
+    width: 40%;
+    max-width: 400px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: popupShow 0.3s ease-out;
+    z-index: 1000;
+}
+
+#confirmar_deletacao form {
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+#confirmar_deletacao input {
+    width: 40%;
+    border: 2px solid rgb(104, 101, 101);
+    text-align: center;
+    border-radius: 2px;
+    border: 0;
+    padding: 8px;
+    background-color: rgb(227, 234, 235);
+}
+
+#hyper_confirmar {
+    border-radius: 15px;
+    height: 50px;
+    line-height: 45px;
+    width: 45%;
+    text-align: center;
+    color: white;
+    background-color: rgba(206, 11, 11, 0.856);
+}
+
+@keyframes popupShow {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+#alteracao {
+    position: fixed;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px 35px;
+    width: 40%;
+    max-width: 420px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: popupShow 0.3s ease-out;
+    z-index: 1000;
+
+}
+
+#alteracao input {
+    width: 40%;
+    border: 2px solid rgb(104, 101, 101);
+    text-align: center;
+    border-radius: 2px;
+    border: 0;
+    padding: 8px;
+    background-color: rgb(227, 234, 235);
+}
+
+#alteracao button {
+    position: relative;
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 18px;
+    align-items: center;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    min-width: 150px;
+    display: inline-block;
+    width: 20%;
+    background: linear-gradient(to right, #00bfa5, #2a5c57);
+    transition: transform 0.4s ease, color 0.4s ease;
+    z-index: 1;
+}
+
+
+
+.envia:hover {
+    transform: scale(1.1);
+    color: #12181C;
+    background-color: #0d4d46;
+    transition: 1s;
+}
 
 @media (min-width: 901px) {
 

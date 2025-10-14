@@ -114,33 +114,33 @@
 
                         <br>
 
-                        <div class="Alterar">
-                            <button id="Alterar">Alterar </button>
-                        </div>
+                        <button id="Alterar">Alterar </button>
                     </div>
                 </div>
 
 
 
 
+                <section id="alteracao" style="display: none;">
 
-
-
-                <section id="alteracao">
+                    <h2>Altere a senha e o email conforme desejar</h2>
 
                     <form>
 
                         <div>
                             <label for="">Email</label>
+                            <br>
                             <input type="email" name="email" id="email_novo">
                         </div>
 
                         <div>
                             <label for="">Senha</label>
+                            <br>
                             <input type="password" id="senha" name="senha_novo">
                         </div>
 
 
+                        <br><br>
                         <button id="botaoAltera" type="submit">Alterar </button>
 
                     </form>
@@ -152,7 +152,7 @@
 
 
                 <!-- <div id="delete"> -->
-                    <button id="delete" type="submit">DELETAR</button>
+                <button id="delete" type="submit">DELETAR</button>
                 <!-- </div> -->
 
                 <section id="confirmar_deletacao" style="display: none;">
@@ -162,13 +162,15 @@
                     <form>
                         <div>
                             <label>Senha</label>
+                            <br>
                             <input type="password">
                         </div>
                         <div>
                             <label>CPF</label>
-                            <input type="number">
+                            <br>
+                            <input type="number" id="cpf_confirmacao">
                         </div>
-
+                        <br><br>
                         <button type="submit" id="hyper_confirmar">Deletar Definitivamente</button>
                     </form>
 
