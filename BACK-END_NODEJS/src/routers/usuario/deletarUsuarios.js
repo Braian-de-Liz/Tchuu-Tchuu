@@ -7,7 +7,7 @@ const router = Router();
 router.delete('/usuarios', async (req, res) => {
     const { cpf, id } = req.body
 
-    if (!cpf || cpf.length !== 11 || !id) {
+    if (!cpf || cpf.length != 11 || !id) {
         return res.status(400).json({
             status: 'erro',
             mensagem: 'CPF inválido. Deve conter 11 dígitos.'
