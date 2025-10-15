@@ -13,11 +13,11 @@ function validateEmail(email) {
     return telefone.length >= 10;
 } */
 
-function validaNumRegistro(registro) {
+/* function validaNumRegistro(registro) {
     return /^\d{12}$/.test(registro);
 }
 
-
+ */
 
 
 
@@ -34,7 +34,7 @@ async function ValidaRegistro(event) {
     const RegistroFun = crypto.randomUUID().substring(0, 20);
 
 
-    if (!cpf || !email || !telefone || !senha || !dataNasc || !nome) {
+    if (!cpf || !email || !senha || !dataNasc || !nome) {
         alert("Preencha todos os campos.");
         return false;
     }
