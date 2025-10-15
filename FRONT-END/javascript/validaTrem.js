@@ -8,7 +8,9 @@ async function validaRegistroTrem(event) {
     const nomeTrem = document.getElementById('nomeTrem').value.trim();
     // let numero_de_Trem = Math.floor(Math.random() * 999999999999) + 1000;
     // let numero_de_Trem = Math.floor(Math.random() * 2147483647) + 1;
-    let numero_de_Trem = Math.floor(Math.random() * 999999) + 1;
+    // let numero_de_Trem = Math.floor(Math.random() * 999999) + 1;
+    const numero_de_Trem = crypto.randomUUID().substring(0, 20);
+
     const fabricante = document.getElementById('fabricante').value.trim();
     const dataRegistro = document.getElementById('DataRe').value.trim();
     const cpfUser = document.getElementById('RegistroUser').value.trim();
