@@ -14,7 +14,6 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 
 ## 🛠️ Tecnologias Utilizadas
 
-## 🛠️ Tecnologias Utilizadas
 
 ### 🎨 Front-end
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="30"/> **HTML5**  
@@ -26,7 +25,7 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="30"/> **Node.js**  
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="30"/> **Express**  
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="30"/> **PHP**  
-- <img src="https://raw.githubusercontent.com/websockets/ws/master/doc/ws-logo.svg" alt="ws" width="30"/> **ws (WebSocket)** — biblioteca NPM utilizada para comunicação em tempo real entre servidor e clientes.
+- **ws (WebSocket)** — biblioteca NPM utilizada para comunicação em tempo real entre servidor e clientes.
 
 
 ### 💾 Banco de Dados
