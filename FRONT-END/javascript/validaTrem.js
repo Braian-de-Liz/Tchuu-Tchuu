@@ -10,7 +10,6 @@ async function validaRegistroTrem(event) {
     const fabricante = document.getElementById('fabricante').value.trim();
     const dataRegistro = document.getElementById('DataRe').value.trim();
     const cpfUser = document.getElementById('RegistroUser').value.trim();
-    const nomeUser = document.getElementById('NomeUser').value.trim();
 
     /*    
     const nomeTrem = document.getElementById('nomeTrem').value.trim();
@@ -29,12 +28,12 @@ async function validaRegistroTrem(event) {
     const cpfUser = document.getElementById('RegistroUser').value.trim();
     const cpfUser = document.getElementById('RegistroUser').value.trim();
     */
-
-   if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !cpfUser  || !nomeUser) {
+   if (!nomeTrem || !numero_de_Trem || !fabricante || !dataRegistro || !cpfUser) {
        alert("Todos os dados são necessários. PREENCHA OS CAMPOS");
        return false;
-    }
-    
+   }
+
+
     /*    if (isNaN(numero_de_Trem) || Number(numero_de_Trem) <= 0) {
         alert('O campo deve ser preenchido com números acima de 0');
         return false;
@@ -72,18 +71,17 @@ async function validaRegistroTrem(event) {
         
         
         class Trem {
-            constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro, nomeUser) {
+            constructor(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro) {
                 this.nomeTrem = nomeTrem;
                 this.numero = numero_de_Trem;
                 this.fabricante = fabricante;
                 this.cpfUser = cpfUser;
                 this.dataRegistro = dataRegistro;
-                this.NomeUser = nomeUser;
             }
         }
         
         
-        const novoTrem = new Trem(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro, nomeUser);
+        const novoTrem = new Trem(nomeTrem, numero_de_Trem, fabricante, cpfUser, dataRegistro);
         
         
         try {
