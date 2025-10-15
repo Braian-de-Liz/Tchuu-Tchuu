@@ -14,15 +14,20 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 
 ## 🛠️ Tecnologias Utilizadas
 
+## 🛠️ Tecnologias Utilizadas
+
 ### 🎨 Front-end
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="30"/> **HTML5**  
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="30"/> **CSS3**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="30"/> **JavaScript**
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="30"/> **JavaScript**  
+- <img src="https://www.chartjs.org/media/logo-title.svg" alt="Chart.js" width="30"/> **Chart.js** — para criação de gráficos dinâmicos e interativos.
 
 ### ⚙️ Back-end
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="30"/> **Node.js**  
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="30"/> **Express**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="30"/> **PHP**
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="30"/> **PHP**  
+- <img src="https://raw.githubusercontent.com/websockets/ws/master/doc/ws-logo.svg" alt="ws" width="30"/> **ws (WebSocket)** — biblioteca NPM utilizada para comunicação em tempo real entre servidor e clientes.
+
 
 ### 💾 Banco de Dados
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="30"/> **PostgreSQL** (via [Neon.tech](https://neon.tech))
@@ -155,13 +160,33 @@ O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e desce
 ### ✅ Vantagens dessa Arquitetura:
 
 - 🌐 **Escalabilidade**: Cada serviço pode ser escalado individualmente.
-- 🔐 **Segurança**: Senhas e credenciais são armazenadas em variáveis de ambiente, **nunca no código**.
 - 📈 **Profissionalismo**: Reflete arquiteturas reais de empresas como Spotify, Discord e GitHub.
 
 > 💡 **Nenhum serviço depende do outro para funcionar.**  
 > Isso é **microserviços**.
 
 ---
+
+---
+
+## 🔒 Segurança e Boas Práticas
+
+O **TCHUU-TCHUU** adota medidas de segurança essenciais para garantir a integridade e confidencialidade dos dados dos usuários e a confiabilidade da aplicação como um todo:
+
+- **🔐 Criptografia de Senhas com Bcrypt**  
+  Todas as senhas são **criptografadas utilizando o algoritmo Bcrypt** antes de serem armazenadas no banco de dados.  
+  Isso garante que mesmo em caso de vazamento, as credenciais permaneçam protegidas por hashes fortes e não reversíveis.
+
+- **🌐 Política de CORS (Cross-Origin Resource Sharing)**  
+  O servidor Node.js utiliza uma **configuração restritiva de CORS**, permitindo apenas o domínio oficial do front-end.  
+  Essa medida impede que outras origens façam requisições não autorizadas, prevenindo ataques como *Cross-Site Request Forgery (CSRF)*.
+
+- **⚙️ Variáveis de Ambiente (.env)**  
+  Informações sensíveis, como **chaves JWT, credenciais de banco e URLs privadas**, são armazenadas em **variáveis de ambiente** através do arquivo `.env`, que **não é versionado** no repositório.  
+  Isso evita a exposição de dados confidenciais e segue as boas práticas de segurança recomendadas para aplicações em produção.
+
+> 🔒 *Essas práticas reforçam o compromisso do projeto com a segurança, privacidade e integridade das informações dos usuários.*
+
 
 ## 📚 Aprendizados Envolvidos
 
@@ -180,4 +205,3 @@ Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu hab
 
 > 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*  
 > **Não é apenas um trabalho — é um sistema funcional, em produção, e com arquitetura de nível profissional.**
-```
