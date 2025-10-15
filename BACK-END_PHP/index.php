@@ -1,3 +1,4 @@
 <?php
-echo "elias também"
+$andre = "andré yag"
+echo "elias também é $andre"
 ?>
