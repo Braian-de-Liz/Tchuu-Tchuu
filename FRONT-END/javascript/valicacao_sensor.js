@@ -28,8 +28,8 @@ async function validar_e_conectar(e) {
     class sensor {
         constructor(tipo_sensor, marca_sensor, data) {
             this.tipo_sensor = tipo_sensor;
-                this.marca_sensor = marca_sensor;
-                this.data = data
+            this.marca_sensor = marca_sensor;
+            this.data = data
         }
     }
 

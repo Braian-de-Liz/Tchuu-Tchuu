@@ -49,6 +49,9 @@ app.use('/api', cadastroTREM);
 
 // Rotas para cadastrar sensores;
 // app.use('/api', );
+// app.use('/api', );
+// app.use('/api', );
+// app.use('/api', );
 
 
 
