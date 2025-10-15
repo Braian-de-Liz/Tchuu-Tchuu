@@ -24,7 +24,7 @@ router.post("/trem", async (req, res) => {
         console.log("CPF limpo:", cpfTRUE); 
 
         if (cpfTRUE.length !== 11) {
-            console.log("Erro: CPF inválido"); // Adicionei este log
+            console.log("Erro: CPF inválido"); 
             return res.status(400).json({
                 status: 'erro',
                 mensagem: 'CPF inválido.'

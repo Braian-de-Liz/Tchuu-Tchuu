@@ -5,7 +5,7 @@ const router = Router();
 
 
 
-router.delete("/trem/:cpf_user", async (req, res) => {
+router.delete("/trem", async (req, res) => {
 
     const { cpf_user } = req.params;
 
@@ -23,7 +23,7 @@ router.delete("/trem/:cpf_user", async (req, res) => {
     try {
 
         db = await conectar();
-        const consulta = await db.query("DELETE FROM trens WHERE ", [cpf_user]);
+        const consulta = await db.query("DELETE FROM trens WHERE cpf_user = $1", [cpf_user]);
 
         if (consulta.rowCount === 0) {
             return res.status(404).json({

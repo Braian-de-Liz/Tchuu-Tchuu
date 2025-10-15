@@ -181,6 +181,9 @@ ul {
 
 #confirmar_deletacao {
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
     background-color: #fff;
     border-radius: 12px;
     padding: 20px 30px;
@@ -193,6 +196,15 @@ ul {
     gap: 15px;
     animation: popupShow 0.3s ease-out;
     z-index: 1000;
+    overflow-y: auto; 
+    max-height: 90vh; 
+}
+
+@media (max-width: 768px) {
+    #confirmar_deletacao {
+        width: 80%;
+        padding: 18px;
+    }
 }
 
 #confirmar_deletacao form {
@@ -226,18 +238,20 @@ ul {
 @keyframes popupShow {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: translate(-50%, -45%) scale(0.95);
     }
-
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
 
 #alteracao {
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
     background-color: #fff;
     border-radius: 12px;
     padding: 25px 35px;
@@ -250,7 +264,8 @@ ul {
     gap: 20px;
     animation: popupShow 0.3s ease-out;
     z-index: 1000;
-
+    overflow-y: auto; 
+    max-height: 90vh; 
 }
 
 #alteracao input {
@@ -283,7 +298,12 @@ ul {
     z-index: 1;
 }
 
-
+@media (max-width: 768px) {
+    #alteracao {
+        width: 80%;
+        padding: 20px;
+    }
+}
 
 .envia:hover {
     transform: scale(1.1);

@@ -11,8 +11,10 @@ import logarUsuario from './routers/usuario/loginUsuario.js';
 import atualizarUser from './routers/usuario/atualizarUsuario.js';
 import Mostrar_usuario from './routers/usuario/mostrar_dadosUsuario.js';
 
-import deletarTREM from "./routers/trens/deletar_trem.js";
 import cadastroTREM from './routers/trens/registrar_trem.js';
+import deletarTREM from "./routers/trens/deletar_trem.js";
+import atualizarTREM from './routers/trens/atualizar_trem.js';
+import mostrarTREM from './routers/trens/mostrar_trem.js'
 
 import dotenv from 'dotenv';
 
