@@ -4,6 +4,8 @@
 
 ➡️ **Acesse agora:** [https://tchuu-tchuu-front-end.onrender.com](https://tchuu-tchuu-front-end.onrender.com)
 
+➡️ **Acesse Também Tchuu-Tchuu Desktop** [Tchuu-Tchuu Desktop](https://github.com/Guilherme-JSS/Tchuu-Tchuu_Desktop)
+
 ---
 
 ## 🎯 Propósito
