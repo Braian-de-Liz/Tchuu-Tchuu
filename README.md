@@ -85,6 +85,8 @@ TCHUU-TCHUU/
 ├── Documentações/
 │   ├── LICENSE
 │   ├── Plano de Testes Tchuu-Tchuu.pdf
+│   ├── Manual Tchuu-Tchuu.pdf
+│   ├── Postgre SQL - SA.pdf
 │   └── S.A requisitos Tchuu-Tchuu.pdf
 └── FRONT-END/
     ├── Assets/
