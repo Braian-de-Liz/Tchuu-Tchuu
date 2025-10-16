@@ -19,6 +19,7 @@ router.post('/usuarios', async (req, res) => {
     const cpfTRUE = cpf.replace(/[^\d]/g, '');
 
     if (cpfTRUE.length !== 11) {
+        console.error("cpf inválido");
         return res.status(400).json({ status: 'erro', mensagem: 'CPF inválido.' });
     }
 
@@ -55,7 +56,7 @@ router.post('/usuarios', async (req, res) => {
         await db.query(
             `INSERT INTO usuarios (nome, cpf, email, senha, registro_fun, data_nasc)
             VALUES ($1, $2, $3, $4, $5, $6)`,
-            [nome, cpfTRUE, email, senha_segura, RegistroFun, dataFormatada] 
+            [nome, cpfTRUE, email, senha_segura, RegistroFun, dataFormatada]
         );
 
         res.status(201).json({
@@ -70,8 +71,9 @@ router.post('/usuarios', async (req, res) => {
             mensagem: "Erro interno do servidor"
         });
 
-
-    } finally {
+    } 
+    
+    finally {
         if (db) db.end();
     }
 });

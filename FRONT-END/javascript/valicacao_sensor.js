@@ -5,9 +5,10 @@ async function validar_e_conectar(e) {
 
     const tipo_sensor = document.getElementById("TipoSensor").value;
     const marca_sensor = document.getElementById("marca_sensor").value;
-    const data = document.getElementById("Data_cadast").value
+    const data = document.getElementById("Data_cadast").value;
+    const cpf = document.getElementById("CPF").value;
 
-    if (!tipo_sensor || !marca_sensor || !data) {
+    if (!tipo_sensor || !marca_sensor || !data || !cpf) {
         alert("preencha os dados");
         return false;
     }
@@ -20,20 +21,27 @@ async function validar_e_conectar(e) {
         return false;
     }
 
+    if (cpf.length !== 11) {
+        alert("cpf inválido, tenha 11 digitos");
+        return false;
+    }
+
     if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 2025) {
         alert("Data inválida.");
         return false;
     }
 
     class sensor {
-        constructor(tipo_sensor, marca_sensor, data) {
+        constructor(tipo_sensor, marca_sensor, data, cpf) {
             this.tipo_sensor = tipo_sensor;
             this.marca_sensor = marca_sensor;
-            this.data = data
+            this.data = data;
+            this.cpf = cpf;
+
         }
     }
 
-    const sensor_novo = new sensor(tipo_sensor, marca_sensor, data);
+    const sensor_novo = new sensor(tipo_sensor, marca_sensor, data, cpf);
 
     try {
 

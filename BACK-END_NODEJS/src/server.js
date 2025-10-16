@@ -16,6 +16,8 @@ import deletarTREM from "./routers/trens/deletar_trem.js";
 import atualizarTREM from './routers/trens/atualizar_trem.js';
 import mostrarTREM from './routers/trens/mostrar_trem.js'
 
+import cadasreoSensor from './routers/sensores/cadastrarSensor.js';
+
 import dotenv from 'dotenv';
 
 
@@ -47,8 +49,8 @@ app.use('/api', cadastroTREM);
 // app.use('/api', );x
 
 
-// Rotas para cadastrar sensores;
-// app.use('/api', );
+// Rotas para sensores;
+app.use('/api', cadasreoSensor);
 // app.use('/api', );
 // app.use('/api', );
 // app.use('/api', );
