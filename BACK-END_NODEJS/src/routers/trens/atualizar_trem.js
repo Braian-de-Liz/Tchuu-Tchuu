@@ -3,7 +3,7 @@ import { conectar } from "../../databases/conectar_banco.js"
 
 const router = Router();
 
-router.path('/trens', async (req, req) => {
+router.path('/trens', async (req, res) => {
 
     const {cpf_user} = req.body;
     
