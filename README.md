@@ -52,98 +52,104 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 
 ````
 TCHUU-TCHUU/
-├── BACK-END-NODEJS/                  
+├── BACK-END_NODEJS/
+│   ├── .env
 │   ├── .gitignore
-│   ├── package.json
 │   ├── package-lock.json
+│   ├── package.json
 │   └── src/
 │       ├── .env
 │       ├── databases/
 │       │   └── conectar_banco.js
-│       ├── modulos/
+│       ├── modulos
 │       │   ├── chatServer.js
 │       │   └── ESP_Server.js
 │       ├── routers/
+│       │   ├── trens/
+│       │   │   ├── atualizar_trem.js
+│       │   │   ├── deletar_trem.js
+│       │   │   ├── mostrar_trem.js
+│       │   │   └── registrar_trem.js
 │       │   └── usuario/
+│       │       ├── atualizarUsuario.js
 │       │       ├── deletarUsuarios.js
+│       │       ├── loginUsuario.js
+│       │       ├── mostrar_dadosUsuario.js
 │       │       └── registrarUsuarios.js
-│       └── server.js
+│       └── server.js (Ponto de entrada do back-end Node.js, usando createServer)
 │
-├── BACK-END-PHP/                     
-│   ├── APIs/
-│   │   ├── salvar_trem.php
-│   │   └── salvar_user.php
-│   ├── bd.sql
+├── BACK-END_PHP/
+│   ├── APIs/ 
+│   ├── bd.sql 
 │   └── index.php
-│
-├── Documentações/                   
+├── Documentações/
 │   ├── LICENSE
 │   ├── Plano de Testes Tchuu-Tchuu.pdf
 │   └── S.A requisitos Tchuu-Tchuu.pdf
-│
-└── FRONT-END/                       
-    ├── Assets/                      
-    │   ├── AnimaçãoScroll.css       
-    │   ├── Desempenho.css           
-    │   ├── fot.css                  
-    │   ├── Frota.css                
-    │   ├── Manutencao.css           
-    │   ├── menulateral.css          
-    │   ├── stylealerta.css          
-    │   ├── stylechat.css            
-    │   ├── styledash.css            
-    │   ├── styleGestaoDeRota.css    
-    │   ├── stylelogin.css           
-    │   ├── stylesenha.css           
-    │   ├── tremRegistro.css         
-    │   ├── user.css                 
+└── FRONT-END/
+    ├── Assets/
+    │   ├── AnimaçãoScroll.css
+    │   ├── Desempenho.css
+    │   ├── fot.css 
+    │   ├── Frota.css
+    │   ├── Manutencao.css
+    │   ├── menulateral.css
+    │   ├── stylealerta.css
+    │   ├── stylechat.css
+    │   ├── styledash.css
+    │   ├── styleGestaoDeRota.css
+    │   ├── stylelogin.css 
+    │   ├── stylesenha.css
+    │   ├── tremRegistro.css
+    │   ├── user.css
     │   └── imagens/
-    │
-    ├── javascript/                  
-    │   ├── .gitignore
-    │   ├── alteraSUB-ROTAS.js       
-    │   ├── ChatJS.js                
-    │   ├── containerdemanutenção.js 
-    │   ├── GestaoDeRotaMenu.js      
-    │   ├── GestaoRota.js            
-    │   ├── GestaoRota2.js           
-    │   ├── gestaoRotas.js           
-    │   ├── GraficoDesempenho.js     
-    │   ├── Lista Regex              
-    │   ├── menu.js                  
-    │   ├── menu-hamburguer-PC.js    
-    │   ├── menu-Rotas.js            
-    │   ├── Monitora.js              
-    │   ├── Nodejs/                  
-    │   │   ├── package.json
-    │   │   └── package-lock.json
-    │   ├── some-hambuer.js          
-    │   ├── sume-rodape.js           
-    │   ├── tentativa-deimplementaAPIdeCLima.js 
-    │   ├── validaEmailSenhaRecupera.js 
-    │   ├── validaLogin.js           
-    │   ├── ValidaManutrem.js        
-    │   ├── validaTrem.js            
-    │   └── Valideregistro.js        
-    │
-    ├── Public/                    
-    │   ├── enviaTremManu.html       
-    │   ├── pagChat.html             
-    │   ├── pagEsquecisenha.html     
-    │   ├── pagFrota.html            
-    │   ├── pagGeralDashboard.html   
-    │   ├── pagGestaoRotas.html      
-    │   ├── pagManutencao.html       
-    │   ├── pagMonitora.html         
-    │   ├── pagregistraTREM.html     
-    │   ├── pagRegistro.html         
-    │   └── pagUsuario.html          
-    │
-    └── index.html                   
-
-├── package.json                     
-├── package-lock.json
-└── README.md                        
+    │       ├── barras/ 
+    │       ├── imagens-de-uso/
+    │       └── logos/
+    ├── javascript/
+    │   ├── AlterarDadosUsuario.js
+    │   ├── alteraSUB-ROTAS.js
+    │   ├── autenticacao.js
+    │   ├── ChatJS.js
+    │   ├── containerdemanutenção.js
+    │   ├── dadosUser.js 
+    │   ├── deletar_validado.js
+    │   ├── GestaoDeRotaMenu.js
+    │   ├── GestaoRota.js
+    │   ├── GestaoRota2.js
+    │   ├── gestaoRotas.js
+    │   ├── GraficoDesempenho.js
+    │   ├── Lista Regex
+    │   ├── lixao.js
+    │   ├── menu-hamburguer-PC.js
+    │   ├── menu-Rotas.js
+    │   ├── menu.js
+    │   ├── Monitora.js
+    │   ├── notificacaodash.js
+    │   ├── protegerPAG.js 
+    │   ├── some-hambuer.js
+    │   ├── sume-rodape.js
+    │   ├── tentativa-deimplementaAPIdeCLima.js
+    │   ├── valicacao_sensor.js
+    │   ├── validaEmailSenhaRecupera.js
+    │   ├── validaLogin.js (Valida o login)
+    │   ├── ValidaManutrem.js
+    │   ├── validaTrem.js
+    │   └── Valideregistro.js (Valida o registro de usuário)
+    ├── Public/ (Páginas internas do sistema)
+    │   ├── cadastrarSensor.html
+    │   ├── enviaTremManu.html
+    │   ├── pagChat.html
+    │   ├── pagEsquecisenha.html
+    │   ├── pagFrota.html
+    │   ├── pagGeralDashboard.html
+    │   ├── pagGestaoRotas.html
+    │   ├── pagManutencao.html
+    │   ├── pagMonitora.html
+    │   ├── pagregistraTREM.html
+    │   ├── pagRegistro.html 
+    │   └── pagUsuario.html 
+    └── index.html    
 
 ````
 
