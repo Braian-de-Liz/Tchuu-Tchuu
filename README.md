@@ -88,6 +88,7 @@ TCHUU-TCHUU/
 │   ├── Manual Tchuu-Tchuu.pdf
 │   ├── Postgre SQL - SA.pdf
 │   └── S.A requisitos Tchuu-Tchuu.pdf
+│
 └── FRONT-END/
     ├── Assets/
     │   ├── AnimaçãoScroll.css
@@ -108,6 +109,7 @@ TCHUU-TCHUU/
     │       ├── barras/ 
     │       ├── imagens-de-uso/
     │       └── logos/
+    │
     ├── javascript/
     │   ├── AlterarDadosUsuario.js
     │   ├── alteraSUB-ROTAS.js
@@ -138,6 +140,7 @@ TCHUU-TCHUU/
     │   ├── ValidaManutrem.js
     │   ├── validaTrem.js
     │   └── Valideregistro.js (Valida o registro de usuário)
+    │
     ├── Public/ (Páginas internas do sistema)
     │   ├── cadastrarSensor.html
     │   ├── enviaTremManu.html
@@ -150,7 +153,8 @@ TCHUU-TCHUU/
     │   ├── pagMonitora.html
     │   ├── pagregistraTREM.html
     │   ├── pagRegistro.html 
-    │   └── pagUsuario.html 
+    │   └── pagUsuario.html
+    │
     └── index.html    
 
 ````
