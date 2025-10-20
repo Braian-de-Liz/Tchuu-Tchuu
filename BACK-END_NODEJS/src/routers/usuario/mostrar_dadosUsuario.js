@@ -5,7 +5,7 @@ import { conectar } from '../../databases/conectar_banco.js';
 
 const Mostrar_usuario = Router();
 
-router.get("/usuario_get", async (req, res) => {
+Mostrar_usuario.get("/usuario_get", async (req, res) => {
 
 
     const authHeader = req.headers.authorization;
