@@ -82,10 +82,10 @@ async function carregar_dados() {
             }
         });
 
-        console.log("Status da resposta:", resposta.status); // Adicionando log
+        console.log("Status da resposta:", resposta.status); 
 
         const info = await resposta.json();
-        console.log("Dados recebidos:", info); // Adicionando log
+        console.log("Dados recebidos:", info); 
 
         if (resposta.ok) {
             const usuario = info.usuario;
