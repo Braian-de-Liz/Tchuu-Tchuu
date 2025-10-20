@@ -65,4 +65,4 @@ router.get("/usuario_get", async (req, res) => {
     }
 });
 
-export default { Mostrar_usuario };
+export { Mostrar_usuario };
