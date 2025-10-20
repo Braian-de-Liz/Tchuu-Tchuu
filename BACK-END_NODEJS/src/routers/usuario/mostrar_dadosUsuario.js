@@ -3,7 +3,7 @@ import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { conectar } from '../../databases/conectar_banco.js';
 
-const router = Router();
+const Mostrar_usuario = Router();
 
 router.get("/usuario_get", async (req, res) => {
 
@@ -65,4 +65,4 @@ router.get("/usuario_get", async (req, res) => {
     }
 });
 
-export default router;
+export default { Mostrar_usuario };

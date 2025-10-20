@@ -9,7 +9,7 @@ import usuariosRegistro from './routers/usuario/registrarUsuarios.js';
 import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 import logarUsuario from './routers/usuario/loginUsuario.js';
 import atualizarUser from './routers/usuario/atualizarUsuario.js';
-import Mostrar_usuario from './routers/usuario/mostrar_dadosUsuario.js';
+import { Mostrar_usuario } from './routers/usuario/mostrar_dadosUsuario.js';
 
 import cadastroTREM from './routers/trens/registrar_trem.js';
 import deletarTREM from "./routers/trens/deletar_trem.js";
@@ -27,7 +27,7 @@ dotenv.config();
 
 app.use(cors());
 // app.use(cors({origin: 'https://tchuu-tchuu-front-end.onrender.com', credentials: true })); 
- // ESSA ACIMA LINHA SÓ SERÁ ATIVADA COM O SISTEMA COMPLETO, MAS EM DESENVOLVIMENTO ELA ATRAPALHA
+// ESSA ACIMA LINHA SÓ SERÁ ATIVADA COM O SISTEMA COMPLETO, MAS EM DESENVOLVIMENTO ELA ATRAPALHA
 
 const server = createServer(app);
 const { wss } = setupWebSocket(server);
@@ -67,12 +67,7 @@ app.use('/api', cadastroSensor);
 // app.use('/api', );
 // app.use('/api', );
 
-app.get('/acordar', (req, res) => {
-    const now = new Date().toISOString();
-    const userAgent = req.get('User-Agent') || 'Unknown';
-    console.log(`Elias estária orgulhoso recebido em: ${now} | IP: ${req.ip} | Elias-testador: ${userAgent}`);
-    res.json({ status: 'funcionando', server: 'Tchuu-Tchuu', timestamp: now });
-});
+
 
 const PORT = process.env.PORT || 3250;
 
