@@ -21,7 +21,9 @@ Mostrar_usuario.get("/usuario_get", async (req, res) => {
     let decoded;
     try {
         decoded = jwt.verify(token, process.env.JWT_SECRET);
+
     }
+    
     catch (erro) {
         return res.status(401).json({
             status: 'erro',
