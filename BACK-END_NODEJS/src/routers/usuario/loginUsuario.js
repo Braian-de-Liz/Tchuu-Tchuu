@@ -33,7 +33,7 @@ router.post('/usu_login', async (req, res) => {
 
     try {
         db = await conectar();
-
+        console.log("Iniciando consulta ao banco de dados, para encontrar o usuário");
         // const resultado = await db.query('SELECT id, email, nome, senha FROM usuarios WHERE email = $1', [email]);
         const resultado = await db.query(
             'SELECT id, email, nome, senha FROM usuarios WHERE email = $1',
@@ -48,6 +48,7 @@ router.post('/usu_login', async (req, res) => {
             });
         }
 
+        console.log("Usuário encontrado");
         const usuario = resultado.rows[0];
 
         const senhaCerta = await bcrypt.compare(senha, usuario.senha);
