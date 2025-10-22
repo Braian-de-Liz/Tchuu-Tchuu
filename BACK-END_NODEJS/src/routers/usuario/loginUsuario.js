@@ -14,6 +14,7 @@ router.post('/usu_login', async (req, res) => {
     const { email, senha } = req.body;
 
     if (senha.length < 8) {
+        console.error("Usuário com senha menor do que minimo requerido");
         return res.status(400).json({
             status: 'erro',
             mensagem: 'Senha curta demais. Mínimo de 8 caracteres.'
@@ -21,6 +22,7 @@ router.post('/usu_login', async (req, res) => {
     }
 
     if (!email || !senha) {
+        console.error("Requisição sem conteúdo enviado");
         return res.status(400).json({
             status: 'erro',
             mensagem: 'Email e senha são obrigatórios.'
@@ -39,6 +41,7 @@ router.post('/usu_login', async (req, res) => {
         );
 
         if (resultado.rows.length === 0) {
+            console.error("Usuário não encontrado");
             return res.status(401).json({
                 status: 'erro',
                 mensagem: 'Email ou senha incorretos.'
@@ -50,6 +53,7 @@ router.post('/usu_login', async (req, res) => {
         const senhaCerta = await bcrypt.compare(senha, usuario.senha);
 
         if (!senhaCerta) {
+            console.error("Não foi encontrado senha correta no banco de dados");
             return res.status(401).json({
                 status: 'erro',
                 mensagem: 'Email ou senha incorretos.'
@@ -79,7 +83,7 @@ router.post('/usu_login', async (req, res) => {
             }
         });
 
-
+        console.log("Login Realizado com sucesso total e BRUTALLLLLLLLLLLLLLLLLL" + `usuario ${usuario.nome} logado`);
     } catch (erro) {
         console.error('Erro no login:', erro);
         res.status(500).json({
@@ -89,6 +93,7 @@ router.post('/usu_login', async (req, res) => {
     }
     finally {
         if (db) db.end();
+        console.log("Conexão com o banco encerrado");
     }
 });
 
