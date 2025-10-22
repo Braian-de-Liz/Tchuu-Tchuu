@@ -14,7 +14,7 @@ import { Mostrar_usuario } from './routers/usuario/mostrar_dadosUsuario.js';
 import cadastroTREM from './routers/trens/registrar_trem.js';
 import deletarTREM from "./routers/trens/deletar_trem.js";
 import atualizarTREM from './routers/trens/atualizar_trem.js';
-import mostrarTREM from './routers/trens/mostrar_trem.js'
+import mostrarTREM from './routers/trens/mostrar_trem.js';
 
 import cadastroSensor from './routers/sensores/cadastrarSensor.js';
 
@@ -46,7 +46,7 @@ app.use('/api', atualizarUser);
 // Rotas de Trens 
 app.use('/api', cadastroTREM);
 // app.use('/api', deletarTREM);
-// app.use('/api', );
+app.use('/api', mostrarTREM);
 // app.use('/api', );
 
 
