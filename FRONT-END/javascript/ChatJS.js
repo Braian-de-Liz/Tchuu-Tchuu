@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com'); // Para produção
 
         ws.onopen = () => {
-            console.log('✅ Conectado ao WebSocket');
+            console.log('Conectado ao WebSocket');
             ws.send(JSON.stringify({ 
                 type: 'register', 
                 userId: userId, 
