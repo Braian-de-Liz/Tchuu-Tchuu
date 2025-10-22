@@ -1,5 +1,10 @@
 async function mostrar_dados_trem() {
 
+    if (!token) {
+        alert("Você não está logado. NÃO SEI NEM COMO VOCÊ ENTROU");
+        window.location.href = "../index.html";
+        return;
+    }
 
     try {
 
@@ -18,16 +23,49 @@ async function mostrar_dados_trem() {
         console.log("Dados recebidos:", info);
 
         if (resposta.ok) {
-            const usuario = info.usuario;
 
-            /*             nome_campo.textContent = usuario.nome || 'Carregando...';
-            data_nasc_campo.textContent = usuario.data_nasc ? new Date(usuario.data_nasc).toLocaleDateString('pt-BR') : 'Carregando...';
-            email_campo.textContent = usuario.email || 'Carregando...';
-            cpf_campo.textContent = usuario.cpf || 'Carregando...';
-            
-            nomeUser.textContent = usuario.nome || 'Usuário';
-            
-            localStorage.setItem('usuarioNome', usuario.nome || 'Usuário'); */
+            const trens = info.trens;
+
+            const containerTrens = document.getElementById('Trens');
+
+            if (containerTrens) {
+                containerTrens.innerHTML = "";
+
+
+                if (trens && trens.length > 0) {
+
+                    trens.forEach(trem => {
+                        const divItem = document.createElement("div");
+                        divItem.className = 'item';
+
+                        divItem.innerHTML = `
+                            <div style="display: flex; align-items: center;">
+                                <span style="font-size: 1.5em;">🚆</span>
+                                <span>${trem.nome_trem}</span> <!-- Nome do Trem -->
+                            </div>
+                            <div class="menu-mini">≡</div>
+
+                            <div class="conteudo-expansivel">
+                                <ul>
+                                    <li>Número do Trem: <strong>${trem.numero}</strong></li>
+                                    <li>Fabricante: <strong>${trem.fabricante}</strong></li>
+                                    <li>Data de Cadastro: <strong>${new Date(trem.data_registro).toLocaleDateString('pt-BR')}</strong></li>
+                                </ul>
+                            </div>
+                        `;
+
+                        containerTrens.appendChild(divItem);
+                    });
+                }
+                else {
+                    containerTrens.innerHTML = '<p>Nenhum trem encontrado.</p>';
+                }
+            }
+            else {
+                console.error("Elemento com ID 'container-trens' não encontrado no HTML.");
+            }
+
+
 
         } else {
 
@@ -39,7 +77,8 @@ async function mostrar_dados_trem() {
 
 
     catch (erro) {
-
+        console.error("Erro na requisição:", erro);
+        alert("Erro na requisição ao servidor: " + erro);
     }
 
 

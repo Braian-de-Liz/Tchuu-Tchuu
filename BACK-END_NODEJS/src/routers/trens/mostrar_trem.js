@@ -1,3 +1,4 @@
+// BACK-END_NODEJS\src\routers\trens\mostrar_trem.js
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import { conectar } from '../../databases/conectar_banco.js';
@@ -44,8 +45,9 @@ router.get("/Trem_mostrar", async (req, res) => {
 
             res.json({
                 status: "sucesso",
-                mensagem: "Trens encontrados"
-            })
+                mensagem: "Trens encontrados",
+                trens: buscar.rows 
+            });
         }
 
         catch (erro) {
@@ -57,7 +59,7 @@ router.get("/Trem_mostrar", async (req, res) => {
         }
 
         finally {
-            db.end();
+            await db.end();
             console.log("conexão com o banco de dados foi fechada");
         }
 
