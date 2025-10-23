@@ -18,12 +18,12 @@ async function mostrar_dados_trem() {
             }
         });
 
-        console.log("Status da resposta:", resposta.status);
+        console.log("Status da resposta:", consulta.status);
 
-        const info = await resposta.json();
+        const info = await consulta.json();
         console.log("Dados recebidos:", info);
 
-        if (resposta.ok) {
+        if (consulta.ok) {
 
             const trens = info.trens;
 
