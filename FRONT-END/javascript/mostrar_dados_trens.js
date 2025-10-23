@@ -1,5 +1,6 @@
 async function mostrar_dados_trem() {
 
+    const token = localStorage.getItem("token");
     if (!token) {
         alert("Você não está logado. NÃO SEI NEM COMO VOCÊ ENTROU");
         window.location.href = "../index.html";
