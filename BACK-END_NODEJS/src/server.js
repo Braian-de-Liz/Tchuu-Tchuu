@@ -45,7 +45,7 @@ app.use('/api', atualizarUser);
 
 // Rotas de Trens 
 app.use('/api', cadastroTREM);
-// app.use('/api', deletarTREM);
+app.use('/api', deletarTREM);
 app.use('/api', mostrarTREM);
 // app.use('/api', );
 

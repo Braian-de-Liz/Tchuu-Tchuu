@@ -7,7 +7,7 @@ router.patch('/trens', async (req, res) => {
 
     const {cpf_user} = req.body;
     
-
+    
 
     console.log("rotinha");
 });
