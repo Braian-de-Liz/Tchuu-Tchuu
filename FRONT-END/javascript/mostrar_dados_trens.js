@@ -1,7 +1,5 @@
 // FRONT-END/javascript/mostrar_dados_trens.js
-
-// Corrija o nome da função para incluir o 'l'
-function adicionarEventoExpansivel(itemDiv) { // <-- Nome correto
+function adicionarEventoExpansivel(itemDiv) { 
     const botao = itemDiv.querySelector('.menu-mini');
     if (botao) {
         botao.addEventListener('click', function () {
@@ -28,7 +26,6 @@ async function mostrar_dados_trem() {
     }
 
     try {
-        // Correção: Remover espaços da URL
         const consulta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/Trem_mostrar', {
             method: "GET",
             headers: {
