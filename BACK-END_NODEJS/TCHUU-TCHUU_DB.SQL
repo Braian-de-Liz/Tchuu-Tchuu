@@ -19,3 +19,22 @@ CREATE TABLE usuarios (
   data_nasc DATE,
   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS sensores (
+    id_sensor SERIAL PRIMARY KEY,
+    nome_sensor VARCHAR(255) NOT NULL,
+    tipo_sensor VARCHAR(100), 
+    localizacao VARCHAR(255), 
+    ativo BOOLEAN DEFAULT TRUE,  ou não
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
+CREATE TABLE IF NOT EXISTS dados_sensores (
+    id_dado_sensor SERIAL PRIMARY KEY, 
+    fk_id_sensor INTEGER NOT NULL,  
+    fk_id_rota INTEGER NOT NULL,     
+    carimbo_data_dado_sensor TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    valor_sensor VARCHAR(255) NOT NULL,
+    FOREIGN KEY (fk_id_sensor) REFERENCES sensores(id_sensor),
+    FOREIGN KEY (fk_id_rota) REFERENCES rotas(id_rota)
+);
