@@ -31,11 +31,14 @@ router.patch("/usuario", async (req, res) => {
 
         const consulta = db.query("SELECT email, senha FROM usuarios WHERE id = $1", [id]);
 
-        if (resultado.rows.length === 0) {
+        if (consulta.rows.length === 0) {
             return res.status(404).json({
                 status: 'erro',
                 mensagem: 'Usuário não encontrado.'
             });
+        }
+        else{
+            db.query("Alter")
         }
 
 
