@@ -1,4 +1,7 @@
-/* // FRONT-END\javascript\dadosUser.js
+// FRONT-END\javascript\dadosUser.js
+
+
+/* 
 const nome_campo = document.getElementById("nome_mostrar");
 const data_nasc_campo = document.getElementById("data_nasc_mostrar");
 const email_campo = document.getElementById("email_mostrar");
@@ -29,34 +32,38 @@ async function carregar_dados() {
         });
 
         const info = await resposta.json();
-
-
+        
+        
         if (resposta.ok) {
-
-            nome_campo.textContent = info.usuario.nome || 'Carregando...';
-            data_nasc_campo.textContent = info.usuario.data_nasc || 'Carregando...';
-            email_campo.textContent = info.usuario.email || 'Carregando...';
-            // telefone_campo.textContent = info.usuario.telefone || 'Carregando...';
-            cpf_campo.textContent = info.usuario.cpf || 'Carregando...';
-
+            
+        nome_campo.textContent = info.usuario.nome || 'Carregando...';
+        data_nasc_campo.textContent = info.usuario.data_nasc || 'Carregando...';
+        email_campo.textContent = info.usuario.email || 'Carregando...';
+        // telefone_campo.textContent = info.usuario.telefone || 'Carregando...';
+        cpf_campo.textContent = info.usuario.cpf || 'Carregando...';
+        
         }
         else {
             alert('Erro: ' + info.mensagem);
-            localStorage.removeItem('token');
-            window.location.href = "../index.html";
+        localStorage.removeItem('token');
+        window.location.href = "../index.html";
         }
-    }
-    catch (erro) {
-        alert(`erro ${erro}, aguarde o servidor`);
-    }
+        }
+        catch (erro) {
+            alert(`erro ${erro}, aguarde o servidor`);
+            }
+            
+            
+            }
+            
+            document.addEventListener("DOMContentLoaded", carregar_dados); */
+            
+            
 
 
-}
-
-document.addEventListener("DOMContentLoaded", carregar_dados); */
 
 
-// FRONT-END\javascript\dadosUser.js
+// variaveis para a função de GET
 const nome_campo = document.getElementById("nome_mostrar");
 const data_nasc_campo = document.getElementById("data_nasc_mostrar");
 const email_campo = document.getElementById("email_mostrar");
@@ -112,4 +119,12 @@ async function carregar_dados() {
     }
 }
 
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", carregar_dados);
+

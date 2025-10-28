@@ -29,7 +29,7 @@ router.patch("/usuario", async (req, res) => {
     try {
         db = await conectar();
 
-        const consulta = db.query("SELECT email, senha FROM usuarios WHERE id = $1", [id]);
+        const consulta = await db.query("SELECT email, senha FROM usuarios WHERE id = $1", [id]);
 
         if (consulta.rows.length === 0) {
             return res.status(404).json({
@@ -37,10 +37,16 @@ router.patch("/usuario", async (req, res) => {
                 mensagem: 'Usuário não encontrado.'
             });
         }
-        else{
-            db.query("Alter")
-        }
 
+
+        await db.query("ALTER TABLE usuarios COLUNM email, senha = $1, 2$", [email, senha]);
+
+
+
+        res.status(200).json({
+            status: "sucesso",
+            mensagem: "usuario alterado"
+        })
 
 
     }
@@ -50,6 +56,11 @@ router.patch("/usuario", async (req, res) => {
             status: 'erro',
             mensagem: 'Erro interno do servidor.'
         });
+    }
+
+    finally{
+        await db.end();
+        console.log("conexão encerrada");
     }
 });
 

@@ -21,7 +21,6 @@ async function alterar_envia(e) {
     const email_novo = document.getElementById("email_novo").value;
     const senha_novo = document.getElementById("senha_novo").value;
     const id_user = localStorage.getItem("usuarioId");
-    // const token = localStorage.getItem("token");
 
 
     if (!email_novo && !senha_novo) {
@@ -35,10 +34,10 @@ async function alterar_envia(e) {
         return false;
     }
 
-        if (!id_user) {
-            alert("você não está logado, como passou pela a autêntificação?");
-            window.location = '../index.html'
-        }
+    if (!id_user) {
+        alert("você não está logado, como passou pela a autêntificação?");
+        window.location = '../index.html'
+    }
 
 
     try {
@@ -83,5 +82,28 @@ async function alterar_envia(e) {
 
     }
 }
+
+
+// variaveis para fazer botões 
+const cancelar_alteracao = document.getElementById("cancelar_alteracao");
+
+function cancelar_alteracaoa() {
+    const alteracao = document.getElementById("alteracao");
+    if (alteracao) {
+        alteracao.style.display = 'none';
+    }
+    document.getElementById("email_novo").value = '';
+    document.getElementById("senha_novo").value = '';
+}
+
+botaoAltera.addEventListener("click", alterar_envia);
+
+if (cancelar_alteracao) {
+    cancelar_alteracao.addEventListener("click", cancelar_alteracaoa);
+} else {
+    console.error("Elemento com ID 'cancelar_alteracao' não encontrado no HTML.");
+}
+
+
 
 botaoAltera.addEventListener("click", alterar_envia);

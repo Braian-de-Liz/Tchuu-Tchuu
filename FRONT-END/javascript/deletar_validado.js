@@ -4,6 +4,9 @@ const id_busca = localStorage.getItem("usuarioId");
 const botao_form_delete = document.getElementById("delete");
 const hyper_confirmar = document.getElementById("hyper_confirmar");
 
+const cancelar_btn = document.getElementById("cancelar_delete");
+
+
 async function envia_deletacao() {
     
     const cpf_confirmacao = document.getElementById("cpf_confirmacao").value;
@@ -46,4 +49,14 @@ botao_form_delete.addEventListener("click", () => {
     
 });
 
+
+function cancelar_delete() {
+    const confirmar_deletacao = document.getElementById("confirmar_deletacao");
+
+    confirmar_deletacao.style.display = 'none';
+}
+
+
+
 hyper_confirmar.addEventListener("click", envia_deletacao);
+cancelar_btn.addEventListener("click", cancelar_delete);
