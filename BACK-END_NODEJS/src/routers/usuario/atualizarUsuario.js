@@ -42,31 +42,29 @@ router.patch("/usuario", async (req, res) => {
         }
 
 
-        let query = 'UPDATE usuarios SET ';
-        const params = [];
+        let updates = [];
+        let params = [];
         let paramIndex = 1;
 
-
         if (email) {
-            query += `email = $${paramIndex}`;
+            updates.push(`email = $${paramIndex}`);
             params.push(email);
             paramIndex++;
         }
 
         if (senha) {
             const senha_segura = await bcrypt.hash(senha, 10);
-            query += `senha = $${paramIndex}`; 
-            params.push(senha_segura);         
-            paramIndex++;                      
+            updates.push(`senha = $${paramIndex}`);
+            params.push(senha_segura);
+            paramIndex++;
         }
 
+        params.push(id); 
 
-        query = query.slice(0, -2);
-        query += ` WHERE id = $${paramIndex}`;
-        params.push(id);
+        const query = `UPDATE usuarios SET ${updates.join(', ')} WHERE id = $${paramIndex}`;
 
         await db.query(query, params);
-        console.log("Query monstado e enviado ao banco para consulta");
+        console.log("Query montada e enviada ao banco para consulta");
 
         res.json({
             status: 'sucesso',
