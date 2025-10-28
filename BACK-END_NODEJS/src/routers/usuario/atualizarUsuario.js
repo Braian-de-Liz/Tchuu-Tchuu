@@ -55,11 +55,10 @@ router.patch("/usuario", async (req, res) => {
 
         if (senha) {
             const senha_segura = await bcrypt.hash(senha, 10);
-            query += `senha = $${senha_segura}`;
-            params.push(senha_segura);
-            paramIndex++;
+            query += `senha = $${paramIndex}`; 
+            params.push(senha_segura);         
+            paramIndex++;                      
         }
-
 
 
         query = query.slice(0, -2);
