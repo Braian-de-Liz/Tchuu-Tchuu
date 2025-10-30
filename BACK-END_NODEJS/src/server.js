@@ -1,22 +1,41 @@
 // BACK-END_NODEJS\src\server.js
+
+// libs necessárias
 import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
 
+// websocket
 import { setupWebSocket } from './websockets/chatServer.js';
 
+// rotas de usuário
 import usuariosRegistro from './routers/usuario/registrarUsuarios.js';
 import deletarUsuariosRoutes from './routers/usuario/deletarUsuarios.js';
 import logarUsuario from './routers/usuario/loginUsuario.js';
 import atualizarUser from './routers/usuario/atualizarUsuario.js';
 import { Mostrar_usuario } from './routers/usuario/mostrar_dadosUsuario.js';
 
+// rotas de trens
 import cadastroTREM from './routers/trens/registrar_trem.js';
 import deletarTREM from "./routers/trens/deletar_trem.js";
 import atualizarTREM from './routers/trens/atualizar_trem.js';
 import mostrarTREM from './routers/trens/mostrar_trem.js';
 
+// rotas de sensores
 import cadastroSensor from './routers/sensores/cadastrarSensor.js';
+
+
+// rotas de rotas e estações
+import atualizar_Rota from './routers/rotas_e_estacoes/atualizar_Rotas.js';
+import obter_Rotas from './routers/rotas_e_estacoes/obterRotas.js';
+import Salvar_Rota from './routers/rotas_e_estacoes/salvarRota.js';
+import excluir_Rota from './routers/rotas_e_estacoes/excluirRota.js';
+
+import atualizar_estacao from './routers/rotas_e_estacoes/atualizarPosicaoEstacao.js';
+import obter_estacao from './routers/rotas_e_estacoes/obterEstacoes.js';
+import Salvar_estacoes from './routers/rotas_e_estacoes/salvarEstacao.js';
+import excluir_estacoes from './routers/rotas_e_estacoes/excluirEstacao.js';
+
 
 import dotenv from 'dotenv';
 
@@ -26,6 +45,7 @@ const app = express();
 dotenv.config();
 
 app.use(cors());
+
 // app.use(cors({origin: 'https://tchuu-tchuu-front-end.onrender.com', credentials: true })); 
 // ESSA ACIMA LINHA SÓ SERÁ ATIVADA COM O SISTEMA COMPLETO, MAS EM DESENVOLVIMENTO ELA ATRAPALHA
 
@@ -61,13 +81,22 @@ app.use('/api', cadastroSensor);
 
 
 
-// app.use('/api', );
-// app.use('/api', );
-// app.use('/api', );
-// app.use('/api', );
-// app.use('/api', );
+// app.use('/api', atualizar_Rota);
+// app.use('/api', obter_Rotas);
+// app.use('/api', excluir_Rota);
+// app.use('/api', Salvar_Rota);
 
+// app.use('/api', atualizar_estacao);
+// app.use('/api', obter_estacao);
+// app.use('/api', excluir_estacoes);
+// app.use('/api', Salvar_estacoes);
 
+app.get('/acordar', (req, res) => {
+    const now = new Date().toISOString();
+    const userAgent = req.get('User-Agent') || 'Unknown';
+    console.log(`Elias estária orgulhoso recebido em: ${now} | IP: ${req.ip} | Elias-testador: ${userAgent}`);
+    res.json({ status: 'funcionando', server: 'Tchuu-Tchuu', timestamp: now });
+});
 
 const PORT = process.env.PORT || 3250;
 
