@@ -1,71 +1,125 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Rotas</title>
-    <link rel="stylesheet" href="../Assets/styleGestaoDeRota.css">
+    <title>Sistema de Rotas Ferroviárias - Brasil</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="../Assets/rotas_novas.css">
     <link rel="stylesheet" href="../Assets/menulateral.css">
-    <link rel="stylesheet" href="../Assets/fot.css">
-    <script async type="module" src="../javascript/autenticacao.js"></script>
-
+    <link rel="shortcut icon" href="../Assets/imagens/logos/logo THUU.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
-    <script type="module" src="../javascript/protegerPAG.js"></script>
 
     <header class="header">
-        <h2>Gestão de Rotas</h2>
+        <h2>Mapa Ferroviário do Brasil</h2>
     </header>
 
-
-
-    <div id="container">
-
-
-
-
-        <section id="mapaContainer">
-            <div>
-                <img src="../Assets/imagens/imagens-de-uso/mapa_metro_depoisobras.webp" alt="">
-                <div class=""></div>
+    <div id="container""></div>
+    <div class=" container">
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-train"></i></div>
+                <h1>Rotas Ferroviárias</h1>
             </div>
 
-        </section>
+            <div class="control-group">
+                <button id="btn-add-station" class="btn"><i class="fas fa-plus-circle"></i> Estação</button>
+                <button id="btn-start-route" class="btn btn-warning"><i class="fas fa-route"></i> Nova Rota</button>
+            </div>
 
+            <div class="control-group">
+                <button id="btn-edit-mode" class="btn"><i class="fas fa-edit"></i> Editar</button>
+                <button id="btn-save" class="btn btn-success"><i class="fas fa-save"></i> Salvar</button>
+            </div>
 
-        <div class="flex">
-            <button class="menu-secundario" id="toggle-lado">☰</button>
-            <aside id="lado" class="hidden-lado">
-                <ul id="container-op">
-                    <li class="menu-segunda" onclick="mostrarConteudo('painel-analise')">Painel de análises</li>
-                    <li class="menu-segunda" onclick="mostrarConteudo('veiculos')">Veículos ativos</li>
-                    <li class="menu-segunda" onclick="mostrarConteudo('mapa')">Mapa</li>
-                    <li class="menu-segunda" onclick="mostrarConteudo('ajuda')">Introdução e Ajuda</li>
-                </ul>
-            </aside>
+            <div class="instructions">
+                <p><strong>Como criar uma rota:</strong></p>
+                <ol>
+                    <li>Clique em "Nova Rota"</li>
+                    <li>Selecione as estações no mapa na ordem desejada</li>
+                    <li>Clique em "Finalizar Rota" quando terminar</li>
+                </ol>
+            </div>
 
+            <div class="station-list">
+                <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> Estações</h3>
+                <div id="stations-container"></div>
+            </div>
+
+            <div class="route-list">
+                <h3 class="section-title"><i class="fas fa-train"></i> Rotas</h3>
+                <div id="routes-container"></div>
+            </div>
         </div>
 
+        <div class="main-content">
+            <span id="mode-indicator" class="mode-indicator">Modo Visualização</span>
+            <div id="map"></div>
+            <div class="status-bar">
+                <span id="status-message">Sistema de gerenciamento de rotas ferroviárias</span>
+            </div>
+        </div>
     </div>
 
-
-
+    <!-- Modal para adicionar/editar estação -->
+    <div id="station-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title"><i class="fas fa-train-station"></i> Adicionar Estação</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="station-form">
+                <input type="hidden" id="station-id">
+                <div class="form-group">
+                    <label for="station-name">Nome da Estação:</label>
+                    <input type="text" id="station-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="station-address">Endereço:</label>
+                    <input type="text" id="station-address">
+                </div>
+                <div class="form-group">
+                    <label for="station-lat">Latitude:</label>
+                    <input type="text" id="station-lat" required>
+                </div>
+                <div class="form-group">
+                    <label for="station-lng">Longitude:</label>
+                    <input type="text" id="station-lng" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar Estação</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete-station"><i class="fas fa-trash"></i>
+                        Excluir Estação</button>
+                </div>
+            </form>
+        </div>
     </div>
 
+    <!-- Painel de criação de rotas -->
+    <div id="route-creator" class="route-creator">
+        <h3><i class="fas fa-route"></i> Criando Nova Rota</h3>
+        <p>Clique nas estações para adicioná-las à rota</p>
+        <div class="form-group">
+            <label for="route-name">Nome da Rota:</label>
+            <input type="text" id="route-name" placeholder="Ex: Rota Sul-Norte">
+        </div>
+        <div class="control-group">
+            <button id="btn-finish-route" class="btn btn-success"><i class="fas fa-check"></i> Finalizar Rota</button>
+            <button id="btn-cancel-route" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</button>
+        </div>
+        <div id="route-stations-list" style="margin-top: 15px; max-height: 150px; overflow-y: auto;"></div>
+    </div>
 
-</body>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="../javascript/render_menu.js"></script>
+    <script src="../javascript/rotas_fetch.js"></script>
+    <script src="../javascript/render_rodape.js"></script>
+    <script type="module" src="../javascript/autenticacao.js"></script>
 
-<script src="../javascript/render_rodape.js"></script>
-<script src="../javascript/render_menu.js"></script>
-<script src="../javascript/alteraSUB-ROTAS.js"></script>
-<script src="../javascript/GestaoDeRotaMenu.js"></script>
-<script src="../javascript/GestaoRota.js"></script>
-<script src="../javascript/gestaoRotas.js"></script>
-<script src="../javascript/GestaoRota2.js"></script>
-<script type="module" src="../javascript/autenticacao.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src=""></script>
 
 </html>

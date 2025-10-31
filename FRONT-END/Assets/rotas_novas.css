@@ -10,6 +10,26 @@
             color: #333;
             overflow: hidden;
         }
+
+        .header {
+            width: 100%;
+            height: 75px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            top: 0;
+        }
+
+        .header h2 {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+        }
         
         .container {
             display: flex;
@@ -17,12 +37,18 @@
         }
         
         .sidebar {
-            width: 350px;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+            width: 280px;
+            height: calc(100vh - 60px);
+            background: #e6e6e6;
+            color: #308661;
             padding: 20px;
-            overflow-y: auto;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            right: 0;
+            z-index: 1000;
+            position: fixed;
+            right: 0;
+            top: 75px;
         }
         
         .main-content {
@@ -47,7 +73,8 @@
         }
         
         .btn {
-            background-color: #3498db;
+            background: linear-gradient(to right, #00e7c8, #0d4d46);
+            /* background-color: #27ae60; */
             color: white;
             border: none;
             padding: 10px 18px;
@@ -66,33 +93,33 @@
         }
         
         .btn:hover {
-            background-color: #2980b9;
+            background: linear-gradient(to right, #36aeff, #146d63);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .btn-danger {
-            background-color: #e74c3c;
+            background: #e74c3c;
         }
         
         .btn-danger:hover {
-            background-color: #c0392b;
+            background: #c0392b;
         }
         
         .btn-success {
-            background-color: #2ecc71;
+            background: linear-gradient(to right, #00e7c8, #0d4d46);
         }
         
         .btn-success:hover {
-            background-color: #27ae60;
+            background: linear-gradient(to right, #4ff594, #158073);
         }
         
         .btn-warning {
-            background-color: #f39c12;
+            background: linear-gradient(to right, #e77b00, #e43a3a);
         }
         
         .btn-warning:hover {
-            background-color: #d35400;
+            background: #d35400;
         }
         
         .form-group {
@@ -186,7 +213,7 @@
             background-color: #f39c12;
             padding: 8px 15px;
             border-radius: 20px;
-            margin-left: 10px;
+            margin-left: 100px;
             font-weight: bold;
             color: white;
         }
@@ -208,7 +235,7 @@
             padding: 15px;
             border-radius: 6px;
             margin-top: 15px;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #5fbb9c;
         }
         
         .section-title {
