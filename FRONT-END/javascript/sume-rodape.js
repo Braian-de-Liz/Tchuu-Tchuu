@@ -1,19 +1,9 @@
-const fot = document.querySelector('.fot');
+const rodape = document.querySelector('.fot');
 const midia_grande = window.matchMedia('(min-width: 901px)');
 
-function esconderodape(e){
-    if(e.matches){
-        fot.style.display = 'none';
-    }
-    else{
-        fot.style.display = 'flex';
-    }
+function alternarRodape(e) {
+  rodape.style.display = e.matches ? 'none' : 'flex';
 }
 
-esconderodape(midia_grande);
-midia_grande.addEventListener('change', esconderodape);
-
-
-
-
-
+alternarRodape(midia_grande);
+midia_grande.addEventListener('change', alternarRodape);
