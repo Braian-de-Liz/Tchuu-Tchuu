@@ -19,7 +19,7 @@ router.post("/estacoes", (req, res) => {
     let db
 
     try {
-        
+        db = await conectar();
     }
 
 });
