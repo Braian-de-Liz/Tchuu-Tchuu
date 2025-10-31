@@ -5,7 +5,7 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router.post("/estacoes", (req, res) => {
+router.post("/estacoes", async (req, res) => {
 
     const { nome, endereco, latitude, longitude } = req.body;
 
@@ -53,6 +53,10 @@ router.post("/estacoes", (req, res) => {
         db = await conectar();
         db.query("", []);
 
+
+    }
+
+    catch (erro) {
 
     }
 
