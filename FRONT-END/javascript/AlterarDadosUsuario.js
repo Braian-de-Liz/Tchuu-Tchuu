@@ -69,6 +69,8 @@ async function alterar_envia(e) {
             }
 
             document.getElementById("alteracao").style.display = 'none';
+            window.location.href = '../index.html';
+
         }
         else {
             const erro = await resposta.json();
