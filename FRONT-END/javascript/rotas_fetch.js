@@ -496,17 +496,19 @@
         // Excluir estação
         function excluirEstacao() {
             const idEstacao = document.getElementById('station-id').value;
+            const id = localStorage.getItem("usuario_id");
             
             if (!idEstacao || !confirm('Tem certeza que deseja excluir esta estação?')) {
                 return;
             }
             
             const dados = {
-                id: idEstacao
+                id_estacao: idEstacao,
+                id_usuario: id
             };
             
-            fetch('api.php?action=delete_station', {
-                method: 'POST',
+            fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacoes', {
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
