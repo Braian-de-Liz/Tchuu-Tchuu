@@ -1,41 +1,6 @@
 async function salvarEstacao(evento) {
     evento.preventDefault();
 
-    /*     const dados = {
-            id: document.getElementById('station-id').value,
-            nome: document.getElementById('station-name').value,
-            endereco: document.getElementById('station-address').value,
-            latitude: document.getElementById('station-lat').value,
-            longitude: document.getElementById('station-lng').value
-        };
-    
-        fetch('api.php?action=save_station', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dados)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    fecharModais();
-                    carregarEstacoes();
-                    atualizarStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
-                } else {
-                    alert('Erro ao salvar estação: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao salvar estação: ' + error.message);
-            });
-    } */
     const nome = document.getElementById('station-name').value;
     const endereco = document.getElementById('station-address').value;
     const latitude = document.getElementById('station-lat').value;
@@ -66,11 +31,15 @@ async function salvarEstacao(evento) {
 
         if (enviar.ok) {
             alert("Estação cadastrada com Sucesso !!");
-            
+
+        }
+        else {
+            alert('Erro: ' + data);
         }
     }
-    catch () {
-
+    catch (erro) {
+        console.error("não foi efetuado com sucesso o cadastro");
+        alert("não foi possível, erro interno do servidor  " + erro);
     }
 
 }
