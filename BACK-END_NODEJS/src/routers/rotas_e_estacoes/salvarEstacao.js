@@ -58,7 +58,7 @@ router.post("/estacoes", async (req, res) => {
             VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id;
         `;
-        const parametros = [nome, endereco || null, lat, lng, cidade || null, estado || null, idUsuarioCriador];
+        const parametros = [nome, endereco, lat, lng, cidade, estado, idUsuarioCriador];
         //                                        $1  $2     $3   $4   $5   $6   $7
 
         const resultado = await db.query(query, parametros);
