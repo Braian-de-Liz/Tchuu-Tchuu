@@ -79,11 +79,12 @@ body {
     display: flex;
     gap: 10px;
     padding: 15px;
+    margin-bottom: 25px;
     background-color: #fff;
     border-top: 1px solid #e0e0e0;
     position: sticky;
     bottom: 0;
-    z-index: 5;
+    z-index: 1;
 }
 
 .message-input textarea {
