@@ -1,72 +1,73 @@
 // FRONT-END/javascript/scripts_gestaoRotas/delete_estacao.js
 
-import { estacoes, rotas, marcadoresEstacoes, linhasRotas } from '../rotas_fetch.js';
-import { atualizarStatus } from './post_estacao.js';
+import { estacoes, rotas, marcadoresEstacoes, linhasRotas } from './estado.js'; 
+import { carregarEstacoes } from './get_estacoes.js';
+import { carregarRotas } from './get_rotas.js';       
+import { atualizarStatus } from './post_estacao.js';  
 
-export function excluirEstacao() {
-    const idEstacao = document.getElementById('station-id').value;
-    const id = localStorage.getItem("usuario_id");
-
-    if (!idEstacao || !confirm('Tem certeza que deseja excluir esta estação?')) {
-        return;
+export async function excluirEstacao(idEstacao) {
+    if (!confirm(`Tem certeza que deseja excluir a estação com ID ${idEstacao}?`)) {
+        return; 
     }
 
-    const dados = {
-        id_estacao: idEstacao,
-        id_usuario: id
-    };
+    try {
+        // Corrigido: URL da API Node.js
+        const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/estacao/${idEstacao}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
 
-    fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacoes/' + idEstacao, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados)
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Erro na resposta do servidor');
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            fecharModais();
-            carregarEstacoes();
-            atualizarStatus("Estação excluída com sucesso");
+        if (resposta.ok) {
+            atualizarStatus(`Estação com ID ${idEstacao} excluída com sucesso.`);
+            carregarEstacoes(); // Recarrega a lista de estações do servidor
+            // Opcional: Remover o marcador do mapa localmente também
+            // const indice = estacoes.findIndex(est => est.id === idEstacao);
+            // if (indice !== -1) {
+            //     const estacaoRemovida = estacoes.splice(indice, 1)[0];
+            //     // Encontrar e remover o marcador correspondente no mapa
+            //     const marcadorIndex = marcadoresEstacoes.findIndex(m => m.options.stationId === idEstacao); // Supondo que tu tenha setado stationId ao criar o marker
+            //     if (marcadorIndex !== -1) {
+            //         const marcador = marcadoresEstacoes.splice(marcadorIndex, 1)[0];
+            //         mapa.removeLayer(marcador);
+            //     }
+            // }
         } else {
-            alert('Erro ao excluir estação: ' + data.message);
+            const erro = await resposta.json();
+            atualizarStatus(`Erro ao excluir estação: ${erro.mensagem}`);
         }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao excluir estação: ' + error.message);
-    });
+    } catch (erro) {
+        console.error("Erro na requisição para excluir estação:", erro);
+        atualizarStatus("Erro de rede ou servidor ao excluir estação.");
+    }
 }
 
-export function excluirRota(idRota) {
-    if (!confirm('Tem certeza que deseja excluir esta rota?')) {
-        return;
+// Função para excluir uma rota via API
+export async function excluirRota(idRota) {
+    if (!confirm(`Tem certeza que deseja excluir a rota com ID ${idRota}?`)) {
+        return; // Sai se o usuário cancelar
     }
 
-    fetch('https://tchuu-tchuu-server-chat.onrender.com/api/rotas/' + idRota, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Erro na resposta do servidor');
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            carregarRotas();
-            atualizarStatus("Rota excluída com sucesso");
+    try {
+        // Corrigido: URL da API Node.js
+        const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/rota/${idRota}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Se a rota de delete no back-end exigir autenticação
+            }
+        });
+
+        if (resposta.ok) {
+            atualizarStatus(`Rota com ID ${idRota} excluída com sucesso.`);
+            carregarRotas(); // Recarrega a lista de rotas do servidor
         } else {
-            alert('Erro ao excluir rota: ' + data.message);
+            const erro = await resposta.json();
+            atualizarStatus(`Erro ao excluir rota: ${erro.mensagem}`);
         }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao excluir rota: ' + error.message);
-    });
+    } catch (erro) {
+        console.error("Erro na requisição para excluir rota:", erro);
+        atualizarStatus("Erro de rede ou servidor ao excluir rota.");
+    }
 }
