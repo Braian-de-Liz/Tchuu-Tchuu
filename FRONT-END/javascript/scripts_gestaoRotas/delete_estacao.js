@@ -12,6 +12,7 @@ export async function excluirEstacao(idEstacao) {
     }
 
     try {
+        // CORREÇÃO: Removido espaços no final da URL
         const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/estacao/${idEstacao}`, {
             method: 'DELETE',
             headers: {
@@ -21,7 +22,7 @@ export async function excluirEstacao(idEstacao) {
 
         if (resposta.ok) {
             atualizarStatus(`Estação com ID ${idEstacao} excluída com sucesso.`);
-            carregarEstacoes(); // Recarrega a lista de estações
+            carregarEstacoes(); // Recarrega a lista de estações (importada)
         } else {
             const erro = await resposta.json();
             atualizarStatus(`Erro ao excluir estação: ${erro.mensagem}`);
@@ -39,6 +40,7 @@ export async function excluirRota(idRota) {
     }
 
     try {
+        // CORREÇÃO: Removido espaços no final da URL
         const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/rota/${idRota}`, {
             method: 'DELETE',
             headers: {
@@ -48,7 +50,7 @@ export async function excluirRota(idRota) {
 
         if (resposta.ok) {
             atualizarStatus(`Rota com ID ${idRota} excluída com sucesso.`);
-            carregarRotas(); // Recarrega a lista de rotas
+            carregarRotas(); // Recarrega a lista de rotas (importada)
         } else {
             const erro = await resposta.json();
             atualizarStatus(`Erro ao excluir rota: ${erro.mensagem}`);
