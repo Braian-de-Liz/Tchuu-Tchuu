@@ -16,5 +16,3 @@ export let rotaAtual = [];
 export let estacaoSelecionada = null;
 export let marcadorTemporario = null;
 export let linhaRotaAtual = null;
-
-

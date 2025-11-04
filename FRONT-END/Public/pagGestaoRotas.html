@@ -19,7 +19,7 @@
         <h2>Mapa Ferroviário do Brasil</h2>
     </header>
 
-    <div id="container""></div>
+    <div id="container"></div>
     <div class=" container">
         <div class="sidebar">
             <div class="logo">
@@ -101,7 +101,8 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar Estação</button>
-                    <button type="button" class="btn btn-danger" id="btn-delete-station"><i class="fas fa-trash"></i>Excluir Estação</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete-station"><i
+                            class="fas fa-trash"></i>Excluir Estação</button>
                 </div>
             </form>
         </div>
@@ -122,12 +123,19 @@
         <div id="route-stations-list" style="margin-top: 15px; max-height: 150px; overflow-y: auto;"></div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js  "></script>
     <script src="../javascript/render_menu.js"></script>
-     <script type="module" src="../javascript/rotas_fetch.js"></script>
     <script src="../javascript/render_rodape.js"></script>
+
+
+    <script type="module" src="../javascript/rotas_fetch.js"></script>
+    <script type="module" src="../javascript/scripts_gestaoRotas/estado.js"></script>
+    <script type="module" src="../javascript/scripts_gestaoRotas/delete_estacao.js"></script>
+    <script type="module" src="../javascript/scripts_gestaoRotas/delete_rota.js"></script>
+    <script type="module" src="../javascript/scripts_gestaoRotas/get_estacoes.js"></script>
+    <script type="module" src="../javascript/scripts_gestaoRotas/get_rotas.js"></script>
+    <script type="module" src="../javascript/scripts_gestaoRotas/post_estacao.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
 
-    <script src=""></script>
 
 </html>

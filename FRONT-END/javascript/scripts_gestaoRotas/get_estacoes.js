@@ -3,35 +3,18 @@
 import { mapa, estacoes, marcadoresEstacoes, modoEdicao, estacaoSelecionada, criandoRota, rotaAtual } from './estado.js';
 import { atualizarStatus } from './post_estacao.js'; // Importa função de atualizar status
 
-// Supondo que 'mapa' seja uma variável exportada de 'estado.js' como 'let mapa = null;'
-import { mapa } from './estado.js'; // Certifique-se de que 'mapa' é 'let', não 'const'
-
-let mapaInstanciado = false; // Variável para controlar se o mapa já foi criado
-
+// Função para inicializar o mapa
 export function inicializarMapa() {
-    // 1. Verifica se o mapa já foi instanciado
-    if (mapaInstanciado && mapa) {
-        console.warn("O mapa já foi inicializado. Ignorando chamada duplicada.");
-        // Opcional: Tentar destruir o mapa antigo e criar um novo
-        // if (mapa.remove) mapa.remove(); // Destroi o mapa anterior
-        // mapaInstanciado = false; // Reseta a flag
-        return; // Sai da função se já foi inicializado
-    }
-
     const centroLat = -14.2350;
     const centroLng = -51.9253;
 
-    // 2. Cria o mapa e atribui à variável global
-    // Atribui o mapa à variável exportada (necessário que 'mapa' seja 'let' em estado.js)
+    // Atribui o mapa à variável exportada (necessário que 'mapa' seja 'let' ou 'var' em estado.js)
     window.mapa = L.map('map').setView([centroLat, centroLng], 5);
     mapa = L.map('map').setView([centroLat, centroLng], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
-
-    // Marca como instanciado
-    mapaInstanciado = true;
 
     // Chama as funções para carregar os dados iniciais
     carregarEstacoes();
@@ -62,21 +45,79 @@ export async function carregarEstacoes() {
     }
 }
 
-// Função para carregar rotas da API
-export async function carregarRotas() {
-    try {
-        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/rotas');
-        if (!resposta.ok) {
-            throw new Error(`Erro na API: ${resposta.status}`);
-        }
-        const dados = await resposta.json();
-        rotas.splice(0, rotas.length, ...dados); // Atualiza a lista de rotas
-        renderizarRotas();
-        atualizarStatus("Rotas carregadas com sucesso");
-    } catch (erro) {
-        console.error('Erro ao carregar rotas:', erro);
-        atualizarStatus("Erro ao carregar rotas");
-    }
-}
+// Função para renderizar estações no mapa e na lista
+export function renderizarEstacoes() {
+    // Limpar marcadores existentes do mapa
+    marcadoresEstacoes.forEach(marker => mapa.removeLayer(marker));
+    marcadoresEstacoes.length = 0; // Limpa o array
 
-// ... (restante das funções como renderizarEstacoes, renderizarRotas, etc) ...
+    // Limpar lista de estações (ex: no sidebar)
+    const container = document.getElementById('stations-container');
+    if (container) {
+        container.innerHTML = '';
+    }
+
+    estacoes.forEach(estacao => {
+        const marker = L.marker([estacao.latitude, estacao.longitude], {
+            draggable: modoEdicao,
+            icon: L.divIcon({
+                className: 'station-marker',
+                html: '<div style="background-color: #e74c3c; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>',
+                iconSize: [26, 26]
+            })
+        }).addTo(mapa);
+
+        marker.bindPopup(`
+            <div>
+                <h3>${estacao.nome}</h3>
+                <p>${estacao.endereco || 'Sem endereço'}</p>
+                <button onclick="editarEstacao(${estacao.id})" class="btn" style="margin-top: 10px;">Editar</button>
+            </div>
+        `);
+
+        if (modoEdicao) {
+            marker.on('dragend', function(e) {
+                const novaPos = e.target.getLatLng();
+                // Chama a função para atualizar no servidor (precisa estar em outro arquivo ou ser global)
+                // atualizarPosicaoEstacao(estacao.id, novaPos.lat, novaPos.lng);
+            });
+        }
+
+        marker.on('click', function() {
+            if (criandoRota) {
+                adicionarEstacaoARota(estacao);
+            } else if (modoEdicao) {
+                selecionarEstacao(estacao.id);
+            } else {
+                mapa.setView([estacao.latitude, estacao.longitude], 10);
+                marker.openPopup();
+            }
+        });
+
+        marcadoresEstacoes.push(marker);
+
+        // Adicionar à lista lateral (se existir)
+        if (container) {
+            const itemEstacao = document.createElement('div');
+            itemEstacao.className = 'station-item';
+            itemEstacao.innerHTML = `
+                <strong>${estacao.nome}</strong>
+                <div style="font-size: 12px; margin-top: 5px;">${estacao.endereco || ''}</div>
+            `;
+            itemEstacao.dataset.id = estacao.id;
+
+            itemEstacao.addEventListener('click', function() {
+                if (criandoRota) {
+                    adicionarEstacaoARota(estacao);
+                } else if (modoEdicao) {
+                    selecionarEstacao(estacao.id);
+                } else {
+                    mapa.setView([estacao.latitude, estacao.longitude], 10);
+                    marker.openPopup();
+                }
+            });
+
+            container.appendChild(itemEstacao);
+        }
+    });
+}
