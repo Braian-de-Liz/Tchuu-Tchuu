@@ -1,34 +1,33 @@
 // FRONT-END/javascript/scripts_gestaoRotas/get_estacoes.js
 
-import { mapa, estacoes, marcadoresEstacoes, modoEdicao, estacaoSelecionada, criandoRota, rotaAtual } from './estado.js';
+import { mapa, estacoes, marcadoresEstacoes, modoEdicao, criandoRota, rotaAtual } from './estado.js';
 import { atualizarStatus } from './post_estacao.js'; // Importa função de atualizar status
 
-// Função para inicializar o mapa
+
 export function inicializarMapa() {
     const centroLat = -14.2350;
     const centroLng = -51.9253;
 
-    // Atribui o mapa à variável exportada (necessário que 'mapa' seja 'let' ou 'var' em estado.js)
-    window.mapa = L.map('map').setView([centroLat, centroLng], 5);
-    mapa = L.map('map').setView([centroLat, centroLng], 5);
+
+    mapa = L.map('map').setView([centroLat, centroLng], 5); 
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
 
-    // Chama as funções para carregar os dados iniciais
+    
     carregarEstacoes();
     carregarRotas();
 
-    // Adiciona o evento de clique no mapa
+    
     mapa.on('click', function(e) {
-        if (modoEdicao && !marcadorTemporario && !criandoRota) {
-            criarEstacaoTemporaria(e.latlng);
+        if (modoEdicao) {
+
+            console.warn("Modo de edição ativado. Implemente a função criarEstacaoTemporaria.");
         }
     });
 }
 
-// Função para carregar estações da API
 export async function carregarEstacoes() {
     try {
         const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacoes');
@@ -36,8 +35,8 @@ export async function carregarEstacoes() {
             throw new Error(`Erro na API: ${resposta.status}`);
         }
         const dados = await resposta.json();
-        estacoes.splice(0, estacoes.length, ...dados); // Atualiza a lista de estações
-        renderizarEstacoes();
+        estacoes.splice(0, estacoes.length, ...dados); 
+        renderizarEstacoes(); 
         atualizarStatus("Estações carregadas com sucesso");
     } catch (erro) {
         console.error('Erro ao carregar estações:', erro);
@@ -45,13 +44,10 @@ export async function carregarEstacoes() {
     }
 }
 
-// Função para renderizar estações no mapa e na lista
 export function renderizarEstacoes() {
-    // Limpar marcadores existentes do mapa
     marcadoresEstacoes.forEach(marker => mapa.removeLayer(marker));
-    marcadoresEstacoes.length = 0; // Limpa o array
+    marcadoresEstacoes.length = 0; 
 
-    // Limpar lista de estações (ex: no sidebar)
     const container = document.getElementById('stations-container');
     if (container) {
         container.innerHTML = '';
@@ -67,57 +63,65 @@ export function renderizarEstacoes() {
             })
         }).addTo(mapa);
 
-        marker.bindPopup(`
+        const popupContent = `
             <div>
                 <h3>${estacao.nome}</h3>
                 <p>${estacao.endereco || 'Sem endereço'}</p>
-                <button onclick="editarEstacao(${estacao.id})" class="btn" style="margin-top: 10px;">Editar</button>
+                <!-- Supondo que tu tenha uma função editarEstacao em outro lugar -->
+                <!-- <button onclick="editarEstacao(${estacao.id})" class="btn" style="margin-top: 10px;">Editar</button> -->
             </div>
-        `);
+        `;
+        marker.bindPopup(popupContent);
 
         if (modoEdicao) {
             marker.on('dragend', function(e) {
                 const novaPos = e.target.getLatLng();
-                // Chama a função para atualizar no servidor (precisa estar em outro arquivo ou ser global)
-                // atualizarPosicaoEstacao(estacao.id, novaPos.lat, novaPos.lng);
+
+                console.log(`Estação ${estacao.nome} movida para: ${novaPos.lat}, ${novaPos.lng}`);
             });
         }
 
         marker.on('click', function() {
             if (criandoRota) {
-                adicionarEstacaoARota(estacao);
+                console.log("Adicionando estação à rota (implementar adicionarEstacaoARota):", estacao);
             } else if (modoEdicao) {
-                selecionarEstacao(estacao.id);
+                console.log("Selecionando estação (implementar selecionarEstacao):", estacao.id);
             } else {
                 mapa.setView([estacao.latitude, estacao.longitude], 10);
-                marker.openPopup();
+                marker.openPopup(); 
             }
         });
 
-        marcadoresEstacoes.push(marker);
+        marcadoresEstacoes.push(marker); 
 
-        // Adicionar à lista lateral (se existir)
-        if (container) {
+        if (container) { // Verifica se o container existe antes de tentar usá-lo
             const itemEstacao = document.createElement('div');
             itemEstacao.className = 'station-item';
             itemEstacao.innerHTML = `
                 <strong>${estacao.nome}</strong>
                 <div style="font-size: 12px; margin-top: 5px;">${estacao.endereco || ''}</div>
             `;
-            itemEstacao.dataset.id = estacao.id;
+            itemEstacao.dataset.id = estacao.id; // Armazena o ID da estação no elemento
 
+            // Evento de clique no item da lista
             itemEstacao.addEventListener('click', function() {
                 if (criandoRota) {
-                    adicionarEstacaoARota(estacao);
+                    // adicionarEstacaoARota(estacao); // ❌ Função não definida ainda
+                    console.log("Adicionando estação à rota (via lista):", estacao);
                 } else if (modoEdicao) {
-                    selecionarEstacao(estacao.id);
+                    // selecionarEstacao(estacao.id); // ❌ Função não definida ainda
+                    console.log("Selecionando estação (via lista):", estacao.id);
                 } else {
+                    // Centraliza o mapa na estação e abre o popup do marcador correspondente
                     mapa.setView([estacao.latitude, estacao.longitude], 10);
-                    marker.openPopup();
+                    marker.openPopup(); // Abre o popup do marcador associado a esta estação
                 }
             });
 
-            container.appendChild(itemEstacao);
+            container.appendChild(itemEstacao); // Adiciona o item à lista
         }
     });
 }
+
+// Função para carregar rotas da API (vamos manter aqui também por enquanto)
+// (Vai ser revisada no próximo item)
