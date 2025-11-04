@@ -1,47 +1,69 @@
-async function salvarEstacao(evento) {
-    evento.preventDefault();
+// FRONT-END/javascript/scripts_gestaoRotas/post_estacao.js
 
-    const nome = document.getElementById('station-name').value;
-    const endereco = document.getElementById('station-address').value;
-    const latitude = document.getElementById('station-lat').value;
-    const longitude = document.getElementById('station-lng').value;
-    const cidade = document.getElementById('station-city').value;
-    const estado = document.getElementById('station-state').value;
+import { mapa, marcadorTemporario, criandoRota, rotaAtual, linhaRotaAtual, estacoes } from './estado.js';
+import { carregarEstacoes } from './get_estacoes.js'; // Importa função para recarregar estações
 
-    class estacao {
-        constructor(nome, endereco, latitude, longitude, cidade, estado) {
-            this.nome = nome;
-            this.endereco = endereco;
-            this.latitude = latitude;
-            this.longitude = latitude;
-            this.cidade = cidade;
-            this.estado = estado;
-        }
+// Função para criar um marcador temporário no mapa
+export function criarEstacaoTemporaria(latlng) {
+    if (marcadorTemporario) {
+        mapa.removeLayer(marcadorTemporario);
+    }
+
+    marcadorTemporario = L.marker(latlng, {
+        draggable: true,
+        icon: L.divIcon({
+            className: 'temp-marker',
+            html: '<div style="background-color: #3498db; width: 18px; height: 18px; border-radius: 50%; border: 3px solid white;"></div>',
+            iconSize: [24, 24]
+        })
+    }).addTo(mapa);
+
+    // Preenche os campos de latitude e longitude no formulário (ex: no modal)
+    document.getElementById('station-lat').value = latlng.lat.toFixed(6);
+    document.getElementById('station-lng').value = latlng.lng.toFixed(6);
+
+    // Abre o modal para adicionar estação (função que tu tem em outro lugar ou global)
+    // abrirModalEstacao();
+}
+
+// Função para salvar uma nova estação via API
+export async function salvarEstacao(dadosEstacao) {
+    // Validação
+    if (!dadosEstacao.nome || !dadosEstacao.latitude || !dadosEstacao.longitude) {
+        atualizarStatus("Dados incompletos para salvar estação.");
+        return;
     }
 
     try {
-        const novaEstacao = new estacao(nome, endereco, latitude, longitude, cidade, estado);
-        const enviar = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/estacoes", {
-            method: "POST",
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacao', {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Se for necessário enviar token
             },
-            body: JSON.stringify(novaEstacao)
+            body: JSON.stringify(dadosEstacao)
         });
 
-        if (enviar.ok) {
-            alert("Estação cadastrada com Sucesso !!");
-
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+            atualizarStatus(`Estação "${dadosEstacao.nome}" salva com sucesso! ID: ${resultado.id}`);
+            // Opcional: Atualizar a lista de estações após salvar
+            carregarEstacoes(); // Chama a função para recarregar
+            // fecharModalEstacao(); // Se tu tiver uma função pra isso
+        } else {
+            const erro = await resposta.json();
+            atualizarStatus(`Erro ao salvar estação: ${erro.mensagem}`);
         }
-        else {
-            alert('Erro: ' + data);
-        }
+    } catch (erro) {
+        console.error("Erro na requisição para salvar estação:", erro);
+        atualizarStatus("Erro de rede ou servidor ao salvar estação.");
     }
-    catch (erro) {
-        console.error("não foi efetuado com sucesso o cadastro");
-        alert("não foi possível, erro interno do servidor  " + erro);
-    }
-
 }
 
-export { salvarEstacao };
+// Função para atualizar status na interface (ex: um elemento com id 'status-message')
+export function atualizarStatus(mensagem) {
+    const elementoStatus = document.getElementById('status-message'); // Ou o ID correto do teu elemento de status
+    if (elementoStatus) {
+        elementoStatus.textContent = mensagem;
+    }
+}
