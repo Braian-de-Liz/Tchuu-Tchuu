@@ -1,7 +1,8 @@
 // FRONT-END/javascript/scripts_gestaoRotas/post_estacao.js
 
-import { mapa, marcadorTemporario, criandoRota, rotaAtual, linhaRotaAtual, estacoes } from './estado.js';
+import { mapa, marcadorTemporario, criandoRota, rotaAtual, linhaRotaAtual } from './estado.js';
 import { carregarEstacoes } from './get_estacoes.js'; // Importa função para recarregar estações
+// import { abrirModalEstacao, fecharModalEstacao } from './algum_modal.js'; // Se tu tiver
 
 // Função para criar um marcador temporário no mapa
 export function criarEstacaoTemporaria(latlng) {
@@ -22,7 +23,7 @@ export function criarEstacaoTemporaria(latlng) {
     document.getElementById('station-lat').value = latlng.lat.toFixed(6);
     document.getElementById('station-lng').value = latlng.lng.toFixed(6);
 
-    // Abre o modal para adicionar estação (função que tu tem em outro lugar ou global)
+    // Supondo que tu tenha funções para abrir o modal
     // abrirModalEstacao();
 }
 
@@ -35,6 +36,7 @@ export async function salvarEstacao(dadosEstacao) {
     }
 
     try {
+        // CORREÇÃO: Removido espaços no final da URL
         const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacao', {
             method: 'POST',
             headers: {
@@ -48,7 +50,7 @@ export async function salvarEstacao(dadosEstacao) {
             const resultado = await resposta.json();
             atualizarStatus(`Estação "${dadosEstacao.nome}" salva com sucesso! ID: ${resultado.id}`);
             // Opcional: Atualizar a lista de estações após salvar
-            carregarEstacoes(); // Chama a função para recarregar
+            carregarEstacoes(); // Chama a função importada para recarregar
             // fecharModalEstacao(); // Se tu tiver uma função pra isso
         } else {
             const erro = await resposta.json();
