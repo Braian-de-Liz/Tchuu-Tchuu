@@ -23,6 +23,9 @@ import mostrarTREM from './routers/trens/mostrar_trem.js';
 
 // rotas de sensores
 import cadastroSensor from './routers/sensores/cadastrarSensor.js';
+import alterarSensor from './routers/sensores/alterarSensor.js';
+import deletarSensor from './routers/sensores/deletarSensor.js';
+import exibirSensor from './routers/sensores/exibirSensor.js';
 
 
 // rotas de rotas e estações
@@ -87,7 +90,7 @@ app.use('/api', cadastroSensor);
 // app.use('/api', Salvar_Rota);
 
 // app.use('/api', atualizar_estacao);
-// app.use('/api', obter_estacao);
+app.use('/api', obter_estacao);
 // app.use('/api', excluir_estacoes);
 app.use('/api', Salvar_estacoes);
 
