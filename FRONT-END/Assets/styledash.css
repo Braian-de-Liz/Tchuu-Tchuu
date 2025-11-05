@@ -248,3 +248,73 @@ body {
         padding: 50px;
     }
 }
+
+@media (max-width: 768px) {
+
+    body {
+        display: block;           /* permite rolagem */
+        height: auto;
+        background: #fff;
+        overflow-y: auto;         /* garante scroll */
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 999;
+    }
+
+    #container {
+        width: 95%;
+        max-width: 500px;
+        margin: 80px auto 100px auto; /* espaço p/ header e rodapé */
+        padding: 10px;
+        overflow: visible;          /* importante! permite rolar */
+    }
+
+    .informacoeslinha {
+        font-size: 16px;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .info-principal {
+        padding: 10px 5px;
+    }
+
+    .informacoes2 {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .tremimagem {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tremimagem img {
+        max-width: 100%;
+    }
+
+    .lista-horarios li {
+        font-size: 14px;
+    }
+
+    .alerta {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .btn-notificacoes {
+        padding: 10px;
+        font-size: 15px;
+    }
+}
