@@ -163,6 +163,18 @@ body {
     color: #555;
 }
 
+.colaboradores,
+.lista-colaboradores {
+    list-style: none;
+    padding-top: 5px;
+}
+
+.lista-colaboradores li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #555;
+}
+
 .alertas {
     display: flex;
     flex-direction: column;
@@ -218,6 +230,19 @@ body {
   color: white;
 
 }
+
+.chart-container {
+    background: linear-gradient(to right, #ffffff, #eeeeee);
+    padding: 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    margin-top: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.10);
+    width: 100%;
+}
+
 
 @keyframes expandir {
   from {
