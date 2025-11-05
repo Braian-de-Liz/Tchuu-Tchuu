@@ -13,6 +13,9 @@ router.delete('/usuarios', async (req, res) => {
             mensagem: 'CPF inválido. Deve conter 11 dígitos.'
         });
     }
+    else if (id == 1) {
+        return false;
+    }
 
     let db;
     try {
@@ -34,7 +37,7 @@ router.delete('/usuarios', async (req, res) => {
             mensagem: 'Usuário excluído com sucesso !'
         });
 
-    } 
+    }
     catch (erro) {
         console.error('Erro ao excluir usuário:', erro);
         res.status(500).json({
@@ -43,11 +46,11 @@ router.delete('/usuarios', async (req, res) => {
         });
 
     }
-    
+
     finally {
         if (db) db.end();
     }
-    
+
 });
 
 export default router;

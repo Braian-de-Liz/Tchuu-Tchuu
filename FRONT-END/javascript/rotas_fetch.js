@@ -1,650 +1,652 @@
-// Variáveis globais
-let map;
-let stations = [];
-let routes = [];
-let stationMarkers = [];
-let routeLines = [];
-let editMode = false;
-let selectedStation = null;
-let tempMarker = null;
-let creatingRoute = false;
-let currentRoute = [];
-let currentRouteLine = null;
-
-// Inicialização do mapa
-function initMap() {
-    // Coordenadas do centro do Brasil
-    const centerLat = -14.2350;
-    const centerLng = -51.9253;
-
-    // Criar o mapa
-    map = L.map('map').setView([centerLat, centerLng], 5);
-
-    // Adicionar camada do mapa
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Carregar dados do servidor
-    loadStations();
-    loadRoutes();
-
-    // Evento de clique no mapa
-    map.on('click', function (e) {
-        if (editMode && !tempMarker && !creatingRoute) {
-            createTempStation(e.latlng);
+        // Variáveis globais
+        let mapa;
+        let estacoes = [];
+        let rotas = [];
+        let marcadoresEstacoes = [];
+        let linhasRotas = [];
+        let modoEdicao = false;
+        let estacaoSelecionada = null;
+        let marcadorTemporario = null;
+        let criandoRota = false;
+        let rotaAtual = [];
+        let linhaRotaAtual = null;
+        
+        // Inicialização do mapa
+        function inicializarMapa() {
+            // Coordenadas do centro do Brasil
+            const centroLat = -14.2350;
+            const centroLng = -51.9253;
+            
+            // Criar o mapa
+            mapa = L.map('map').setView([centroLat, centroLng], 5);
+            
+            // Adicionar camada do mapa
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mapa);
+            
+            // Carregar dados do servidor
+            carregarEstacoes();
+            carregarRotas();
+            
+            // Evento de clique no mapa
+            mapa.on('click', function(e) {
+                if (modoEdicao && !marcadorTemporario && !criandoRota) {
+                    criarEstacaoTemporaria(e.latlng);
+                }
+            });
         }
-    });
-}
-
-// Carregar estações do servidor
-function loadStations() {
-    fetch('api.php?action=get_stations')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            stations = data;
-            renderStations();
-            updateStatus("Estações carregadas com sucesso");
-        })
-        .catch(error => {
-            console.error('Erro ao carregar estações:', error);
-            updateStatus("Erro ao carregar estações");
-        });
-}
-
-// Carregar rotas do servidor
-function loadRoutes() {
-    fetch('api.php?action=get_routes')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            routes = data;
-            renderRoutes();
-            updateStatus("Rotas carregadas com sucesso");
-        })
-        .catch(error => {
-            console.error('Erro ao carregar rotas:', error);
-            updateStatus("Erro ao carregar rotas");
-        });
-}
-
-// Criar estação temporária no mapa
-function createTempStation(latlng) {
-    tempMarker = L.marker(latlng, {
-        draggable: true,
-        icon: L.divIcon({
-            className: 'temp-marker',
-            html: '<div style="background-color: #3498db; width: 18px; height: 18px; border-radius: 50%; border: 3px solid white;"></div>',
-            iconSize: [24, 24]
-        })
-    }).addTo(map);
-
-    // Preencher coordenadas no formulário
-    document.getElementById('station-lat').value = latlng.lat.toFixed(6);
-    document.getElementById('station-lng').value = latlng.lng.toFixed(6);
-
-    // Abrir modal para adicionar estação
-    openStationModal();
-}
-
-// Renderizar estações no mapa e na lista
-function renderStations() {
-    // Limpar marcadores existentes
-    stationMarkers.forEach(marker => map.removeLayer(marker));
-    stationMarkers = [];
-
-    // Limpar lista de estações
-    const container = document.getElementById('stations-container');
-    container.innerHTML = '';
-
-    // Adicionar cada estação
-    stations.forEach(station => {
-        // Criar marcador no mapa
-        const marker = L.marker([station.latitude, station.longitude], {
-            draggable: editMode,
-            icon: L.divIcon({
-                className: 'station-marker',
-                html: '<div style="background-color: #e74c3c; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>',
-                iconSize: [26, 26]
-            })
-        }).addTo(map);
-
-        // Adicionar popup com informações
-        marker.bindPopup(`
+        
+        // Carregar estações do servidor
+        function carregarEstacoes() {
+            fetch('api.php?action=get_stations')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    estacoes = data;
+                    renderizarEstacoes();
+                    atualizarStatus("Estações carregadas com sucesso");
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar estações:', error);
+                    atualizarStatus("Erro ao carregar estações");
+                });
+        }
+        
+        // Carregar rotas do servidor
+        function carregarRotas() {
+            fetch('api.php?action=get_routes')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    rotas = data;
+                    renderizarRotas();
+                    atualizarStatus("Rotas carregadas com sucesso");
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar rotas:', error);
+                    atualizarStatus("Erro ao carregar rotas");
+                });
+        }
+        
+        // Criar estação temporária no mapa
+        function criarEstacaoTemporaria(latlng) {
+            marcadorTemporario = L.marker(latlng, {
+                draggable: true,
+                icon: L.divIcon({
+                    className: 'temp-marker',
+                    html: '<div style="background-color: #3498db; width: 18px; height: 18px; border-radius: 50%; border: 3px solid white;"></div>',
+                    iconSize: [24, 24]
+                })
+            }).addTo(mapa);
+            
+            // Preencher coordenadas no formulário
+            document.getElementById('station-lat').value = latlng.lat.toFixed(6);
+            document.getElementById('station-lng').value = latlng.lng.toFixed(6);
+            
+            // Abrir modal para adicionar estação
+            abrirModalEstacao();
+        }
+        
+        // Renderizar estações no mapa e na lista
+        function renderizarEstacoes() {
+            // Limpar marcadores existentes
+            marcadoresEstacoes.forEach(marker => mapa.removeLayer(marker));
+            marcadoresEstacoes = [];
+            
+            // Limpar lista de estações
+            const container = document.getElementById('stations-container');
+            container.innerHTML = '';
+            
+            // Adicionar cada estação
+            estacoes.forEach(estacao => {
+                // Criar marcador no mapa
+                const marker = L.marker([estacao.latitude, estacao.longitude], {
+                    draggable: modoEdicao,
+                    icon: L.divIcon({
+                        className: 'station-marker',
+                        html: '<div style="background-color: #e74c3c; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>',
+                        iconSize: [26, 26]
+                    })
+                }).addTo(mapa);
+                
+                // Adicionar popup com informações
+                marker.bindPopup(`
                     <div>
-                        <h3>${station.nome}</h3>
-                        <p>${station.endereco || 'Sem endereço'}</p>
-                        <button onclick="editStation(${station.id})" class="btn" style="margin-top: 10px;">Editar</button>
+                        <h3>${estacao.nome}</h3>
+                        <p>${estacao.endereco || 'Sem endereço'}</p>
+                        <button onclick="editarEstacao(${estacao.id})" class="btn" style="margin-top: 10px;">Editar</button>
                     </div>
                 `);
-
-        // Evento de arrastar (apenas no modo edição)
-        if (editMode) {
-            marker.on('dragend', function (e) {
-                const newLat = e.target.getLatLng().lat;
-                const newLng = e.target.getLatLng().lng;
-                updateStationPosition(station.id, newLat, newLng);
+                
+                // Evento de arrastar (apenas no modo edição)
+                if (modoEdicao) {
+                    marker.on('dragend', function(e) {
+                        const novaLat = e.target.getLatLng().lat;
+                        const novaLng = e.target.getLatLng().lng;
+                        atualizarPosicaoEstacao(estacao.id, novaLat, novaLng);
+                    });
+                }
+                
+                // Evento de clique
+                marker.on('click', function() {
+                    if (criandoRota) {
+                        adicionarEstacaoARota(estacao);
+                    } else if (modoEdicao) {
+                        selecionarEstacao(estacao.id);
+                    } else {
+                        mapa.setView([estacao.latitude, estacao.longitude], 10);
+                        marker.openPopup();
+                    }
+                });
+                
+                marcadoresEstacoes.push(marker);
+                
+                // Adicionar à lista lateral
+                const itemEstacao = document.createElement('div');
+                itemEstacao.className = 'station-item';
+                itemEstacao.innerHTML = `
+                    <strong>${estacao.nome}</strong>
+                    <div style="font-size: 12px; margin-top: 5px;">${estacao.endereco || ''}</div>
+                `;
+                itemEstacao.dataset.id = estacao.id;
+                
+                itemEstacao.addEventListener('click', function() {
+                    if (criandoRota) {
+                        adicionarEstacaoARota(estacao);
+                    } else if (modoEdicao) {
+                        selecionarEstacao(estacao.id);
+                    } else {
+                        mapa.setView([estacao.latitude, estacao.longitude], 10);
+                        marker.openPopup();
+                    }
+                });
+                
+                container.appendChild(itemEstacao);
             });
         }
-
-        // Evento de clique
-        marker.on('click', function () {
-            if (creatingRoute) {
-                addStationToRoute(station);
-            } else if (editMode) {
-                selectStation(station.id);
-            } else {
-                map.setView([station.latitude, station.longitude], 10);
-                marker.openPopup();
-            }
-        });
-
-        stationMarkers.push(marker);
-
-        // Adicionar à lista lateral
-        const stationItem = document.createElement('div');
-        stationItem.className = 'station-item';
-        stationItem.innerHTML = `
-                    <strong>${station.nome}</strong>
-                    <div style="font-size: 12px; margin-top: 5px;">${station.endereco || ''}</div>
-                `;
-        stationItem.dataset.id = station.id;
-
-        stationItem.addEventListener('click', function () {
-            if (creatingRoute) {
-                addStationToRoute(station);
-            } else if (editMode) {
-                selectStation(station.id);
-            } else {
-                map.setView([station.latitude, station.longitude], 10);
-                marker.openPopup();
-            }
-        });
-
-        container.appendChild(stationItem);
-    });
-}
-
-// Renderizar rotas no mapa
-function renderRoutes() {
-    // Limpar rotas existentes
-    routeLines.forEach(line => map.removeLayer(line));
-    routeLines = [];
-
-    // Limpar lista de rotas
-    const container = document.getElementById('routes-container');
-    container.innerHTML = '';
-
-    // Adicionar cada rota
-    routes.forEach(route => {
-        // Obter coordenadas das estações da rota
-        const coordinates = [];
-        route.estacoes.forEach(estacao => {
-            coordinates.push([estacao.latitude, estacao.longitude]);
-        });
-
-        if (coordinates.length > 1) {
-            // Criar linha da rota com estilo de trilho
-            const line = L.polyline(coordinates, {
-                color: '#333',
-                weight: 6,
-                opacity: 0.8,
-                dashArray: '10, 10'
-            }).addTo(map);
-
-            // Linha de sombra para efeito de trilho
-            const shadowLine = L.polyline(coordinates, {
-                color: '#e74c3c',
-                weight: 8,
-                opacity: 0.3
-            }).addTo(map);
-
-            // Adicionar popup com informações
-            line.bindPopup(`
+        
+        // Renderizar rotas no mapa
+        function renderizarRotas() {
+            // Limpar rotas existentes
+            linhasRotas.forEach(line => mapa.removeLayer(line));
+            linhasRotas = [];
+            
+            // Limpar lista de rotas
+            const container = document.getElementById('routes-container');
+            container.innerHTML = '';
+            
+            // Adicionar cada rota
+            rotas.forEach(rota => {
+                // Obter coordenadas das estações da rota
+                const coordenadas = [];
+                rota.estacoes.forEach(estacao => {
+                    coordenadas.push([estacao.latitude, estacao.longitude]);
+                });
+                
+                if (coordenadas.length > 1) {
+                    // Criar linha da rota com estilo de trilho
+                    const linha = L.polyline(coordenadas, {
+                        color: '#333',
+                        weight: 6,
+                        opacity: 0.8,
+                        dashArray: '10, 10'
+                    }).addTo(mapa);
+                    
+                    // Linha de sombra para efeito de trilho
+                    const linhaSombra = L.polyline(coordenadas, {
+                        color: '#e74c3c',
+                        weight: 8,
+                        opacity: 0.3
+                    }).addTo(mapa);
+                    
+                    // Adicionar popup com informações
+                    linha.bindPopup(`
                         <div>
-                            <h3>${route.nome}</h3>
-                            <p>Distância: ${route.distancia_km} km</p>
-                            <p>Tempo estimado: ${route.tempo_estimado_min} min</p>
-                            <p>Estações: ${route.estacoes.length}</p>
-                            <button onclick="deleteRoute(${route.id})" class="btn btn-danger" style="margin-top: 10px;">Excluir Rota</button>
+                            <h3>${rota.nome}</h3>
+                            <p>Distância: ${rota.distancia_km} km</p>
+                            <p>Tempo estimado: ${rota.tempo_estimado_min} min</p>
+                            <p>Estações: ${rota.estacoes.length}</p>
+                            <button onclick="excluirRota(${rota.id})" class="btn btn-danger" style="margin-top: 10px;">Excluir Rota</button>
                         </div>
                     `);
-
-            routeLines.push(line);
-            routeLines.push(shadowLine);
-
-            // Adicionar à lista lateral
-            const routeItem = document.createElement('div');
-            routeItem.className = 'route-item';
-            routeItem.innerHTML = `
-                        <strong>${route.nome}</strong>
+                    
+                    linhasRotas.push(linha);
+                    linhasRotas.push(linhaSombra);
+                    
+                    // Adicionar à lista lateral
+                    const itemRota = document.createElement('div');
+                    itemRota.className = 'route-item';
+                    itemRota.innerHTML = `
+                        <strong>${rota.nome}</strong>
                         <div style="font-size: 12px; margin-top: 5px;">
-                            Distância: ${route.distancia_km} km | 
-                            Tempo: ${Math.floor(route.tempo_estimado_min / 60)}h ${route.tempo_estimado_min % 60}min
+                            Distância: ${rota.distancia_km} km | 
+                            Tempo: ${Math.floor(rota.tempo_estimado_min / 60)}h ${rota.tempo_estimado_min % 60}min
                         </div>
                         <div style="font-size: 11px; margin-top: 3px;">
-                            ${route.estacoes.length} estações
+                            ${rota.estacoes.length} estações
                         </div>
                     `;
-
-            routeItem.addEventListener('click', function () {
-                if (coordinates.length > 0) {
-                    map.fitBounds(coordinates);
+                    
+                    itemRota.addEventListener('click', function() {
+                        if (coordenadas.length > 0) {
+                            mapa.fitBounds(coordenadas);
+                        }
+                    });
+                    
+                    container.appendChild(itemRota);
                 }
             });
-
-            container.appendChild(routeItem);
         }
-    });
-}
-
-// Alternar modo de edição
-function toggleEditMode() {
-    editMode = !editMode;
-
-    const indicator = document.getElementById('mode-indicator');
-    const btn = document.getElementById('btn-edit-mode');
-
-    if (editMode) {
-        indicator.textContent = 'Modo Edição';
-        indicator.style.backgroundColor = '#e74c3c';
-        btn.innerHTML = '<i class="fas fa-eye"></i> Visualizar';
-        updateStatus("Modo edição ativado - Você pode mover estações");
-    } else {
-        indicator.textContent = 'Modo Visualização';
-        indicator.style.backgroundColor = '#f39c12';
-        btn.innerHTML = '<i class="fas fa-edit"></i> Editar';
-        updateStatus("Modo visualização ativado");
-    }
-
-    renderStations();
-}
-
-// Iniciar criação de rota
-function startRouteCreation() {
-    creatingRoute = true;
-    currentRoute = [];
-
-    document.getElementById('route-creator').style.display = 'block';
-    updateStatus("Criando nova rota - Clique nas estações para adicioná-las à rota");
-    map.getContainer().style.cursor = 'crosshair';
-}
-
-// Finalizar criação de rota
-function finishRouteCreation() {
-    const routeName = document.getElementById('route-name').value || `Rota ${routes.length + 1}`;
-
-    if (currentRoute.length < 2) {
-        alert('Uma rota precisa ter pelo menos duas estações');
-        return;
-    }
-
-    // Preparar dados para envio
-    const data = {
-        nome: routeName,
-        estacoes: JSON.stringify(currentRoute.map(station => station.id))
-    };
-
-    // Enviar para o servidor
-    fetch('api.php?action=save_route', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                cancelRouteCreation();
-                loadRoutes();
-                updateStatus(`Rota "${routeName}" criada com sucesso`);
+        
+        // Alternar modo de edição
+        function alternarModoEdicao() {
+            modoEdicao = !modoEdicao;
+            
+            const indicador = document.getElementById('mode-indicator');
+            const botao = document.getElementById('btn-edit-mode');
+            
+            if (modoEdicao) {
+                indicador.textContent = 'Modo Edição';
+                indicador.style.backgroundColor = '#e74c3c';
+                botao.innerHTML = '<i class="fas fa-eye"></i> Visualizar';
+                atualizarStatus("Modo edição ativado - Você pode mover estações");
             } else {
-                alert('Erro ao salvar rota: ' + data.message);
+                indicador.textContent = 'Modo Visualização';
+                indicador.style.backgroundColor = '#f39c12';
+                botao.innerHTML = '<i class="fas fa-edit"></i> Editar';
+                atualizarStatus("Modo visualização ativado");
             }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao salvar rota: ' + error.message);
-        });
-}
-
-// Cancelar criação de rota
-function cancelRouteCreation() {
-    creatingRoute = false;
-    currentRoute = [];
-
-    document.getElementById('route-creator').style.display = 'none';
-    map.getContainer().style.cursor = '';
-
-    if (currentRouteLine) {
-        map.removeLayer(currentRouteLine);
-        currentRouteLine = null;
-    }
-
-    updateStatus("Criação de rota cancelada");
-}
-
-// Adicionar estação à rota em criação
-function addStationToRoute(station) {
-    if (currentRoute.some(s => s.id === station.id)) {
-        updateStatus("Esta estação já está na rota");
-        return;
-    }
-
-    currentRoute.push(station);
-    updateRouteStationsList();
-    updateTempRouteLine();
-    updateStatus(`Estação "${station.nome}" adicionada à rota`);
-}
-
-// Atualizar lista de estações na rota em criação
-function updateRouteStationsList() {
-    const container = document.getElementById('route-stations-list');
-    container.innerHTML = '';
-
-    currentRoute.forEach((station, index) => {
-        const stationItem = document.createElement('div');
-        stationItem.style.padding = '5px';
-        stationItem.style.borderBottom = '1px solid #eee';
-        stationItem.innerHTML = `${index + 1}. ${station.nome}`;
-        container.appendChild(stationItem);
-    });
-}
-
-// Atualizar linha temporária da rota em criação
-function updateTempRouteLine() {
-    if (currentRouteLine) {
-        map.removeLayer(currentRouteLine);
-    }
-
-    if (currentRoute.length > 1) {
-        const coordinates = currentRoute.map(station => [station.latitude, station.longitude]);
-
-        currentRouteLine = L.polyline(coordinates, {
-            color: '#3498db',
-            weight: 4,
-            opacity: 0.7,
-            dashArray: '5, 5'
-        }).addTo(map);
-    }
-}
-
-// Selecionar estação
-function selectStation(stationId) {
-    document.querySelectorAll('.station-item').forEach(item => {
-        item.classList.remove('active');
-    });
-
-    selectedStation = stationId;
-
-    if (stationId) {
-        const stationItem = document.querySelector(`.station-item[data-id="${stationId}"]`);
-        if (stationItem) {
-            stationItem.classList.add('active');
+            
+            renderizarEstacoes();
         }
-    }
-}
-
-// Abrir modal de estação
-function openStationModal(stationId = null) {
-    const modal = document.getElementById('station-modal');
-    const title = document.getElementById('modal-title');
-    const form = document.getElementById('station-form');
-    const deleteBtn = document.getElementById('btn-delete-station');
-
-    if (stationId) {
-        title.innerHTML = '<i class="fas fa-train-station"></i> Editar Estação';
-        const station = stations.find(s => s.id == stationId);
-
-        if (station) {
-            document.getElementById('station-id').value = station.id;
-            document.getElementById('station-name').value = station.nome;
-            document.getElementById('station-address').value = station.endereco || '';
-            document.getElementById('station-lat').value = station.latitude;
-            document.getElementById('station-lng').value = station.longitude;
+        
+        // Iniciar criação de rota
+        function iniciarCriacaoRota() {
+            criandoRota = true;
+            rotaAtual = [];
+            
+            document.getElementById('route-creator').style.display = 'block';
+            atualizarStatus("Criando nova rota - Clique nas estações para adicioná-las à rota");
+            mapa.getContainer().style.cursor = 'crosshair';
         }
-
-        deleteBtn.style.display = 'inline-block';
-    } else {
-        title.innerHTML = '<i class="fas fa-train-station"></i> Adicionar Estação';
-        form.reset();
-        document.getElementById('station-id').value = '';
-        deleteBtn.style.display = 'none';
-
-        if (!document.getElementById('station-lat').value) {
-            const center = map.getCenter();
-            document.getElementById('station-lat').value = center.lat.toFixed(6);
-            document.getElementById('station-lng').value = center.lng.toFixed(6);
+        
+        // Finalizar criação de rota
+        function finalizarCriacaoRota() {
+            const nomeRota = document.getElementById('route-name').value || `Rota ${rotas.length + 1}`;
+            
+            if (rotaAtual.length < 2) {
+                alert('Uma rota precisa ter pelo menos duas estações');
+                return;
+            }
+            
+            // Preparar dados para envio
+            const dados = {
+                nome: nomeRota,
+                estacoes: JSON.stringify(rotaAtual.map(estacao => estacao.id))
+            };
+            
+            // Enviar para o servidor
+            fetch('api.php?action=save_route', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    cancelarCriacaoRota();
+                    carregarRotas();
+                    atualizarStatus(`Rota "${nomeRota}" criada com sucesso`);
+                } else {
+                    alert('Erro ao salvar rota: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao salvar rota: ' + error.message);
+            });
         }
-    }
-
-    modal.style.display = 'flex';
-}
-
-// Editar estação
-function editStation(stationId) {
-    openStationModal(stationId);
-}
-
-// Fechar modais
-function closeModals() {
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.style.display = 'none';
-    });
-
-    if (tempMarker) {
-        map.removeLayer(tempMarker);
-        tempMarker = null;
-    }
-}
-
-// Salvar estação
-function saveStation(event) {
-    event.preventDefault();
-
-    const data = {
-        id: document.getElementById('station-id').value,
-        nome: document.getElementById('station-name').value,
-        endereco: document.getElementById('station-address').value,
-        latitude: document.getElementById('station-lat').value,
-        longitude: document.getElementById('station-lng').value
-    };
-
-    fetch('api.php?action=save_station', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
+        
+        // Cancelar criação de rota
+        function cancelarCriacaoRota() {
+            criandoRota = false;
+            rotaAtual = [];
+            
+            document.getElementById('route-creator').style.display = 'none';
+            mapa.getContainer().style.cursor = '';
+            
+            if (linhaRotaAtual) {
+                mapa.removeLayer(linhaRotaAtual);
+                linhaRotaAtual = null;
             }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                closeModals();
-                loadStations();
-                updateStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
-            } else {
-                alert('Erro ao salvar estação: ' + data.message);
+            
+            atualizarStatus("Criação de rota cancelada");
+        }
+        
+        // Adicionar estação à rota em criação
+        function adicionarEstacaoARota(estacao) {
+            if (rotaAtual.some(s => s.id === estacao.id)) {
+                atualizarStatus("Esta estação já está na rota");
+                return;
             }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao salvar estação: ' + error.message);
-        });
-}
-
-// Excluir estação
-function deleteStation() {
-    const stationId = document.getElementById('station-id').value;
-
-    if (!stationId || !confirm('Tem certeza que deseja excluir esta estação?')) {
-        return;
-    }
-
-    const data = {
-        id: stationId
-    };
-
-    fetch('api.php?action=delete_station', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
+            
+            rotaAtual.push(estacao);
+            atualizarListaEstacoesRota();
+            atualizarLinhaRotaTemporaria();
+            atualizarStatus(`Estação "${estacao.nome}" adicionada à rota`);
+        }
+        
+        // Atualizar lista de estações na rota em criação
+        function atualizarListaEstacoesRota() {
+            const container = document.getElementById('route-stations-list');
+            container.innerHTML = '';
+            
+            rotaAtual.forEach((estacao, index) => {
+                const itemEstacao = document.createElement('div');
+                itemEstacao.style.padding = '5px';
+                itemEstacao.style.borderBottom = '1px solid #eee';
+                itemEstacao.innerHTML = `${index + 1}. ${estacao.nome}`;
+                container.appendChild(itemEstacao);
+            });
+        }
+        
+        // Atualizar linha temporária da rota em criação
+        function atualizarLinhaRotaTemporaria() {
+            if (linhaRotaAtual) {
+                mapa.removeLayer(linhaRotaAtual);
             }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                closeModals();
-                loadStations();
-                updateStatus("Estação excluída com sucesso");
-            } else {
-                alert('Erro ao excluir estação: ' + data.message);
+            
+            if (rotaAtual.length > 1) {
+                const coordenadas = rotaAtual.map(estacao => [estacao.latitude, estacao.longitude]);
+                
+                linhaRotaAtual = L.polyline(coordenadas, {
+                    color: '#3498db',
+                    weight: 4,
+                    opacity: 0.7,
+                    dashArray: '5, 5'
+                }).addTo(mapa);
             }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao excluir estação: ' + error.message);
-        });
-}
-
-// Excluir rota
-function deleteRoute(routeId) {
-    if (!confirm('Tem certeza que deseja excluir esta rota?')) {
-        return;
-    }
-
-    const data = {
-        id: routeId
-    };
-
-    fetch('api.php?action=delete_route', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                loadRoutes();
-                updateStatus("Rota excluída com sucesso");
-            } else {
-                alert('Erro ao excluir rota: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao excluir rota: ' + error.message);
-        });
-}
-
-// Atualizar posição da estação
-function updateStationPosition(stationId, lat, lng) {
-    const data = {
-        id: stationId,
-        latitude: lat,
-        longitude: lng
-    };
-
-    fetch('api.php?action=update_station_position', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                const station = stations.find(s => s.id == stationId);
-                if (station) {
-                    updateStatus(`Posição da estação "${station.nome}" atualizada`);
+        }
+        
+        // Selecionar estação
+        function selecionarEstacao(idEstacao) {
+            document.querySelectorAll('.station-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            estacaoSelecionada = idEstacao;
+            
+            if (idEstacao) {
+                const itemEstacao = document.querySelector(`.station-item[data-id="${idEstacao}"]`);
+                if (itemEstacao) {
+                    itemEstacao.classList.add('active');
                 }
             }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
-}
-
-// Atualizar mensagem de status
-function updateStatus(message) {
-    document.getElementById('status-message').textContent = message;
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function () {
-    // Inicializar mapa
-    initMap();
-
-    // Botões
-    document.getElementById('btn-add-station').addEventListener('click', function () {
-        openStationModal();
-    });
-
-    document.getElementById('btn-start-route').addEventListener('click', startRouteCreation);
-    document.getElementById('btn-finish-route').addEventListener('click', finishRouteCreation);
-    document.getElementById('btn-cancel-route').addEventListener('click', cancelRouteCreation);
-
-    document.getElementById('btn-edit-mode').addEventListener('click', toggleEditMode);
-
-    document.getElementById('btn-save').addEventListener('click', function () {
-        // Recarregar dados do servidor
-        loadStations();
-        loadRoutes();
-        updateStatus("Dados atualizados do servidor");
-    });
-
-    // Fechar modais
-    document.querySelectorAll('.close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', closeModals);
-    });
-
-    // Formulários
-    document.getElementById('station-form').addEventListener('submit', saveStation);
-    document.getElementById('btn-delete-station').addEventListener('click', deleteStation);
-
-    // Fechar modal ao clicar fora
-    window.addEventListener('click', function (event) {
-        if (event.target.classList.contains('modal')) {
-            closeModals();
         }
-    });
-});
+        
+        // Abrir modal de estação
+        function abrirModalEstacao(idEstacao = null) {
+            const modal = document.getElementById('station-modal');
+            const titulo = document.getElementById('modal-title');
+            const formulario = document.getElementById('station-form');
+            const botaoExcluir = document.getElementById('btn-delete-station');
+            
+            if (idEstacao) {
+                titulo.innerHTML = '<i class="fas fa-train-station"></i> Editar Estação';
+                const estacao = estacoes.find(s => s.id == idEstacao);
+                
+                if (estacao) {
+                    document.getElementById('station-id').value = estacao.id;
+                    document.getElementById('station-name').value = estacao.nome;
+                    document.getElementById('station-address').value = estacao.endereco || '';
+                    document.getElementById('station-lat').value = estacao.latitude;
+                    document.getElementById('station-lng').value = estacao.longitude;
+                }
+                
+                botaoExcluir.style.display = 'inline-block';
+            } else {
+                titulo.innerHTML = '<i class="fas fa-train-station"></i> Adicionar Estação';
+                formulario.reset();
+                document.getElementById('station-id').value = '';
+                botaoExcluir.style.display = 'none';
+                
+                if (!document.getElementById('station-lat').value) {
+                    const centro = mapa.getCenter();
+                    document.getElementById('station-lat').value = centro.lat.toFixed(6);
+                    document.getElementById('station-lng').value = centro.lng.toFixed(6);
+                }
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Editar estação
+        function editarEstacao(idEstacao) {
+            abrirModalEstacao(idEstacao);
+        }
+        
+        // Fechar modais
+        function fecharModais() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            
+            if (marcadorTemporario) {
+                mapa.removeLayer(marcadorTemporario);
+                marcadorTemporario = null;
+            }
+        }
+        
+        // Salvar estação
+        function salvarEstacao(evento) {
+            evento.preventDefault();
+            
+            const dados = {
+                id: document.getElementById('station-id').value,
+                nome: document.getElementById('station-name').value,
+                endereco: document.getElementById('station-address').value,
+                latitude: document.getElementById('station-lat').value,
+                longitude: document.getElementById('station-lng').value
+            };
+            
+            fetch('api.php?action=save_station', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    fecharModais();
+                    carregarEstacoes();
+                    atualizarStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
+                } else {
+                    alert('Erro ao salvar estação: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao salvar estação: ' + error.message);
+            });
+        }
+        
+        // Excluir estação
+        function excluirEstacao() {
+            const idEstacao = document.getElementById('station-id').value;
+            const id = localStorage.getItem("usuario_id");
+            
+            if (!idEstacao || !confirm('Tem certeza que deseja excluir esta estação?')) {
+                return;
+            }
+            
+            const dados = {
+                id_estacao: idEstacao,
+                id_usuario: id
+            };
+            
+            fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacoes', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    fecharModais();
+                    carregarEstacoes();
+                    atualizarStatus("Estação excluída com sucesso");
+                } else {
+                    alert('Erro ao excluir estação: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao excluir estação: ' + error.message);
+            });
+        }
+        
+        // Excluir rota
+        function excluirRota(idRota) {
+            if (!confirm('Tem certeza que deseja excluir esta rota?')) {
+                return;
+            }
+            
+            const dados = {
+                id: idRota
+            };
+            
+            fetch('api.php?action=delete_route', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    carregarRotas();
+                    atualizarStatus("Rota excluída com sucesso");
+                } else {
+                    alert('Erro ao excluir rota: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao excluir rota: ' + error.message);
+            });
+        }
+        
+        // Atualizar posição da estação
+        function atualizarPosicaoEstacao(idEstacao, lat, lng) {
+            const dados = {
+                id: idEstacao,
+                latitude: lat,
+                longitude: lng
+            };
+            
+            fetch('api.php?action=update_station_position', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta do servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    const estacao = estacoes.find(s => s.id == idEstacao);
+                    if (estacao) {
+                        atualizarStatus(`Posição da estação "${estacao.nome}" atualizada`);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        }
+        
+        // Atualizar mensagem de status
+        function atualizarStatus(mensagem) {
+            document.getElementById('status-message').textContent = mensagem;
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar mapa
+            inicializarMapa();
+            
+            // Botões
+            document.getElementById('btn-add-station').addEventListener('click', function() {
+                abrirModalEstacao();
+            });
+            
+            document.getElementById('btn-start-route').addEventListener('click', iniciarCriacaoRota);
+            document.getElementById('btn-finish-route').addEventListener('click', finalizarCriacaoRota);
+            document.getElementById('btn-cancel-route').addEventListener('click', cancelarCriacaoRota);
+            
+            document.getElementById('btn-edit-mode').addEventListener('click', alternarModoEdicao);
+            
+            document.getElementById('btn-save').addEventListener('click', function() {
+                // Recarregar dados do servidor
+                carregarEstacoes();
+                carregarRotas();
+                atualizarStatus("Dados atualizados do servidor");
+            });
+            
+            // Fechar modais
+            document.querySelectorAll('.close').forEach(botaoFechar => {
+                botaoFechar.addEventListener('click', fecharModais);
+            });
+            
+            // Formulários
+            document.getElementById('station-form').addEventListener('submit', salvarEstacao);
+            document.getElementById('btn-delete-station').addEventListener('click', excluirEstacao);
+            
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(evento) {
+                if (evento.target.classList.contains('modal')) {
+                    fecharModais();
+                }
+            });
+        });
