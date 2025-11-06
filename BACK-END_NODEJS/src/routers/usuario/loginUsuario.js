@@ -80,7 +80,8 @@ router.post('/usu_login', async (req, res) => {
             usuario: {
                 id: usuario.id,
                 email: usuario.email,
-                nome: usuario.nome
+                nome: usuario.nome,
+                cpf: usuario.cpf
             }
         });
 
