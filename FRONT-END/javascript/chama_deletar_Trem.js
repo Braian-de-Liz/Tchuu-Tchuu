@@ -16,7 +16,7 @@ async function delete_trem() {
     try {
         const nova_request = new dados_delete_trem(usuario_cpf, nome_trem);
 
-        const conexao = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/trens", {
+        const conexao = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/trem", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
