@@ -8,6 +8,7 @@ export function getUsuarioLogado() {
         id: localStorage.getItem('usuarioId'),
         email: localStorage.getItem('usuarioEmail'),
         nome: localStorage.getItem('usuarioNome'),
+        cpf: localStorage.getItem(''),
         registroFun: localStorage.getItem('registroFun')
     }
 }
