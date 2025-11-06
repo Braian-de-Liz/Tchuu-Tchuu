@@ -1,4 +1,4 @@
-
+// FRONT-END\javascript\validaLogin.js
 const checkzim = document.getElementById("check");
 const senhaInput = document.getElementById('senha');
 // let ver = false;
@@ -42,14 +42,22 @@ async function ValidaLogin(event) {
         return false;
     }
 
+    class dados_para_logar {
+        constructor(email, senha) {
+            this.email = email;
+            this.senha = senha
+        }
+    }
+
     try {
+        const tentar_logar = new dados_para_logar(email, senha);
 
         const resposta = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/usu_login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify({ email, senha })
+            body: JSON.stringify(tentar_logar)
         });
 
         if (!resposta.ok) {
@@ -60,6 +68,7 @@ async function ValidaLogin(event) {
         const data = await resposta.json();
 
         localStorage.setItem('token', data.token);
+        localStorage.setItem('usuario_cpf', data.usuario.cpf);
         localStorage.setItem('usuarioId', data.usuario.id);
         localStorage.setItem('usuarioEmail', data.usuario.email);
         localStorage.setItem('usuarioNome', data.usuario.nome);
@@ -75,6 +84,4 @@ async function ValidaLogin(event) {
     }
 
 
-
-    // return true;
-}
+};
