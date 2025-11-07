@@ -6,7 +6,6 @@ const router = Router();
 
 router.patch("/usuario", async (req, res) => {
 
-    // const { id_user } = req.params;
     const { email, senha, id } = req.body;
 
     if (!id) {

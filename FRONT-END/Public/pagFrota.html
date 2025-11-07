@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../Assets/menulateral.css">
     <link rel="stylesheet" href="../Assets/fot.css">
     <link rel="stylesheet" href="../Assets/Frota.css">
+    <link rel="stylesheet" href="../Assets/Manutencao.css">
     <script async type="module" src="../javascript/autenticacao.js"></script>
     <title>Frota TCHUU-TCHUU</title>
 </head>
@@ -53,13 +54,65 @@
             <!-- Gerado com javascript, os trens que você cadastrou irão aparecer -->
         </section>
 
-        <br>
 
+        <section class="info-principal">
+
+            <div class="informacoes2">
+                <div class="informacoes2tl">
+                    <h2>Trens para Manutenção</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="informacoeslinha">
+            <h3>Estado dos Trens</h3>
+        </section>
+
+
+        <section id="trens_manutencao">
+
+            <div class="item">
+                🚆 <span>Pronto</span>
+                <div class="menu-mini">≡</div>
+
+
+                <div class="conteudo-expansivel">
+                    <ul>
+                        <li>Motor: Ok</li>
+                        <li>Rodas: Em revisão</li>
+                        <li>Status: Pronto</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+
+
+
+
+
+
+        <div class="deletar_trem" style="display: none;">
+            
+            <form>
+                <label>nome do trem</label>
+                <input type="text" id="nome_de_trem">
+            </form>
+            <button class="deletar_certeza"></button>
+        </div>
 
 
 
         <div>
-            <a Id="Voltar" href="pagMonitora.html">Voltar</a>
+            <div>
+                <a Id="Voltar" href="pagMonitora.html">Voltar</a>
+            </div>
+
+            <div>
+                <button id="deletar_tren"></button>
+            </div>
         </div>
 
 
@@ -76,6 +129,7 @@
     <script src="../javascript/render_menu.js"></script>
     <script src="../javascript/mostrar_dados_trens.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
+    <script src="../javascript/containerdemanutenção.js"></script>
 
 </body>
 

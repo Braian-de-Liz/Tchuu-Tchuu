@@ -1,4 +1,4 @@
-import e, { Router } from "express";
+import { Router } from "express";
 import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
@@ -7,12 +7,14 @@ const router = Router();
 
 router.delete("/trem", async (req, res) => {
 
-    const { cpf_user } = req.params;
+    const { cpf_user, nome_trem } = req.body;
 
-    if (!cpf_user || cpf_user !== 11) {
+
+
+    if (!nome_trem || !cpf_user || cpf_user !== 11) {
         return res.status(400).json({
             status: 'erro',
-            mensagem: 'CPF inválido. Deve conter 11 dígitos.'
+            mensagem: 'CPF inválido. Deve conter 11 dígitos, ou nome não preenchido'
         });
 
     }
@@ -23,7 +25,7 @@ router.delete("/trem", async (req, res) => {
     try {
 
         db = await conectar();
-        const consulta = await db.query("DELETE FROM trens WHERE cpf_user = $1", [cpf_user]);
+        const consulta = await db.query("DELETE FROM trens WHERE cpf_user, nome_trem = $1, $2", [cpf_user, nome_trem]);
 
         if (consulta.rowCount === 0) {
             return res.status(404).json({

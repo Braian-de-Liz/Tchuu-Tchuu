@@ -1,11 +1,12 @@
 // BACK-END_NODEJS\src\routers\rotas_e_estacoes\excluirEstacao.js
 import { Router } from "express";
+import jwt from 'jsonwebtoken';
 import { conectar } from "../../databases/conectar_banco.js";
 
 
 const router = Router();
 
-router.delete("/estacoes:id", async (req, res) => {
+router.delete("/estacoes/:id", async (req, res) => {
     const { id } = req.params;
 
     if (!id || isNaN(parseInt(id))) {
@@ -34,7 +35,7 @@ router.delete("/estacoes:id", async (req, res) => {
     try {
 
         const achar_user = jwt.verify(token, process.env.JWT_SECRET);
-        idUsuarioLogado = decoded.id;
+        idUsuarioLogado = achar_user.id;
 
         if (!idUsuarioLogado) {
             return res.status(401).json({

@@ -36,7 +36,7 @@ router.post('/usu_login', async (req, res) => {
         console.log("Iniciando consulta ao banco de dados, para encontrar o usuário");
         // const resultado = await db.query('SELECT id, email, nome, senha FROM usuarios WHERE email = $1', [email]);
         const resultado = await db.query(
-            'SELECT id, email, nome, senha FROM usuarios WHERE email = $1',
+            'SELECT id, email, nome, senha, cpf FROM usuarios WHERE email = $1',
             [email]
         );
 
@@ -64,12 +64,13 @@ router.post('/usu_login', async (req, res) => {
 
         const token = jwt.sign(
             {
-                id: usuario.id,
-                email: usuario.email,
-                nome: usuario.nome
+                id: usuario.id,    
+                email: usuario.email, 
+                nome: usuario.nome,   
+                cpf: usuario.cpf      
             },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
+            process.env.JWT_SECRET, 
+            { expiresIn: '24h' }    
         );
 
 
@@ -80,7 +81,8 @@ router.post('/usu_login', async (req, res) => {
             usuario: {
                 id: usuario.id,
                 email: usuario.email,
-                nome: usuario.nome
+                nome: usuario.nome,
+                cpf: usuario.cpf
             }
         });
 
