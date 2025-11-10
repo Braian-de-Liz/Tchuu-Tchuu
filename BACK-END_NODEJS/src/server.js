@@ -87,7 +87,7 @@ app.use('/api', cadastroSensor);
 // app.use('/api', atualizar_Rota);
 // app.use('/api', obter_Rotas);
 // app.use('/api', excluir_Rota);
-// app.use('/api', Salvar_Rota);
+app.use('/api', Salvar_Rota);
 
 app.use('/api', atualizar_estacao);
 app.use('/api', obter_estacao);
