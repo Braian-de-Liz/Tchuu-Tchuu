@@ -1,3 +1,5 @@
+// FRONT-END/javascript/rotas_fetch.js (ou o nome do teu arquivo)
+
 // Variáveis globais
 let mapa;
 let estacoes = [];
@@ -25,7 +27,7 @@ function inicializarMapa() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
 
-    // Carregar dados do servidor
+    // Carregar dados do servidor Node.js
     carregarEstacoes();
     carregarRotas();
 
@@ -37,47 +39,79 @@ function inicializarMapa() {
     });
 }
 
-// Carregar estações do servidor
-function carregarEstacoes() {
-    fetch('api.php?action=get_stations')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
+// Carregar estações do servidor Node.js
+async function carregarEstacoes() {
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
+
+    if (!token) {
+        console.error("Token não encontrado. Você não está logado?");
+        atualizarStatus("Erro: Você não está logado.");
+        // Talvez redirecione para a página de login
+        // window.location.href = '../index.html';
+        return;
+    }
+
+    try {
+        // CORREÇÃO: URL da API Node.js + envio do token
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacoes', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
             }
-            return response.json();
-        })
-        .then(data => {
-            estacoes = data;
-            renderizarEstacoes();
-            atualizarStatus("Estações carregadas com sucesso");
-        })
-        .catch(error => {
-            console.error('Erro ao carregar estações:', error);
-            atualizarStatus("Erro ao carregar estações");
         });
+
+        if (!resposta.ok) {
+            throw new Error(`Erro na API de estações: ${resposta.status} - ${resposta.statusText}`);
+        }
+
+        const data = await resposta.json();
+        estacoes = data; // Atualiza a lista local de estações
+        renderizarEstacoes();
+        atualizarStatus("Estações carregadas com sucesso");
+
+    } catch (error) {
+        console.error('Erro ao carregar estações:', error);
+        atualizarStatus("Erro ao carregar estações do servidor.");
+    }
 }
 
-// Carregar rotas do servidor
-function carregarRotas() {
+// Carregar rotas do servidor Node.js
+async function carregarRotas() {
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
 
+    if (!token) {
+        console.error("Token não encontrado. Você não está logado?");
+        atualizarStatus("Erro: Você não está logado.");
+        // window.location.href = '../index.html';
+        return;
+    }
 
+    try {
+        // CORREÇÃO: URL da API Node.js + envio do token
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/rotas', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
+            }
+        });
 
-    /*             fetch('api.php?action=get_routes')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erro na resposta do servidor');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        rotas = data;
-                        renderizarRotas();
-                        atualizarStatus("Rotas carregadas com sucesso");
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar rotas:', error);
-                        atualizarStatus("Erro ao carregar rotas");
-                    }); */
+        if (!resposta.ok) {
+            throw new Error(`Erro na API de rotas: ${resposta.status} - ${resposta.statusText}`);
+        }
+
+        const data = await resposta.json();
+        rotas = data; // Atualiza a lista local de rotas
+        renderizarRotas();
+        atualizarStatus("Rotas carregadas com sucesso");
+
+    } catch (error) {
+        console.error('Erro ao carregar rotas:', error);
+        atualizarStatus("Erro ao carregar rotas do servidor.");
+    }
 }
 
 // Criar estação temporária no mapa
@@ -107,7 +141,9 @@ function renderizarEstacoes() {
 
     // Limpar lista de estações
     const container = document.getElementById('stations-container');
-    container.innerHTML = '';
+    if (container) { // Verifica se o container existe antes de limpar
+        container.innerHTML = '';
+    }
 
     // Adicionar cada estação
     estacoes.forEach(estacao => {
@@ -154,26 +190,28 @@ function renderizarEstacoes() {
         marcadoresEstacoes.push(marker);
 
         // Adicionar à lista lateral
-        const itemEstacao = document.createElement('div');
-        itemEstacao.className = 'station-item';
-        itemEstacao.innerHTML = `
+        if (container) { // Verifica se o container existe antes de adicionar
+             const itemEstacao = document.createElement('div');
+            itemEstacao.className = 'station-item';
+            itemEstacao.innerHTML = `
                     <strong>${estacao.nome}</strong>
                     <div style="font-size: 12px; margin-top: 5px;">${estacao.endereco || ''}</div>
                 `;
-        itemEstacao.dataset.id = estacao.id;
+            itemEstacao.dataset.id = estacao.id;
 
-        itemEstacao.addEventListener('click', function () {
-            if (criandoRota) {
-                adicionarEstacaoARota(estacao);
-            } else if (modoEdicao) {
-                selecionarEstacao(estacao.id);
-            } else {
-                mapa.setView([estacao.latitude, estacao.longitude], 10);
-                marker.openPopup();
-            }
-        });
+            itemEstacao.addEventListener('click', function () {
+                if (criandoRota) {
+                    adicionarEstacaoARota(estacao);
+                } else if (modoEdicao) {
+                    selecionarEstacao(estacao.id);
+                } else {
+                    mapa.setView([estacao.latitude, estacao.longitude], 10);
+                    marker.openPopup();
+                }
+            });
 
-        container.appendChild(itemEstacao);
+            container.appendChild(itemEstacao);
+        }
     });
 }
 
@@ -185,7 +223,9 @@ function renderizarRotas() {
 
     // Limpar lista de rotas
     const container = document.getElementById('routes-container');
-    container.innerHTML = '';
+    if (container) { // Verifica se o container existe antes de limpar
+        container.innerHTML = '';
+    }
 
     // Adicionar cada rota
     rotas.forEach(rota => {
@@ -226,9 +266,10 @@ function renderizarRotas() {
             linhasRotas.push(linhaSombra);
 
             // Adicionar à lista lateral
-            const itemRota = document.createElement('div');
-            itemRota.className = 'route-item';
-            itemRota.innerHTML = `
+            if (container) { // Verifica se o container existe antes de adicionar
+                 const itemRota = document.createElement('div');
+                itemRota.className = 'route-item';
+                itemRota.innerHTML = `
                         <strong>${rota.nome}</strong>
                         <div style="font-size: 12px; margin-top: 5px;">
                             Distância: ${rota.distancia_km} km | 
@@ -239,13 +280,14 @@ function renderizarRotas() {
                         </div>
                     `;
 
-            itemRota.addEventListener('click', function () {
-                if (coordenadas.length > 0) {
-                    mapa.fitBounds(coordenadas);
-                }
-            });
+                itemRota.addEventListener('click', function () {
+                    if (coordenadas.length > 0) {
+                        mapa.fitBounds(coordenadas);
+                    }
+                });
 
-            container.appendChild(itemRota);
+                container.appendChild(itemRota);
+            }
         }
     });
 }
@@ -283,7 +325,7 @@ function iniciarCriacaoRota() {
 }
 
 // Finalizar criação de rota
-function finalizarCriacaoRota() {
+async function finalizarCriacaoRota() { // Torna a função assíncrona
     const nomeRota = document.getElementById('route-name').value || `Rota ${rotas.length + 1}`;
 
     if (rotaAtual.length < 2) {
@@ -294,36 +336,49 @@ function finalizarCriacaoRota() {
     // Preparar dados para envio
     const dados = {
         nome: nomeRota,
-        estacoes: JSON.stringify(rotaAtual.map(estacao => estacao.id))
+        estacoes: JSON.stringify(rotaAtual.map(estacao => estacao.id)) // Converte array de estações para string JSON
     };
 
-    // Enviar para o servidor
-    fetch('api.php?action=save_route', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                cancelarCriacaoRota();
-                carregarRotas();
-                atualizarStatus(`Rota "${nomeRota}" criada com sucesso`);
-            } else {
-                alert('Erro ao salvar rota: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao salvar rota: ' + error.message);
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
+
+    if (!token) {
+        alert("Você não está logado. Faça login novamente.");
+        window.location.href = '../index.html'; // Redireciona para login
+        return;
+    }
+
+    try {
+        // CORREÇÃO: URL da API Node.js + envio do token
+        const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/rota', { // Ajuste a URL da rota de salvar rota no teu back-end
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
+            },
+            body: JSON.stringify(dados)
         });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json(); // Tenta pegar mensagem de erro do servidor
+            throw new Error(erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`);
+        }
+
+        const resultado = await resposta.json(); // Lê a resposta JSON
+
+        if (resultado.status === 'sucesso') { // Verifica se a resposta foi sucesso
+            cancelarCriacaoRota();
+            carregarRotas(); // Recarrega as rotas do servidor
+            atualizarStatus(`Rota "${nomeRota}" criada com sucesso`);
+        } else {
+            // Se a resposta foi OK, mas o status interno não é sucesso
+            alert('Erro ao salvar rota: ' + resultado.mensagem);
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao salvar rota: ' + error.message);
+    }
 }
 
 // Cancelar criação de rota
@@ -358,15 +413,17 @@ function adicionarEstacaoARota(estacao) {
 // Atualizar lista de estações na rota em criação
 function atualizarListaEstacoesRota() {
     const container = document.getElementById('route-stations-list');
-    container.innerHTML = '';
+    if (container) { // Verifica se o container existe antes de limpar
+        container.innerHTML = '';
 
-    rotaAtual.forEach((estacao, index) => {
-        const itemEstacao = document.createElement('div');
-        itemEstacao.style.padding = '5px';
-        itemEstacao.style.borderBottom = '1px solid #eee';
-        itemEstacao.innerHTML = `${index + 1}. ${estacao.nome}`;
-        container.appendChild(itemEstacao);
-    });
+        rotaAtual.forEach((estacao, index) => {
+            const itemEstacao = document.createElement('div');
+            itemEstacao.style.padding = '5px';
+            itemEstacao.style.borderBottom = '1px solid #eee';
+            itemEstacao.innerHTML = `${index + 1}. ${estacao.nome}`;
+            container.appendChild(itemEstacao);
+        });
+    }
 }
 
 // Atualizar linha temporária da rota em criação
@@ -456,162 +513,218 @@ function fecharModais() {
     }
 }
 
-// Salvar estação
-function salvarEstacao(evento) {
+// Salvar estação (enviar para o servidor Node.js)
+async function salvarEstacao(evento) {
     evento.preventDefault();
 
     const dados = {
-        id: document.getElementById('station-id').value,
+        id: document.getElementById('station-id').value, // Pode ser vazio se for uma nova estação
         nome: document.getElementById('station-name').value,
         endereco: document.getElementById('station-address').value,
         latitude: document.getElementById('station-lat').value,
         longitude: document.getElementById('station-lng').value
     };
 
-    fetch('api.php?action=save_station', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                fecharModais();
-                carregarEstacoes();
-                atualizarStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
-            } else {
-                alert('Erro ao salvar estação: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao salvar estação: ' + error.message);
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
+
+    if (!token) {
+        alert("Você não está logado. Faça login novamente.");
+        window.location.href = '../index.html'; // Redireciona para login
+        return;
+    }
+
+    try {
+        // CORREÇÃO: URL da API Node.js (ajuste a URL da rota de salvar/atualizar estação no teu back-end)
+        // Se for uma edição, o ID virá preenchido. Se for criação, o ID virá vazio.
+        const metodoHttp = dados.id ? 'PATCH' : 'POST'; // Se tem ID, é atualização. Se não tem ID, é criação.
+        const url = dados.id
+            ? `https://tchuu-tchuu-server-chat.onrender.com/api/estacao/${dados.id}` // Para atualizar
+            : 'https://tchuu-tchuu-server-chat.onrender.com/api/estacao';             // Para criar
+
+        const resposta = await fetch(url, {
+            method: metodoHttp,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
+            },
+            body: JSON.stringify(dados)
         });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json(); // Tenta pegar mensagem de erro do servidor
+            throw new Error(erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`);
+        }
+
+        const resultado = await resposta.json(); // Lê a resposta JSON
+
+        if (resultado.status === 'sucesso') {
+            fecharModais();
+            carregarEstacoes(); // Recarrega as estações do servidor
+            atualizarStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
+        } else {
+            // Se a resposta foi OK, mas o status interno não é sucesso
+            alert('Erro ao salvar estação: ' + resultado.mensagem);
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao salvar estação: ' + error.message);
+    }
 }
 
-// Excluir estação
-function excluirEstacao() {
+// Excluir estação (enviar para o servidor Node.js)
+async function excluirEstacao() {
     const idEstacao = document.getElementById('station-id').value;
-    const id = localStorage.getItem("usuario_id");
 
     if (!idEstacao || !confirm('Tem certeza que deseja excluir esta estação?')) {
         return;
     }
 
-    const dados = {
-        id_estacao: idEstacao,
-        id_usuario: id
-    };
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
 
-    fetch('https://tchuu-tchuu-server-chat.onrender.com/api/estacoes', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
+    if (!token) {
+        alert("Você não está logado. Faça login novamente.");
+        window.location.href = '../index.html'; // Redireciona para login
+        return;
+    }
+
+    try {
+        // CORREÇÃO: URL da API Node.js + envio do token
+        const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/estacao/${idEstacao}`, { // Ajuste a URL da rota de excluir estação no teu back-end
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
             }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                fecharModais();
-                carregarEstacoes();
-                atualizarStatus("Estação excluída com sucesso");
-            } else {
-                alert('Erro ao excluir estação: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao excluir estação: ' + error.message);
         });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json(); // Tenta pegar mensagem de erro do servidor
+            throw new Error(erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`);
+        }
+
+        const resultado = await resposta.json(); // Lê a resposta JSON
+
+        if (resultado.status === 'sucesso') {
+            fecharModais();
+            carregarEstacoes(); // Recarrega as estações do servidor
+            atualizarStatus("Estação excluída com sucesso");
+        } else {
+            // Se a resposta foi OK, mas o status interno não é sucesso
+            alert('Erro ao excluir estação: ' + resultado.mensagem);
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao excluir estação: ' + error.message);
+    }
 }
 
-// Excluir rota
-function excluirRota(idRota) {
+// Excluir rota (enviar para o servidor Node.js)
+async function excluirRota(idRota) {
     if (!confirm('Tem certeza que deseja excluir esta rota?')) {
         return;
     }
 
-    const dados = {
-        id: idRota
-    };
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
 
-    fetch('api.php?action=delete_route', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
+    if (!token) {
+        alert("Você não está logado. Faça login novamente.");
+        window.location.href = '../index.html'; // Redireciona para login
+        return;
+    }
+
+    try {
+        // CORREÇÃO: URL da API Node.js + envio do token
+        const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/rota/${idRota}`, { // Ajuste a URL da rota de excluir rota no teu back-end
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
             }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                carregarRotas();
-                atualizarStatus("Rota excluída com sucesso");
-            } else {
-                alert('Erro ao excluir rota: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao excluir rota: ' + error.message);
         });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json(); // Tenta pegar mensagem de erro do servidor
+            throw new Error(erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`);
+        }
+
+        const resultado = await resposta.json(); // Lê a resposta JSON
+
+        if (resultado.status === 'sucesso') {
+            carregarRotas(); // Recarrega as rotas do servidor
+            atualizarStatus("Rota excluída com sucesso");
+        } else {
+            // Se a resposta foi OK, mas o status interno não é sucesso
+            alert('Erro ao excluir rota: ' + resultado.mensagem);
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao excluir rota: ' + error.message);
+    }
 }
 
-// Atualizar posição da estação
-function atualizarPosicaoEstacao(idEstacao, lat, lng) {
+// Atualizar posição da estação (enviar para o servidor Node.js)
+async function atualizarPosicaoEstacao(idEstacao, lat, lng) {
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token'); // Ajuste a chave se for diferente
+
+    if (!token) {
+        alert("Você não está logado. Faça login novamente.");
+        window.location.href = '../index.html'; // Redireciona para login
+        return;
+    }
+
     const dados = {
-        id: idEstacao,
         latitude: lat,
         longitude: lng
     };
 
-    fetch('api.php?action=update_station_position', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na resposta do servidor');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                const estacao = estacoes.find(s => s.id == idEstacao);
-                if (estacao) {
-                    atualizarStatus(`Posição da estação "${estacao.nome}" atualizada`);
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
+    try {
+        // CORREÇÃO: URL da API Node.js + envio do token
+        // Usando PATCH para atualizar apenas a posição
+        const resposta = await fetch(`https://tchuu-tchuu-server-chat.onrender.com/api/estacao/${idEstacao}`, { // Ajuste a URL da rota de atualizar estação (pode ser /estacoes/:id/posicao)
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Envia o token JWT no header
+            },
+            body: JSON.stringify(dados)
         });
+
+        if (!resposta.ok) {
+            const erro = await resposta.json(); // Tenta pegar mensagem de erro do servidor
+            throw new Error(erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`);
+        }
+
+        const resultado = await resposta.json(); // Lê a resposta JSON
+
+        if (resultado.status === 'sucesso') {
+            const estacao = estacoes.find(s => s.id == idEstacao);
+            if (estacao) {
+                atualizarStatus(`Posição da estação "${estacao.nome}" atualizada`);
+            }
+        } else {
+            // Se a resposta foi OK, mas o status interno não é sucesso
+            console.error('Erro ao atualizar posição:', resultado.mensagem);
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        // Pode reverter a posição do marcador no mapa aqui, se quiser
+    }
 }
 
 // Atualizar mensagem de status
 function atualizarStatus(mensagem) {
-    document.getElementById('status-message').textContent = mensagem;
+    const elementoStatus = document.getElementById('status-message');
+    if (elementoStatus) { // Verifica se o elemento existe antes de atualizar
+        elementoStatus.textContent = mensagem;
+    }
 }
 
 // Event Listeners

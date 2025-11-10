@@ -6,7 +6,7 @@ import { conectar } from '../../databases/conectar_banco.js';
 const router = Router();
 
 function calcularDistancia(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Raio da Terra em km
+    const R = 6371; 
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLon = (lon2 - lon1) * Math.PI / 180;
     const a =
@@ -19,7 +19,6 @@ function calcularDistancia(lat1, lon1, lat2, lon2) {
 
 router.post('/rota', async (req, res) => {
     const { nome, descricao, estacoes: idsEstacoes } = req.body;
-
     if (!nome || !idsEstacoes || !Array.isArray(idsEstacoes) || idsEstacoes.length < 2) {
         return res.status(400).json({
             status: 'erro',
@@ -37,7 +36,7 @@ router.post('/rota', async (req, res) => {
     }
 
     const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = authHeader && authHeader.split(' ')[1]; 
 
     if (!token) {
         return res.status(401).json({
@@ -72,12 +71,18 @@ router.post('/rota', async (req, res) => {
 
         await db.query('BEGIN'); 
 
+
         const placeholders = idsEstacoes.map((_, i) => `$${i + 1}`).join(', '); 
-        const queryCoords = `SELECT id, latitude, longitude FROM estacoes WHERE id = ANY(ARRAY[${placeholders}]) ORDER BY id = ANY(ARRAY[${placeholders}])`; // Ordena pela ordem do array de IDs
+        const queryCoords = `
+            SELECT id, latitude, longitude
+            FROM estacoes
+            WHERE id = ANY(ARRAY[${placeholders}])
+            ORDER BY id = ANY(ARRAY[${placeholders}]) -- Ordena pela ordem do array de IDs
+        `;
         const resultadoCoords = await db.query(queryCoords, idsEstacoes);
 
         if (resultadoCoords.rows.length !== idsEstacoes.length) {
-            await db.query('ROLLBACK');
+            await db.query('ROLLBACK'); 
             return res.status(400).json({
                 status: 'erro',
                 mensagem: 'Alguma das estações fornecidas não foi encontrada.'
@@ -114,7 +119,7 @@ router.post('/rota', async (req, res) => {
             await db.query(queryInsertAssoc, [idNovaRota, idsEstacoes[i], i]);
         }
 
-        await db.query('COMMIT');
+        await db.query('COMMIT'); 
 
         res.status(201).json({
             status: 'sucesso',
