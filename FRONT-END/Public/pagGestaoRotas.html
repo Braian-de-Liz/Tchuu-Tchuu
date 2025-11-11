@@ -19,6 +19,8 @@
         <h2>Mapa Ferroviário do Brasil</h2>
     </header>
 
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
     <div id="container"></div>
     <div class=" container">
         <div class="sidebar">
@@ -58,7 +60,6 @@
         </div>
 
         <div class="main-content">
-            <span id="mode-indicator" class="mode-indicator">Modo Visualização</span>
             <div id="map"></div>
             <div class="status-bar">
                 <span id="status-message">Sistema de gerenciamento de rotas ferroviárias</span>
@@ -126,6 +127,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js  "></script>
     <script src="../javascript/render_menu.js"></script>
     <script src="../javascript/render_rodape.js"></script>
+    <script src="../javascript/RotasSidebar.js"></script>
 
 
     <script type="module" src="../javascript/rotas_fetch.js"></script>
