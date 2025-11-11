@@ -72,6 +72,12 @@ app.use('/api', deletarTREM);
 app.use('/api', mostrarTREM);
 // app.use('/api', );
 
+// Debug: Verificar se as rotas estão registradas
+console.log('✅ Rotas de trens registradas:');
+console.log('  - POST /api/trem (cadastroTREM)');
+console.log('  - DELETE /api/trens (deletarTREM)');
+console.log('  - GET /api/Trem_mostrar (mostrarTREM)');
+
 
 // Rotas para sensores;
 app.use('/api', cadastroSensor);

@@ -44,6 +44,9 @@ async function deletar_trem(event) {
 
         const conexao = await fetch(url_delete.toString(), {
             method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}` 
+            }
         });
         
         if (conexao.ok) {
