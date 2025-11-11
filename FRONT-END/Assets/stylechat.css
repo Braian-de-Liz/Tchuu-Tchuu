@@ -186,16 +186,98 @@ body {
 }
 
 @media (max-width: 600px) {
+    body {
+        overflow: hidden; /* impede rolagem fora do chat */
+    }
+
     #container {
-        height: 100vh;
-        border-radius: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: calc(100vh - 60px); /* deixa espaço pro rodapé fixo */
+        border-radius: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+
+    #chat {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #chat-header {
+        flex-shrink: 0;
+    }
+
+    #messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #f9f9f9;
+        scroll-behavior: smooth;
+        padding-bottom: 90px; /* evita que mensagens fiquem escondidas */
+    }
+
+    .message-input {
+        position: fixed;
+        bottom: 40px; /* fica logo acima do rodapé */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 10px;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        gap: 10px;
+        z-index: 2;
+    }
+
+    .message-input textarea {
+        flex: 1;
+        resize: none;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 0.95rem;
+        max-height: 100px;
     }
 
     .message-input button {
         padding: 0 15px;
         min-width: 60px;
-        margin-bottom: 0%;
-        position: relative;
+        background: linear-gradient(to right, #00bfa5, #41978c);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .message-input button:hover {
+        background: linear-gradient(to right, #4FC1E9, #8aca40);
+        color: #12181C;
+        transform: translateY(-2px);
+    }
+
+    footer, .rodape, #rodape {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: #0d4d46;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 3;
+        font-size: 14px;
     }
 }
