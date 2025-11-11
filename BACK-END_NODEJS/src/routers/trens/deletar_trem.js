@@ -1,14 +1,22 @@
+// BACK-END: [sua_rota_de_delete].js
+
 import { Router } from "express";
 import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
 router.delete("/trens", async (req, res) => {
+    
+    console.log("RECEBIDO: req.body:", req.body); 
 
     const { cpf_user, nome_trem } = req.body;
 
+    console.log("RECEBIDO: CPF e Nome:", cpf_user, nome_trem);
+
 
     if (!nome_trem || !cpf_user || cpf_user.length !== 11) {
+        console.log("ERRO 400 - VALIDAÇÃO FALHOU: Dados ausentes ou CPF inválido.");
+        
         return res.status(400).json({
             status: 'erro',
             mensagem: 'CPF inválido. Deve conter 11 dígitos, ou nome não preenchido'
@@ -16,11 +24,9 @@ router.delete("/trens", async (req, res) => {
 
     }
 
-
     let db;
 
     try {
-
         db = await conectar();
         const sql = "DELETE FROM trens WHERE cpf_user = $1 AND nome_trem = $2";
         const valores = [cpf_user, nome_trem];
@@ -40,11 +46,11 @@ router.delete("/trens", async (req, res) => {
         });
     }
     catch (error) {
-        console.error("Erro, não foi possível delear trem", error);
+        console.error("Erro, não foi possível deletar trem", error);
 
         res.status(500).json({
             status: 'erro',
-            mensagem: 'Erro interno desse servidor que alunos do ensimo médio programaram'
+            mensagem: 'Erro interno desse servidor que alunos do ensino médio programaram'
         });
 
 
