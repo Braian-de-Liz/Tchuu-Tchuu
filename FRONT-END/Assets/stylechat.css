@@ -195,5 +195,7 @@ body {
     .message-input button {
         padding: 0 15px;
         min-width: 60px;
+        margin-bottom: 0%;
+        position: relative;
     }
 }
