@@ -1,22 +1,20 @@
-// BACK-END: [sua_rota_de_delete].js
-
+// BACK-END_NODEJS\src\routers\trens\deletar_trem.js
 import { Router } from "express";
 import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
 router.delete("/trens", async (req, res) => {
-    
-    console.log("RECEBIDO: req.body:", req.body); 
 
-    const { cpf_user, nome_trem } = req.body;
+
+    const { cpf_user, nome_trem } = req.query;
 
     console.log("RECEBIDO: CPF e Nome:", cpf_user, nome_trem);
 
 
     if (!nome_trem || !cpf_user || cpf_user.length !== 11) {
         console.log("ERRO 400 - VALIDAÇÃO FALHOU: Dados ausentes ou CPF inválido.");
-        
+
         return res.status(400).json({
             status: 'erro',
             mensagem: 'CPF inválido. Deve conter 11 dígitos, ou nome não preenchido'

@@ -21,36 +21,29 @@ async function deletar_trem(event) {
         return false;
     }
     
-    if (!cpf_data || cpf_data.length !== 11) { 
-        alert("Erro de Autenticação: CPF não encontrado ou inválido. Redirecionando.");
+    // Validação de segurança e presença do Token/CPF
+    if (!cpf_data || cpf_data.length !== 11 || !token) { 
+        alert("Sessão expirada ou CPF inválido. Faça login novamente.");
+        localStorage.removeItem('token');
         window.location.href = '../index.html';
         return false;
     }
 
-    if (!token) {
-        alert("Sessão expirada. Faça login novamente.");
-        window.location.href = '../index.html';
-        return false;
-    }
-
-    class dados_delete_trem {
-        constructor(cpf_user, nome_trem) {
-            this.cpf_user = cpf_user; 
-            this.nome_trem = nome_trem;
-        }
-    }
+    // A classe dados_delete_trem e o body JSON não são mais necessários.
 
     try {
-        const nova_request = new dados_delete_trem(cpf_data, nome_trem);
+        // 🔑 MUDANÇA CRÍTICA: Construção da URL com Query Parameters
+        const baseUrl = "https://tchuu-tchuu-server-chat.onrender.com/api/trens";
+        const url_delete = new URL(baseUrl);
+        
+        // Adicionando CPF e nome do trem como parâmetros de consulta
+        url_delete.searchParams.append("cpf_user", cpf_data);
+        url_delete.searchParams.append("nome_trem", nome_trem);
 
-        console.log("DEBUG: Corpo da Requisição (JSON Final):", JSON.stringify(nova_request));
+        console.log("DEBUG: URL Final (DELETE):", url_delete.toString());
 
-        const conexao = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/trens", {
+        const conexao = await fetch(url_delete.toString(), {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(nova_request)
         });
         
         if (conexao.ok) {
