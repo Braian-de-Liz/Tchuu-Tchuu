@@ -1,4 +1,4 @@
-function ValidaManutrem(event){
+async function ValidaManutrem(event){
     event.preventDefault();
 
 
@@ -56,6 +56,8 @@ function ValidaManutrem(event){
         return false;
     }
 
+    
+
 
         
 
@@ -64,7 +66,5 @@ function ValidaManutrem(event){
 
     window.location.href = '../Public/pagMonitora.html';
     return true;
-
-
 
 }

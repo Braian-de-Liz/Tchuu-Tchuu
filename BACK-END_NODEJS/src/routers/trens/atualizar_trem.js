@@ -22,11 +22,27 @@ router.patch('/trens', async (req, res) => {
     try {
         db = await conectar();
 
-        const consulta = await db.query("");
+        const consulta = await db.query("UPDATE TABLE trens WHERE cpf_user, nome_trem", [cpf_user, nome_trem]);
+
+        if (consulta.rowCount === 0) {
+            return res.status(401).json({
+                status: 'erro',
+                menssagem: `trem ${nome_trem}, não encontrado`
+            })
+        }
+
+
+
     }
-     catch(erro){
-        
-     }
+    catch (error) {
+        console.error("Erro, não foi possível delear trem", error);
+
+        res.status(500).json({
+            status: 'erro',
+            mensagem: 'Erro interno desse servidor que alunos do ensimo médio programaram'
+        });
+    }
+
 
 
 });

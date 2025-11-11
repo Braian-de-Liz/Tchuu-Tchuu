@@ -40,7 +40,7 @@ router.delete("/trem", async (req, res) => {
         });
     }
     catch (error) {
-        console, error("Erro, não foi possível delear trem", error);
+        console.error("Erro, não foi possível delear trem", error);
 
         res.status(500).json({
             status: 'erro',
