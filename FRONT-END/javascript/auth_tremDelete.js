@@ -2,8 +2,6 @@ async function deletar_trem() {
     
 }
 
+const botao = document.getElementById("Deletar")
 
-
-.addEventListener('click', () => {
-
-});
+botao.addEventListener('click', deletar_trem);
