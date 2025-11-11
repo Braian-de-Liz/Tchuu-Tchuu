@@ -5,7 +5,7 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.delete("/trens", async (req, res) => {
-    
+
     console.log(" ROTA DELETE /trens ACESSADA");
     console.log(" Query params recebidos:", req.query);
     console.log(" Headers recebidos:", req.headers);
@@ -35,6 +35,7 @@ router.delete("/trens", async (req, res) => {
         const consulta = await db.query(sql, valores);
 
         if (consulta.rowCount === 0) {
+            console.log("DB RESULTADO: 0 linhas afetadas. Retornando 404 (Trem não encontrado)."); 
             return res.status(404).json({
                 status: 'erro',
                 messagem: "Trem não encontrado"
