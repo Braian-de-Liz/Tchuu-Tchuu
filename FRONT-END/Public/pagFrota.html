@@ -97,47 +97,30 @@
 
 
 
-        <div class="deletar_trem" style="display: none;">
-
-            <form>
-                <label>nome do trem</label>
-                <input type="text" id="nome_de_trem">
-            </form>
-            <button class="deletar_certeza"></button>
+        <div>
+            <a Id="Voltar" href="pagMonitora.html">Voltar</a>
         </div>
 
-
-
         <div>
-            <div>
-                <a Id="Voltar" href="pagMonitora.html">Voltar</a>
-            </div>
+            <button id="deletar_tren"></button>
+        </div>
 
-            <div>
-                <button id="deletar_tren"></button>
-            </div>
+        <div id="confirmar_trem_delete" style="display: none;">
+            <h2>Qual Trem você quer deletar</h2>
+            <h4>insira o nome do trem e seu CPF</h4>
 
-            <div id="confirmar_trem_delete" style="display: none;">
-                <h2>Qual Trem você quer deletar<h2>
-                <h4>insira senha e email</h4>
-
-                <form>
-                    <div>
-                        <label>Nome do Trem</label>
-                        <br>
-                        <input type="text" id="nome_de_trem">
-                    </div>
-                    <div>
-                        <label>Digite seu CPF</label>
-                        <br>
-                        <input type="number" id="cpf_confirmacao">
-                    </div>
-                    <br><br>
-                    <button type="submit" id="hyper_confirmar">Deletar Definitivamente</button>
+            <form id="form_delete_trem">
+                <div>
+                    <label>Nome do Trem</label>
                     <br>
-                    <button type="button" id="cancelar_delete">Cancelar</button>
-                </form>
-            </div>
+                    <input type="text" id="nome_de_trem">
+                </div>
+                <br><br>
+                <button type="submit" id="hyper_confirmar">Deletar Definitivamente</button>
+                <br>
+                <button type="button" id="cancelar_delete">Cancelar</button>
+            </form>
+
         </div>
 
 
