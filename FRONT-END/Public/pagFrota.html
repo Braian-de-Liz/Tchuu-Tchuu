@@ -57,14 +57,14 @@
 
         <section class="info-principal">
 
-            <a id="Deletar" href="">Deletar</a>   
+            <a id="Deletar" href="">Deletar</a>
 
             <div class="informacoes2">
 
                 <div class="informacoes2tl">
                     <h2>Trens para Manutenção</h2>
                 </div>
-                
+
             </div>
 
         </section>
@@ -98,7 +98,7 @@
 
 
         <div class="deletar_trem" style="display: none;">
-            
+
             <form>
                 <label>nome do trem</label>
                 <input type="text" id="nome_de_trem">
@@ -115,6 +115,28 @@
 
             <div>
                 <button id="deletar_tren"></button>
+            </div>
+
+            <div id="confirmar_trem_delete">
+                <h2>Qual Trem você quer deletar<h2>
+                <h4>insira senha e email</h4>
+
+                <form>
+                    <div>
+                        <label>Nome do Trem</label>
+                        <br>
+                        <input type="text" id="nome_de_trem">
+                    </div>
+                    <div>
+                        <label>Digite seu CPF</label>
+                        <br>
+                        <input type="number" id="cpf_confirmacao">
+                    </div>
+                    <br><br>
+                    <button type="submit" id="hyper_confirmar">Deletar Definitivamente</button>
+                    <br>
+                    <button type="button" id="cancelar_delete">Cancelar</button>
+                </form>
             </div>
         </div>
 

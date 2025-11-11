@@ -69,6 +69,40 @@ body {
   align-items: center;
 }
 
+#confirmar_trem_delete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px 30px;
+  width: 40%;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: popupShow 0.3s ease-out;
+  z-index: 1000;
+  overflow-y: auto;
+  max-height: 90vh;
+
+}
+
+@keyframes popupShow {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
 .informacoes2 {
   background: linear-gradient(to top, #03ddc0, #0d4d46);
   color: white;
