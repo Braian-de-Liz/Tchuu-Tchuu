@@ -5,9 +5,10 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.delete("/trens", async (req, res) => {
-    console.log("🔍 ROTA DELETE /trens ACESSADA");
-    console.log("📥 Query params recebidos:", req.query);
-    console.log("📥 Headers recebidos:", req.headers);
+    
+    console.log(" ROTA DELETE /trens ACESSADA");
+    console.log(" Query params recebidos:", req.query);
+    console.log(" Headers recebidos:", req.headers);
 
     const { cpf_user, nome_trem } = req.query;
 
@@ -40,7 +41,7 @@ router.delete("/trens", async (req, res) => {
             });
         }
 
-        res.json({
+        return res.json({
             status: "sucesso",
             menssagem: "trem deletado com sucesso"
         });
@@ -48,7 +49,7 @@ router.delete("/trens", async (req, res) => {
     catch (error) {
         console.error("Erro, não foi possível deletar trem", error);
 
-        res.status(500).json({
+        return res.status(500).json({
             status: 'erro',
             mensagem: 'Erro interno desse servidor que alunos do ensino médio programaram'
         });
