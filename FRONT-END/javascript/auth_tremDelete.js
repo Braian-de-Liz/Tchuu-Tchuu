@@ -45,7 +45,7 @@ async function deletar_trem(event) {
 
         console.log("DEBUG: Corpo da Requisição (JSON Final):", JSON.stringify(nova_request));
 
-        const conexao = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/trem", {
+        const conexao = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/trens", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

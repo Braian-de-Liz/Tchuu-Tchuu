@@ -3,7 +3,7 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router.delete("/trem", async (req, res) => {
+router.delete("/trens", async (req, res) => {
 
     const { cpf_user, nome_trem } = req.body;
 
