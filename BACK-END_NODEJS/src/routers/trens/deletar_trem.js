@@ -8,7 +8,6 @@ router.delete("/trem", async (req, res) => {
     const { cpf_user, nome_trem } = req.body;
 
 
-
     if (!nome_trem || !cpf_user || cpf_user.length !== 11) {
         return res.status(400).json({
             status: 'erro',
