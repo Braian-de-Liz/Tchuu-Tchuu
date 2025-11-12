@@ -27,7 +27,7 @@ async function envia_deletacao() {
         const nova_deletacao = new dados_de_autorizacao(cpf_confirmacao, id_busca);
 
         const resposta = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/usuarios", {
-            method: "POST",
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },

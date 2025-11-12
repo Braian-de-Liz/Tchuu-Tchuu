@@ -21,7 +21,6 @@ async function deletar_trem(event) {
         return false;
     }
     
-    // Validação de segurança e presença do Token/CPF
     if (!cpf_data || cpf_data.length !== 11 || !token) { 
         alert("Sessão expirada ou CPF inválido. Faça login novamente.");
         localStorage.removeItem('token');
@@ -29,7 +28,6 @@ async function deletar_trem(event) {
         return false;
     }
 
-    // A classe dados_delete_trem e o body JSON não são mais necessários.
 
     try {
         // 🔑 MUDANÇA CRÍTICA: Construção da URL com Query Parameters
