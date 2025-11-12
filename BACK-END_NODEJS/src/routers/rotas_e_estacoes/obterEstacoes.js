@@ -1,4 +1,4 @@
-// BACK-END_NODEJS/src/routers/rotas_estacoes/obterEstacoes.js (CORRIGIDO)
+// BACK-END_NODEJS/src/routers/rotas_estacoes/obterEstacoes.js
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import { conectar } from "../../databases/conectar_banco.js";
@@ -45,16 +45,13 @@ router.get("/estacoes", async (req, res) => {
 
         const resultado = await db.query(consulta, parametro);
 
+
+        res.status(200).json(resultado.rows); 
     
-        res.status(200).json({
-            status: 'sucesso',
-            mensagem: 'Estações listadas com sucesso!',
-            data: resultado.rows
-        });
-   
 
     } catch (erro) {
         console.error('Erro ao obter estações do usuário:', erro);
+       
         res.status(500).json({
             status: 'erro',
             mensagem: 'Erro interno do servidor ao obter as estações.'
