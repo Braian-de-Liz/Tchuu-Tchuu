@@ -1,5 +1,3 @@
-// BACK-END_NODEJS/src/routers/rotas_e_estacoes/obterRotas.js
-
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { conectar } from '../../databases/conectar_banco.js';
@@ -41,7 +39,7 @@ router.get('/rotas', async (req, res) => {
         }
 
         const idsRotas = rotas.map(r => r.id);
-        const placeholders = idsRotas.map((_, i) => `$${i + 1}`).join(', ');
+
 
         const queryEstacoes = `
             SELECT 
@@ -49,10 +47,11 @@ router.get('/rotas', async (req, res) => {
                 e.id, e.nome, e.endereco, e.latitude, e.longitude, e.cidade, e.estado, e.data_criacao, re.ordem
             FROM rota_estacoes re
             JOIN estacoes e ON re.id_estacao = e.id
-            WHERE re.id_rota = ANY(ARRAY[${placeholders}])
+            WHERE re.id_rota = ANY($1::int[]) 
             ORDER BY re.id_rota, re.ordem
         `;
-        const resultadoEstacoes = await db.query(queryEstacoes, idsRotas);
+        
+        const resultadoEstacoes = await db.query(queryEstacoes, [idsRotas]); 
         const estacoesPorRota = resultadoEstacoes.rows;
 
         rotas.forEach(rota => {
