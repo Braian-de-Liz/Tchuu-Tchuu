@@ -1,114 +1,93 @@
-// BACK-END_NODEJS\src\routers\rotas_e_estacoes\excluirEstacao.js
-import { Router } from "express";
+// BACK-END_NODEJS/src/routers/rotas_estacoes/excluirEstacao.js
+import { Router } from 'express';
 import jwt from 'jsonwebtoken';
-import { conectar } from "../../databases/conectar_banco.js";
-
+import { conectar } from '../../databases/conectar_banco.js';
 
 const router = Router();
 
-router.delete("/estacoes/:id", async (req, res) => {
-    const { id } = req.params;
+router.delete('/estacoes/:id', async (req, res) => {
+    const idEstacao = parseInt(req.params.id);
 
-    if (!id || isNaN(parseInt(id))) {
+    if (isNaN(idEstacao)) {
         return res.status(400).json({
             status: 'erro',
-            menssagem: 'id inválido'
+            mensagem: 'ID de estação inválido.'
         });
     }
-
-    const idEstacao = parseInt(id);
 
     const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = authHeader && authHeader.split(' ')[1]; 
 
     if (!token) {
-        return res.status(401).json({
-            status: 'erro',
-            mensagem: 'Token de autenticação não fornecido.'
-        });
+        return res.status(401).json({ status: 'erro', mensagem: 'Token de autenticação não fornecido.' });
     }
 
+    let idUsuarioLogado;
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        idUsuarioLogado = decoded.id; 
+    } catch (erroToken) {
+        return res.status(401).json({ status: 'erro', mensagem: 'Token inválido ou expirado.' });
+    }
+    // ---------------------------
 
     let db;
-    let idUsuarioLogado;
-
-    try {
-
-        const achar_user = jwt.verify(token, process.env.JWT_SECRET);
-        idUsuarioLogado = achar_user.id;
-
-        if (!idUsuarioLogado) {
-            return res.status(401).json({
-                status: 'erro',
-                mensagem: 'Token inválido: ID do usuário não encontrado no payload.'
-            });
-        }
-
-    } catch (erroToken) {
-        console.error('Erro ao verificar token JWT:', erroToken);
-        return res.status(401).json({
-            status: 'erro',
-            mensagem: 'Token inválido ou expirado.'
-        });
-    }
-
     try {
         db = await conectar();
+        await db.query('BEGIN'); 
 
-        const consulta = `
-            DELETE FROM estacoes
-            WHERE id = $1 AND id_usuario_criador = $2
-            RETURNING id; -- Retorna o ID da estação excluída (ou nenhum registro se não for encontrada)
-        `;
+        const checkUser = await db.query('SELECT id_usuario_criador FROM estacoes WHERE id = $1', [idEstacao]);
+        
+        if (checkUser.rows.length === 0) {
+            await db.query('ROLLBACK');
+            return res.status(404).json({ status: 'erro', mensagem: 'Estação não encontrada.' });
+        }
 
-        const parametro = [idEstacao, idUsuarioLogado];
-        const resultado = await db.query(consulta, parametro);
+        if (checkUser.rows[0].id_usuario_criador !== idUsuarioLogado) {
+            await db.query('ROLLBACK');
+            return res.status(403).json({ status: 'erro', mensagem: 'Você não tem permissão para excluir esta estação.' });
+        }
 
 
-        if (resultado.rowCount === 0) {
-            return res.status(404).json({
+        const queryUso = 'SELECT COUNT(*) AS count FROM rota_estacoes WHERE id_estacao = $1';
+        const resultadoUso = await db.query(queryUso, [idEstacao]);
+
+        if (parseInt(resultadoUso.rows[0].count) > 0) {
+            await db.query('ROLLBACK');
+            return res.status(400).json({
                 status: 'erro',
-                mensagem: 'Estação não encontrada ou você não tem permissão para excluí-la.'
+                mensagem: 'Não é possível excluir a estação pois ela está sendo usada em uma ou mais rotas.'
             });
         }
-        const idEstacaoExcluida = resultado.rows[0].id;
 
+        const queryDelete = 'DELETE FROM estacoes WHERE id = $1 AND id_usuario_criador = $2';
+        const resultadoDelete = await db.query(queryDelete, [idEstacao, idUsuarioLogado]);
 
-        res.json({
+        if (resultadoDelete.rowCount === 0) {
+            await db.query('ROLLBACK');
+            return res.status(404).json({ status: 'erro', mensagem: 'Estação não encontrada ou não pertence ao usuário.' });
+        }
+
+        await db.query('COMMIT'); 
+        
+        res.status(200).json({
             status: 'sucesso',
             mensagem: 'Estação excluída com sucesso!',
-            id: idEstacaoExcluida 
+            id: idEstacao
         });
-    }
 
-
-
-    catch (erro) {
+    } catch (erro) {
         console.error('Erro ao excluir estação:', erro);
-
-         if (erro.code === '23503') { 
-             return res.status(400).json({
-                status: 'erro',
-                mensagem: 'Erro: Não é possível excluir a estação porque ela está associada a uma rota.'
-            });
-        }
-
+        if (db) await db.query('ROLLBACK');
         res.status(500).json({
             status: 'erro',
-            mensagem: 'Erro interno do servidor ao tentar excluir a estação.'
+            mensagem: 'Erro interno do servidor ao excluir a estação.'
         });
-    }
-
-    finally{
-        console.log("conexão com banco de dados se encerrando");
+    } finally {
         if (db) {
             await db.end();
         }
     }
-
-
 });
-
-// https://tchuu-tchuu-server-chat.onrender.com/api/estacoes method: DELETE
 
 export default router;

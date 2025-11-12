@@ -1,16 +1,42 @@
-// BACK-END_NODEJS/src/routers/rotas_estacoes/obterRotas.js
+// BACK-END_NODEJS/src/routers/rotas_estacoes/obterRotas.js (CORRIGIDO)
 import { Router } from 'express';
+import jwt from 'jsonwebtoken'; // Adicionando JWT para filtro de usuário
 import { conectar } from '../../databases/conectar_banco.js';
 
 const router = Router();
 
 router.get('/rotas', async (req, res) => {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1]; 
+
+
+    if (!token) {
+        return res.status(401).json({ status: 'erro', mensagem: 'Token de autenticação não fornecido.' });
+    }
+    let idUsuarioLogado;
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        idUsuarioLogado = decoded.id; 
+
+    }
+    
+    catch (erroToken) {
+        return res.status(401).json({ status: 'erro', mensagem: 'Token inválido ou expirado.' });
+    }
+
     let db;
+
     try {
         db = await conectar();
 
-        const queryRotas = 'SELECT id, nome, descricao, distancia_km, tempo_estimado_min, data_criacao FROM rotas ORDER BY nome';
-        const resultadoRotas = await db.query(queryRotas);
+        const queryRotas = `
+            SELECT id, nome, descricao, distancia_km, tempo_estimado_min, data_criacao 
+            FROM rotas 
+            WHERE id_usuario_criador = $1 -- Filtra por usuário logado
+            ORDER BY nome
+        `;
+        const resultadoRotas = await db.query(queryRotas, [idUsuarioLogado]);
         const rotas = resultadoRotas.rows;
 
         for (const rota of rotas) {
@@ -25,7 +51,11 @@ router.get('/rotas', async (req, res) => {
             rota.estacoes = resultadoEstacoes.rows; 
         }
 
-        res.json(rotas);
+        res.status(200).json({ 
+            status: 'sucesso', 
+            mensagem: 'Rotas listadas com sucesso!',
+            data: rotas 
+        });
 
     } catch (erro) {
         console.error('Erro ao obter rotas:', erro);

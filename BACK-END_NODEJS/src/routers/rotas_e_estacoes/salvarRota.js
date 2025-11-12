@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { conectar } from '../../databases/conectar_banco.js';
-
+    
 const router = Router();
 
 function calcularDistancia(lat1, lon1, lat2, lon2) {

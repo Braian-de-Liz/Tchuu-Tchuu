@@ -1,3 +1,4 @@
+// BACK-END_NODEJS/src/routers/rotas_estacoes/obterEstacoes.js (CORRIGIDO)
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
 import { conectar } from "../../databases/conectar_banco.js";
@@ -11,16 +12,16 @@ router.get("/estacoes", async (req, res) => {
 
     if (!token) {
         return res.status(401).json({
-            status: 'não está logado',
-            menssage: 'tolken não recebido'
+            status: 'erro', 
+            mensagem: 'Token de autenticação não fornecido.' 
         });
     }
 
     let idUsuarioLogado;
+
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         idUsuarioLogado = decoded.id;
-
 
     } catch (erro) {
         return res.status(401).json({
@@ -36,7 +37,7 @@ router.get("/estacoes", async (req, res) => {
         const consulta = `
             SELECT id, nome, endereco, latitude, longitude, cidade, estado, data_criacao
             FROM estacoes
-            WHERE id_usuario_criador = $1  -- Filtra pelas estações do usuário logado
+            WHERE id_usuario_criador = $1 
             ORDER BY nome
         `;
 
@@ -44,12 +45,15 @@ router.get("/estacoes", async (req, res) => {
 
         const resultado = await db.query(consulta, parametro);
 
-        res.json(
-            resultado.rows
-        );
-    }
+    
+        res.status(200).json({
+            status: 'sucesso',
+            mensagem: 'Estações listadas com sucesso!',
+            data: resultado.rows
+        });
+   
 
-    catch (erro) {
+    } catch (erro) {
         console.error('Erro ao obter estações do usuário:', erro);
         res.status(500).json({
             status: 'erro',
@@ -58,8 +62,6 @@ router.get("/estacoes", async (req, res) => {
     }
 
     finally {
-        console.log(`fechar conexão com o banco de dados`);
-
         if (db) {
             await db.end();
         }
