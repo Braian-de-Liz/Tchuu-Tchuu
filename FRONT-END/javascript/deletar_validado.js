@@ -40,7 +40,17 @@ async function envia_deletacao(e) {
             window.location.href = '../index.html';
         }
         else {
-            alert("Não foi possível te cadastrar");
+            let mensagemErro = "Não foi possível deletar o usuário.";
+            try {
+                const erroJson = await resposta.json();
+                if (erroJson && erroJson.mensagem) {
+                    mensagemErro = erroJson.mensagem; 
+                }
+            } catch (err) {
+                mensagemErro = `Erro ${resposta.status}: Falha de comunicação com o servidor.`;
+            }
+
+            alert(mensagemErro); 
             return;
         }
 
