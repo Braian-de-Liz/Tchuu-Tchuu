@@ -15,13 +15,16 @@ router.delete('/usuarios', async (req, res) => {
         });
     }
     
-    if (id == 1 || id == 5 || id == 49 || id == 14) {
+    const fundadores = [1, 5, 49, 14].map(String); 
+    
+    if (fundadores.includes(String(id))) { 
         console.error("Não pode deletar os fundadores");
-        res.json({
-            status: 'proteção',
-            mensagem: 'impossível deletar esse usuário, ele é um fundador do tchuu-tchuu'
-        })
-        return false;
+        
+        return res.status(403).json({ 
+            status: 'protecao',
+            mensagem: 'Impossível deletar esse usuário, ele é um fundador do tchuu-tchuu.'
+        });
+        
     }
 
     let db;
