@@ -4,8 +4,8 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router.delete('/usuarios:id', async (req, res) => {
-    const { cpf, id } = req.params
+router.delete('/usuarios', async (req, res) => {
+    const { cpf, id } = req.body;
 
     if (!cpf || cpf.length != 11 || !id) {
         return res.status(400).json({
@@ -13,7 +13,8 @@ router.delete('/usuarios:id', async (req, res) => {
             mensagem: 'CPF inválido. Deve conter 11 dígitos.'
         });
     }
-    else if (id == 1) {
+    
+    if (id == 1) {
         return false;
     }
 
