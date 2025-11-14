@@ -5,4 +5,8 @@ import { conectar } from "../../databases/conectar_banco.js";
 
 const router = Router();
 
-router
+router.delete("/manutencao", async (req, res) => {
+    
+});
+
+export default router;
