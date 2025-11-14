@@ -77,7 +77,7 @@ router.post('/rota', async (req, res) => {
             SELECT id, latitude, longitude
             FROM estacoes
             WHERE id = ANY(ARRAY[${placeholders}])
-            ORDER BY id = ANY(ARRAY[${placeholders}]) -- Ordena pela ordem do array de IDs
+            ORDER BY id = ANY(ARRAY[${placeholders}])
         `;
         const resultadoCoords = await db.query(queryCoords, idsEstacoes);
 

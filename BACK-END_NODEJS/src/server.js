@@ -27,6 +27,7 @@ import alterarSensor from './routers/sensores/alterarSensor.js';
 import deletarSensor from './routers/sensores/deletarSensor.js';
 import exibirSensor from './routers/sensores/exibirSensor.js';
 
+// 
 
 // rotas de rotas e estações
 import atualizar_Rota from './routers/rotas_e_estacoes/atualizar_Rotas.js';
