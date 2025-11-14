@@ -117,3 +117,26 @@ CREATE INDEX IF NOT EXISTS idx_manutencoes_status ON manutencoes(status);
 CREATE INDEX IF NOT EXISTS idx_manutencoes_data_abertura ON manutencoes(data_abertura);
 
 CREATE INDEX IF NOT EXISTS idx_manutencoes_id_usuario_abertura ON manutencoes(id_usuario_abertura);
+
+CREATE TABLE IF NOT EXISTS chamados_manutencao (
+  id BIGSERIAL PRIMARY KEY,
+  id_trem BIGINT NOT NULL,
+  descricao_problema TEXT NOT NULL,
+  descricao_detalhada TEXT,
+  data_inicio DATE NOT NULL DEFAULT CURRENT_DATE,
+  data_conclusao DATE,
+  status VARCHAR(20) NOT NULL DEFAULT 'pendente',
+  cpf_usuario_abertura CHAR(11) NOT NULL,
+  FOREIGN KEY (id_trem) REFERENCES trens(id) ON DELETE CASCADE,
+  FOREIGN KEY (cpf_usuario_abertura) REFERENCES usuarios(cpf) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_id_trem ON chamados_manutencao(id_trem);
+
+CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_status ON chamados_manutencao(status);
+
+CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_data_inicio ON chamados_manutencao(data_inicio);
+
+CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_cpf_usuario ON chamados_manutencao(cpf_usuario_abertura);
