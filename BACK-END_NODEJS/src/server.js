@@ -40,6 +40,10 @@ import obter_estacao from './routers/rotas_e_estacoes/obterEstacoes.js';
 import Salvar_estacoes from './routers/rotas_e_estacoes/salvarEstacao.js';
 import excluir_estacoes from './routers/rotas_e_estacoes/excluirEstacao.js';
 
+// manutenção
+import enviar_manutencao from './routers/trens_manutencao/enviar_manutencao.js'
+import obter_manutencao from './routers/trens_manutencao/obter_manitencao.js'
+import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js'
 
 import dotenv from 'dotenv';
 
@@ -85,16 +89,24 @@ app.use('/api', cadastroSensor);
 
 
 
-
+// Rotas para rotas
 app.use('/api', atualizar_Rota);
 app.use('/api', obter_Rotas);
 app.use('/api', excluir_Rota);
 app.use('/api', Salvar_Rota);
 
+// Rotas para estações
 app.use('/api', atualizar_estacao);
 app.use('/api', obter_estacao);
 app.use('/api', excluir_estacoes);
 app.use('/api', Salvar_estacoes);
+
+// Rotas para manutenção
+app.use('/api', enviar_manutencao);
+app.use('/api', obter_manutencao);
+app.use('/api', tirar_manutencao);
+
+
 
 app.get('/acordar', (req, res) => {
     const now = new Date().toISOString();
