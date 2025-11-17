@@ -117,6 +117,8 @@ router.post('/rotas', async (req, res) => {
         const idNovaRota = resultadoRota.rows[0].id;
 
         const queryInsertAssoc = 'INSERT INTO rota_estacoes (id_rota, id_estacao, ordem) VALUES ($1, $2, $3)';
+        // const queryInsertAssoc = 'INSERT INTO rota_estacoes (id_rota, id_estacoes, ordem) VALUES ($1, $2, $3)';
+
         for (let i = 0; i < idsEstacoes.length; i++) {
             await db.query(queryInsertAssoc, [idNovaRota, idsEstacoes[i], i]);
         }
