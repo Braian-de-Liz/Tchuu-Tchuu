@@ -360,7 +360,6 @@ async function finalizarCriacaoRota() {
     }
 
     try {
-        // Corrigido: URL da API Node.js para /rotas (PLURAL)
         const resposta = await fetch(`${API_BASE_URL}/rotas`, {
             method: 'POST',
             headers: {
