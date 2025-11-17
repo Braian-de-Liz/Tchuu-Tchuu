@@ -17,7 +17,7 @@ function calcularDistancia(lat1, lon1, lat2, lon2) {
     return R * c; 
 }
 
-router.post('/rota', async (req, res) => {
+router.post('/rotas', async (req, res) => {
     const { nome, descricao, estacoes: idsEstacoes } = req.body;
     if (!nome || !idsEstacoes || !Array.isArray(idsEstacoes) || idsEstacoes.length < 2) {
         return res.status(400).json({
