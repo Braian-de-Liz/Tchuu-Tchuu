@@ -19,6 +19,7 @@ function calcularDistancia(lat1, lon1, lat2, lon2) {
 
 router.post('/rotas', async (req, res) => {
     const { nome, descricao, estacoes: idsEstacoes } = req.body;
+    
     if (!nome || !idsEstacoes || !Array.isArray(idsEstacoes) || idsEstacoes.length < 2) {
         return res.status(400).json({
             status: 'erro',
@@ -110,7 +111,7 @@ router.post('/rotas', async (req, res) => {
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id;
         `;
-        
+
         const paramsRota = [nome, descricao || null, distanciaTotalKm.toFixed(2), tempoEstimadoMinutos, idUsuarioLogado];
         const resultadoRota = await db.query(queryInsertRota, paramsRota);
         const idNovaRota = resultadoRota.rows[0].id;
