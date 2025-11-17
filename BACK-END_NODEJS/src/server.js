@@ -111,7 +111,7 @@ app.use('/api', tirar_manutencao);
 app.get('/acordar', (req, res) => {
     const now = new Date().toISOString();
     const userAgent = req.get('User-Agent') || 'Unknown';
-    console.log(`Elias estária orgulhoso recebido em: ${now} | IP: ${req.ip} | Elias-testador: ${userAgent}`);
+    console.log(`ACORDA PREGUIÇOSO, OHHHH LÁPADA SECA ${now} | IP: ${req.ip} | Elias-testador: ${userAgent}`);
     res.json({ status: 'funcionando', server: 'Tchuu-Tchuu', timestamp: now });
 });
 

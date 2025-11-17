@@ -538,7 +538,6 @@ async function salvarEstacao(evento) {
         endereco: document.getElementById('station-address').value,
         latitude: parseFloat(document.getElementById('station-lat').value),
         longitude: parseFloat(document.getElementById('station-lng').value),
-        // Adicionar campos cidade e estado se estiverem no formulário
         cidade: document.getElementById('station-city').value,
         estado: document.getElementById('station-state').value
     };
@@ -555,8 +554,8 @@ async function salvarEstacao(evento) {
         // Corrigido: Uniformizando URL e Método. Usa /estacoes (PLURAL) para POST e PATCH
         const metodoHttp = dados.id ? 'PATCH' : 'POST';
         const url = dados.id
-            ? `${API_BASE_URL}/estacoes/${dados.id}` // PATCH para atualizar
-            : `${API_BASE_URL}/estacoes`;             // POST para criar
+            ? `${API_BASE_URL}/estacoes/${dados.id}` 
+            : `${API_BASE_URL}/estacoes`;             
 
         const resposta = await fetch(url, {
             method: metodoHttp,

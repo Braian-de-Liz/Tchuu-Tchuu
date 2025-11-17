@@ -6,6 +6,8 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.delete("/manutencao", async (req, res) => {
+    const {id_trem, id_user_trem} = req.body;
+
     
 });
 
