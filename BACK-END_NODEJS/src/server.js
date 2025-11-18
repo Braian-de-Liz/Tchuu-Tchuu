@@ -17,11 +17,13 @@ import logarUsuario from './routers/usuario/loginUsuario.js';
 import atualizarUser from './routers/usuario/atualizarUsuario.js';
 import { Mostrar_usuario } from './routers/usuario/mostrar_dadosUsuario.js';
 
+
 // rotas de trens
 import cadastroTREM from './routers/trens/registrar_trem.js';
 import deletarTREM from './routers/trens/deletar_trem.js';
 import atualizarTREM from './routers/trens/atualizar_trem.js';
 import mostrarTREM from './routers/trens/mostrar_trem.js';
+
 
 // rotas de sensores
 import cadastroSensor from './routers/sensores/cadastrarSensor.js';
@@ -29,7 +31,6 @@ import alterarSensor from './routers/sensores/alterarSensor.js';
 import deletarSensor from './routers/sensores/deletarSensor.js';
 import exibirSensor from './routers/sensores/exibirSensor.js';
 
-// 
 
 // rotas de rotas e estações
 import atualizar_Rota from './routers/rotas_e_estacoes/atualizar_Rotas.js';
@@ -125,13 +126,6 @@ app.get('/acordar', (req, res) => {
 
 
 const PORT = process.env.PORT || 3250;
-
-
-// para testes locais
-/* server.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-}); */
-
 
 
 server.listen(PORT, '0.0.0.0', () => {

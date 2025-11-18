@@ -1,7 +1,6 @@
 // src/databases/conectar_banco.js
 import { Client } from 'pg';
 
-
 async function conectar() {
   const client = new Client({
     host: process.env.DB_HOST,
@@ -17,5 +16,3 @@ async function conectar() {
 }
 
 export { conectar };
-
-

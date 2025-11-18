@@ -17,7 +17,7 @@ CREATE TABLE usuarios (
   senha VARCHAR(255) NOT NULL,
   registro_fun VARCHAR(20),
   data_nasc DATE,
-  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  criado_em TIMESTAMP DEFAULT 
 );
 
 --
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS sensores (
   tipo_sensor VARCHAR(100),
   localizacao VARCHAR(255),
   ativo BOOLEAN DEFAULT TRUE,
-  ou não data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  ou não data_registro TIMESTAMP DEFAULT 
 );
 
 --
