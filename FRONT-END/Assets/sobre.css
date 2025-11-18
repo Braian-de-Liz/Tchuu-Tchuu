@@ -1,0 +1,249 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+    justify-content: center;
+    align-items: start;
+    display: flex;
+    margin: 0;
+}
+
+#container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    width: 95%;
+    min-width: 280px;
+    overflow: hidden;
+    margin-top: 120px;
+    padding: 20px;
+}
+
+.header {
+    width: 100%;
+    height: 75px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.informacoeslinha {
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.informacoeslinha:first-of-type::before {
+    content: "🏢";
+    font-size: 1.2em;
+}
+
+.informacoeslinha:nth-of-type(2) {
+    margin-top: 20px;
+}
+
+.informacoeslinha:nth-of-type(2)::before {
+    content: "👥";
+    font-size: 1.2em;
+}
+
+.info-principal {
+    margin: 0;
+    padding: 20px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sobre {
+    font-size: 1em;
+    line-height: 1.8;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.sobre strong {
+    color: #009688;
+}
+
+.colaboradores {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lista-colaboradores {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lista-colaboradores li {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.lista-colaboradores li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.lista-colaboradores li strong {
+    display: block;
+    font-size: 1.3em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.lista-colaboradores li div {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 80%;
+}
+
+.lista-colaboradores li a {
+    display: inline-block;
+    background-color: #009688;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.lista-colaboradores li a:hover {
+    background-color: #0d4d46;
+    color: white;
+    border-color: #0d4d46;
+}
+
+@media (min-width: 901px) {
+    body {
+        justify-content: center;
+        align-items: start;
+        display: flex;
+        margin: 0;
+    }
+
+    #container {
+        margin: 0;
+        margin-top: 120px;
+        width: 75%;
+        padding: 50px;
+    }
+
+    .sobre {
+        font-size: 1.1em;
+    }
+
+    .lista-colaboradores {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .lista-colaboradores li {
+        width: calc(50% - 20px);
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        display: block;
+        height: auto;
+        background: #fff;
+        overflow-y: auto;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 999;
+    }
+
+    #container {
+        width: 95%;
+        max-width: 500px;
+        margin: 80px auto 100px auto;
+        padding: 10px;
+        overflow: visible;
+    }
+
+    .informacoeslinha {
+        font-size: 16px;
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .info-principal {
+        padding: 10px 5px;
+    }
+
+    .lista-colaboradores li {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .lista-colaboradores li strong {
+        font-size: 1.2em;
+    }
+
+    .lista-colaboradores li div {
+        font-size: 0.95em;
+        max-width: 100%;
+    }
+}
