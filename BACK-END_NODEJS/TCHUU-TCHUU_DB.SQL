@@ -140,3 +140,20 @@ CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_status ON chamados_manutencao
 CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_data_inicio ON chamados_manutencao(data_inicio);
 
 CREATE INDEX IF NOT EXISTS idx_chamados_manutencao_cpf_usuario ON chamados_manutencao(cpf_usuario_abertura);
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS leituras_sensores (
+    id BIGSERIAL PRIMARY KEY,
+    id_trem BIGINT NOT NULL, 
+    tipo_sensor VARCHAR(50) NOT NULL, 
+    valor TEXT NOT NULL,
+    timestamp_leitura TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_trem) REFERENCES trens(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_leituras_sensores_id_trem ON leituras_sensores(id_trem);
+CREATE INDEX IF NOT EXISTS idx_leituras_sensores_tipo_sensor ON leituras_sensores(tipo_sensor);
+CREATE INDEX IF NOT EXISTS idx_leituras_sensores_timestamp ON leituras_sensores(timestamp_leitura);
