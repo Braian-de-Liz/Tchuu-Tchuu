@@ -1,16 +1,16 @@
 // BACK-END_NODEJS/src/modulos/ESP_Server.js (ou src/extra/ESP_Server.js, como tu tiver)
 import mqtt from 'mqtt';
-import { conectar } from '../databases/conectar_banco.js'; 
+import { conectar } from '../databases/conectar_banco.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL; 
-const MQTT_USERNAME = process.env.MQTT_USERNAME;    
-const MQTT_PASSWORD = process.env.MQTT_PASSWORD;    
+const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL;
+const MQTT_USERNAME = process.env.MQTT_USERNAME;
+const MQTT_PASSWORD = process.env.MQTT_PASSWORD;
 
 let clientMqtt = null;
 
-export function iniciarServidorEsp() {
+function iniciarServidorEsp() {
     if (!MQTT_BROKER_URL || !MQTT_USERNAME || !MQTT_PASSWORD) {
         console.error("Erro: Variáveis de ambiente MQTT_BROKER_URL, MQTT_USERNAME ou MQTT_PASSWORD não definidas.");
         return;
@@ -19,7 +19,7 @@ export function iniciarServidorEsp() {
     console.log("Tentando conectar o ESP_Server ao broker MQTT do HiveMQ...");
 
     const options = {
-        clientId: 'tchuu-tchuu-esp-server-nodejs', 
+        clientId: 'tchuu-tchuu-esp-server-nodejs',
         clean: true,
         connectTimeout: 4000,
         username: MQTT_USERNAME,
@@ -68,38 +68,38 @@ export function iniciarServidorEsp() {
         console.log(`[ESP_SERVER] Mensagem MQTT recebida no tópico '${topic}':`, messageBuffer.toString());
 
         try {
-          
+
             const dadosRecebidos = JSON.parse(messageBuffer.toString());
 
             const partes = topic.split('/');
             if (partes.length >= 3) {
-                const nivel = partes[0]; 
-                const identificador = partes[1]; 
-                const subNivel = partes[2]; 
-                const tipoSensor = partes[3]; 
+                const nivel = partes[0];
+                const identificador = partes[1];
+                const subNivel = partes[2];
+                const tipoSensor = partes[3];
 
                 if (nivel === 'sensor' && subNivel === 'dados') {
-                    const idSensor = identificador; 
+                    const idSensor = identificador;
                     const valor = dadosRecebidos.valor;
-                    const timestamp = dadosRecebidos.timestamp || new Date(); 
+                    const timestamp = dadosRecebidos.timestamp || new Date();
 
                     await salvarLeituraSensorGenerico(idSensor, valor, timestamp);
 
                 } else if (nivel === 'trem' && subNivel === 'sensor' && tipoSensor) {
-                    
-                    const idTrem = identificador; 
-                    const tipo = tipoSensor; 
+
+                    const idTrem = identificador;
+                    const tipo = tipoSensor;
                     const valor = dadosRecebidos.valor;
                     const timestamp = dadosRecebidos.timestamp || new Date();
 
                     await salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp);
 
                 } else if (nivel === 'trem' && subNivel === 'gps') {
-                
-                    const idTrem = identificador; 
+
+                    const idTrem = identificador;
                     const latitude = dadosRecebidos.latitude;
                     const longitude = dadosRecebidos.longitude;
-                    const velocidade = dadosRecebidos.velocidade; 
+                    const velocidade = dadosRecebidos.velocidade;
                     const timestamp = dadosRecebidos.timestamp || new Date();
 
                     if (latitude !== undefined && longitude !== undefined) {
@@ -202,17 +202,5 @@ async function atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocida
     }
 }
 
-// Função para publicar uma mensagem no MQTT (ex: para enviar comandos ao ESP, se necessário no futuro)
-// export async function publicarMensagem(topico, mensagem) {
-//     if (clientMqtt && clientMqtt.connected) {
-//         clientMqtt.publish(topico, mensagem, { qos: 1 }, (err) => {
-//             if (err) {
-//                 console.error("[ESP_SERVER] Erro ao publicar mensagem MQTT:", err);
-//             } else {
-//                 console.log(`[ESP_SERVER] Mensagem publicada no tópico '${topico}':`, mensagem);
-//             }
-//         });
-//     } else {
-//         console.warn("[ESP_SERVER] Cliente MQTT não está conectado. Não foi possível publicar:", topico, mensagem);
-//     }
-// }
+
+export { iniciarServidorEsp };
