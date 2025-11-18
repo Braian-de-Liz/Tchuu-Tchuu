@@ -234,4 +234,4 @@ Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu hab
 ---
 
 > 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*  
-> **Não é apenas um trabalho — é um sistema funcional, em produção, e com arquitetura de nível profissional.**
+> **Não é apenas um trabalho simples, é um sistema funcional, em produção, e com arquitetura distribuida.**
