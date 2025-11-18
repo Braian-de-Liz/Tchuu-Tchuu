@@ -24,7 +24,7 @@ body {
     margin-top: 100px;
     padding: 50px;
 }
-  
+
 .header {
     width: 100%;
     height: 75px;
@@ -58,13 +58,13 @@ body {
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 100);
     flex-wrap: wrap;
-  }
-  
-  .informacoes2c {
+}
+
+.informacoes2c {
     font-size: 36px;
     font-weight: bold;
     word-break: break-word;
-  }
+}
 
 .chart-container {
     background-color: #f9f9f9;
@@ -81,9 +81,9 @@ body {
 
 .additional-inputs {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    gap: 40px; 
+    gap: 40px;
 }
 
 .input-box {
@@ -91,7 +91,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 1200px; 
+    width: 1200px;
 }
 
 h2, h3 {
@@ -118,10 +118,6 @@ input {
     border-radius: 5px;
 }
 
-
-
-
-
 .botao {
     position: relative;
     color: white;
@@ -139,29 +135,28 @@ input {
     background: linear-gradient(to left, #00bfa5, #04443e);
     transition: transform 0.4s ease, color 0.4s ease;
     z-index: 1;
-
 }
 
 .botao::before {
     content: "";
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(to right, #4FC1E9, #8aca40);
     opacity: 0;
     transition: opacity 1.5s ease;
-    z-index: -1; 
+    z-index: -1;
     border-radius: 15px;
 }
-
 
 .botao:hover::before {
     opacity: 2;
 }
 
-
 .botao:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
     color: #12181C;
 }
 
@@ -206,6 +201,45 @@ input {
     font-size: 16px;
 }
 
+/* Estilos específicos para a seção de chamados centralizados */
+.chamados-centralizados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chamados-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Espaçamento entre os cards */
+    width: 100%; /* Garante que o container ocupe a largura total */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+}
+
+.card-chamado {
+    background: #f9f9f9;
+    width: 30%; /* Largura padrão */
+    min-width: 260px; /* Largura mínima */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.13);
+    text-align: center; /* Centraliza o conteúdo dentro do card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-chamado h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #00695c;
+}
+
+.card-chamado p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
 
 @media (min-width: 901px) {
     body {
@@ -213,7 +247,6 @@ input {
         align-items: start;
         display: flex;
         margin: 0;
-
     }
 
     #container {

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,72 +10,65 @@
     <script async type="module" src="../javascript/autenticacao.js"></script>
     <title>Tchuu Tchuu - Monitoramento </title>
 </head>
-
 <body>
     <script type="module" src="../javascript/protegerPAG.js"></script>
-
     <header class="header">
         <h2>Monitoramento dos Trens</h2>
         <div class="header-icons">
         </div>
     </header>
-
     <div id="container">
-
         <main>
             <section>
-
                 <div class="informacoes2">
                     <div class="informacoes2tl">
                         <h2>Informações Gerais</h2>
                     </div>
                 </div>
-
                 <!-- Carrossel de Gráficos - INÍCIO -->
-                <div
-                    style="position: relative; width: 100%; max-width: 800px; margin: 20px auto; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    <button onclick="moverSlideGraficos(-1)"
-                        style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">‹</button>
-
+                <div style="position: relative; width: 100%; max-width: 800px; margin: 20px auto; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <button onclick="moverSlideGraficos(-1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">‹</button>
                     <div id="slides-graficos" style="display: flex; transition: transform 0.4s ease-in-out;">
                         <div style="min-width: 100%; padding: 15px;"><canvas id="chart1"></canvas></div>
                         <div style="min-width: 100%; padding: 15px;"><canvas id="chart2"></canvas></div>
                         <div style="min-width: 100%; padding: 15px;"><canvas id="chart3"></canvas></div>
                     </div>
-
-                    <button onclick="moverSlideGraficos(1)"
-                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">›</button>
+                    <button onclick="moverSlideGraficos(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">›</button>
                 </div>
+
+                <!-- Seção de Chamados Centralizados -->
+                <section class="bloco_section chamados-centralizados">
+                    <h2 class="titulo-trens">Chamados de Manutenção</h2>
+                    <div class="chamados-container">
+                        <div class="card-chamado">
+                            <p>Faça um chamado de manutenção</p>
+                            <a class="botao" href="pagFrota.html">Fazer chamado</a>
+                        </div>
+                        <div class="card-chamado">
+                            <p>Analise chamados</p>
+                            <a class="botao" href="pagChamados.html">Acessar Trens</a> <!-- Link corrigido para análise -->
+                        </div>
+                    </div>
+                </section>
 
                 <section class="bloco_section">
                     <h2 class="titulo-trens">Trens</h2>
-
                     <div class="trens-flex">
-
                         <div class="card-trem">
                             <h3>Cadastrar novos Trens à frota</h3>
                             <p>Acesse para adicionar os dados de um novo trem adquirido</p>
                             <a class="botao" href="pagregistraTREM.html">Adicionar Trem</a>
                         </div>
-
                         <div class="card-trem">
                             <h3>Monitoramento de Frota</h3>
                             <p>Analise as informações sobre cada trem pertencente à frota</p>
                             <a class="botao" href="pagFrota.html">Acessar Trens</a>
                         </div>
-
                         <div class="card-trem">
                             <h3>Enviar Trens para Manutenção</h3>
                             <p>Você teve algum problema nos seus trens?</p>
                             <a class="botao" href="enviaTremManu.html">Acesso a Manutenção</a>
                         </div>
-
-                        <div class="card-trem">
-                            <h3>Chamados de manutenção</h3>
-                            <p>Liste, edite e exclua chamados</p>
-                            <a class="botao" href="pagChamados.html">Acessar Trens</a>
-                        </div>
-
                     </div>
                 </section>
 
@@ -86,31 +78,23 @@
                             <h2>Cadastrar Sensores</h2>
                         </div>
                     </div>
-
                     <div class="chart-container">
                         <label for="">Acesse para Adicionar novo tipo de Sensor</label>
-
                         <br>
                         <div>
                             <a class="botao" href="cadastrarSensor.html">Adicionar Sensor</a>
                         </div>
                     </div>
                 </section>
-
-
+            </section>
         </main>
-
     </div>
-
     <script src="../javascript/render_menu.js"></script>
     <script src="../javascript/render_rodape.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
     <script src="../javascript/GraficoDesempenho.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-
 </body>
 <script src="../javascript/Monitora.js"> </script>
-
 </html>
