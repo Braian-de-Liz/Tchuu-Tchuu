@@ -6,7 +6,9 @@ import { createServer } from 'http';
 import cors from 'cors';
 
 // websocket
-import { setupWebSocket } from './websockets/chatServer.js';
+import { setupWebSocket } from './extra/chatServer.js';
+import { iniciarServidorEsp } from './modulos/ESP_Server.js';
+
 
 // rotas de usuário
 import usuariosRegistro from './routers/usuario/registrarUsuarios.js';
@@ -59,6 +61,8 @@ app.use(cors());
 
 const server = createServer(app);
 const { wss } = setupWebSocket(server);
+iniciarServidorEsp();
+
 app.use(express.json());
 
 
@@ -114,6 +118,11 @@ app.get('/acordar', (req, res) => {
     console.log(`ACORDA PREGUIÇOSO, OHHHH LÁPADA SECA ${now} | IP: ${req.ip} | Elias-testador: ${userAgent}`);
     res.json({ status: 'funcionando', server: 'Tchuu-Tchuu', timestamp: now });
 });
+
+
+
+
+
 
 const PORT = process.env.PORT || 3250;
 
