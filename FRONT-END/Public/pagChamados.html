@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../Assets/Frota.css">
     <link rel="stylesheet" href="../Assets/Manutencao.css">
     <script async type="module" src="../javascript/autenticacao.js"></script>
-    <title>Frota TCHUU-TCHUU</title>
+    <title>Chamados TCHUU-TCHUU</title>
 </head>
 
 
@@ -19,7 +19,7 @@
 
 
     <header class="header">
-        <h2>Frota do TCHUU-TCHUU</h2>
+        <h2>Chamados do TCHUU-TCHUU</h2>
         <div class="header-icons">
             <span></span>
             <button class="refresh-btn">🔄</button>
@@ -32,58 +32,65 @@
         <!--Tudo cima é o mwnu lateral-->
 
 
-
         <section class="info-principal">
 
             <div class="informacoes2">
+
                 <div class="informacoes2tl">
-                    <h2> Ver Trens</h2>
+                    <h2>Trens para Manutenção</h2>
                 </div>
+
+            </div>
+
+        </section>
+
+        <section class="informacoeslinha">
+            <h3>Estado dos Trens</h3>
+        </section>
+
+
+        <section id="trens_manutencao">
+
+            <div class="item">
+                🚆 <span>Pronto</span>
+                <div class="menu-mini">≡</div>
+
+                <div class="conteudo-expansivel">
+                    <ul>
+                        <li>Motor: Ok</li>
+                        <li>Rodas: Em revisão</li>
+                        <li>Status: Pronto</li>
+                    </ul>
+                </div>
+                
             </div>
 
         </section>
 
 
-        <section class="informacoeslinha">
-            <h3>Informaçõe Sobre cada Trem</h3>
-        </section>
 
 
 
-        <section id="Trens">
-            <!-- Gerado com javascript, os trens que você cadastrou irão aparecer -->
-        </section>
 
 
-        <section class="info-principal">
-
+        <div class="botoes-centro">
+            <a id="Voltar" href="pagMonitora.html">Voltar</a>
             <a id="Deletar" href="">Deletar</a>
-
-        </section>
-
-
-
-
-
-
+        </div>  
 
         <div>
-            <a Id="Voltar" href="pagMonitora.html">Voltar</a>
+            <button id="deletar_chamado"></button>
         </div>
 
-        <div>
-            <button id="deletar_tren"></button>
-        </div>
+        <div id="confirmar_chamado_delete" style="display: none;">
+            <h2>Qual Chamado você quer deletar</h2>
+            <h4>insira o nome do Chamado e seu CPF</h4>
 
-        <div id="confirmar_trem_delete" style="display: none;">
-            <h2>Qual Trem você quer deletar</h2>
-            <h4>insira o nome do trem e seu CPF</h4>
-
-            <form id="form_delete_trem">
+            <form id="form_chamado_trem">
                 <div>
-                    <label>Nome do Trem</label>
+                    <label>Nome do Chamado</label>
                     <br>
-                    <input type="text" id="nome_de_trem">
+                    <input type="text" id="nome_do_chamado">
                 </div>
                 <br><br>
                 <button type="submit" id="hyper_confirmar">Deletar Definitivamente</button>
@@ -106,7 +113,7 @@
     <script src="../javascript/render_rodape.js"></script>
     <script src="../javascript/render_menu.js"></script>
     <script src="../javascript/mostrar_dados_trens.js"></script>
-    <script src="../javascript/auth_tremDelete.js"></script>
+    <script src="../javascript/auth_chamadoDelete.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
     <script src="../javascript/containerdemanutenção.js"></script>
 
