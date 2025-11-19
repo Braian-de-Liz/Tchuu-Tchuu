@@ -1,16 +1,17 @@
-// BACK-END_NODEJS/src/modulos/ESP_Server.js 
+// BACK-END_NODEJS/src/extra/ESP_Server.js
 import mqtt from 'mqtt';
 import { conectar } from '../databases/conectar_banco.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
 const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL;
 const MQTT_USERNAME = process.env.MQTT_USERNAME;
 const MQTT_PASSWORD = process.env.MQTT_PASSWORD;
 
 let clientMqtt = null;
 
-function iniciarServidorEsp() {
+export function iniciarServidorEsp() {
     if (!MQTT_BROKER_URL || !MQTT_USERNAME || !MQTT_PASSWORD) {
         console.error("Erro: Variáveis de ambiente MQTT_BROKER_URL, MQTT_USERNAME ou MQTT_PASSWORD não definidas.");
         return;
@@ -24,8 +25,12 @@ function iniciarServidorEsp() {
         connectTimeout: 4000,
         username: MQTT_USERNAME,
         password: MQTT_PASSWORD,
-
     };
+
+    if (clientMqtt) {
+        console.warn("ESP_Server já está conectado ao broker MQTT.");
+        return;
+    }
 
     clientMqtt = mqtt.connect(MQTT_BROKER_URL, options);
 
@@ -39,7 +44,6 @@ function iniciarServidorEsp() {
                 console.log("ESP_Server inscrito nos tópicos de sensores (sensor/*/dados).");
             }
         });
-
 
         clientMqtt.subscribe('trem/+/sensor/+', (err) => {
             if (err) {
@@ -56,20 +60,17 @@ function iniciarServidorEsp() {
                 console.log("ESP_Server inscrito nos tópicos de GPS de trem (trem/*/gps).");
             }
         });
-
-
     });
 
     clientMqtt.on('error', (error) => {
         console.error("Erro de conexão do ESP_Server com o HiveMQ MQTT:", error);
     });
 
-    clientMqtt.on('message', async (topic, messageBuffer) => {
-        console.log(`[ESP_SERVER] Mensagem MQTT recebida no tópico '${topic}':`, messageBuffer.toString());
+    clientMqtt.on('message', async (topic, message) => { 
+        console.log(`[ESP_SERVER] Mensagem MQTT recebida no tópico '${topic}':`, message.toString());
 
         try {
-
-            const dadosRecebidos = JSON.parse(messageBuffer.toString());
+            const dadosRecebidos = JSON.parse(message.toString());
 
             const partes = topic.split('/');
             if (partes.length >= 3) {
@@ -86,7 +87,6 @@ function iniciarServidorEsp() {
                     await salvarLeituraSensorGenerico(idSensor, valor, timestamp);
 
                 } else if (nivel === 'trem' && subNivel === 'sensor' && tipoSensor) {
-
                     const idTrem = identificador;
                     const tipo = tipoSensor;
                     const valor = dadosRecebidos.valor;
@@ -95,7 +95,6 @@ function iniciarServidorEsp() {
                     await salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp);
 
                 } else if (nivel === 'trem' && subNivel === 'gps') {
-
                     const idTrem = identificador;
                     const latitude = dadosRecebidos.latitude;
                     const longitude = dadosRecebidos.longitude;
@@ -104,26 +103,19 @@ function iniciarServidorEsp() {
 
                     if (latitude !== undefined && longitude !== undefined) {
                         await atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocidade, timestamp);
-
                     } else {
                         console.warn("[ESP_SERVER] Dados de GPS incompletos recebidos:", dadosRecebidos);
                     }
-
                 } else {
                     console.warn("[ESP_SERVER] Tópico MQTT não reconhecido ou incompleto:", topic);
                 }
-
             } else {
                 console.warn("[ESP_SERVER] Tópico MQTT fora do padrão esperado (ex: sensor/X/dados, trem/X/sensor/Y, trem/X/gps):", topic);
             }
-
         } catch (parseError) {
-            console.error("[ESP_SERVER] Erro ao processar mensagem MQTT (não é JSON ou formato inválido):", parseError, "Mensagem:", messageBuffer.toString());
-
+            console.error("[ESP_SERVER] Erro ao processar mensagem MQTT (não é JSON ou formato inválido):", parseError, "Mensagem:", message.toString());
         }
     });
-
-
 }
 
 async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
@@ -131,10 +123,9 @@ async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
     try {
         db = await conectar();
 
-
         const query = `
             INSERT INTO leituras_sensores (id_sensor, tipo_sensor, valor, timestamp_leitura)
-            VALUES ($1, 'desconhecido', $2, $3) -- 'desconhecido' como tipo padrão, ou tu pode inferir de outro lugar
+            VALUES ($1, 'desconhecido', $2, $3)
         `;
         const params = [parseInt(idSensor), valor, timestamp];
 
@@ -202,5 +193,4 @@ async function atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocida
     }
 }
 
-
-export { iniciarServidorEsp };
+export { iniciarServidorEsp }; 
