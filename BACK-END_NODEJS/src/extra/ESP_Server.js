@@ -1,4 +1,4 @@
-// BACK-END_NODEJS/src/modulos/ESP_Server.js (ou src/extra/ESP_Server.js, como tu tiver)
+// BACK-END_NODEJS/src/modulos/ESP_Server.js 
 import mqtt from 'mqtt';
 import { conectar } from '../databases/conectar_banco.js';
 import dotenv from 'dotenv';
