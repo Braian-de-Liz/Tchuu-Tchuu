@@ -11,7 +11,7 @@ const MQTT_PASSWORD = process.env.MQTT_PASSWORD;
 
 let clientMqtt = null;
 
-export function iniciarServidorEsp() {
+function iniciarServidorEsp() {
     if (!MQTT_BROKER_URL || !MQTT_USERNAME || !MQTT_PASSWORD) {
         console.error("Erro: Variáveis de ambiente MQTT_BROKER_URL, MQTT_USERNAME ou MQTT_PASSWORD não definidas.");
         return;
