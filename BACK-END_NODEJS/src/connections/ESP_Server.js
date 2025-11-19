@@ -1,4 +1,4 @@
-// BACK-END_NODEJS/src/extra/ESP_Server.js
+// BACK-END_NODEJS/src/connections/ESP_Server.js
 import mqtt from 'mqtt';
 import { conectar } from '../databases/conectar_banco.js';
 import dotenv from 'dotenv';
@@ -10,6 +10,9 @@ const MQTT_USERNAME = process.env.MQTT_USERNAME;
 const MQTT_PASSWORD = process.env.MQTT_PASSWORD;
 
 let clientMqtt = null;
+let isFirstConnection = true; 
+
+const CLIENT_ID = `tchuu-tchuu-server-${Math.random().toString(16).substr(2, 8)}`; 
 
 function iniciarServidorEsp() {
     if (!MQTT_BROKER_URL || !MQTT_USERNAME || !MQTT_PASSWORD) {
@@ -20,7 +23,7 @@ function iniciarServidorEsp() {
     console.log("Tentando conectar o ESP_Server ao broker MQTT do HiveMQ...");
 
     const options = {
-        clientId: 'tchuu-tchuu-esp-server-nodejs',
+        clientId: CLIENT_ID, 
         clean: true,
         connectTimeout: 4000,
         username: MQTT_USERNAME,
@@ -35,31 +38,40 @@ function iniciarServidorEsp() {
     clientMqtt = mqtt.connect(MQTT_BROKER_URL, options);
 
     clientMqtt.on('connect', () => {
-        console.log("ESP_Server conectado ao broker MQTT do HiveMQ com sucesso!");
+        
+        if (isFirstConnection) {
+            console.log("ESP_Server conectado ao broker MQTT do HiveMQ com sucesso!");
+        } else {
+            console.warn("ESP_Server RECONECTADO ao broker MQTT do HiveMQ. Re-inscrevendo nos tópicos..."); 
+        }
 
         clientMqtt.subscribe('sensor/+/dados', (err) => {
             if (err) {
                 console.error("Erro ao se inscrever no tópico de sensores genéricos:", err);
-            } else {
+            } else if (isFirstConnection) {
                 console.log("ESP_Server inscrito nos tópicos de sensores (sensor/*/dados).");
             }
         });
 
+      
         clientMqtt.subscribe('trem/+/sensor/+', (err) => {
             if (err) {
                 console.error("Erro ao se inscrever no tópico de sensores de trem:", err);
-            } else {
+            } else if (isFirstConnection) { 
                 console.log("ESP_Server inscrito nos tópicos de sensores de trem (trem/*/sensor/*).");
             }
         });
 
+     
         clientMqtt.subscribe('trem/+/gps', (err) => {
             if (err) {
                 console.error("Erro ao se inscrever no tópico de GPS de trem:", err);
-            } else {
+            } else if (isFirstConnection) { 
                 console.log("ESP_Server inscrito nos tópicos de GPS de trem (trem/*/gps).");
             }
         });
+        
+        isFirstConnection = false; 
     });
 
     clientMqtt.on('error', (error) => {
@@ -193,4 +205,4 @@ async function atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocida
     }
 }
 
-export { iniciarServidorEsp }; 
+export { iniciarServidorEsp };

@@ -1,7 +1,7 @@
 // BACK-END_NODEJS/src/routers/trens_manutencao/obter_manutencao.js
 import { Router } from 'express';
-import { conectar } from '../../databases/conectar_banco.js';
 import jwt from 'jsonwebtoken';
+import { conectar } from '../../databases/conectar_banco.js';
 
 const router = Router();
 
@@ -42,6 +42,17 @@ router.get("/manutencao", async (req, res) => {
         db = await conectar();
         console.log("Banco de dados acessado com o cliente PostgreSQL");
 
+        const cpfResult = await db.query('SELECT cpf FROM usuarios WHERE id = $1', [idUsuarioLogado]);
+        
+        if (cpfResult.rowCount === 0) {
+            console.error(`Usuário com ID ${idUsuarioLogado} do token não encontrado no banco.`);
+            return res.status(404).json({
+                status: 'erro',
+                mensagem: 'Usuário logado não encontrado no sistema.'
+            });
+        }
+        
+        const cpfUsuarioLogado = cpfResult.rows[0].cpf; 
 
         const query = `
             SELECT 
@@ -57,10 +68,10 @@ router.get("/manutencao", async (req, res) => {
                 t.fabricante
             FROM chamados_manutencao cm
             JOIN trens t ON cm.id_trem = t.id
-            WHERE cm.cpf_usuario_abertura = $1
+            WHERE cm.cpf_usuario_abertura = $1 -- Filtrando pelo CPF
             ORDER BY cm.data_inicio DESC;
         `;
-        const params = [idUsuarioLogado]; 
+        const params = [cpfUsuarioLogado]; 
 
         const resultado = await db.query(query, params);
 
@@ -71,7 +82,7 @@ router.get("/manutencao", async (req, res) => {
 
     } catch (erro) {
         console.error('Erro ao obter chamados de manutenção:', erro);
-        res.status(500).json({
+        return res.status(500).json({ 
             status: 'erro',
             mensagem: 'Erro interno do servidor ao obter os chamados de manutenção.'
         });

@@ -6,8 +6,8 @@ import { createServer } from 'http';
 import cors from 'cors';
 
 // websocket
-import { setupWebSocket } from './extra/chatServer.js';
-import { iniciarServidorEsp } from './extra/ESP_Server.js';
+import { setupWebSocket } from './connections/chatServer.js';
+import { iniciarServidorEsp } from './connections/ESP_Server.js';
 
 
 // rotas de usuário
