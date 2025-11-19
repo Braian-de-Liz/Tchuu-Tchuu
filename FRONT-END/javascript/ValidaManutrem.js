@@ -30,9 +30,9 @@ async function ValidaManutrem(event) {
 
     try {
         class dados_para_enviar_trem {
-            constructor(nome_trem, numero_trem, descricao_problema, descricao_detalhada, cpf_user) {
-                this.nome_trem = nome_trem;
-                this.numero_trem = numero_trem;
+            constructor(nomeTrem, numero_de_trem, descricao_problema, descricao_detalhada, cpf_user) {
+                this.nomeTrem = nomeTrem; 
+                this.numero_de_trem = numero_de_trem; 
                 this.descricao_problema = descricao_problema;
                 this.descricao_detalhada = descricao_detalhada;
                 this.cpf_user = cpf_user;
@@ -40,6 +40,7 @@ async function ValidaManutrem(event) {
         }
 
         const dadosEmpacotados = new dados_para_enviar_trem(nomeTrem, numero_de_Trem, ProblemaTrem, tremDescri, cpf_user);
+
 
         const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/manutencao', {
             method: 'POST',
@@ -56,8 +57,7 @@ async function ValidaManutrem(event) {
             console.log("Chamado de manutenção registrado com sucesso! ID:", resultado.id);
             alert('Seu Trem poderá ir para manutenção. Iremos arrumar o/os ' + ProblemaTrem);
 
-
-            document.getElementById('manutencao-form').reset();
+            document.getElementById('Login').reset(); 
 
             window.location.href = '../Public/pagMonitora.html';
             return true;

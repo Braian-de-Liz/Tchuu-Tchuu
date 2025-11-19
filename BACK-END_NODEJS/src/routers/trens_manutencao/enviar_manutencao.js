@@ -6,8 +6,11 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.post("/manutencao", async (req, res) => {
+    
     const { nomeTrem, numero_de_trem, descricao_problema, descricao_detalhada, cpf_user } = req.body;
+
     console.log("Dados do trem recebidos:", { nomeTrem, numero_de_trem, descricao_problema, descricao_detalhada, cpf_user }); 
+    
     if (!nomeTrem || !numero_de_trem || !descricao_problema || !descricao_detalhada || !cpf_user) {
         console.log("algum dos dados necessários não veio com a requisição");
         return res.status(400).json({
