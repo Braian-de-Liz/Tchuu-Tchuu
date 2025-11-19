@@ -241,6 +241,81 @@ input {
     font-size: 16px;
 }
 
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+#popup.active {
+  display: block;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+#overlay.active {
+  display: block;
+}
+
+.popup-chamado {
+    width: 600px;
+    max-width: 90%;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+    display: none;
+}
+
+.popup-conteudo select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 16px;
+    background: #fff;
+}
+
+.titulo-popup {
+    text-align: center;
+    color: #00695c;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.popup-conteudo label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+.popup-conteudo input,
+.popup-conteudo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
 @media (min-width: 901px) {
     body {
         justify-content: center;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script async type="module" src="../javascript/autenticacao.js"></script>
     <title>Tchuu Tchuu - Monitoramento </title>
 </head>
+
 <body>
     <script type="module" src="../javascript/protegerPAG.js"></script>
     <header class="header">
@@ -26,14 +28,17 @@
                     </div>
                 </div>
                 <!-- Carrossel de Gráficos - INÍCIO -->
-                <div style="position: relative; width: 100%; max-width: 800px; margin: 20px auto; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                    <button onclick="moverSlideGraficos(-1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">‹</button>
+                <div
+                    style="position: relative; width: 100%; max-width: 800px; margin: 20px auto; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <button onclick="moverSlideGraficos(-1)"
+                        style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">‹</button>
                     <div id="slides-graficos" style="display: flex; transition: transform 0.4s ease-in-out;">
                         <div style="min-width: 100%; padding: 15px;"><canvas id="chart1"></canvas></div>
                         <div style="min-width: 100%; padding: 15px;"><canvas id="chart2"></canvas></div>
                         <div style="min-width: 100%; padding: 15px;"><canvas id="chart3"></canvas></div>
                     </div>
-                    <button onclick="moverSlideGraficos(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">›</button>
+                    <button onclick="moverSlideGraficos(1)"
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: #333; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; z-index: 10;">›</button>
                 </div>
 
                 <!-- Seção de Chamados Centralizados -->
@@ -42,11 +47,50 @@
                     <div class="chamados-container">
                         <div class="card-chamado">
                             <p>Faça um chamado de manutenção</p>
-                            <a class="botao" href="pagFrota.html">Fazer chamado</a>
+                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
                         </div>
+
+                        <!-- Popup chamado de manutenção -->
+
+                        <div id="overlay" onclick="fecharPopup()"></div>
+
+                        <div id="popup" class="popup-chamado">
+
+                            <h2 class="titulo-popup">Relatar problema no site</h2>
+
+                            <div class="popup-conteudo">
+
+                                <label>Página onde ocorreu o problema:</label>
+                                <input type="text" id="pagina" placeholder="Ex: Dashboard, Perfil, Página de Frota...">
+
+                                <label>Tipo de problema:</label>
+                                <select id="tipoProblema">
+                                    <option value="">Selecione um problema</option>
+                                    <option value="Botão não funciona">Botão não funciona</option>
+                                    <option value="Página não carrega">Página não carrega</option>
+                                    <option value="Informações incorretas">Informações incorretas</option>
+                                    <option value="Erro de layout">Erro de layout</option>
+                                    <option value="Erro de servidor">Erro de servidor</option>
+                                    <option value="Problema de login">Problema de login</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+
+                                <label>Data do ocorrido:</label>
+                                <input type="date" id="data">
+
+                                <label>Descrição detalhada:</label>
+                                <textarea id="descricao" rows="4" placeholder="Explique o que aconteceu..."></textarea>
+
+                                <button class="botao" onclick="enviarChamado()">Enviar</button>
+                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup()">Cancelar</button>
+
+                            </div>
+                        </div>
+
                         <div class="card-chamado">
                             <p>Analise chamados</p>
-                            <a class="botao" href="pagChamados.html">Acessar Trens</a> <!-- Link corrigido para análise -->
+                            <a class="botao" href="pagChamados.html">Acessar Trens</a>
+                            <!-- Link corrigido para análise -->
                         </div>
                     </div>
                 </section>
@@ -94,7 +138,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
     <script src="../javascript/GraficoDesempenho.js"></script>
+    <script src="../javascript/ChamadoPopup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 <script src="../javascript/Monitora.js"> </script>
+
 </html>
