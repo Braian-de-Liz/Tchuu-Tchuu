@@ -68,7 +68,6 @@
         </div>
     </div>
 
-    <!-- Modal para adicionar/editar estação -->
     <div id="station-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -110,18 +109,29 @@
         </div>
     </div>
 
+
     <div id="route-creator" class="route-creator">
         <h3><i class="fas fa-route"></i> Criando Nova Rota</h3>
         <p>Clique nas estações para adicioná-las à rota</p>
+
         <div class="form-group">
             <label for="route-name">Nome da Rota:</label>
             <input type="text" id="route-name" placeholder="Ex: Rota Sul-Norte">
         </div>
-        <div class="control-group">
+
+        <div class="form-group">
+            <label for="route-description">Descrição da Rota:</label>
+            <input type="text" id="route-description" placeholder="Uma breve descrição da rota.">
+        </div>
+
+        <h4>Estações na Rota:</h4>
+        <div id="route-stations-list" class="station-list-preview">
+        </div>
+
+        <div class="control-group action-buttons">
             <button id="btn-finish-route" class="btn btn-success"><i class="fas fa-check"></i> Finalizar Rota</button>
             <button id="btn-cancel-route" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</button>
         </div>
-        <div id="route-stations-list" style="margin-top: 15px; max-height: 150px; overflow-y: auto;"></div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js  "></script>
