@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
-import { conectar } from '../../databases/conectar_banco.js';
+// Assumindo que 'conectar' gerencia a conexão e transações com o pg.
+import { conectar } from '../../databases/conectar_banco.js'; 
 
 const router = Router();
 
@@ -65,10 +66,10 @@ router.post('/rotas', async (req, res) => {
         if (isNaN(idUsuarioLogado) || idUsuarioLogado <= 0) {
             return res.status(401).json({
                 status: 'erro',
-                mensagem: 'Token inválido: ID do usuário não é um número válido (ID: ' + idDoToken + ').'
+                mensagem: `Token inválido: ID do usuário não é um número válido (ID: ${idDoToken}).`
             });
         }
-
+        
     } catch (erroToken) {
         console.error('Erro ao verificar token JWT:', erroToken);
         return res.status(401).json({
@@ -88,6 +89,7 @@ router.post('/rotas', async (req, res) => {
             SELECT id, latitude, longitude
             FROM estacoes
             WHERE id = ANY(ARRAY[${placeholders}])
+            ORDER BY id; -- Usar ORDER BY pode otimizar o lookup se necessário, mas o mapeamento abaixo garante a ordem de percurso.
         `;
         const resultadoCoords = await db.query(queryCoords, idsEstacoes);
 
@@ -95,7 +97,7 @@ router.post('/rotas', async (req, res) => {
             await db.query('ROLLBACK');
             return res.status(400).json({
                 status: 'erro',
-                mensagem: 'Alguma das estações fornecidas não foi encontrada.'
+                mensagem: 'Alguma das estações fornecidas não foi encontrada no sistema.'
             });
         }
         
@@ -124,39 +126,45 @@ router.post('/rotas', async (req, res) => {
             );
         }
 
-        const velocidadeMediaKmh = 60;
+        const velocidadeMediaKmh = 60; 
         const distanciaFormatada = parseFloat(distanciaTotalKm.toFixed(2)); 
         const tempoEstimadoHoras = distanciaFormatada / velocidadeMediaKmh;
         const tempoEstimadoMinutos = Math.round(tempoEstimadoHoras * 60);
 
-        // Verificação de NaN (mantida por segurança)
         if (isNaN(distanciaFormatada) || isNaN(tempoEstimadoMinutos)) {
             await db.query('ROLLBACK');
-            console.error('Erro de Cálculo: Distância ou Tempo resultou em NaN.', { distanciaTotalKm, distanciaFormatada, tempoEstimadoMinutos });
-             return res.status(400).json({
+            console.error('Erro de Cálculo: Distância ou Tempo resultou em NaN.');
+             return res.status(500).json({
                  status: 'erro',
-                 mensagem: 'Erro de cálculo. Verifique se as coordenadas das estações são válidas.'
+                 mensagem: 'Erro de cálculo interno. Verifique as coordenadas das estações.'
              });
         }
 
         const queryInsertRota = `
             INSERT INTO rotas (nome, descricao, distancia_km, tempo_estimado_min, id_usuario_criador)
-            VALUES ($1, $2, $3, $4, $5::BIGINT) -- APLICANDO CAST EXPLÍCITO NO SQL
+            VALUES ($1, $2, $3, $4, $5) 
             RETURNING id;
         `;
-
-
-        const paramsRota = [nome, descricao || null, distanciaFormatada, tempoEstimadoMinutos, idUsuarioLogado];
+        const paramsRota = [
+            nome, 
+            descricao || null,
+            distanciaFormatada, 
+            tempoEstimadoMinutos, 
+            idUsuarioLogado 
+        ];
+        
         const resultadoRota = await db.query(queryInsertRota, paramsRota);
         const idNovaRota = resultadoRota.rows[0].id;
 
+        // 3.4. Inserção das Associações (Ordem das Estações)
         const queryInsertAssoc = 'INSERT INTO rota_estacoes (id_rota, id_estacao, ordem) VALUES ($1, $2, $3)';
 
         for (let i = 0; i < idsEstacoes.length; i++) {
             await db.query(queryInsertAssoc, [idNovaRota, idsEstacoes[i], i]); 
         }
 
-        await db.query('COMMIT');
+        // 3.5. Finalização
+        await db.query('COMMIT'); // Finaliza a transação com sucesso
 
         res.status(201).json({
             status: 'sucesso',
@@ -170,14 +178,26 @@ router.post('/rotas', async (req, res) => {
         console.error('ERRO CRÍTICO (POST /rotas) -- Detalhe do erro:', erro);
         if (db) {
             try {
-                await db.query('ROLLBACK'); 
+                await db.query('ROLLBACK'); // Desfaz a transação em caso de erro
+                console.log('Transação desfeita (ROLLBACK).');
             } catch (rollbackError) {
                 console.error('Erro durante ROLLBACK:', rollbackError);
             }
         }
+        
+        // Em caso de erro na FK, o PostgeSQL retornará: 
+        // "violates foreign key constraint "fk_rotas_usuario_criador""
+        let mensagemErro = 'Erro interno do servidor ao salvar a rota.';
+        if (erro.code === '23503') { // Código de erro FK do PostgreSQL
+             mensagemErro = 'Falha ao associar a rota: o usuário criador ou as estações não existem.';
+        } else if (erro.code === '23505') { // Código de erro UNIQUE do PostgreSQL
+             mensagemErro = 'O nome da rota já está em uso. Por favor, escolha outro nome.';
+        }
+        
         res.status(500).json({
             status: 'erro',
-            mensagem: 'Erro interno do servidor ao salvar a rota.' 
+            mensagem: mensagemErro,
+            detalhe: erro.message
         });
     } finally {
         if (db) {
