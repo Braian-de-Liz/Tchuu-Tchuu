@@ -57,8 +57,10 @@ dotenv.config();
 
 // app.use(cors());
 
-app.use(cors({origin: 'https://tchuu-tchuu-front-end.onrender.com', credentials: true }));
-// ESSA ACIMA LINHA SÓ SERÁ ATIVADA COM O SISTEMA COMPLETO, MAS EM DESENVOLVIMENTO ELA ATRAPALHA
+app.use(cors({
+    origin: ['https://tchuu-tchuu-front-end.onrender.com', 'http://127.0.0.1:5500', 'http://localhost:5500'],
+    credentials: true
+}));
 
 const server = createServer(app);
 const { wss } = setupWebSocket(server);
