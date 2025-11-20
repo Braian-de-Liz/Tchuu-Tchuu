@@ -68,7 +68,6 @@ router.post('/rotas', async (req, res) => {
                 mensagem: 'Token inválido: ID do usuário não é um número válido (ID: ' + idDoToken + ').'
             });
         }
-        // ----------------------------------------------------
 
     } catch (erroToken) {
         console.error('Erro ao verificar token JWT:', erroToken);
@@ -130,6 +129,7 @@ router.post('/rotas', async (req, res) => {
         const tempoEstimadoHoras = distanciaFormatada / velocidadeMediaKmh;
         const tempoEstimadoMinutos = Math.round(tempoEstimadoHoras * 60);
 
+        // Verificação de NaN (mantida por segurança)
         if (isNaN(distanciaFormatada) || isNaN(tempoEstimadoMinutos)) {
             await db.query('ROLLBACK');
             console.error('Erro de Cálculo: Distância ou Tempo resultou em NaN.', { distanciaTotalKm, distanciaFormatada, tempoEstimadoMinutos });
@@ -141,9 +141,10 @@ router.post('/rotas', async (req, res) => {
 
         const queryInsertRota = `
             INSERT INTO rotas (nome, descricao, distancia_km, tempo_estimado_min, id_usuario_criador)
-            VALUES ($1, $2, $3, $4, $5)
+            VALUES ($1, $2, $3, $4, $5::BIGINT) -- APLICANDO CAST EXPLÍCITO NO SQL
             RETURNING id;
         `;
+
 
         const paramsRota = [nome, descricao || null, distanciaFormatada, tempoEstimadoMinutos, idUsuarioLogado];
         const resultadoRota = await db.query(queryInsertRota, paramsRota);
