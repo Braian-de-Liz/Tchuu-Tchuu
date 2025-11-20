@@ -126,6 +126,18 @@ body {
   overflow-y: auto;
 }
 
+#trens_manutencao{
+    max-width: 1400px; 
+    width: 100%;
+    margin: 0 auto; 
+    padding: 20px 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 15px; 
+}
+
 .item {
   position: relative;
   background: lightgray;
