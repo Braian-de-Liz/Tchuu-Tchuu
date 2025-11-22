@@ -30,7 +30,6 @@
             return res.status(401).json({ status: 'erro', mensagem: 'Token inválido ou expirado.' });
         }
         // ---------------------------
-
         let db;
         try {
             db = await conectar();

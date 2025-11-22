@@ -51,7 +51,6 @@ import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js'
 import dotenv from 'dotenv';
 
 
-
 const app = express();
 dotenv.config();
 

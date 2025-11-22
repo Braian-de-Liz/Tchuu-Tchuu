@@ -41,6 +41,18 @@
                 <button id="btn-save" class="btn btn-success"><i class="fas fa-sync-alt"></i> Recarregar Dados</button>
             </div>
 
+            <div id="route-actions-container" style="display: none; margin-top: 20px; padding: 10px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
+                <h3 style="font-size: 16px; margin-bottom: 5px; color: #308661;">Ações da Rota</h3>
+                <p id="selected-route-name" style="font-weight: bold; margin-bottom: 10px; color: #555;">-- Selecione uma rota --</p>
+                
+                <button id="btn-fixed-edit-route" class="btn btn-warning" style="width: 100%; margin: 5px 0;">
+                    <i class="fas fa-edit"></i> Editar Rota
+                </button>
+                <button id="btn-fixed-delete-route" class="btn btn-danger" style="width: 100%; margin: 5px 0;">
+                    <i class="fas fa-trash"></i> Excluir Rota
+                </button>
+            </div>
+            
             <div class="instructions">
                 <p><strong>Como criar uma rota:</strong></p>
                 <ol>
@@ -76,7 +88,8 @@
                 <span class="close">&times;</span>
             </div>
             <form id="station-form">
-                <input type="hidden" id="station-id"> <div class="form-group">
+                <input type="hidden" id="station-id"> 
+                <div class="form-group">
                     <label for="station-name">Nome da Estação:</label>
                     <input type="text" id="station-name" required>
                 </div>
@@ -103,7 +116,7 @@
                 <div class="form-group action-buttons">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar Estação</button>
                     <button type="button" class="btn btn-danger" id="btn-delete-station" style="display: none;"><i
-                        class="fas fa-trash"></i> Excluir Estação</button>
+                            class="fas fa-trash"></i> Excluir Estação</button>
                 </div>
             </form>
         </div>
@@ -112,7 +125,8 @@
 
     <div id="route-creator" class="route-creator" style="display: none;">
         <h3><i class="fas fa-route"></i> Criando Nova Rota</h3>
-        <input type="hidden" id="route-id" value=""> <p>Clique nas estações para adicioná-las à rota</p>
+        <input type="hidden" id="route-id" value=""> 
+        <p>Clique nas estações para adicioná-las à rota</p>
 
         <div class="form-group">
             <label for="route-name">Nome da Rota:</label>

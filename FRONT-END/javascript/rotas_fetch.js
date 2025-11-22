@@ -1,4 +1,3 @@
-// Variáveis globais
 let mapa;
 let estacoes = [];
 let rotas = [];
@@ -11,13 +10,11 @@ let criandoRota = false;
 let rotaAtual = [];
 let linhaRotaAtual = null;
 
-// URL base do seu servidor Node.js
+let rotaSelecionadaId = null; 
+
 const API_BASE_URL = 'https://tchuu-tchuu-server-chat.onrender.com/api';
 
-// Funções Auxiliares
-// ===================================
 
-// Atualizar mensagem de status
 function atualizarStatus(mensagem) {
     const elementoStatus = document.getElementById('status-message');
     if (elementoStatus) {
@@ -25,7 +22,6 @@ function atualizarStatus(mensagem) {
     }
 }
 
-// Fechar modais
 function fecharModais() {
     document.querySelectorAll('.modal').forEach(modal => {
         modal.style.display = 'none';
@@ -37,25 +33,18 @@ function fecharModais() {
     }
 }
 
-// Inicialização do mapa
 function inicializarMapa() {
-    // Coordenadas do centro do Brasil
     const centroLat = -14.2350;
     const centroLng = -51.9253;
-
-    // Criar o mapa
     mapa = L.map('map').setView([centroLat, centroLng], 5);
 
-    // Adicionar camada do mapa
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
 
-    // Carregar dados do servidor Node.js
     carregarEstacoes();
     carregarRotas();
 
-    // Evento de clique no mapa (cria estação temporária apenas no modo edição e se não estiver criando rota)
     mapa.on('click', function (e) {
         if (modoEdicao && !marcadorTemporario && !criandoRota) {
             criarEstacaoTemporaria(e.latlng);
@@ -63,8 +52,6 @@ function inicializarMapa() {
     });
 }
 
-// Funções de Carregamento (GET)
-// ===================================
 
 async function carregarEstacoes() {
     const token = localStorage.getItem('token');
@@ -116,6 +103,7 @@ async function carregarRotas() {
         const data = await resposta.json();
         rotas = data;
         renderizarRotas();
+        selecionarRota(null, ''); 
         atualizarStatus("Rotas carregadas com sucesso");
     } catch (error) {
         console.error('Erro ao carregar rotas:', error);
@@ -123,10 +111,7 @@ async function carregarRotas() {
     }
 }
 
-// Funções de Renderização (Mapa e Lista)
-// ===================================
 
-// Criar estação temporária no mapa
 function criarEstacaoTemporaria(latlng) {
     marcadorTemporario = L.marker(latlng, {
         draggable: true,
@@ -137,31 +122,23 @@ function criarEstacaoTemporaria(latlng) {
         })
     }).addTo(mapa);
 
-    // Preencher coordenadas no formulário
     document.getElementById('station-lat').value = latlng.lat.toFixed(6);
     document.getElementById('station-lng').value = latlng.lng.toFixed(6);
 
-    // Abrir modal para adicionar estação
     abrirModalEstacao();
 }
 
-// Renderizar estações no mapa e na lista
 function renderizarEstacoes() {
-    // Limpar marcadores existentes
     marcadoresEstacoes.forEach(marker => mapa.removeLayer(marker));
     marcadoresEstacoes = [];
 
-    // Limpar lista de estações
     const container = document.getElementById('stations-container');
     if (container) {
         container.innerHTML = '';
     }
 
-    // Adicionar cada estação
     estacoes.forEach(estacao => {
-        // Criar marcador no mapa
         const marker = L.marker([estacao.latitude, estacao.longitude], {
-            // ESSENCIAL: Usa modoEdicao para ligar/desligar o arraste
             draggable: modoEdicao,
             icon: L.divIcon({
                 className: 'station-marker',
@@ -170,7 +147,6 @@ function renderizarEstacoes() {
             })
         }).addTo(mapa);
 
-        // Adicionar popup com informações
         marker.bindPopup(`
             <div>
                 <h3>${estacao.nome}</h3>
@@ -179,7 +155,6 @@ function renderizarEstacoes() {
             </div>
         `);
 
-        // Evento de arrastar (apenas no modo edição)
         if (modoEdicao) {
             marker.on('dragend', function (e) {
                 const novaLat = e.target.getLatLng().lat;
@@ -188,7 +163,6 @@ function renderizarEstacoes() {
             });
         }
 
-        // Evento de clique
         marker.on('click', function () {
             if (criandoRota) {
                 adicionarEstacaoARota(estacao);
@@ -202,7 +176,6 @@ function renderizarEstacoes() {
 
         marcadoresEstacoes.push(marker);
 
-        // Adicionar à lista lateral
         if (container) {
             const itemEstacao = document.createElement('div');
             itemEstacao.className = 'station-item';
@@ -219,7 +192,6 @@ function renderizarEstacoes() {
                     selecionarEstacao(estacao.id);
                 } else {
                     mapa.setView([estacao.latitude, estacao.longitude], 10);
-                    // Procura o marcador correspondente para abrir o popup
                     const marcador = marcadoresEstacoes.find(m => 
                         m.getLatLng().lat === estacao.latitude && 
                         m.getLatLng().lng === estacao.longitude
@@ -233,31 +205,24 @@ function renderizarEstacoes() {
     });
 }
 
-// Renderizar rotas no mapa
 function renderizarRotas() {
-    // Limpar rotas existentes
     linhasRotas.forEach(line => mapa.removeLayer(line));
     linhasRotas = [];
 
-    // Limpar lista de rotas
     const container = document.getElementById('routes-container');
     if (container) {
         container.innerHTML = '';
     }
 
-    // Adicionar cada rota
     rotas.forEach(rota => {
         const coordenadas = [];
-        const idsEstacoes = rota.estacoes; // Array de estações (IDs ou Objetos)
+        const idsEstacoes = rota.estacoes; 
 
-        // Mapeia estacoes para coordenadas
         idsEstacoes.forEach(estacaoOuId => {
             let estacao;
             if (typeof estacaoOuId === 'number') {
-                // Se for apenas o ID, busca na lista global de estações
                 estacao = estacoes.find(e => e.id === estacaoOuId);
             } else if (estacaoOuId && estacaoOuId.latitude !== undefined) {
-                // Se já for o objeto completo (como é no seu backend)
                 estacao = estacaoOuId; 
             }
 
@@ -267,7 +232,6 @@ function renderizarRotas() {
         });
 
         if (coordenadas.length > 1) {
-            // Criar linha da rota com estilo de trilho
             const linha = L.polyline(coordenadas, {
                 color: '#333',
                 weight: 6,
@@ -275,35 +239,32 @@ function renderizarRotas() {
                 dashArray: '10, 10'
             }).addTo(mapa);
 
-            // Linha de sombra para efeito de trilho
             const linhaSombra = L.polyline(coordenadas, {
                 color: '#e74c3c',
                 weight: 8,
                 opacity: 0.3
             }).addTo(mapa);
 
-            // Adicionar popup com informações
-            // 🚨 CONTEÚDO DO POPUP COM BOTÕES DE EDIÇÃO E EXCLUSÃO
             linha.bindPopup(`
-                <div>
+                <div style="text-align: center;">
                     <h3>${rota.nome}</h3>
                     <p>Distância: ${rota.distancia_km} km</p>
                     <p>Tempo estimado: ${rota.tempo_estimado_min} min</p>
                     <p>Estações: ${coordenadas.length}</p>
-                    
-                    <button onclick="editarRota(${rota.id})" class="btn btn-warning" style="margin-top: 10px; margin-right: 10px;">
-                        <i class="fas fa-edit"></i> Editar Rota
-                    </button>
-                    <button onclick="excluirRota(${rota.id})" class="btn btn-danger" style="margin-top: 10px;">
-                        <i class="fas fa-trash"></i> Excluir Rota
-                    </button>
+                    <p style="font-size: 11px; margin-top: 10px;">Clique na linha para ver as ações na barra lateral.</p>
                 </div>
             `);
+            
+            linha.on('click', function (e) {
+                selecionarRota(rota.id, rota.nome);
+            });
+            linhaSombra.on('click', function (e) {
+                selecionarRota(rota.id, rota.nome);
+            });
 
             linhasRotas.push(linha);
             linhasRotas.push(linhaSombra);
 
-            // Adicionar à lista lateral
             if (container) {
                 const itemRota = document.createElement('div');
                 itemRota.className = 'route-item';
@@ -319,6 +280,7 @@ function renderizarRotas() {
                 `;
 
                 itemRota.addEventListener('click', function () {
+                    selecionarRota(rota.id, rota.nome); 
                     if (coordenadas.length > 0) {
                         mapa.fitBounds(coordenadas);
                     }
@@ -330,12 +292,26 @@ function renderizarRotas() {
     });
 }
 
-// Funções de Modo e Edição
-// ===================================
+function selecionarRota(id, nome) {
+    const container = document.getElementById('route-actions-container');
+    const nomeElement = document.getElementById('selected-route-name');
+    
+    if (!id || rotaSelecionadaId === id) {
+        rotaSelecionadaId = null;
+        container.style.display = 'none';
+        nomeElement.textContent = '-- Selecione uma rota --';
+        atualizarStatus("Nenhuma rota selecionada.");
+        return;
+    }
 
-// Alternar modo de edição
+    rotaSelecionadaId = id;
+    
+    nomeElement.textContent = nome;
+    container.style.display = 'block';
+    atualizarStatus(`Rota "${nome}" selecionada. Use os botões abaixo para editar ou excluir.`);
+}
+
 function alternarModoEdicao() {
-    // Se estiver criando rota, cancela primeiro
     if (criandoRota) {
         cancelarCriacaoRota();
     }
@@ -360,14 +336,13 @@ function alternarModoEdicao() {
     renderizarEstacoes();
 }
 
-// Funções de CRUD de Rota
-// ===================================
 
-// Iniciar criação de rota
 function iniciarCriacaoRota() {
+    selecionarRota(null, ''); 
+    
     criandoRota = true;
     rotaAtual = [];
-    document.getElementById('route-id').value = ''; // Limpa o ID para garantir que é uma criação (POST)
+    document.getElementById('route-id').value = ''; 
     document.getElementById('route-creator').style.display = 'flex';
     document.getElementById('route-stations-list').innerHTML = 'Nenhuma estação adicionada.';
     document.getElementById('route-name').value = '';
@@ -378,7 +353,6 @@ function iniciarCriacaoRota() {
     mapa.getContainer().style.cursor = 'crosshair';
 }
 
-// Iniciar edição de rota
 function editarRota(idRota) {
     const rotaParaEdicao = rotas.find(r => r.id == idRota);
 
@@ -387,17 +361,15 @@ function editarRota(idRota) {
         return;
     }
 
-    // 1. Configura o estado de criação/edição
-    iniciarCriacaoRota(); // Reseta o container
+    iniciarCriacaoRota(); 
     
-    // 2. Define o ID da rota em edição no campo oculto
+
     document.getElementById('route-id').value = idRota;
 
-    // 3. Preenche os campos
+    
     document.getElementById('route-name').value = rotaParaEdicao.nome;
     document.getElementById('route-description').value = rotaParaEdicao.descricao;
 
-    // 4. Preenche a lista de estações atuais (IMPORTANTE: Mapear para objetos de estação)
     rotaAtual = rotaParaEdicao.estacoes
         .map(estacaoOuId => {
             if (typeof estacaoOuId === 'number') {
@@ -410,13 +382,10 @@ function editarRota(idRota) {
     atualizarListaEstacoesRota();
     atualizarLinhaRotaTemporaria();
 
-    // 5. Muda o texto do botão Finalizar
     document.getElementById('btn-finish-route').innerHTML = '<i class="fas fa-save"></i> Salvar Edição';
     
     atualizarStatus(`Editando a rota "${rotaParaEdicao.nome}". Clique nas estações para mudar o percurso.`);
 }
-
-// Finalizar criação ou edição de rota (POST ou PATCH)
 async function finalizarCriacaoRota() {
     const idRota = document.getElementById('route-id').value;
 
@@ -444,7 +413,6 @@ async function finalizarCriacaoRota() {
         return;
     }
 
-    // Lógica para determinar POST (Criação) ou PATCH (Edição)
     const metodoHttp = idRota ? 'PATCH' : 'POST';
     const url = idRota ? `${API_BASE_URL}/rotas/${idRota}` : `${API_BASE_URL}/rotas`;
     
@@ -461,7 +429,7 @@ async function finalizarCriacaoRota() {
         });
 
         if (!resposta.ok) {
-            const erro = await resposta.json();
+            const erro = await resposta.json().catch(() => ({ mensagem: 'Erro desconhecido.' }));
             const mensagemErro = erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`;
             alert(`Falha ao salvar rota: ${mensagemErro}`);
             throw new Error(mensagemErro);
@@ -470,7 +438,6 @@ async function finalizarCriacaoRota() {
         const resultado = await resposta.json();
 
         if (resultado.status === 'sucesso') {
-            // Limpeza do ID e estado após sucesso, resolvendo o problema de exclusão de rotas editadas
             cancelarCriacaoRota();
             carregarRotas();
             atualizarStatus(`Rota "${nomeRota}" ${idRota ? 'atualizada' : 'criada'} com sucesso`);
@@ -486,11 +453,9 @@ async function finalizarCriacaoRota() {
     }
 }
 
-// Cancelar criação de rota
 function cancelarCriacaoRota() {
     criandoRota = false;
     rotaAtual = [];
-    // Limpa o ID da edição para evitar vazamento de estado
     document.getElementById('route-id').value = ''; 
     document.getElementById('route-creator').style.display = 'none';
     mapa.getContainer().style.cursor = '';
@@ -504,7 +469,6 @@ function cancelarCriacaoRota() {
     atualizarStatus("Criação de rota cancelada");
 }
 
-// Adicionar estação à rota em criação
 function adicionarEstacaoARota(estacao) {
     if (rotaAtual.some(s => s.id === estacao.id)) {
         atualizarStatus("Esta estação já está na rota");
@@ -517,7 +481,6 @@ function adicionarEstacaoARota(estacao) {
     atualizarStatus(`Estação "${estacao.nome}" adicionada à rota`);
 }
 
-// Atualizar lista de estações na rota em criação
 function atualizarListaEstacoesRota() {
     const container = document.getElementById('route-stations-list');
     if (container) {
@@ -532,8 +495,6 @@ function atualizarListaEstacoesRota() {
         });
     }
 }
-
-// Atualizar linha temporária da rota em criação
 function atualizarLinhaRotaTemporaria() {
     if (linhaRotaAtual) {
         mapa.removeLayer(linhaRotaAtual);
@@ -551,7 +512,6 @@ function atualizarLinhaRotaTemporaria() {
     }
 }
 
-// Excluir rota (DELETE)
 async function excluirRota(idRota) {
     console.warn('Ação de exclusão iniciada para a rota ID:', idRota);
 
@@ -562,7 +522,6 @@ async function excluirRota(idRota) {
         return;
     }
 
-    // 🛡️ Confirmação de exclusão
     if (!confirm(`Tem certeza que deseja excluir a rota ID ${idRota}?`)) {
         return;
     }
@@ -578,34 +537,30 @@ async function excluirRota(idRota) {
         
         console.log(`[ROTA DELETE] Resposta: ${resposta.status}`);
 
-        if (!resposta.ok) {
-            const erro = await resposta.json();
+        if (resposta.ok) {
+            
+            const resultado = await resposta.json().catch(() => ({ status: 'sucesso' }));
+
+            if (resultado.status === 'sucesso') {
+                carregarRotas();
+                selecionarRota(null, ''); 
+                atualizarStatus("Rota excluída com sucesso");
+            } else {
+                console.error('Erro ao excluir rota: ' + resultado.mensagem);
+                atualizarStatus('ERRO: Erro ao excluir rota: ' + resultado.mensagem);
+            }
+        } else {
+            const erro = await resposta.json().catch(() => ({ mensagem: 'Erro desconhecido.' }));
             const mensagemErro = erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`;
-            // 🚨 UX: Alerta de erro para o usuário
             alert(`Falha ao excluir rota: ${mensagemErro}`);
             throw new Error(mensagemErro);
         }
-
-        const resultado = await resposta.json();
-
-        if (resultado.status === 'sucesso') {
-            carregarRotas();
-            atualizarStatus("Rota excluída com sucesso");
-        } else {
-            console.error('Erro ao excluir rota: ' + resultado.mensagem);
-            atualizarStatus('ERRO: Erro ao excluir rota: ' + resultado.mensagem);
-        }
-
     } catch (error) {
         console.error('Erro:', error);
         atualizarStatus('ERRO: Erro ao excluir rota: ' + error.message);
     }
 }
 
-// Funções de CRUD de Estação
-// ===================================
-
-// Selecionar estação (não usado diretamente, mas pode ser útil para estilos)
 function selecionarEstacao(idEstacao) {
     document.querySelectorAll('.station-item').forEach(item => {
         item.classList.remove('active');
@@ -621,7 +576,6 @@ function selecionarEstacao(idEstacao) {
     }
 }
 
-// Abrir modal de estação
 function abrirModalEstacao(idEstacao = null) {
     const modal = document.getElementById('station-modal');
     const titulo = document.getElementById('modal-title');
@@ -659,12 +613,10 @@ function abrirModalEstacao(idEstacao = null) {
     modal.style.display = 'flex';
 }
 
-// Editar estação
 function editarEstacao(idEstacao) {
     abrirModalEstacao(idEstacao);
 }
 
-// Salvar estação (POST/PATCH)
 async function salvarEstacao(evento) {
     evento.preventDefault();
 
@@ -701,7 +653,7 @@ async function salvarEstacao(evento) {
         });
 
         if (!resposta.ok) {
-            const erro = await resposta.json();
+            const erro = await resposta.json().catch(() => ({ mensagem: 'Erro desconhecido.' }));
             const mensagemErro = erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`;
             alert(`Falha ao salvar estação: ${mensagemErro}`);
             throw new Error(mensagemErro);
@@ -712,7 +664,7 @@ async function salvarEstacao(evento) {
         if (resultado.status === 'sucesso') {
             fecharModais();
             carregarEstacoes();
-            carregarRotas(); // Recarrega rotas para garantir que as linhas se ajustem
+            carregarRotas(); 
             atualizarStatus(`Estação "${document.getElementById('station-name').value}" salva com sucesso`);
         } else {
             alert(`Erro ao salvar: ${resultado.mensagem}`);
@@ -726,7 +678,6 @@ async function salvarEstacao(evento) {
     }
 }
 
-// Excluir estação (DELETE)
 async function excluirEstacao() {
     const idEstacao = document.getElementById('station-id').value;
 
@@ -741,7 +692,6 @@ async function excluirEstacao() {
         return;
     }
 
-    // 🛡️ Confirmação de exclusão
     if (!confirm(`Tem certeza que deseja excluir a estação ID ${idEstacao}?`)) {
         return;
     }
@@ -756,9 +706,8 @@ async function excluirEstacao() {
         });
 
         if (!resposta.ok) {
-            const erro = await resposta.json();
+            const erro = await resposta.json().catch(() => ({ mensagem: 'Erro desconhecido.' }));
             const mensagemErro = erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`;
-            // 🚨 UX: Alerta de erro para o usuário
             alert(`Falha na Exclusão: ${mensagemErro}`); 
             throw new Error(mensagemErro);
         }
@@ -768,7 +717,7 @@ async function excluirEstacao() {
         if (resultado.status === 'sucesso') {
             fecharModais();
             carregarEstacoes();
-            carregarRotas(); // Recarrega rotas para remover aquelas que dependem da estação excluída
+            carregarRotas(); 
             atualizarStatus("Estação excluída com sucesso");
         } else {
             console.error('Erro ao excluir estação:', resultado.mensagem);
@@ -780,8 +729,6 @@ async function excluirEstacao() {
         atualizarStatus('ERRO: Erro ao excluir estação: ' + error.message);
     }
 }
-
-// Atualizar posição da estação (PATCH) - Usado quando o marcador é arrastado
 async function atualizarPosicaoEstacao(idEstacao, lat, lng) {
     const token = localStorage.getItem('token');
 
@@ -807,7 +754,7 @@ async function atualizarPosicaoEstacao(idEstacao, lat, lng) {
         });
 
         if (!resposta.ok) {
-            const erro = await resposta.json();
+            const erro = await resposta.json().catch(() => ({ mensagem: 'Erro desconhecido.' }));
             const mensagemErro = erro.mensagem || `Erro na resposta do servidor: ${resposta.status}`;
             alert(`Falha ao atualizar posição da estação: ${mensagemErro}`);
             throw new Error(mensagemErro);
@@ -821,7 +768,7 @@ async function atualizarPosicaoEstacao(idEstacao, lat, lng) {
                 estacao.latitude = lat;
                 estacao.longitude = lng;
                 atualizarStatus(`Posição da estação "${estacao.nome}" atualizada`);
-                carregarRotas(); // Recarrega rotas para ajustar a linha no mapa
+                carregarRotas(); 
             }
         } else {
             console.error('Erro ao atualizar posição:', resultado.mensagem);
@@ -834,51 +781,51 @@ async function atualizarPosicaoEstacao(idEstacao, lat, lng) {
     }
 }
 
-// Event Listeners
-// ===================================
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Inicializar mapa
     inicializarMapa();
 
-    // Botões
     document.getElementById('btn-add-station').addEventListener('click', function () {
         abrirModalEstacao();
     });
 
-    // Botões de Rota
     document.getElementById('btn-start-route').addEventListener('click', iniciarCriacaoRota);
     document.getElementById('btn-finish-route').addEventListener('click', finalizarCriacaoRota);
     document.getElementById('btn-cancel-route').addEventListener('click', cancelarCriacaoRota);
-
-    // Botão de Modo Edição
     document.getElementById('btn-edit-mode').addEventListener('click', alternarModoEdicao);
-
-    // Botão Salvar/Recarregar
     document.getElementById('btn-save').addEventListener('click', function () {
         carregarEstacoes();
         carregarRotas();
         atualizarStatus("Dados atualizados do servidor");
     });
+    
+    document.getElementById('btn-fixed-edit-route').addEventListener('click', function() {
+        if (rotaSelecionadaId) {
+            editarRota(rotaSelecionadaId);
+            selecionarRota(null, ''); 
+        } else {
+            atualizarStatus('Selecione uma rota primeiro!');
+        }
+    });
+    document.getElementById('btn-fixed-delete-route').addEventListener('click', function() {
+        if (rotaSelecionadaId) {
+            excluirRota(rotaSelecionadaId);
+        } else {
+            atualizarStatus('Selecione uma rota primeiro!');
+        }
+    });
 
-    // Fechar modais
     document.querySelectorAll('.close').forEach(botaoFechar => {
         botaoFechar.addEventListener('click', fecharModais);
     });
-
-    // Formulários
     document.getElementById('station-form').addEventListener('submit', salvarEstacao);
     document.getElementById('btn-delete-station').addEventListener('click', excluirEstacao);
-
-    // Fechar modal ao clicar fora
     window.addEventListener('click', function (evento) {
         if (evento.target.classList.contains('modal')) {
             fecharModais();
         }
     });
-    
-    // 🚨 EXPÕE FUNÇÕES GLOBAIS (necessário pois o script é carregado como módulo)
     window.editarEstacao = editarEstacao;
     window.excluirEstacao = excluirEstacao;
-    window.excluirRota = excluirRota;
-    window.editarRota = editarRota;
+
 });
