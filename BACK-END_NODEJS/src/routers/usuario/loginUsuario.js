@@ -16,7 +16,7 @@ router.post('/usu_login', async (req, res) => {
     if (senha.length < 8) {
         console.error("Usuário com senha menor do que minimo requerido");
         return res.status(400).json({
-            status: 'erro',
+            status: 'erro',Obsidian Color Scheme
             mensagem: 'Senha curta demais. Mínimo de 8 caracteres.'
         });
     }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="../Assets/rotas_novas.css">
     <link rel="stylesheet" href="../Assets/menulateral.css">
-    <link rel="stylesheet" href="../Assets/fot.css">
+    <link rel="stylesheet" href="../Assets/fot.css"> 
     <link rel="shortcut icon" href="../Assets/imagens/logos/logo THUU.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -36,8 +36,9 @@
             </div>
 
             <div class="control-group">
+                <span id="mode-indicator" style="padding: 5px; border-radius: 5px; background-color: #f39c12; color: white;">Modo Visualização</span>
                 <button id="btn-edit-mode" class="btn"><i class="fas fa-edit"></i> Editar</button>
-                <button id="btn-save" class="btn btn-success"><i class="fas fa-save"></i> Salvar</button>
+                <button id="btn-save" class="btn btn-success"><i class="fas fa-sync-alt"></i> Recarregar Dados</button>
             </div>
 
             <div class="instructions">
@@ -75,8 +76,7 @@
                 <span class="close">&times;</span>
             </div>
             <form id="station-form">
-                <input type="hidden" id="station-id">
-                <div class="form-group">
+                <input type="hidden" id="station-id"> <div class="form-group">
                     <label for="station-name">Nome da Estação:</label>
                     <input type="text" id="station-name" required>
                 </div>
@@ -100,19 +100,19 @@
                     <label for="station-lng">Longitude:</label>
                     <input type="text" id="station-lng" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group action-buttons">
                     <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Salvar Estação</button>
-                    <button type="button" class="btn btn-danger" id="btn-delete-station"><i
-                            class="fas fa-trash"></i>Excluir Estação</button>
+                    <button type="button" class="btn btn-danger" id="btn-delete-station" style="display: none;"><i
+                        class="fas fa-trash"></i> Excluir Estação</button>
                 </div>
             </form>
         </div>
     </div>
 
 
-    <div id="route-creator" class="route-creator">
+    <div id="route-creator" class="route-creator" style="display: none;">
         <h3><i class="fas fa-route"></i> Criando Nova Rota</h3>
-        <p>Clique nas estações para adicioná-las à rota</p>
+        <input type="hidden" id="route-id" value=""> <p>Clique nas estações para adicioná-las à rota</p>
 
         <div class="form-group">
             <label for="route-name">Nome da Rota:</label>
@@ -126,7 +126,7 @@
 
         <h4>Estações na Rota:</h4>
         <div id="route-stations-list" class="station-list-preview">
-        </div>
+            </div>
 
         <div class="control-group action-buttons">
             <button id="btn-finish-route" class="btn btn-success"><i class="fas fa-check"></i> Finalizar Rota</button>
@@ -134,15 +134,12 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js  "></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="../javascript/render_menu.js"></script>
     <script src="../javascript/render_rodape.js"></script>
     <script src="../javascript/RotasSidebar.js"></script>
-    <script src="../javascript/render_rodape.js"></script>
 
-
-    <script type="module" src="../javascript/rotas_fetch.js"></script>
+    <script src="../javascript/rotas_fetch.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
-
 
 </html>
