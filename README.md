@@ -25,8 +25,7 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 
 ### ⚙️ Back-end
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="30"/> **Node.js**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="30"/> **Express**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="30"/> **PHP**  
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="30"/> **Express** 
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="npm" width="30"/> **npm** — gerenciador de pacotes utilizado para instalar dependências e bibliotecas.  
 - <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="bcrypt.js" width="30"/> **bcrypt.js** — biblioteca para criptografia de senhas e segurança de autenticação.  
 - <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="WebSocket" width="30"/> **ws (WebSocket)** — biblioteca NPM utilizada para comunicação em tempo real entre servidor e clientes.
