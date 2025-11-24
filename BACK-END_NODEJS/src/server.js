@@ -87,8 +87,8 @@ app.use('/api', mostrarTREM);
 
 // Rotas para sensores;
 app.use('/api', cadastroSensor);
-// app.use('/api', );
-// app.use('/api', );
+app.use('/api', deletarSensor);
+app.use('/api', alterarSensor);
 // app.use('/api', );
 // app.use('/api', );
 // app.use('/api', );
