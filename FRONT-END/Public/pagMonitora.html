@@ -125,10 +125,96 @@
                     <div class="chart-container">
                         <label for="">Acesse para Adicionar novo tipo de Sensor</label>
                         <br>
-                        <div>
+                        <div class="sensor-flex">
+                        <div class="card-sensor">
+                            <h3>Cadastrar Sensores</h3>
+                            <p>Acesse para adicionar os dados de um novo sensor</p>
                             <a class="botao" href="cadastrarSensor.html">Adicionar Sensor</a>
                         </div>
+                        <div class="card-sensor">
+                            <h3>Ver Sensores</h3>
+                            <p>Analise os sensores cadastrados</p>
+                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
+                        </div>
+                        <div class="card-sensor">
+                            <h3>Atualizar Sensores</h3>
+                            <p>Você quer mudar algo nos seus sensores?</p>
+                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
+                        </div>
+                        <div class="card-sensor">
+                            <h3>Deletar Sensores</h3>
+                            <p>Você quer deletar algum sensor?</p>
+                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
+                        </div>
+                        
                     </div>
+
+                    <section id="dashboard-copiado" style="margin-top:40px;">
+                        <div class="dashboard-grid">
+
+
+                            <div class="box box-large">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <canvas id="chart-top"></canvas>
+                            </div>
+
+
+                            <div class="box box-small">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <canvas id="chart-gauge"></canvas>
+                                <span class="label-green">LOREM IPSUM</span>
+                            </div>
+
+
+                            <div class="box box-small">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <canvas id="chart-line"></canvas>
+                                <span class="label-blue">LOREM IPSUM</span>
+                            </div>
+
+
+                            <div class="box box-small">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <canvas id="chart-bars"></canvas>
+                                <span class="label-red">LOREM IPSUM</span>
+                            </div>
+
+
+                            <div class="box box-tall">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <ul class="lista-info">
+                                    <li>Consectetur <span class="tag yellow">345</span></li>
+                                    <li>Adipiscing <span class="tag orange">561</span></li>
+                                    <li>Sed do <span class="tag blue">289</span></li>
+                                    <li>Eiusmod <span class="tag green">451</span></li>
+                                    <li>Duis aute <span class="tag red">434</span></li>
+                                </ul>
+                            </div>
+
+
+                            <div class="box box-wide">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <canvas id="chart-progress"></canvas>
+                            </div>
+
+
+                            <div class="box box-wide">
+                                <h3 class="titulo-box">Dolor Sit Amet</h3>
+                                <canvas id="chart-horizontal"></canvas>
+                            </div>
+
+
+                            <div class="box box-small">
+                                <h3 class="titulo-box">Lorem Ipsum</h3>
+                                <canvas id="chart-pie"></canvas>
+                            </div>
+
+
+                        </div>
+                    </section>
+
+
+
                 </section>
             </section>
         </main>
