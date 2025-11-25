@@ -1,5 +1,4 @@
 // FRONT-END\javascript\auth_tremDelete.js 
-
 const botao_deletar_form = document.getElementById("hyper_confirmar"); 
 const div_form_delete = document.getElementById("confirmar_trem_delete"); 
 const botao_abrir_form = document.getElementById("Deletar"); 
@@ -30,11 +29,9 @@ async function deletar_trem(event) {
 
 
     try {
-        // 🔑 MUDANÇA CRÍTICA: Construção da URL com Query Parameters
         const baseUrl = "https://tchuu-tchuu-server-chat.onrender.com/api/trens";
         const url_delete = new URL(baseUrl);
         
-        // Adicionando CPF e nome do trem como parâmetros de consulta
         url_delete.searchParams.append("cpf_user", cpf_data);
         url_delete.searchParams.append("nome_trem", nome_trem);
 

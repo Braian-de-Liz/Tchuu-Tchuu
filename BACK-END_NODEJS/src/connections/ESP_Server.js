@@ -131,7 +131,6 @@ function iniciarServidorEsp() {
 }
 
 
-
 async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
     let db;
     try {
@@ -141,6 +140,7 @@ async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
             INSERT INTO leituras_sensores (id_sensor, tipo_sensor, valor, timestamp_leitura)
             VALUES ($1, 'desconhecido', $2, $3)
         `;
+        // CORREÇÃO APLICADA: idSensor (ex: 'S1-Temp') é passado como string para o banco.
         const params = [idSensor, valor, timestamp]; 
 
         await db.query(query, params);

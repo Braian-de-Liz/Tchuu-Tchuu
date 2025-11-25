@@ -23,93 +23,68 @@
         <main>
 
             <section id="dashboard-copiado" style="margin-top:40px;">
-                        <div class="dashboard-grid">
-
-
-                            <div class="box box-large">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <canvas id="chart-top"></canvas>
-                            </div>
-
-
-                            <div class="box box-small">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <canvas id="chart-gauge"></canvas>
-                                <span class="label-green">LOREM IPSUM</span>
-                            </div>
-
-
-                            <div class="box box-small">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <canvas id="chart-line"></canvas>
-                                <span class="label-blue">LOREM IPSUM</span>
-                            </div>
-
-
-                            <div class="box box-small">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <canvas id="chart-bars"></canvas>
-                                <span class="label-red">LOREM IPSUM</span>
-                            </div>
-
-
-                            <div class="box box-tall">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <ul class="lista-info">
-                                    <li>Consectetur <span class="tag yellow">345</span></li>
-                                    <li>Adipiscing <span class="tag orange">561</span></li>
-                                    <li>Sed do <span class="tag blue">289</span></li>
-                                    <li>Eiusmod <span class="tag green">451</span></li>
-                                    <li>Duis aute <span class="tag red">434</span></li>
-                                </ul>
-                            </div>
-
-
-                            <div class="box box-wide">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <canvas id="chart-progress"></canvas>
-                            </div>
-
-
-                            <div class="box box-wide">
-                                <h3 class="titulo-box">Dolor Sit Amet</h3>
-                                <canvas id="chart-horizontal"></canvas>
-                            </div>
-
-
-                            <div class="box box-small">
-                                <h3 class="titulo-box">Lorem Ipsum</h3>
-                                <canvas id="chart-pie"></canvas>
-                            </div>
-
-
-                        </div>
-                    </section>
+                <div class="dashboard-grid">
+                    <div class="box box-large">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <canvas id="chart-top"></canvas>
+                    </div>
+                    <div class="box box-small">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <canvas id="chart-gauge"></canvas>
+                        <span class="label-green">LOREM IPSUM</span>
+                    </div>
+                    <div class="box box-small">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <canvas id="chart-line"></canvas>
+                        <span class="label-blue">LOREM IPSUM</span>
+                    </div>
+                    <div class="box box-small">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <canvas id="chart-bars"></canvas>
+                        <span class="label-red">LOREM IPSUM</span>
+                    </div>
+                    <div class="box box-tall">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <ul class="lista-info">
+                            <li>Consectetur <span class="tag yellow">345</span></li>
+                            <li>Adipiscing <span class="tag orange">561</span></li>
+                            <li>Sed do <span class="tag blue">289</span></li>
+                            <li>Eiusmod <span class="tag green">451</span></li>
+                            <li>Duis aute <span class="tag red">434</span></li>
+                        </ul>
+                    </div>
+                    <div class="box box-wide">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <canvas id="chart-progress"></canvas>
+                    </div>
+                    <div class="box box-wide">
+                        <h3 class="titulo-box">Dolor Sit Amet</h3>
+                        <canvas id="chart-horizontal"></canvas>
+                    </div>
+                    <div class="box box-small">
+                        <h3 class="titulo-box">Lorem Ipsum</h3>
+                        <canvas id="chart-pie"></canvas>
+                    </div>
+                </div>
+            </section>
 
             <section>
 
-                <!-- Seção de Chamados Centralizados -->
                 <section class="bloco_section chamados-centralizados">
                     <h2 class="titulo-trens">Chamados de Manutenção</h2>
                     <div class="chamados-container">
                         <div class="card-chamado">
                             <p>Faça um chamado de manutenção</p>
-                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
+                            <button class="botao" onclick="abrirPopup('popup')">Fazer chamado</button>
                         </div>
-
-                        <!-- Popup chamado de manutenção -->
 
                         <div id="overlay" onclick="fecharPopup()"></div>
 
                         <div id="popup" class="popup-chamado">
-
                             <h2 class="titulo-popup">Relatar problema no site</h2>
-
                             <div class="popup-conteudo">
-
                                 <label>Página onde ocorreu o problema:</label>
                                 <input type="text" id="pagina" placeholder="Ex: Dashboard, Perfil, Página de Frota...">
-
                                 <label>Tipo de problema:</label>
                                 <select id="tipoProblema">
                                     <option value="">Selecione um problema</option>
@@ -121,23 +96,72 @@
                                     <option value="Problema de login">Problema de login</option>
                                     <option value="Outro">Outro</option>
                                 </select>
-
                                 <label>Data do ocorrido:</label>
                                 <input type="date" id="data">
-
                                 <label>Descrição detalhada:</label>
                                 <textarea id="descricao" rows="4" placeholder="Explique o que aconteceu..."></textarea>
-
                                 <button class="botao" onclick="enviarChamado()">Enviar</button>
-                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup()">Cancelar</button>
-
+                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popup')">Cancelar</button>
                             </div>
                         </div>
+
+                        <div id="popupVerSensores" class="popup-chamado" style="display:none;">
+                            <h2 class="titulo-popup">Visualizar Sensores Cadastrados</h2>
+                            <div class="popup-conteudo">
+                                <p>Aqui você verá uma tabela ou lista de todos os sensores no seu banco de dados, com
+                                    seus IDs e tipos.</p>
+
+                                <div id="listaSensores"
+                                    style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+                                    <p>Carregando dados...</p>
+                                </div>
+                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popupVerSensores')">Fechar</button>
+                            </div>
+                        </div>
+
+
+                        <div id="popupDeletarSensor" class="popup-chamado_aviso" style="display:none;">
+                            <h2 class="titulo-popup">Confirmação de Deleção</h2>
+                            <div class="popup-conteudo">
+                                <p>Selecione o sensor que deseja deletar. Esta ação é irreversível.</p>
+
+                                <label>ID do Sensor</label>
+                                <select id="selectSensorDeletar">
+                                    <option value="">Carregue a lista ao abrir</option>
+                                </select>
+                                <br>
+                                
+                                <button class="botao" onclick="executarDelecao()">Deletar PERMANENTEMENTE</button>
+                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popupDeletarSensor')">Cancelar</button>
+                            </div>
+                        </div>
+
+
+                        <div id="popupAtualizarSensor" class="popup-chamado" style="display:none;">
+                            <h2 class="titulo-popup">Atualizar Sensor</h2>
+                            <div class="popup-conteudo">
+                                <p>Selecione o sensor e preencha apenas os campos que deseja atualizar.</p>
+                                
+                                <label>ID do Sensor a Atualizar:</label>
+                                <select id="selectSensorAtualizar">
+                                    <option value="">Carregue a lista ao abrir</option>
+                                </select>
+                                
+                                <label>Novo Tipo de Sensor:</label>
+                                <input type="text" id="novoTipo" placeholder="Ex: Pressão">
+                                
+                                <label>Novo Valor Limite Inicial:</label>
+                                <input type="number" id="novoValorInicial" placeholder="Ex: 85.5">
+                                
+                                <button class="botao" onclick="enviarAtualizacao()">Atualizar Sensor</button>
+                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popupAtualizarSensor')">Cancelar</button>
+                            </div>
+                        </div>
+
 
                         <div class="card-chamado">
                             <p>Analise chamados</p>
                             <a class="botao" href="pagChamados.html">Acessar Trens</a>
-                            <!-- Link corrigido para análise -->
                         </div>
                     </div>
                 </section>
@@ -173,44 +197,53 @@
                         <label for="">Acesse para Adicionar novo tipo de Sensor</label>
                         <br>
                         <div class="sensor-flex">
-                        <div class="card-sensor">
-                            <h3>Cadastrar Sensores</h3>
-                            <p>Acesse para adicionar os dados de um novo sensor</p>
-                            <a class="botao" href="cadastrarSensor.html">Adicionar Sensor</a>
+                            <div class="card-sensor">
+                                <h3>Cadastrar Sensores</h3>
+                                <p>Acesse para adicionar os dados de um novo sensor</p>
+                                <a class="botao" href="cadastrarSensor.html">Adicionar Sensor</a>
+                            </div>
+
+                            <div class="card-sensor">
+                                <h3>Ver Sensores</h3>
+                                <p>Analise os sensores cadastrados</p>
+                                <button class="botao" id="botao_pop_ver" >Visualizar</button>
+                            </div>
+
+                            <div class="card-sensor">
+                                <h3>Atualizar Sensores</h3>
+                                <p>Você quer mudar algo nos seus sensores?</p>
+                                <button class="botao" id="botao_pop_update">Atualizar Sensor</button>
+                            </div>
+
+                            <div class="card-sensor">
+                                <h3>Deletar Sensores</h3>
+                                <p>Você quer deletar algum sensor?</p>
+                                <button class="botao" id="botao_pop_deletar">Deletar Sensor</button>
+                            </div>
+
                         </div>
-                        <div class="card-sensor">
-                            <h3>Ver Sensores</h3>
-                            <p>Analise os sensores cadastrados</p>
-                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
-                        </div>
-                        <div class="card-sensor">
-                            <h3>Atualizar Sensores</h3>
-                            <p>Você quer mudar algo nos seus sensores?</p>
-                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
-                        </div>
-                        <div class="card-sensor">
-                            <h3>Deletar Sensores</h3>
-                            <p>Você quer deletar algum sensor?</p>
-                            <button class="botao" onclick="abrirPopup()">Fazer chamado</button>
-                        </div>
-                        
                     </div>
-
-                    
-
-
-
                 </section>
+
             </section>
+
         </main>
+
+
     </div>
     <script src="../javascript/render_menu.js"></script>
     <script src="../javascript/render_rodape.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="../javascript/autenticacao.js"></script>
     <script src="../javascript/GraficoDesempenho.js"></script>
-    <script src="../javascript/ChamadoPopup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../javascript/Atualizar_Sensor.js"></script>
+    <script src="../javascript/SensorView.js"></script>
+    <script src="../javascript/SensorDelete.js"></script>
+
+
+
 </body>
 <script src="../javascript/Monitora.js"> </script>
 

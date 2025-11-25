@@ -5,13 +5,11 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.patch("/sensores", async (req, res) => {
-    // 🔑 Assumimos que o corpo da requisição terá o nome antigo e o novo nome.
     const { cpf_user, nome_sensor, novo_nome_sensor } = req.body; 
 
-    // 1. Validação dos Dados
     if (!cpf_user || !nome_sensor || !novo_nome_sensor) {
         console.error("Dados indisponíveis para atualização");
-        return res.status(400).json({ // Status 400 para erro de requisição (Bad Request)
+        return res.status(400).json({
             status: 'erro',
             mensagem: 'CPF do usuário, nome atual e novo nome do sensor são obrigatórios.'
         });
@@ -21,10 +19,9 @@ router.patch("/sensores", async (req, res) => {
     let resultado;
 
     try {
-        db = await conectar(); // Abre a conexão com o banco de dados
+        db = await conectar(); 
 
-        // 2. Consulta SQL para Atualização
-        // ⚠️ Nota: A tabela deve ter uma coluna 'cpf_user' e a coluna do nome do sensor.
+     
         const sql = `
             UPDATE sensores 
             SET nome_sensor = $1 
@@ -32,15 +29,12 @@ router.patch("/sensores", async (req, res) => {
             RETURNING *;
         `;
         
-        // Parâmetros: [novo_nome_sensor, nome_sensor (antigo), cpf_user]
         const params = [novo_nome_sensor, nome_sensor, cpf_user];
 
         // 3. Executa a consulta
         resultado = await db.query(sql, params);
 
-        // 4. Verifica o Resultado
         if (resultado.rowCount === 0) {
-            // Se nenhuma linha foi afetada, o sensor não existe ou o CPF não corresponde ao dono.
             return res.status(404).json({
                 status: 'erro',
                 mensagem: `Sensor '${nome_sensor}' não encontrado ou você não tem permissão para alterá-lo.`
@@ -51,12 +45,11 @@ router.patch("/sensores", async (req, res) => {
         return res.status(200).json({
             status: 'sucesso',
             mensagem: `Sensor '${nome_sensor}' renomeado com sucesso para '${novo_nome_sensor}'.`,
-            sensor: resultado.rows[0] // Retorna os dados do sensor atualizado
+            sensor: resultado.rows[0] 
         });
     }
     catch (erro) {
         console.error("Erro ao atualizar o sensor no banco de dados:", erro);
-        // Status 500 para erro interno do servidor
         return res.status(500).json({
             status: 'erro',
             mensagem: 'Erro interno do servidor ao tentar atualizar o sensor.'
@@ -64,7 +57,7 @@ router.patch("/sensores", async (req, res) => {
     }
     finally{
         if(db){
-            await db.end(); // 6. Fecha a conexão
+            await db.end(); 
         }
     }
 });
