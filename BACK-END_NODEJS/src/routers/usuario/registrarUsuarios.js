@@ -64,6 +64,8 @@ router.post('/usuarios', async (req, res) => {
             mensagem: 'Usuário cadastrado com sucesso!'
         });
 
+        console.log(`O usuário ${nome} de cpf:${cpf} foi cadastrado com sucesso`);
+
     } catch (erro) {
         console.error("Erro ao cadastrar", erro);
         res.status(500).json({
@@ -71,11 +73,14 @@ router.post('/usuarios', async (req, res) => {
             mensagem: "Erro interno do servidor"
         });
 
-    } 
-    
-    finally {
-        if (db) db.end();
     }
+
+    finally {
+        if (db) {
+            await db.end();
+        }
+    }
+
 });
 
 export default router;
