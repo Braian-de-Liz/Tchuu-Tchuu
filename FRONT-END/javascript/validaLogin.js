@@ -83,5 +83,4 @@ async function ValidaLogin(event) {
         alert('Erro ao fazer login: ' + erro.message);
     }
 
-
 };

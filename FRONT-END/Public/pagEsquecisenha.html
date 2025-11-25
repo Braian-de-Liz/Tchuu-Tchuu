@@ -4,109 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Assets/stylesenha.css">
+    <link rel="stylesheet" href="/FRONT-END/Assets/stylelogin.css">
     <link rel="shortcut icon" href="../Assets/imagens/logos/logo THUU.png" type="image/x-icon">
-    <title>Tchuu-Tchuu esqueci minha senha</title>
+    <title>Tchuu Tchuu - Esqueci minha senha</title>
 </head>
 
 <body>
-    <div id="container">
-        <header id="cabe">
-            <h1 id="titu">Alterar Senha</h1>
-        </header>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="../Assets/imagens/logos/logo THUU.png" alt="Tchuu Tchuu" class="logo">
+            <h1>Recuperar Senha</h1>
+        </div>
 
-        <main>
-            <section>
-                <form action="" id="senha" onsubmit="return ValidaSenhaRecuperacao(event)">
-                    <div>
-                        <h2>Digite Email e Número de Funcionário</h2>
-                        <br>
+        <form id="senha" class="login-form" onsubmit="return ValidaSenhaRecuperacao(event)">
+            <!-- Etapa 1: Email + Número de Funcionário -->
+            <div id="etapa1">
+                <p class="form-description">Insira seu e-mail e número de funcionário para receber um código de recuperação.</p>
 
-                        <fieldset>
-                            <label for="email">Email</label>
-                            <br>
-                            <input type="email" id="email">
-                        </fieldset>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required autocomplete="email">
+                </div>
 
+                <div class="input-group">
+                    <label for="NumFun">Número de Funcionário</label>
+                    <input type="number" id="NumFun" required min="1">
+                </div>
 
-                        <br>
+                <button type="submit" class="btn-primary">Enviar Código</button>
+                <div id="passou" style="margin-top: 16px;"></div>
+            </div>
 
-                        <fieldset>
-                            <label for="numfun">Número de Funcionário</label>
-                            <br>
-                            <input type="number" id="NumFun">
-                        </fieldset>
+            <!-- Etapa 2: Nova Senha (inicialmente escondida) -->
+            <div id="senhaVeio" style="display: none;">
+                <div class="input-group">
+                    <label for="senhaNova">Nova senha</label>
+                    <input type="password" id="senhaNova" required>
+                </div>
+                <button type="button" class="btn-primary" onclick="SalvarNovaSenha()">Salvar Senha</button>
+            </div>
+        </form>
 
-                    </div>
-
-                    <div id="passou">
-                        <!--InnerHTML que vai aparecer-->
-                    </div>
-                    <br>
-
-
-                    <div class="center">
-                        <button type="submit" class="envia">
-                            Enviar
-                        </button>
-
-                    </div>
-                    <br>
-
-
-
-                    <div id="senhaVeio">
-
-                        <br>
-
-                        <fieldset>
-                            <label for="">Digite sua nova Senha</label>
-                            <br>
-                            <input type="password" id="senhaNova">
-                        </fieldset>
-
-
-
-                        <br>
-
-                        <button class="envia" type="button" onclick="SalvarNovaSenha()">
-                            Salvar senha
-                        </button>
-
-                    </div>
-
-
-
-                    <hr>
-
-                    <!--                
-                    <div class="oplog">
-                        <img src="../Assets/imagens/imagens-de-uso/Googleimg.png" alt="">
-                        <img src="../Assets/imagens/imagens-de-uso/linkdin.png" alt="">
-                    </div>
-                     -->
-
-                    <br>
-                    <br><br>
-                    <div id="voltap">
-                        <a href="../index.html" id="Voltar">← Voltar</a>
-                    </div>
-
-                </form>
-            </section>
-
-
-        </main>
-
-
-        <footer>
-
-        </footer>
+        <div class="signup-prompt">
+            <p><a href="../index.html">← Voltar ao login</a></p>
+        </div>
     </div>
 
-
+    <script src="../javascript/validaEmailSenhaRecupera.js"></script>
 </body>
-
-<script src="../javascript/validaEmailSenhaRecupera.js"></script>
 
 </html>

@@ -5,90 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../Assets/imagens/logos/logo THUU.png" type="image/x-icon">
-    <link rel="stylesheet" href="../Assets/stylelogin.css">
-    <title>Tchuu Tchuu - Registro </title>
-
+    <link rel="stylesheet" href="/FRONT-END/Assets/stylelogin.css">
+    <title>Tchuu Tchuu - Registro</title>
 </head>
 
 <body>
-
-    <section>
-        <div id="Registro">
-            <h1 id="cabe">Cadastro de Usuário </h1>
-
-            <form id="Login" onsubmit="return ValidaRegistro(event)">
-
-                <div class="form-group">
-                    <fieldset>
-                        <label for="nome">Nome </label>
-                        <br>
-                        <input type="text" id="nome">
-                    </fieldset>
-                </div>
-
-                <div class="form-group">
-                    <fieldset>
-                        <label for="cpf"> CPF</label>
-                        <br>
-                        <input type="text" id="cpf">
-                    </fieldset>
-                </div>
-
-
-                <div class="form-group">
-                    <fieldset>
-                        <label for="DataNasc">Data de nascimento</label>
-                        <br>
-                        <input type="date" id="DataNasc">
-                    </fieldset>
-
-                </div>
-
-                <div class="form-group">
-                    <fieldset>
-                        <label for="email">Email</label>
-                        <br>
-                        <input type="text" id="email">
-                    </fieldset>
-                </div>
-
-                <br>
-                <div class="form-group">
-                    <fieldset>
-                        <label for="Senha">Senha</label>
-                        <br>
-                        <input type="password" id="Senha">
-                    </fieldset>
-
-                </div>
-
-
-
-
-                <div class="center">
-                    <button class="envia" type="submit"> Registrar </button>
-                </div>
-                <br>
-                <hr>
-
-
-                <br>
-
-                <div id="voltap">
-                    <a href="../index.html" id="Voltar">← Voltar</a>
-                </div>
-
-                <br>
-
-            </form>
-
-
+    <div class="login-container">
+        <div class="login-header">
+            <img src="../Assets/imagens/logos/logo THUU.png" alt="Tchuu Tchuu" class="logo">
+            <h1>Criar conta na Tchuu Tchuu</h1>
         </div>
 
-    </section>
+        <form id="RegistroForm" class="login-form" onsubmit="return ValidaRegistro(event)">
+            <div class="input-group">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" required>
+            </div>
 
+            <div class="input-group">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" required>
+            </div>
+
+            <div class="input-group">
+                <label for="DataNasc">Data de nascimento</label>
+                <input type="date" id="DataNasc" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" required autocomplete="email">
+            </div>
+
+            <div class="input-group">
+                <label for="Senha">Senha</label>
+                <input type="password" id="Senha" required autocomplete="new-password">
+            </div>
+
+            <button type="submit" class="btn-primary">Registrar</button>
+        </form>
+
+        <div class="signup-prompt">
+            <p>Já tem conta? <a href="../index.html">Fazer login</a></p>
+        </div>
+    </div>
+
+    <script src="../javascript/Valideregistro.js"></script>
 </body>
-<script src="../javascript/Valideregistro.js"></script>
-
 
 </html>

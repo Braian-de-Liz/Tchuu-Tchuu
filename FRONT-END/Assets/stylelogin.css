@@ -1,331 +1,162 @@
+/* style-tchuu-login.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    margin: 10px 30px;
-    padding: 30px;
     background: linear-gradient(to right, #00bfa5, #2a5c57);
-    /* Elias celestial */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-
-
-
-
-
-#container {
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    width: 70%;
-    margin: auto;
-    overflow: hidden;
-
-
-}
-
-#cabe {
-    text-align: center;
-    border-radius: 30px;
-    background: linear-gradient(to right, #00bfa5, #2a5c57);
-    color: white;
-    height: 60px;
-    line-height: 60px;
+.login-container {
     width: 100%;
-    animation: surge 2s ease-in-out;
-}
-
-#Login {
-    align-items: center;
+    max-width: 450px;
     text-align: center;
-    margin: 100px 50px;
-    border-radius: 20px;
-    height: 90%;
-    max-height: 900px;
-    background-color: whitesmoke;
-
 }
 
-h1 {
-    font-family: sans-serif;
+.logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 16px;
+    padding: 6px;
 }
 
-#Login h2 {
-    font-family: sans-serif;
-}
-
-
-#Registro {
-    margin: 0 auto;
-    border-radius: 20px;
-    width: 70%;
-    min-height: 900px;
-    max-height: 1080px;
-    height: 100%;
-    gap: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    background-color: white;
-
-}
-
-#Voltar {
-    background-color: whitesmoke;
-    background: linear-gradient(to right, #00bfa5, #009688);
-    color: white;
-    border: none;
-    padding: 10px 5px;
-    cursor: pointer;
-    border-radius: 15px;
-    transition: transform 0.3s, background-color 0.3s;
-    font-size: 18px;
+.login-header h1 {
+    font-size: 1.6rem;
+    color: #0d4d46;
     font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    display: inline-block;
-    min-width: 150px;
-
+    margin-bottom: 24px;
 }
 
-#Voltar:hover {
-    transform: scale(1.3);
-    background: linear-gradient(to right, #4FC1E9, #2575fc);
-    color: #12181C;
+.login-form {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
 }
 
-#Voltar p {
-    margin-top: 20px;
-    align-items: center;
-    text-align: center;
+.input-group {
+    text-align: left;
     margin-bottom: 20px;
 }
 
-fieldset {
-    margin: 8px;
-    border: none;
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: #333;
+    font-weight: 600;
 }
 
-.envia {
-    position: relative;
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background: #fff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #03ddc0;
+    box-shadow: 0 0 0 3px rgba(3, 221, 192, 0.15);
+}
+
+.forgot-link {
+    float: right;
+    font-size: 0.875rem;
+    color: #009688;
+    text-decoration: none;
+    margin-top: 6px;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #03ddc0, #0d4d46);
     color: white;
     border: none;
-    padding: 10px 5px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 15px;
-    font-size: 18px;
-    align-items: center;
-    font-weight: 600;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+.signup-prompt {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.signup-prompt a {
+    color: #ffffff;
     text-decoration: none;
-    text-align: center;
-    min-width: 150px;
-    display: inline-block;
-    width: 20%;
-    background: linear-gradient(to right, #00bfa5, #2a5c57);
-    transition: transform 0.4s ease, color 0.4s ease;
-    z-index: 1;
-}
-
-.envia::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to left, #4FC1E9, #408cca);
-    opacity: 0;
-    transition: opacity 1.5s ease;
-    z-index: -1;
-    border-radius: 15px;
-}
-
-
-.envia:hover::before {
-    opacity: 1;
-}
-
-.envia span {
-    position: relative;
-    z-index: 2;
-    display: inline-block;
-    width: 100%;
-}
-
-.envia:hover {
-    transform: scale(1.1);
-    color: #12181C;
-}
-
-
-input, select, textarea  {
-    width: 40%;
-    text-align: center;
-    border-radius: 2px;
-    border: 0;
-    padding: 8px;
-}
-
-label {
-    font-family: sans-serif;
     font-weight: 600;
-    color: #383838;
 }
 
-
-.link {
-    transition: 2s;
+.signup-prompt a:hover {
+    text-decoration: underline;
 }
 
-.link :hover {
-    color: #2575fc;
-
-}
-
-
-
-.center {
-    text-align: center;
-}
-
-
-form p {
-    text-align: center;
-    color: darkgrey;
-}
-
-
-.form-group {
-    border-radius: 10px;
-    margin-left: 10px;
-    gap: 30px;
-    padding: 10px;
-}
-
-.oplog {
-    justify-content: center;
+/* --- ESTILO DO TOGGLE "MOSTRAR SENHA" --- */
+.password-toggle {
+    margin-top: 8px;
+    font-size: 0.875rem;
     display: flex;
-}
-
-.oplog img {
     align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
+    gap: 8px;
 }
 
-a {
-    font-family: sans-serif;
-    text-align: center;
-    color: #222;
-    font-weight: 500;
+.password-toggle input[type="checkbox"] {
+    accent-color: #00bfa5; /* Cor do check compatível com seu tema */
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
 }
 
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(200px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.password-toggle label {
+    color: #555;
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
 }
 
-#container,
-#Registro {
-    animation: aparecer 1s ease-in-out;
-}
-
-@keyframes vem-de-lado {
-    from {
-        opacity: 0;
-        transform: translatex(100px);
+/* Responsividade */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 0 15px;
     }
 
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-fieldset,
-.form-group {
-    animation: vem-de-lado 2s ease-in-out;
-}
-
-#check {
-    padding: 0px;
-    width: 50%;
-    accent-color: #438082;
-    text-align: left;
-    align-items: first baseline;
-}
-
-@keyframes envia {
-    from {
-        transform: scale(1.5);
+    .login-form {
+        padding: 24px;
     }
 
-    to {
-        transform: scale(1);
-    }
-}
-
-
-
-@keyframes surge {
-    from {
-        opacity: 0%;
+    .logo {
+        width: 50px;
+        height: 50px;
     }
 
-    to {
-        opacity: 100%;
-    }
-}
-
-nav {
-    text-align: center;
-    align-items: center;
-    margin-top: 60px;
-
-}
-
-hr {
-    max-width: 900px;
-    width: 50%;
-}
-
-@media (max-width: 768px) {
-    #Registro {
-        width: 100%;
-        margin: 0;
-        padding: 1px;
-    }
-
-    #container {
-        width: 100%;
-        margin: 0;
-    }
-
-    #login {
-        border-radius: 20px;
-        height: 90%;
-        max-height: 900px;
-        margin: 8%;
-        padding: 0;
-        background-color: whitesmoke;
-    }
-
-    #Login {}
-
-    body {
-        margin: 0;
-        padding: 1px;
-    }
-
-    #container {
-        margin: 0;
-        width: 100%;
-    }
-
-    input{
-        width: 80%;
+    .login-header h1 {
+        font-size: 1.4rem;
     }
 }
