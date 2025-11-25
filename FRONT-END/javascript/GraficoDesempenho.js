@@ -1,26 +1,14 @@
-let slideAtualGraficos = 0;
-const totalSlidesGraficos = 3;
-
-// Espera o DOM carregar antes de acessar elementos
 document.addEventListener('DOMContentLoaded', () => {
-    const containerSlides = document.getElementById('slides-graficos');
 
-    // Função de navegação (definida dentro do DOMContentLoaded para garantir que containerSlides exista)
-    window.moverSlideGraficos = function(direcao) {
-        slideAtualGraficos += direcao;
-        if (slideAtualGraficos < 0) slideAtualGraficos = totalSlidesGraficos - 1;
-        if (slideAtualGraficos >= totalSlidesGraficos) slideAtualGraficos = 0;
-        containerSlides.style.transform = `translateX(${-slideAtualGraficos * 100}%)`;
-    };
-
-    // Só inicializa os gráficos se Chart.js estiver disponível
     if (typeof Chart === 'undefined') {
         console.error('Chart.js não foi carregado.');
         return;
     }
 
-    // Gráfico 1: Barras
-    new Chart(document.getElementById('chart1').getContext('2d'), {
+    // ============================================================
+    // GRÁFICO 1 - Barras (Eficiência)
+    // ============================================================
+    new Chart(document.getElementById('chart-top').getContext('2d'), {
         type: 'bar',
         data: {
             labels: ['Trem A', 'Trem B', 'Trem C', 'Trem D'],
@@ -34,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         options: {
             responsive: true,
-            plugins: {
-                title: { display: true, text: 'Eficiência Operacional por Trem' }
-            }
+            plugins: { title: { display: true, text: 'Eficiência Operacional por Trem' } }
         }
     });
 
-    // Gráfico 2: Linha
-    new Chart(document.getElementById('chart2').getContext('2d'), {
+    // ============================================================
+    // GRÁFICO 2 - Linha (Tempo médio mensal)
+    // ============================================================
+    new Chart(document.getElementById('chart-line').getContext('2d'), {
         type: 'line',
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
@@ -56,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         options: {
             responsive: true,
-            plugins: {
-                title: { display: true, text: 'Tempo Médio de Viagem Mensal' }
-            }
+            plugins: { title: { display: true, text: 'Tempo Médio de Viagem Mensal' } }
         }
     });
 
-    // Gráfico 3: Doughnut
-    new Chart(document.getElementById('chart3').getContext('2d'), {
+    // ============================================================
+    // GRÁFICO 3 - Doughnut (Frota)
+    // ============================================================
+    new Chart(document.getElementById('chart-bars').getContext('2d'), {
         type: 'doughnut',
         data: {
             labels: ['Operacional', 'Em Manutenção', 'Reserva'],
@@ -75,9 +63,115 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         options: {
             responsive: true,
-            plugins: {
-                title: { display: true, text: 'Distribuição da Frota' }
-            }
+            plugins: { title: { display: true, text: 'Distribuição da Frota' } }
         }
     });
+
+    // ============================================================
+    // GRÁFICO 4 - Pizza (Ocupação média)
+    // ============================================================
+    new Chart(document.getElementById('chart-pie').getContext('2d'), {
+        type: 'pie',
+        data: {
+            labels: ['Baixa', 'Média', 'Alta'],
+            datasets: [{
+                data: [25, 50, 25],
+                backgroundColor: ['#03A9F4', '#8BC34A', '#FF9800']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Nível de Ocupação dos Trens' } }
+        }
+    });
+
+    // ============================================================
+    // GRÁFICO 5 - Barras Horizontais (Atrasos por linha)
+    // ============================================================
+    new Chart(document.getElementById('chart-hbar').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['Linha 1', 'Linha 2', 'Linha 3', 'Linha 4'],
+            datasets: [{
+                label: 'Atrasos (min)',
+                data: [12, 5, 18, 9],
+                backgroundColor: 'rgba(255, 99, 132, 0.6)'
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: { title: { display: true, text: 'Atrasos por Linha' } }
+        }
+    });
+
+    // ============================================================
+    // GRÁFICO 6 - Multilinha (Comparação de desempenho)
+    // ============================================================
+    new Chart(document.getElementById('chart-multi-line').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
+            datasets: [
+                {
+                    label: 'Linha Norte',
+                    data: [33, 30, 28, 26, 27],
+                    borderColor: '#FF5722',
+                    tension: 0.3
+                },
+                {
+                    label: 'Linha Sul',
+                    data: [40, 42, 39, 41, 38],
+                    borderColor: '#3F51B5',
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Comparação de Desempenho' } }
+        }
+    });
+
+    // ============================================================
+    // GRÁFICO 7 - DINÂMICO (atualização automática)
+    // ============================================================
+    const ctxDynamic = document.getElementById('chart-dynamic').getContext('2d');
+
+    const dynamicChart = new Chart(ctxDynamic, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Velocidade Média (km/h)',
+                data: [],
+                borderColor: '#009688',
+                fill: false,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Velocidade em Tempo Real (Simulada)' } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    // Atualização a cada 1 segundo
+    setInterval(() => {
+        const novoTempo = new Date().toLocaleTimeString().split(':')[2]; // segundos
+
+        const novaVelocidade = 60 + Math.random() * 20 - 10; // variação +-10
+
+        dynamicChart.data.labels.push(novoTempo);
+        dynamicChart.data.datasets[0].data.push(novaVelocidade);
+
+        if (dynamicChart.data.labels.length > 15) {
+            dynamicChart.data.labels.shift();
+            dynamicChart.data.datasets[0].data.shift();
+        }
+
+        dynamicChart.update();
+    }, 1000);
+
 });
