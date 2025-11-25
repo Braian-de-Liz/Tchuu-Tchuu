@@ -62,7 +62,7 @@ function iniciarServidorEsp() {
             }
         });
 
-     
+      
         clientMqtt.subscribe('trem/+/gps', (err) => {
             if (err) {
                 console.error("Erro ao se inscrever no tópico de GPS de trem:", err);
@@ -130,6 +130,8 @@ function iniciarServidorEsp() {
     });
 }
 
+
+
 async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
     let db;
     try {
@@ -139,7 +141,7 @@ async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
             INSERT INTO leituras_sensores (id_sensor, tipo_sensor, valor, timestamp_leitura)
             VALUES ($1, 'desconhecido', $2, $3)
         `;
-        const params = [parseInt(idSensor), valor, timestamp];
+        const params = [idSensor, valor, timestamp]; 
 
         await db.query(query, params);
         console.log(`[ESP_SERVER] Leitura de sensor genérico salva: Sensor ${idSensor}, Valor ${valor}`);
@@ -162,7 +164,7 @@ async function salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp) {
             INSERT INTO leituras_sensores (id_trem, tipo_sensor, valor, timestamp_leitura)
             VALUES ($1, $2, $3, $4)
         `;
-        const params = [parseInt(idTrem), tipo, valor, timestamp];
+        const params = [parseInt(idTrem), tipo, valor, timestamp]; 
 
         await db.query(query, params);
         console.log(`[ESP_SERVER] Leitura de sensor de trem salva: Trem ${idTrem}, Tipo ${tipo}, Valor ${valor}`);
