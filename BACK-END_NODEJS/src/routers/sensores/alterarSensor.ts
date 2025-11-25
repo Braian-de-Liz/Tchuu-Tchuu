@@ -12,7 +12,7 @@ interface SensorUpdateBody {
 
 const router = Router();
 
-router.patch("/", async (req, res) => {
+router.patch("/sensores", async (req, res) => {
     const body = req.body as SensorUpdateBody;
     const { cpf_user, nome_sensor, novo_nome_sensor } = body;
 
