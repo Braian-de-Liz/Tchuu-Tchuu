@@ -86,7 +86,7 @@ router.post('/usu_login', async (req, res) => {
             }
         });
 
-        console.log("Login Realizado com BRUTALIDADE total, O" + `usuario ${usuario.nome} está logado`);
+        console.log("Login Realizado com BRUTALIDADE total, O " + `usuario ${usuario.nome} está logado`);
     } catch (erro) {
         console.error('Erro no login:', erro);
         res.status(500).json({
