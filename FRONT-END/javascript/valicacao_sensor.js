@@ -26,7 +26,7 @@ async function validar_e_conectar(e) {
         return false;
     }
 
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 2025) {
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 2000) {
         alert("Data inválida.");
         return false;
     }

@@ -29,7 +29,7 @@ async function deletar_Sensor() {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json: charset=utf-8'
             },
             body: JSON.stringify(Req_Delete)
         });
@@ -53,16 +53,16 @@ async function deletar_Sensor() {
 botao_abrir_form.addEventListener("click", (e) => {
     e.preventDefault();
 
+    
     const popupDeletarSensor = document.getElementById("popupDeletarSensor");
-
     popupDeletarSensor.style.display = 'flex';
 });
 
 cancelar_delete.addEventListener("click", (e) => {
     e.preventDefault();
 
+    
     const popupDeletarSensor = document.getElementById("popupDeletarSensor");
-
     popupDeletarSensor.style.display = 'none';
 })
 
