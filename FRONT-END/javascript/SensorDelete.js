@@ -1,6 +1,8 @@
 // FRONT-END\javascript\SensorDelete.js
 const botao_abrir_form = document.getElementById("botao_pop_deletar");
 const botao_confirmar = document.getElementById("btn_confirmar_delecao");
+const cancelar_delete = document.getElementById("btn_cancelar_delecao");
+
 async function deletar_Sensor() {
 
     const cpf_user = localStorage.getItem("usuario_cpf");
@@ -56,5 +58,13 @@ botao_abrir_form.addEventListener("click", (e) => {
     popupDeletarSensor.style.display = 'flex';
 });
 
+cancelar_delete.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const popupDeletarSensor = document.getElementById("popupDeletarSensor");
+
+    popupDeletarSensor.style.display = 'none';
+})
 
 botao_confirmar.addEventListener("click", deletar_Sensor);
+
