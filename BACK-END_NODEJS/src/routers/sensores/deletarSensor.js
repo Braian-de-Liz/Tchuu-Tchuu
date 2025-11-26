@@ -7,8 +7,7 @@ const router = Router();
 
 router.delete("/sensores", async (req, res) => {
 
-    const cpf_user = req.query.cpf_user;
-    const nome_sensor = req.query.nome_sensor;
+    const {cpf_user, nome_sensor} = req.body;
 
     if (!cpf_user || !nome_sensor) {
         return res.status(401).json({

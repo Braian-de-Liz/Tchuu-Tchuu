@@ -75,10 +75,10 @@
                     <div class="chamados-container">
                         <div class="card-chamado">
                             <p>Faça um chamado de manutenção</p>
-                            <button class="botao" onclick="abrirPopup('popup')">Fazer chamado</button>
+                            <button class="botao" id="botao_fazer_chamado">Fazer chamado</button> 
                         </div>
 
-                        <div id="overlay" onclick="fecharPopup()"></div>
+                        <div id="overlay"></div>
 
                         <div id="popup" class="popup-chamado">
                             <h2 class="titulo-popup">Relatar problema no site</h2>
@@ -100,12 +100,12 @@
                                 <input type="date" id="data">
                                 <label>Descrição detalhada:</label>
                                 <textarea id="descricao" rows="4" placeholder="Explique o que aconteceu..."></textarea>
-                                <button class="botao" onclick="enviarChamado()">Enviar</button>
-                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popup')">Cancelar</button>
+                                <button class="botao" id="btn_enviar_chamado">Enviar</button> 
+                                <button class="botao" style="margin-top:10px;" id="btn_cancelar_chamado">Cancelar</button>
                             </div>
                         </div>
 
-                        <div id="popupVerSensores" class="popup-chamado" style="display:none;">
+                        <div id="popupVerSensores" class="popup-chamado" style="display: none;">
                             <h2 class="titulo-popup">Visualizar Sensores Cadastrados</h2>
                             <div class="popup-conteudo">
                                 <p>Aqui você verá uma tabela ou lista de todos os sensores no seu banco de dados, com
@@ -115,29 +115,27 @@
                                     style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
                                     <p>Carregando dados...</p>
                                 </div>
-                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popupVerSensores')">Fechar</button>
+                                <button class="botao" style="margin-top:10px;" id="btn_fechar_ver_sensores">Fechar</button>
                             </div>
                         </div>
 
 
-                        <div id="popupDeletarSensor" class="popup-chamado_aviso" style="display:none;">
+                        <div id="popupDeletarSensor" class="popup-chamado" >
                             <h2 class="titulo-popup">Confirmação de Deleção</h2>
                             <div class="popup-conteudo">
                                 <p>Selecione o sensor que deseja deletar. Esta ação é irreversível.</p>
 
-                                <label>ID do Sensor</label>
-                                <select id="selectSensorDeletar">
-                                    <option value="">Carregue a lista ao abrir</option>
-                                </select>
+                                <label>nome do Sensor</label>
+                                <input type="text" id="nome_sensor">
                                 <br>
-                                
-                                <button class="botao" onclick="executarDelecao()">Deletar PERMANENTEMENTE</button>
-                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popupDeletarSensor')">Cancelar</button>
+                                <br>
+                                <button class="botao" id="btn_confirmar_delecao">Deletar PERMANENTEMENTE</button><br>
+                                <button class="botao" style="margin-top:10px;" id="btn_cancelar_delecao">Cancelar</button>
                             </div>
                         </div>
 
 
-                        <div id="popupAtualizarSensor" class="popup-chamado" style="display:none;">
+                        <div id="popupAtualizarSensor" class="popup-chamado" style="display: none;">
                             <h2 class="titulo-popup">Atualizar Sensor</h2>
                             <div class="popup-conteudo">
                                 <p>Selecione o sensor e preencha apenas os campos que deseja atualizar.</p>
@@ -153,8 +151,10 @@
                                 <label>Novo Valor Limite Inicial:</label>
                                 <input type="number" id="novoValorInicial" placeholder="Ex: 85.5">
                                 
-                                <button class="botao" onclick="enviarAtualizacao()">Atualizar Sensor</button>
-                                <button class="botao" style="margin-top:10px;" onclick="fecharPopup('popupAtualizarSensor')">Cancelar</button>
+                                <br><br>
+                                <button class="botao" id="btn_enviar_atualizacao">Atualizar Sensor</button>
+                                <br>
+                                <button class="botao" style="margin-top:10px;" id="btn_cancelar_atualizacao">Cancelar</button>
                             </div>
                         </div>
 
@@ -241,10 +241,7 @@
     <script src="../javascript/Atualizar_Sensor.js"></script>
     <script src="../javascript/SensorView.js"></script>
     <script src="../javascript/SensorDelete.js"></script>
-
-
-
-</body>
+    </body>
 <script src="../javascript/Monitora.js"> </script>
 
 </html>

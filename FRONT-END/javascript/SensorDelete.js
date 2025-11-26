@@ -1,11 +1,7 @@
 // FRONT-END\javascript\SensorDelete.js
 const botao_abrir_form = document.getElementById("botao_pop_deletar");
-
+const botao_confirmar = document.getElementById("btn_confirmar_delecao");
 async function deletar_Sensor() {
-
-    const popupDeletarSensor = document.getElementById("popupDeletarSensor");
-
-    popupDeletarSensor.style.display = 'flex';
 
     const cpf_user = localStorage.getItem("usuario_cpf");
     const nome_sensor = document.getElementById("nome_sensor").value.trim();
@@ -30,12 +26,13 @@ async function deletar_Sensor() {
         const requisitar = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/sensores", {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(Req_Delete)
         });
 
-        const resposta = await requisitar.json
+        const resposta = await requisitar.json()
 
         if (requisitar.ok) {
             console.log(`sensor ${nome_sensor} deletado com sucesso`);
@@ -51,4 +48,13 @@ async function deletar_Sensor() {
 
 }
 
-botao_abrir_form.addEventListener("click", deletar_Sensor);
+botao_abrir_form.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const popupDeletarSensor = document.getElementById("popupDeletarSensor");
+
+    popupDeletarSensor.style.display = 'flex';
+});
+
+
+botao_confirmar.addEventListener("click", deletar_Sensor);
