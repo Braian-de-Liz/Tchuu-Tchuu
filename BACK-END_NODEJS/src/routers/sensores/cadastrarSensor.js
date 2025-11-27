@@ -32,7 +32,7 @@ router.post("/sensores", async (req, res) => {
         db = await conectar();
         console.log("aguardando conecxão com banco");
 
-        const existente = await db.query("SELECT cpf FROM sensores WHERE cpf = $1", [cpfTRUE]);
+        const existente = await db.query("SELECT cpf FROM sensores WHERE cpf_user = $1", [cpfTRUE]);
 
         if (existente.rows.length > 0) {
             console.error("sensor já existente");
@@ -43,7 +43,7 @@ router.post("/sensores", async (req, res) => {
             });
         }
 
-        await db.query("INSERT INTO sensores (tipo_sensor, marca_sensor, data, cpf) VALUES ($1, $2, $3, $4)", [tipo_sensor, marca_sensor, data, cpfTRUE]);
+        await db.query("INSERT INTO sensores (tipo_sensor, marca_sensor, data, cpf_user) VALUES ($1, $2, $3, $4)", [tipo_sensor, marca_sensor, data, cpfTRUE]);
 
         res.status(201).json({
             status: 'sucesso',
