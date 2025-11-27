@@ -50,126 +50,128 @@ Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto 
 ## 📁 Estrutura do Projeto
 
 ````
-TCHUU-TCHUU/
-├── BACK-END_NODEJS/
-│   ├── src/
-│   │   ├── databases/
-│   │   │   └── conectar_banco.js
-│   │   ├── routers/
-│   │   │   ├── rotas_e_estacoes/
-│   │   │   │   ├── atualizarPosicaoEstacao.js
-│   │   │   │   ├── atualizar_Rotas.js
-│   │   │   │   ├── excluirEstacao.js
-│   │   │   │   ├── excluirRota.js
-│   │   │   │   ├── obterEstacoes.js
-│   │   │   │   ├── obterRotas.js
-│   │   │   │   ├── salvarEstacao.js
-│   │   │   │   └── salvarRota.js
-│   │   │   ├── sensores/
-│   │   │   │   ├── alterarSensor.js
-│   │   │   │   ├── cadastrarSensor.js
-│   │   │   │   ├── deletarSensor.js
-│   │   │   │   └── exibirSensor.js
-│   │   │   ├── trens/
-│   │   │   │   ├── atualizar_trem.js
-│   │   │   │   ├── deletar_trem.js
-│   │   │   │   ├── mostrar_trem.js
-│   │   │   │   └── registrar_trem.js
-│   │   │   ├── trens_manutencao/
-│   │   │   │   ├── enviar_manutencao.js
-│   │   │   │   └── tirar_manutencao.js
-│   │   │   └── usuario/
-│   │   │       ├── atualizarUsuario.js
-│   │   │       ├── deletarUsuarios.js
-│   │   │       ├── loginUsuario.js
-│   │   │       ├── mostrar_dadosUsuario.js
-│   │   │       └── registrarUsuarios.js
-│   │   ├── websockets/
-│   │   │   ├── chatServer.js
-│   │   │   └── ESP_Server.js
-│   │   └── server.js
-│   ├── .gitignore
-│   ├── package-lock.json
-│   ├── package.json
-│   └── TCHUU-TCHUU_DB.SQL
-├── BACK-END_PHP/
-│   └── index.php
-├── Documentações/
-│   ├── Back-end_Nodejs.md
-│   ├── LICENSE
-│   ├── Manual Tchuu-Tchuu.pdf
-│   ├── Plano de Testes Tchuu-Tchuu.pdf
-│   ├── Postgre SQL - SA.pdf
-│   └── S.A requisitos Tchuu-Tchuu.pdf
-├── FRONT-END/
-│   ├── Assets/
-│   │   ├── imagens/
-│   │   ├── AnimaçãoScroll.css
-│   │   ├── Desempenho.css
-│   │   ├── fot.css
-│   │   ├── Frota.css
-│   │   ├── Manutencao.css
-│   │   ├── menulateral.css
-│   │   ├── rotas_novas.css
-│   │   ├── stylealerta.css
-│   │   ├── stylechat.css
-│   │   ├── styledash.css
-│   │   ├── stylelogin.css
-│   │   ├── stylesenha.css
-│   │   ├── tremRegistro.css
-│   │   └── user.css
-│   ├── javascript/
-│   │   ├── AlterarDadosUsuario.js
-│   │   ├── alteraSUB-ROTAS.js
-│   │   ├── autenticacao.js
-│   │   ├── auth_tremDelete.js
-│   │   ├── ChatJS.js
-│   │   ├── containerdemanutenção.js
-│   │   ├── dadosUser.js
-│   │   ├── deletar_validado.js
-│   │   ├── GestaoDeRotaMenu.js
-│   │   ├── GestaoRota.js
-│   │   ├── GestaoRota2.js
-│   │   ├── gestaoRotas.js
-│   │   ├── GraficoDesempenho.js
-│   │   ├── menu-hamburguer-PC.js
-│   │   ├── menu-Rotas.js
-│   │   ├── menu.js
-│   │   ├── Monitora.js
-│   │   ├── mostrar_dados_trens.js
-│   │   ├── notificacaodash.js
-│   │   ├── protegerPAG.js
-│   │   ├── render_menu.js
-│   │   ├── render_rodape.js
-│   │   ├── RotasSidebar.js
-│   │   ├── rotas_fetch.js
-│   │   ├── some-hambuer.js
-│   │   ├── sume-rodape.js
-│   │   ├── tentativa-deimplementaAPIdeCLima.js
-│   │   ├── valicacao_sensor.js
-│   │   ├── validaEmailSenhaRecupera.js
-│   │   ├── validaLogin.js
-│   │   ├── ValidaManutrem.js
-│   │   ├── validaTrem.js
-│   │   └── Valideregistro.js
-│   ├── Public/
-│   │   ├── cadastrarSensor.html
-│   │   ├── enviaTremManu.html
-│   │   ├── pagChat.html
-│   │   ├── pagEsquecisenha.html
-│   │   ├── pagFrota.html
-│   │   ├── pagGeralDashboard.html
-│   │   ├── pagGestaoRotas.html
-│   │   ├── pagMonitora.html
-│   │   ├── pagregistraTREM.html
-│   │   ├── pagRegistro.html
-│   │   ├── pagUsuario.html
-│   │   └── sobre.html
-│   └── index.html
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── README.md
+Directory structure:
+└── braian-de-liz-tchuu-tchuu/
+    ├── README.md
+    ├── package.json
+    ├── BACK-END_NODEJS/
+    │   ├── package.json
+    │   ├── TCHUU-TCHUU_DB.SQL
+    │   └── src/
+    │       ├── server.js
+    │       ├── connections/
+    │       │   ├── chatServer.js
+    │       │   └── ESP_Server.js
+    │       ├── databases/
+    │       │   └── conectar_banco.js
+    │       └── routers/
+    │           ├── rotas_e_estacoes/
+    │           │   ├── atualizar_Rotas.js
+    │           │   ├── atualizarPosicaoEstacao.js
+    │           │   ├── excluirEstacao.js
+    │           │   ├── excluirRota.js
+    │           │   ├── obterEstacoes.js
+    │           │   ├── obterRotas.js
+    │           │   ├── salvarEstacao.js
+    │           │   └── salvarRota.js
+    │           ├── sensores/
+    │           │   ├── alterarSensor.js
+    │           │   ├── alterarSensor.ts
+    │           │   ├── cadastrarSensor.js
+    │           │   ├── deletarSensor.js
+    │           │   └── exibirSensor.js
+    │           ├── trens/
+    │           │   ├── atualizar_trem.js
+    │           │   ├── deletar_trem.js
+    │           │   ├── mostrar_trem.js
+    │           │   └── registrar_trem.js
+    │           ├── trens_manutencao/
+    │           │   ├── enviar_manutencao.js
+    │           │   ├── obter_manitencao.js
+    │           │   └── tirar_manutencao.js
+    │           └── usuario/
+    │               ├── atualizarUsuario.js
+    │               ├── deletarUsuarios.js
+    │               ├── loginUsuario.js
+    │               ├── mostrar_dadosUsuario.js
+    │               └── registrarUsuarios.js
+    ├── Documentações/
+    │   ├── Back-end_Nodejs.md
+    │   └── LICENSE
+    └── FRONT-END/
+        ├── index.html
+        ├── Assets/
+        │   ├── AnimaçãoScroll.css
+        │   ├── Desempenho.css
+        │   ├── fot.css
+        │   ├── Frota.css
+        │   ├── Manutencao.css
+        │   ├── menulateral.css
+        │   ├── rotas_novas.css
+        │   ├── sobre.css
+        │   ├── stylealerta.css
+        │   ├── stylechat.css
+        │   ├── styledash.css
+        │   ├── stylelogin.css
+        │   ├── stylesenha.css
+        │   ├── tremRegistro.css
+        │   └── user.css
+        ├── javascript/
+        │   ├── AlterarDadosUsuario.js
+        │   ├── alteraSUB-ROTAS.js
+        │   ├── Atualizar_Sensor.js
+        │   ├── autenticacao.js
+        │   ├── auth_chamadoDelete.js
+        │   ├── auth_tremDelete.js
+        │   ├── ChamadoPopup.js
+        │   ├── ChatJS.js
+        │   ├── containerdemanutenção.js
+        │   ├── dadosUser.js
+        │   ├── deletar_validado.js
+        │   ├── GestaoDeRotaMenu.js
+        │   ├── GestaoRota.js
+        │   ├── GestaoRota2.js
+        │   ├── gestaoRotas.js
+        │   ├── GraficoDesempenho.js
+        │   ├── menu-hamburguer-PC.js
+        │   ├── menu-Rotas.js
+        │   ├── menu.js
+        │   ├── Monitora.js
+        │   ├── mostrar_dados_trens.js
+        │   ├── mostrar_trem_manutencao.js
+        │   ├── mostrarDados_sensor.js
+        │   ├── notificacaodash.js
+        │   ├── protegerPAG.js
+        │   ├── render_menu.js
+        │   ├── render_rodape.js
+        │   ├── rotas_fetch.js
+        │   ├── RotasSidebar.js
+        │   ├── SensorDelete.js
+        │   ├── SensorView.js
+        │   ├── solicitar_delete_sensor.js
+        │   ├── some-hambuer.js
+        │   ├── sume-rodape.js
+        │   ├── tentativa-deimplementaAPIdeCLima.js
+        │   ├── valicacao_sensor.js
+        │   ├── validaEmailSenhaRecupera.js
+        │   ├── validaLogin.js
+        │   ├── ValidaManutrem.js
+        │   ├── validaTrem.js
+        │   └── Valideregistro.js
+        └── Public/
+            ├── cadastrarSensor.html
+            ├── enviaTremManu.html
+            ├── pagChamados.html
+            ├── pagChat.html
+            ├── pagEsquecisenha.html
+            ├── pagFrota.html
+            ├── pagGeralDashboard.html
+            ├── pagGestaoRotas.html
+            ├── pagMonitora.html
+            ├── pagregistraTREM.html
+            ├── pagRegistro.html
+            ├── pagUsuario.html
+            └── sobre.html
 
 ````
 
