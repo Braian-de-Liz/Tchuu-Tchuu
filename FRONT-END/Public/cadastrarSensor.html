@@ -14,9 +14,9 @@
 <body>
     <script type="module" src="../javascript/protegerPAG.js"></script>
 
-
+    <div id="container"></div>
     <section>
-        <div id="Registro">
+        <div id="Registro" class="login-form">
             <h1 id="cabe">Cadastro de Sensor </h1>
 
             <form id="Login">
@@ -59,7 +59,7 @@
                     <fieldset>
                         <label for="CPF">CPF do Cadastrador</label>
                         <br>
-                        <input type="number" id="CPF">
+                        <input class="input-group" type="number" id="CPF">
                     </fieldset>
                 </div>
 
@@ -69,7 +69,7 @@
 
 
                 <div class="center">
-                    <button class="envia" type="submit" id="registrar"> Registrar </button>
+                    <button class="botao" type="submit" id="registrar"> Registrar </button>
                 </div>
                 <br>
                 <hr>
@@ -77,7 +77,7 @@
 
                 <br>
 
-                <div id="voltap">
+                <div id="voltap" class="botao">
                     <a href="../Public/pagMonitora.html" id="Voltar">← Voltar</a>
                 </div>
 
@@ -95,8 +95,6 @@
 
 
 </body>
-<script src="../javascript/render_menu.js"></script>
 <script src="../javascript/valicacao_sensor.js"></script>
-<script src="../javascript/render_rodape.js"></script>
 
 </html>
