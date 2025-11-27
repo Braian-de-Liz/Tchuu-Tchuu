@@ -6,70 +6,68 @@ async function validar_e_conectar(e) {
     const tipo_sensor = document.getElementById("TipoSensor").value;
     const marca_sensor = document.getElementById("marca_sensor").value;
     const data = document.getElementById("Data_cadast").value;
-    const cpf = document.getElementById("CPF").value;
+    const cpf = document.getElementById("CPF").value; 
 
     if (!tipo_sensor || !marca_sensor || !data || !cpf) {
-        alert("preencha os dados");
+        alert("Preencha todos os dados.");
         return false;
     }
 
-
+    
     const [ano, mes, dia] = data.split('-').map(Number);
-
-    if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
+    if (isNaN(dia) || isNaN(mes) || isNaN(ano) || dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 2000) {
         alert("Data inválida.");
         return false;
     }
-
     if (cpf.length !== 11) {
-        alert("cpf inválido, tenha 11 digitos");
+        alert("CPF inválido, deve ter 11 dígitos.");
         return false;
     }
 
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 2000) {
-        alert("Data inválida.");
-        return false;
-    }
 
     class sensor {
         constructor(tipo_sensor, marca_sensor, data, cpf) {
             this.tipo_sensor = tipo_sensor;
             this.marca_sensor = marca_sensor;
             this.data = data;
-            this.cpf = cpf;
-
+            this.cpf = cpf; 
         }
     }
 
     const sensor_novo = new sensor(tipo_sensor, marca_sensor, data, cpf);
 
     try {
-
         const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/sensores', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(sensor_novo)
         });
 
-        const data = await resposta.json();
+        let dadosResposta = {};
+        try {
+            dadosResposta = await resposta.json();
+        } catch (e) {
+            dadosResposta = { mensagem: resposta.statusText || "Resposta do servidor não pôde ser lida." };
+        }
 
         if (resposta.ok) {
-            alert('sensor cadastrado com sucesso!');
+            alert('Sensor cadastrado com sucesso!');
             window.location.href = '../Public/pagMonitora.html';
         }
+
         else {
-            alert('Erro: ' + data);
+
+            const mensagemErro = dadosResposta.mensagem || "Erro desconhecido ao cadastrar sensor.";
+            alert('Erro: ' + mensagemErro);
         }
     }
 
     catch (error) {
-        console.error('Erro na conexão:', error);
-        alert('Falha ao conectar ao servidor.');
+        console.error('Erro na conexão ou na execução do fetch:', error);
+        alert('Falha ao conectar ao servidor. Verifique sua conexão ou status do Back-end.');
     }
-
 }
-
 
 registrar.addEventListener("click", validar_e_conectar);

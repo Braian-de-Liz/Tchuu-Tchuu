@@ -5,9 +5,9 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.patch("/sensores", async (req, res) => {
-    const { cpf_user, nome_sensor, novo_nome_sensor } = req.body; 
+    const { cpf_user, nome_sensor, nome_novo, TipoSensor_novo } = req.body;
 
-    if (!cpf_user || !nome_sensor || !novo_nome_sensor) {
+    if (!cpf_user || !nome_sensor || !nome_novo || !TipoSensor_novo) {
         console.error("Dados indisponíveis para atualização");
         return res.status(400).json({
             status: 'erro',
@@ -19,19 +19,18 @@ router.patch("/sensores", async (req, res) => {
     let resultado;
 
     try {
-        db = await conectar(); 
+        db = await conectar();
 
-     
+
         const sql = `
             UPDATE sensores 
-            SET nome_sensor = $1 
+            SET nome_sensor = $1, tipo_sensor = $4 
             WHERE nome_sensor = $2 AND cpf_user = $3 
             RETURNING *;
         `;
-        
-        const params = [novo_nome_sensor, nome_sensor, cpf_user];
 
-        // 3. Executa a consulta
+        const params = [nome_novo, nome_sensor, cpf_user, TipoSensor_novo];
+
         resultado = await db.query(sql, params);
 
         if (resultado.rowCount === 0) {
@@ -41,11 +40,10 @@ router.patch("/sensores", async (req, res) => {
             });
         }
 
-        // 5. Sucesso
         return res.status(200).json({
             status: 'sucesso',
-            mensagem: `Sensor '${nome_sensor}' renomeado com sucesso para '${novo_nome_sensor}'.`,
-            sensor: resultado.rows[0] 
+            mensagem: `Sensor '${nome_sensor}' renomeado com sucesso para '${nome_novo}'.`,
+            sensor: resultado.rows[0]
         });
     }
     catch (erro) {
@@ -55,9 +53,9 @@ router.patch("/sensores", async (req, res) => {
             mensagem: 'Erro interno do servidor ao tentar atualizar o sensor.'
         });
     }
-    finally{
-        if(db){
-            await db.end(); 
+    finally {
+        if (db) {
+            await db.end();
         }
     }
 });

@@ -75,7 +75,7 @@
                     <div class="chamados-container">
                         <div class="card-chamado">
                             <p>Faça um chamado de manutenção</p>
-                            <button class="botao" id="botao_fazer_chamado">Fazer chamado</button> 
+                            <button class="botao" id="botao_fazer_chamado">Fazer chamado</button>
                         </div>
 
                         <div id="overlay"></div>
@@ -100,8 +100,9 @@
                                 <input type="date" id="data">
                                 <label>Descrição detalhada:</label>
                                 <textarea id="descricao" rows="4" placeholder="Explique o que aconteceu..."></textarea>
-                                <button class="botao" id="btn_enviar_chamado">Enviar</button> 
-                                <button class="botao" style="margin-top:10px;" id="btn_cancelar_chamado">Cancelar</button>
+                                <button class="botao" id="btn_enviar_chamado">Enviar</button>
+                                <button class="botao" style="margin-top:10px;"
+                                    id="btn_cancelar_chamado">Cancelar</button>
                             </div>
                         </div>
 
@@ -115,7 +116,8 @@
                                     style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
                                     <p>Carregando dados...</p>
                                 </div>
-                                <button class="botao" style="margin-top:10px;" id="btn_fechar_ver_sensores">Fechar</button>
+                                <button class="botao" style="margin-top:10px;"
+                                    id="btn_fechar_ver_sensores">Fechar</button>
                             </div>
                         </div>
 
@@ -130,7 +132,8 @@
                                 <br>
                                 <br>
                                 <button class="botao" id="btn_confirmar_delecao">Deletar PERMANENTEMENTE</button><br>
-                                <button class="botao" style="margin-top:10px;" id="btn_cancelar_delecao">Cancelar</button>
+                                <button class="botao" style="margin-top:10px;"
+                                    id="btn_cancelar_delecao">Cancelar</button>
                             </div>
                         </div>
 
@@ -139,22 +142,32 @@
                             <h2 class="titulo-popup">Atualizar Sensor</h2>
                             <div class="popup-conteudo">
                                 <p>Selecione o sensor e preencha apenas os campos que deseja atualizar.</p>
-                                
-                                <label>ID do Sensor a Atualizar:</label>
-                                <select id="selectSensorAtualizar">
-                                    <option value="">Carregue a lista ao abrir</option>
-                                </select>
-                                
+
+                                <label>nome do sensor que quer atualizar</label>
+                                <input type="text" id="nome_original">
+
+                                <br>
+
+                                <label>Novo nome</label>
+                                <input type="text" id="novo_nome">
+
+                                <br>
                                 <label>Novo Tipo de Sensor:</label>
-                                <input type="text" id="novoTipo" placeholder="Ex: Pressão">
-                                
-                                <label>Novo Valor Limite Inicial:</label>
-                                <input type="number" id="novoValorInicial" placeholder="Ex: 85.5">
-                                
+                                <select name="Tipos De Sensor" id="TipoSensor_novo">
+                                    <option value="LDR1">LDR</option>
+                                    <option value="DHT1">DHT11</option>
+                                    <option value="UltraSom1">Ultrassônico</option>
+                                    <option value="SensVelocidade">Sensor de Velocidade</option>
+                                </select>
+                                <br>
+
+
+
                                 <br><br>
                                 <button class="botao" id="btn_enviar_atualizacao">Atualizar Sensor</button>
                                 <br>
-                                <button class="botao" style="margin-top:10px;" id="btn_cancelar_atualizacao">Cancelar</button>
+                                <button class="botao" style="margin-top:10px;"
+                                    id="btn_cancelar_atualizacao">Cancelar</button>
                             </div>
                         </div>
 
@@ -206,7 +219,7 @@
                             <div class="card-sensor">
                                 <h3>Ver Sensores</h3>
                                 <p>Analise os sensores cadastrados</p>
-                                <button class="botao" id="botao_pop_ver" >Visualizar</button>
+                                <button class="botao" id="botao_pop_ver">Visualizar</button>
                             </div>
 
                             <div class="card-sensor">
@@ -241,7 +254,7 @@
     <script src="../javascript/Atualizar_Sensor.js"></script>
     <script src="../javascript/SensorView.js"></script>
     <script src="../javascript/SensorDelete.js"></script>
-    </body>
+</body>
 <script src="../javascript/Monitora.js"> </script>
 
 </html>

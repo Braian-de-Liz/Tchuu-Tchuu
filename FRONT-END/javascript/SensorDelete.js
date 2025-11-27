@@ -39,7 +39,13 @@ async function deletar_Sensor() {
         if (requisitar.ok) {
             console.log(`sensor ${nome_sensor} deletado com sucesso`);
             alert(`sensor ${nome_sensor} deletado com sucesso`);
+
+            alert(resposta);
             window.location.reload();
+        }
+        else{
+            console.error("algum erro encontrado, impossiblitou a ação de deletar");
+            alert("algo deu errado, e seu sensor o deletar");
         }
 
     }

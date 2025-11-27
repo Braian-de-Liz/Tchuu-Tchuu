@@ -35,9 +35,8 @@ router.post("/sensores", async (req, res) => {
         const existente = await db.query("SELECT cpf FROM sensores WHERE cpf = $1", [cpfTRUE]);
 
         if (existente.rows.length > 0) {
-
-            // const campo = existente.rows[0].cpf === cpfTRUE;
             console.error("sensor já existente");
+
             return res.status(409).json({
                 status: 'erro',
                 mensagem: `${campo} já cadastrado.`

@@ -243,22 +243,17 @@ input {
     gap: 25px;
     /* Espaçamento entre os cards */
     width: 100%;
-    /* Garante que o container ocupe a largura total */
     flex-wrap: wrap;
-    /* Permite quebrar linha em telas menores */
 }
 
 .card-chamado {
     background: #f9f9f9;
     width: 30%;
-    /* Largura padrão */
     min-width: 260px;
-    /* Largura mínima */
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.13);
     text-align: center;
-    /* Centraliza o conteúdo dentro do card */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -301,7 +296,7 @@ input {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1001;
+    z-index: 1000;
 }
 
 #overlay.active {

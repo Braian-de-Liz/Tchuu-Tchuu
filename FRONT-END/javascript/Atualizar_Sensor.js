@@ -1,86 +1,92 @@
-// FRONT-END/javascript/SensorDelete.js
+// FRONT-END\javascript\Atualizar_Sensor.js
+const popup_path = document.getElementById("popupAtualizarSensor");
+const botao_ativa = document.getElementById("botao_pop_update");
+const btn_enviar_atualizacao = document.getElementById("btn_enviar_atualizacao");
+const botao_cancelar = document.getElementById("btn_cancelar_atualizacao");
+const token = localStorage.getItem("token");
 
-async function carregarIdsSensores(selectId) {
-    const selectElement = document.getElementById(selectId);
-    selectElement.innerHTML = '<option value="">Carregando...</option>';
+if (!token) {
+    alert("você não está logado, retire-se");
+    console.error("o usuário está logado, sem ter logado");
 
-    const token = localStorage.getItem('token');
-    const cpf_user = localStorage.getItem('usuario_cpf');
-    
-    const baseUrl = "https://tchuu-tchuu-server-chat.onrender.com/api/sensores";
-    const url_fetch = new URL(baseUrl);
-    url_fetch.searchParams.append("cpf_user", cpf_user);
-
-    try {
-        const conexao = await fetch(url_fetch.toString(), {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-
-        if (conexao.ok) {
-            const sensores = await conexao.json();
-            selectElement.innerHTML = '<option value="">-- Selecione o ID do Sensor --</option>';
-            
-            const uniqueSensorIds = new Set(sensores.map(s => s.id_sensor));
-
-            uniqueSensorIds.forEach(id => {
-                selectElement.innerHTML += `<option value="${id}">${id}</option>`;
-            });
-
-            if (uniqueSensorIds.size === 0) {
-                 selectElement.innerHTML = '<option value="">Nenhum sensor encontrado.</option>';
-            }
-
-        } else {
-            selectElement.innerHTML = '<option value="">Erro ao carregar IDs.</option>';
-        }
-    } catch (error) {
-        selectElement.innerHTML = '<option value="">Erro de conexão.</option>';
-    }
+    window.location.href = '../index.html';
 }
+async function atualizar_sensor() {
+    const nome_original = document.getElementById("nome_original").value;
+    const novo_nome = document.getElementById("novo_nome").value;
+    const TipoSensor_novo = document.getElementById("TipoSensor_novo").value;
+    const cpf_user = localStorage.getItem("usuario_cpf");
 
+    if (!nome_original || !novo_nome || !TipoSensor_novo) {
+        alert("dados não preenchidos");
+        console.error("dados não preenchidos, impossível realizar o fetch");
 
-async function confirmarDelecao() {
-    const idSensor = document.getElementById("selectSensorDeletar").value;
-    const cpf_user = localStorage.getItem("usuario_cpf"); 
-    const token = localStorage.getItem('token'); 
-
-    if (!idSensor) {
-        alert("Selecione o ID do sensor que deseja deletar.");
-        return;
+        return false;
     }
-    
-    if (!confirm(`Tem certeza que deseja DELETAR o sensor ID: ${idSensor}? Todos os dados associados serão perdidos.`)) {
-        return;
+
+    if (!cpf_user) {
+        alert("você não está logado, retire-se");
+        console.error("o usuário está logado, sem ter logado");
+
+        window.location.href = '../index.html';
+    }
+
+    class atualizar_sensor {
+        constructor(nome_original, novo_nome, TipoSensor_novo, cpf_user) {
+            this.nome_sensor = nome_original;
+            this.nome_novo = novo_nome;
+            this.TipoSensor_novo = TipoSensor_novo;
+            this.cpf_user = cpf_user;
+        }
     }
 
     try {
-        const baseUrl = "https://tchuu-tchuu-server-chat.onrender.com/api/sensores";
-        const url_delete = new URL(baseUrl);
-        
-        url_delete.searchParams.append("cpf_user", cpf_user);
-        url_delete.searchParams.append("id_sensor", idSensor);
 
-        const conexao = await fetch(url_delete.toString(), {
-            method: 'DELETE',
+        const dados_da_req = new atualizar_sensor(nome_original, novo_nome, TipoSensor_novo, cpf_user);
+
+        const requisiçao = await fetch("https://tchuu-tchuu-server-chat.onrender.com/api/sensores", {
+            method: 'PATCH',
             headers: {
-                'Authorization': `Bearer ${token}` 
-            }
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados_da_req)
         });
-        
-        if (conexao.ok) {
-            alert(`Sensor "${idSensor}" deletado com sucesso!`);
-            window.location.reload(); 
-        } else {
-            const data = await conexao.json().catch(() => ({ mensagem: 'Erro desconhecido.' }));
-            alert(`Erro ao deletar o sensor: ${data.mensagem || conexao.statusText}`);
+
+        const resposta = await requisiçao.json()
+
+        if (requisiçao.ok) {
+            console.log(`sensor ${nome_sensor} deletado com sucesso`);
+            alert(`sensor ${nome_sensor} deletado com sucesso`);
+
+            alert(resposta);
+            window.location.reload();
+        }
+        else {
+            console.error("algum erro encontrado, impossiblitou a ação de deletar");
+            alert("algo deu errado, e seu sensor o deletar");
         }
 
-    } catch (erro) {
-        alert("Não foi possível conectar ao servidor para deletar: " + erro.message);
-        console.error("Erro na requisição DELETE:", erro);
+
     }
+    catch (error) {
+        alert("erro do servidor, algo está atrapalhando a conexão" + error);
+        console.error("tudo deu errado quero que se exploda" + error)
+    }
+
 }
 
-window.carregarIdsSensores = carregarIdsSensores;
-window.confirmarDelecao = confirmarDelecao;
+
+botao_ativa.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (popup_path) popup_path.style.display = 'flex';
+    if (overlay) overlay.style.display = 'block';
+});
+
+botao_cancelar.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (popup_path) popup_path.style.display = 'none';
+    if (overlay) overlay.style.display = 'none';
+})
+
+btn_enviar_atualizacao.addEventListener("click", atualizar_sensor);
