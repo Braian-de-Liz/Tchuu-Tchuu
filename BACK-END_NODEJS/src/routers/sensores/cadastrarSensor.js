@@ -11,16 +11,15 @@ router.post("/sensores", async (req, res) => {
         console.error("erro ao receber ou preencher dados");
         return res.status(400).json({
             status: 'erro',
-            mensagem: 'preencha os campos'
+            mensagem: 'Preencha todos os campos obrigatórios.'
         });
-
     }
 
     if (cpf.length !== 11) {
         console.error("Erro, CPF inválido");
         return res.status(400).json({
             status: 'erro',
-            mensagem: 'inválidez por CPF'
+            mensagem: 'O CPF deve conter exatamente 11 dígitos.'
         });
     }
 
@@ -32,14 +31,14 @@ router.post("/sensores", async (req, res) => {
         db = await conectar();
         console.log("aguardando conecxão com banco");
 
-        const existente = await db.query("SELECT cpf FROM sensores WHERE cpf_user = $1", [cpfTRUE]);
+        const existente = await db.query("SELECT cpf_user FROM sensores WHERE cpf_user = $1", [cpfTRUE]);
 
         if (existente.rows.length > 0) {
             console.error("sensor já existente");
 
             return res.status(409).json({
                 status: 'erro',
-                mensagem: `${campo} já cadastrado.`
+                mensagem: 'Sensor já cadastrado com este CPF.'
             });
         }
 
