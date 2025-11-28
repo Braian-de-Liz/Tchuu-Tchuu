@@ -89,7 +89,7 @@ app.use('/api', mostrarTREM);
 app.use('/api', cadastroSensor);
 app.use('/api', deletarSensor);
 app.use('/api', alterarSensor);
-// app.use('/api', );
+app.use('/api', exibirSensor);
 // app.use('/api', );
 // app.use('/api', );
 
