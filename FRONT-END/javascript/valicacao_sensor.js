@@ -4,16 +4,17 @@ async function validar_e_conectar(e) {
     e.preventDefault();
 
     const tipo_sensor = document.getElementById("TipoSensor").value;
+    const nome_sensor = document.getElementById("nome_sensor").value;
     const nome_trem = document.getElementById("nome_trem").value;
     const data = document.getElementById("Data_cadast").value;
-    const cpf = document.getElementById("CPF").value; 
+    const cpf = document.getElementById("CPF").value;
 
-    if (!tipo_sensor || !nome_trem || !data || !cpf) {
+    if (!tipo_sensor || !nome_sensor || !nome_trem || !data || !cpf) {
         alert("Preencha todos os dados.");
         return false;
     }
 
-    
+
     const [ano, mes, dia] = data.split('-').map(Number);
     if (isNaN(dia) || isNaN(mes) || isNaN(ano) || dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 2000) {
         alert("Data inválida.");
@@ -26,15 +27,16 @@ async function validar_e_conectar(e) {
 
 
     class sensor {
-        constructor(tipo_sensor, nome_trem, data, cpf) {
+        constructor(tipo_sensor, nome_sensor, nome_trem, data, cpf) {
             this.tipo_sensor = tipo_sensor;
             this.nome_trem = nome_trem;
+            this.nome_sensor = nome_sensor;
             this.data = data;
-            this.cpf = cpf; 
+            this.cpf = cpf;
         }
     }
 
-    const sensor_novo = new sensor(tipo_sensor, nome_trem, data, cpf);
+    const sensor_novo = new sensor(tipo_sensor, nome_sensor, nome_trem, data, cpf);
 
     try {
         const resposta = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/sensores', {
