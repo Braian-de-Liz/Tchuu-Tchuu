@@ -63,7 +63,7 @@ router.post("/sensores", async (req, res) => {
         
 
         await db.query(
-            "INSERT INTO sensores (nome_sensor, tipo_sensor, id_trem, data, cpf_user) VALUES ($1, $2, $3, $4, $5)", 
+            "INSERT INTO sensores (nome_sensor, tipo_sensor, id_trem, data_registro, cpf_user) VALUES ($1, $2, $3, $4, $5)", 
             [nome_sensor, tipo_sensor, id_trem_encontrado, data, cpfTRUE]
         );
 
