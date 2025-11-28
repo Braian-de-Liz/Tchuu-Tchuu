@@ -129,5 +129,5 @@ const PORT = process.env.PORT || 3250;
 
 
 server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);   
 });
