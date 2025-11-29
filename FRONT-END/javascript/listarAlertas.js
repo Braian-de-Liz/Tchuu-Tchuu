@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         listaOcorrenciasDiv.innerHTML = ''; 
 
         if (ocorrencias.erro) {
-            listaOcorrenciasDiv.innerHTML = `<p style="color: red;">❌ Erro ao carregar dados: ${ocorrencias.erro}</p>`;
+            listaOcorrenciasDiv.innerHTML = `<p style="color: red;"> Erro ao carregar dados: ${ocorrencias.erro}</p>`;
             return;
         }
 
         if (!ocorrencias || ocorrencias.length === 0) {
-            listaOcorrenciasDiv.innerHTML = '<p>✅ Nenhuma ocorrência de alerta ATIVO registrada no momento.</p>';
+            listaOcorrenciasDiv.innerHTML = '<p> Nenhuma ocorrência de alerta ATIVO registrada no momento.</p>';
             return;
         }
 
