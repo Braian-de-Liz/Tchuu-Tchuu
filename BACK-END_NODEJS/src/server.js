@@ -44,9 +44,12 @@ import Salvar_estacoes from './routers/rotas_e_estacoes/salvarEstacao.js';
 import excluir_estacoes from './routers/rotas_e_estacoes/excluirEstacao.js';
 
 // manutenção
-import enviar_manutencao from './routers/trens_manutencao/enviar_manutencao.js'
-import obter_manutencao from './routers/trens_manutencao/obter_manitencao.js'
-import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js'
+import enviar_manutencao from './routers/trens_manutencao/enviar_manutencao.js';
+import obter_manutencao from './routers/trens_manutencao/obter_manitencao.js';
+import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js';
+
+// alertas IOT
+import alertas from './routers/alertas/getAlerts.js';
 
 import dotenv from 'dotenv';
 
@@ -112,7 +115,8 @@ app.use('/api', enviar_manutencao);
 app.use('/api', obter_manutencao);
 app.use('/api', tirar_manutencao);
 
-
+// Rotas para Alertas
+app.use('/api', alertas);
 
 app.get('/acordar', (req, res) => {
     const now = new Date().toISOString();

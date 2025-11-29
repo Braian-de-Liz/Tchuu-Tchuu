@@ -69,31 +69,26 @@
         </div>
 
 
+        <section id="climadash">
+            <!--Futuramente será adicionado uma API de clima aqui-->
+        </section>
 
         <div class="informacoeslinha">
             <h3>ALERTAS EM TEMPO REAL</h3>
         </div>
 
-        <section id="climadash">
-            <!--Futuramente será adicionado uma API de clima aqui-->
-        </section>
+        <section id="alerta-manager">
 
-        <div class="alerta">
-            <strong>⚠️ Alerta severo</strong>
-            <p>
-                Defesa Civil: Chuva forte se espalhando pela capital paulista com rajadas de vento e risco de
-                alagamento.
-                Mantenha-se em local seguro.
-            </p>
+            <div class="alerta lista-ocorrencias">
+                <strong>Ocorrências de Eventos Ativos</strong>
+                <p>Eventos recentes onde os dados do sensor violaram os limites definidos.</p>
 
-            <button class="btn-notificacoes" onclick="toggleNotificacoes()">Notificações</button>
-
-            <div id="notificacoes" class="notificacoes-conteudo">
-                <p><strong>Número do Trem:</strong> 12345</p>
-                <p><strong>Fabricante:</strong> CAF</p>
-                <p><strong>Data de Cadastro:</strong> 06/10/2025</p>
+                <div id="listaOcorrenciasAlertas" style="margin-top: 10px;">
+                    <p>Carregando ocorrências de alertas...</p>
+                </div>
             </div>
-        </div>
+
+        </section>
 
         <div class="chart-container">
             <div>
@@ -109,6 +104,7 @@
     <script src="../javascript/tentativa-deimplementaAPIdeCLima.js"></script>
     <script src="../javascript/notificacaodash.js"></script>
     <script src="../javascript/render_menu.js"></script>
+    <script src="../javascript/listarAlertas.js"></script>
 
 </body>
 
