@@ -5,9 +5,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL;
-const MQTT_USERNAME = process.env.MQTT_USERNAME;
-const MQTT_PASSWORD = process.env.MQTT_PASSWORD;
 
 let clientMqtt = null;
 let isFirstConnection = true; 
@@ -38,7 +35,6 @@ function iniciarServidorEsp() {
     clientMqtt = mqtt.connect(MQTT_BROKER_URL, options);
 
     clientMqtt.on('connect', () => {
-        
         if (isFirstConnection) {
             console.log("ESP_Server conectado ao broker MQTT do HiveMQ com sucesso!");
         } else {
@@ -53,7 +49,6 @@ function iniciarServidorEsp() {
             }
         });
 
-      
         clientMqtt.subscribe('trem/+/sensor/+', (err) => {
             if (err) {
                 console.error("Erro ao se inscrever no tópico de sensores de trem:", err);
@@ -62,7 +57,6 @@ function iniciarServidorEsp() {
             }
         });
 
-      
         clientMqtt.subscribe('trem/+/gps', (err) => {
             if (err) {
                 console.error("Erro ao se inscrever no tópico de GPS de trem:", err);
@@ -104,7 +98,7 @@ function iniciarServidorEsp() {
                     const valor = dadosRecebidos.valor;
                     const timestamp = dadosRecebidos.timestamp || new Date();
 
-                    await salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp);
+                    await salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp); 
 
                 } else if (nivel === 'trem' && subNivel === 'gps') {
                     const idTrem = identificador;
@@ -131,6 +125,86 @@ function iniciarServidorEsp() {
 }
 
 
+async function verificarAlertas(db, idSensor, valorLido) {
+    const sqlRegras = `
+        SELECT id_alerta, tipo_alerta, valor_limite 
+        FROM alertas 
+        WHERE id_sensor = $1 AND ativo = TRUE;
+    `;
+    const regras = await db.query(sqlRegras, [idSensor]);
+
+    if (regras.rowCount === 0) {
+        return; // Sem regras ativas
+    }
+
+    for (const regra of regras.rows) {
+        const { id_alerta, valor_limite } = regra;
+        const limite = parseFloat(valor_limite);
+        const valor = parseFloat(valorLido);
+        
+        let alertaDisparado = false;
+        
+        if (valor > limite) {
+            alertaDisparado = true;
+        } 
+        
+
+        if (alertaDisparado) {
+            const sqlRegistrarOcorrencia = `
+                INSERT INTO ocorrencias_alertas (id_alerta, valor_lido)
+                VALUES ($1, $2);
+            `;
+
+            await db.query(sqlRegistrarOcorrencia, [id_alerta, valorLido]);
+            console.warn(`\n!!! ALERTA DISPARADO !!! Regra ID ${id_alerta} violada no Sensor ${idSensor}: Valor Lido (${valorLido}) > Limite (${limite}).\n`);
+        }
+    }
+}
+
+
+
+async function salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp) {
+    let db;
+    let id_sensor_cadastrado = null;
+    
+    try {
+        db = await conectar();
+
+        const sqlBuscaIdSensor = `
+            SELECT id_sensor 
+            FROM sensores 
+            WHERE id_trem = $1 AND tipo_sensor = $2;
+        `;
+        const resultadoBusca = await db.query(sqlBuscaIdSensor, [parseInt(idTrem), tipo]);
+
+        if (resultadoBusca.rowCount === 0) {
+            console.warn(`[ESP_SERVER] Leitura ignorada: Sensor de Trem (ID ${idTrem}, Tipo ${tipo}) não cadastrado na tabela 'sensores'.`);
+            return;
+        }
+        
+        id_sensor_cadastrado = resultadoBusca.rows[0].id_sensor;
+
+        const queryLeitura = `
+            INSERT INTO leituras_sensores (id_trem, tipo_sensor, valor, timestamp_leitura)
+            VALUES ($1, $2, $3, $4)
+        `;
+        const paramsLeitura = [parseInt(idTrem), tipo, valor, timestamp]; 
+        await db.query(queryLeitura, paramsLeitura);
+        console.log(`[ESP_SERVER] Leitura de sensor de trem salva: Trem ${idTrem}, Tipo ${tipo}, Valor ${valor}`);
+
+
+
+        await verificarAlertas(db, id_sensor_cadastrado, valor);
+
+    } catch (erro) {
+        console.error("[ESP_SERVER] Erro ao salvar leitura ou verificar alertas no banco:", erro);
+    } finally {
+        if (db) {
+            await db.end();
+        }
+    }
+}
+
 async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
     let db;
     try {
@@ -140,66 +214,14 @@ async function salvarLeituraSensorGenerico(idSensor, valor, timestamp) {
             INSERT INTO leituras_sensores (id_sensor, tipo_sensor, valor, timestamp_leitura)
             VALUES ($1, 'desconhecido', $2, $3)
         `;
-        // CORREÇÃO APLICADA: idSensor (ex: 'S1-Temp') é passado como string para o banco.
         const params = [idSensor, valor, timestamp]; 
 
         await db.query(query, params);
         console.log(`[ESP_SERVER] Leitura de sensor genérico salva: Sensor ${idSensor}, Valor ${valor}`);
 
+
     } catch (erro) {
         console.error("[ESP_SERVER] Erro ao salvar leitura do sensor genérico no banco:", erro);
-    } finally {
-        if (db) {
-            await db.end();
-        }
-    }
-}
-
-async function salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp) {
-    let db;
-    try {
-        db = await conectar();
-
-        const query = `
-            INSERT INTO leituras_sensores (id_trem, tipo_sensor, valor, timestamp_leitura)
-            VALUES ($1, $2, $3, $4)
-        `;
-        const params = [parseInt(idTrem), tipo, valor, timestamp]; 
-
-        await db.query(query, params);
-        console.log(`[ESP_SERVER] Leitura de sensor de trem salva: Trem ${idTrem}, Tipo ${tipo}, Valor ${valor}`);
-
-    } catch (erro) {
-        console.error("[ESP_SERVER] Erro ao salvar leitura do sensor de trem no banco:", erro);
-    } finally {
-        if (db) {
-            await db.end();
-        }
-    }
-}
-
-async function atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocidade, timestamp) {
-    let db;
-    try {
-        db = await conectar();
-
-        const query = `
-            UPDATE trens
-            SET latitude_atual = $1, longitude_atual = $2, velocidade_atual = $3, ultima_atualizacao_gps = $4
-            WHERE id = $5
-        `;
-        const params = [latitude, longitude, velocidade || null, timestamp, parseInt(idTrem)];
-
-        const resultado = await db.query(query, params);
-
-        if (resultado.rowCount === 0) {
-            console.warn(`[ESP_SERVER] Trem com ID ${idTrem} não encontrado para atualizar posição.`);
-        } else {
-            console.log(`[ESP_SERVER] Posição do trem ${idTrem} atualizada: Lat ${latitude}, Lng ${longitude}, Vel ${velocidade}`);
-        }
-
-    } catch (erro) {
-        console.error("[ESP_SERVER] Erro ao atualizar posição do trem no banco:", erro);
     } finally {
         if (db) {
             await db.end();

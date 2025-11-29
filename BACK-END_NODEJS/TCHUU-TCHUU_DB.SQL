@@ -157,3 +157,35 @@ CREATE TABLE IF NOT EXISTS leituras_sensores (
 CREATE INDEX IF NOT EXISTS idx_leituras_sensores_id_trem ON leituras_sensores(id_trem);
 CREATE INDEX IF NOT EXISTS idx_leituras_sensores_tipo_sensor ON leituras_sensores(tipo_sensor);
 CREATE INDEX IF NOT EXISTS idx_leituras_sensores_timestamp ON leituras_sensores(timestamp_leitura);
+
+
+CREATE TABLE alertas (
+    id_alerta SERIAL PRIMARY KEY,
+    
+
+    id_sensor INTEGER REFERENCES sensores (id_sensor) 
+        ON DELETE CASCADE 
+        NOT NULL, 
+        
+    tipo_alerta VARCHAR(50) NOT NULL,
+    valor_limite NUMERIC(10, 2) NOT NULL, 
+    ativo BOOLEAN DEFAULT TRUE, 
+    data_criacao TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_alertas_sensor ON alertas (id_sensor);
+
+
+CREATE TABLE ocorrencias_alertas (
+    id_ocorrencia SERIAL PRIMARY KEY,
+    
+    id_alerta INTEGER REFERENCES alertas (id_alerta) 
+        ON DELETE CASCADE 
+        NOT NULL, 
+        
+    valor_lido NUMERIC(10, 2) NOT NULL, 
+    status_alerta VARCHAR(20) DEFAULT 'ABERTO', 
+    timestamp_disparo TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_ocorrencias_status ON ocorrencias_alertas (status_alerta);
