@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const MQTT_BROKER_URL = process.env.MQTT_BROKER_URL;
+const MQTT_USERNAME = process.env.MQTT_USERNAME;
+const MQTT_PASSWORD = process.env.MQTT_PASSWORD;
 
 let clientMqtt = null;
 let isFirstConnection = true; 
@@ -108,7 +111,8 @@ function iniciarServidorEsp() {
                     const timestamp = dadosRecebidos.timestamp || new Date();
 
                     if (latitude !== undefined && longitude !== undefined) {
-                        await atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocidade, timestamp);
+                        // Supondo que você tem esta função em outro lugar
+                        await atualizarPosicaoTremNoBanco(idTrem, latitude, longitude, velocidade, timestamp); 
                     } else {
                         console.warn("[ESP_SERVER] Dados de GPS incompletos recebidos:", dadosRecebidos);
                     }
@@ -134,7 +138,7 @@ async function verificarAlertas(db, idSensor, valorLido) {
     const regras = await db.query(sqlRegras, [idSensor]);
 
     if (regras.rowCount === 0) {
-        return; // Sem regras ativas
+        return;
     }
 
     for (const regra of regras.rows) {
@@ -191,7 +195,6 @@ async function salvarLeituraSensorTrem(idTrem, tipo, valor, timestamp) {
         const paramsLeitura = [parseInt(idTrem), tipo, valor, timestamp]; 
         await db.query(queryLeitura, paramsLeitura);
         console.log(`[ESP_SERVER] Leitura de sensor de trem salva: Trem ${idTrem}, Tipo ${tipo}, Valor ${valor}`);
-
 
 
         await verificarAlertas(db, id_sensor_cadastrado, valor);
