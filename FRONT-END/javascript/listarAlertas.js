@@ -35,9 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
             listaOcorrenciasDiv.innerHTML = `<p style="color: red;"> Erro ao carregar dados: ${ocorrencias.erro}</p>`;
             return;
         }
+        // okok
 
         if (!ocorrencias || ocorrencias.length === 0) {
-            listaOcorrenciasDiv.innerHTML = '<p> Nenhuma ocorrência de alerta ATIVO registrada no momento.</p>';
+            listaOcorrenciasDiv.innerHTML = '<p style="color: green;"> Nenhuma ocorrência de alerta ATIVO registrada no momento.</p>';
             return;
         }
 
