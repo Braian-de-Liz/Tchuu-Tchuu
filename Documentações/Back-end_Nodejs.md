@@ -29,8 +29,8 @@ paths:
               required:
                 - email
                 - senha
-                - nome # Assumindo que nome é necessário
-                - cpf # Assumindo que CPF é necessário
+                - nome 
+                - cpf 
               properties:
                 email:
                   type: string
@@ -549,3 +549,246 @@ tags:
     description: Operações relacionadas a sensores
   - name: WebSocket
     description: Conexão para comunicação em tempo real (Chat)
+
+
+    openapi: 3.0.0
+info:
+  title: Tchuu-Tchuu API
+  description: API de monitoramento de trens, sensores e gerenciamento de alertas em tempo real.
+  version: 1.0.0
+  contact:
+    name: Desenvolvedor Tchuu-Tchuu
+servers:
+  - url: https://tchuu-tchuu-server-chat.onrender.com/api
+    description: Servidor de Produção (Render)
+  - url: http://localhost:3000/api
+    description: Servidor Local
+tags:
+  - name: Sensores
+    description: Gerenciamento de sensores vinculados aos trens
+  - name: Alertas
+    description: Regras de monitoramento e listagem de ocorrências
+
+paths:
+  # --- ROTAS DE SENSORES ---
+  /sensores:
+    post:
+      tags:
+        - Sensores
+      summary: Cadastrar um novo sensor
+      description: Vincula um novo sensor a um trem existente, validando o CPF do usuário.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - nome_sensor
+                - tipo_sensor
+                - nome_trem
+                - data
+                - cpf
+              properties:
+                nome_sensor:
+                  type: string
+                  example: "Sensor Temp Motor 1"
+                tipo_sensor:
+                  type: string
+                  example: "DHT11"
+                nome_trem:
+                  type: string
+                  description: Nome único do trem onde o sensor será instalado.
+                  example: "Hércilio da Costa"
+                data:
+                  type: string
+                  format: date
+                  example: "2025-10-20"
+                cpf:
+                  type: string
+                  description: CPF do usuário responsável (apenas números ou com pontuação).
+                  example: "123.456.789-00"
+      responses:
+        '201':
+          description: Sensor cadastrado com sucesso.
+        '400':
+          description: Dados inválidos ou campos faltando.
+        '404':
+          description: Trem não encontrado ou usuário sem permissão.
+        '409':
+          description: Sensor com este nome já existe neste trem.
+
+    get:
+      tags:
+        - Sensores
+      summary: Listar sensores por CPF
+      description: Retorna todos os sensores cadastrados por um usuário específico.
+      parameters:
+        - in: query
+          name: cpf
+          schema:
+            type: string
+          required: true
+          description: CPF do usuário para filtrar os sensores.
+        - in: query
+          name: data_inicio
+          schema:
+            type: string
+            format: date
+          required: false
+          description: Filtro de data inicial (opcional).
+        - in: query
+          name: data_fim
+          schema:
+            type: string
+            format: date
+          required: false
+          description: Filtro de data final (opcional).
+      responses:
+        '200':
+          description: Lista de sensores retornada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "sucesso"
+                  sensores:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sensor'
+        '404':
+          description: Nenhum sensor encontrado para este CPF.
+
+    patch:
+      tags:
+        - Sensores
+      summary: Atualizar sensor
+      description: Atualiza o nome ou o tipo de um sensor existente.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - cpf_user
+                - nome_sensor
+              properties:
+                cpf_user:
+                  type: string
+                  description: CPF para validação de propriedade.
+                nome_sensor:
+                  type: string
+                  description: Nome ATUAL do sensor.
+                nome_novo:
+                  type: string
+                  description: Novo nome desejado (opcional se enviar tipo).
+                TipoSensor_novo:
+                  type: string
+                  description: Novo tipo desejado (opcional se enviar nome).
+      responses:
+        '200':
+          description: Sensor atualizado com sucesso.
+        '404':
+          description: Sensor não encontrado.
+
+  # --- ROTAS DE ALERTAS E OCORRÊNCIAS ---
+  /alertas:
+    post:
+      tags:
+        - Alertas
+      summary: Criar regra de alerta
+      description: Define um limite (threshold) para um sensor. Se o valor for ultrapassado via MQTT, um alerta será gerado.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - cpf_user
+                - nome_sensor
+                - tipo_alerta
+                - valor_limite
+              properties:
+                cpf_user:
+                  type: string
+                  example: "12345678900"
+                nome_sensor:
+                  type: string
+                  description: Nome exato do sensor cadastrado.
+                  example: "Sensor Temp Motor 1"
+                tipo_alerta:
+                  type: string
+                  description: Nome do evento que será gerado.
+                  example: "HIGH_TEMP"
+                valor_limite:
+                  type: number
+                  format: float
+                  description: Valor máximo permitido antes de disparar o alerta.
+                  example: 50.5
+      responses:
+        '201':
+          description: Regra de alerta criada com sucesso.
+        '404':
+          description: Sensor não encontrado.
+
+  /ocorrencias:
+    get:
+      tags:
+        - Alertas
+      summary: Listar ocorrências ativas
+      description: Retorna uma lista de todos os alertas que foram disparados e ainda estão com status 'ABERTO'.
+      responses:
+        '200':
+          description: Lista de ocorrências obtida com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "sucesso"
+                  ocorrencias:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id_ocorrencia:
+                          type: integer
+                        valor_lido:
+                          type: string
+                          example: "55.00"
+                        timestamp_disparo:
+                          type: string
+                          example: "2025-03-26 14:30:00"
+                        tipo_alerta:
+                          type: string
+                          example: "HIGH_TEMP"
+                        valor_limite:
+                          type: string
+                          example: "50.00"
+                        nome_sensor:
+                          type: string
+                          example: "Sensor Temp Motor 1"
+
+components:
+  schemas:
+    Sensor:
+      type: object
+      properties:
+        id_sensor:
+          type: integer
+        nome_sensor:
+          type: string
+        tipo_sensor:
+          type: string
+        data_registro:
+          type: string
+          format: date-time
+        nome_trem:
+          type: string
