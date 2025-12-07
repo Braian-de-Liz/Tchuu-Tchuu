@@ -4,8 +4,15 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.get("/historico/sensor/:id_sensor", async (req, res) => {
-    const { id_sensor } = req.params;
-    const limite = req.query.limite || 20; 
+    const id_sensor = parseInt(req.params.id_sensor);
+    const limite = parseInt(req.query.limite) || 20; 
+
+    if (isNaN(id_sensor)) {
+        return res.status(400).json({ 
+            status: 'erro', 
+            mensagem: 'O ID do sensor deve ser um número válido.' 
+        });
+    }
 
     let db;
     try {
@@ -21,7 +28,6 @@ router.get("/historico/sensor/:id_sensor", async (req, res) => {
 
         const resultado = await db.query(sql, [id_sensor, limite]);
 
-  
         const dadosOrdenados = resultado.rows.reverse();
 
         res.status(200).json({
@@ -30,8 +36,12 @@ router.get("/historico/sensor/:id_sensor", async (req, res) => {
         });
 
     } catch (erro) {
-        console.error("Erro ao buscar histórico:", erro);
-        res.status(500).json({ status: 'erro', mensagem: 'Erro interno ao buscar dados do gráfico.' });
+        console.error("ERRO NO DADOSGRAFICO.JS:", erro);
+        
+        res.status(500).json({ 
+            status: 'erro', 
+            mensagem: 'Erro interno ao buscar dados do gráfico.' 
+        });
     } finally {
         if (db) await db.end();
     }
