@@ -51,11 +51,17 @@ import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js';
 // alertas IOT
 import alertas from './routers/alertas/getAlerts.js';
 
+
+// relatórios
+import dadosGrafico from './routers/dash/dadosgraficos.js';
+import getAlerts from './routers/dash/getalertas.js';
+
+
 import dotenv from 'dotenv';
+dotenv.config();
 
 
 const app = express();
-dotenv.config();
 
 // app.use(cors());
 
@@ -117,6 +123,9 @@ app.use('/api', tirar_manutencao);
 
 // Rotas para Alertas
 app.use('/api', alertas);
+
+app.use('/api', dadosGrafico)
+app.use('/api', getAlerts)
 
 app.get('/acordar', (req, res) => {
     const now = new Date().toISOString();
