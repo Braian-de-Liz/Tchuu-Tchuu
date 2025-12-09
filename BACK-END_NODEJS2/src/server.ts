@@ -26,6 +26,7 @@ import Mostrar_usuario from "./routes/usuario/mostrar_dadosUsuario.js";
 import cadastroTREM from "./routes/trens/registrar_trem.js";
 import deletar_trem from "./routes/trens/deletar_trem.js";
 import atualizarTrem from "./routes/trens/atualizar_trem.js";
+import Mostrar_trens from "./routes/trens/mostrar_trem.js";
 
 dotenv.config();
 
@@ -47,6 +48,7 @@ await app.register(Mostrar_usuario, {prefix: '/api'});
 await app.register(cadastroTREM, {prefix: '/api'});
 await app.register(deletar_trem, {prefix: '/api'});
 await app.register(atualizarTrem, {prefix: '/api'});
+await app.register(Mostrar_trens, {prefix: '/api'});
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3250;
 
