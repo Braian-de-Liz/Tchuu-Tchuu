@@ -39,7 +39,7 @@ router.post('/usuarios', async (req, res) => {
         db = await conectar();
 
         const existente = await db.query(
-            'SELECT cpf, email FROM usuarios WHERE cpf = $1 OR email = $2',
+            'SELECT cpf, email FROM usuarios WHERE cpf = $1 AND email = $2',
             [cpfTRUE, email]
         );
 

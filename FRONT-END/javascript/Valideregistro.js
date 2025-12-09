@@ -1,54 +1,31 @@
-function validateCPF(cpf) {
-    cpf = cpf.replace(/[^\d]/g, '');
-    return cpf.length === 11;
-}
-
 function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
-/* function validateTelefone(telefone) {
-    telefone = telefone.replace(/[^\d]/g, '');
-    return telefone.length >= 10;
-} */
-
-/* function validaNumRegistro(registro) {
-    return /^\d{12}$/.test(registro);
-}
-
- */
-
-
-
-
 async function ValidaRegistro(event) {
     event.preventDefault();
 
-    const cpf = document.getElementById('cpf').value.trim();
+    let cpf = document.getElementById('cpf').value.trim();
     const email = document.getElementById('email').value.trim();
     const nome = document.getElementById('nome').value.trim();
-    // const telefone = document.getElementById('tel').value.trim();
     const senha = document.getElementById('Senha').value.trim();
     const dataNasc = document.getElementById('DataNasc').value.trim();
     const RegistroFun = crypto.randomUUID().substring(0, 20);
 
+    // 🔑 CORREÇÃO: Limpa o CPF antes de validar e enviar
+    cpf = cpf.replace(/[^\d]/g, ''); 
 
     if (!cpf || !email || !senha || !dataNasc || !nome) {
         alert("Preencha todos os campos.");
         return false;
     }
 
-    if (!validateCPF(cpf)) {
+    if (cpf.length !== 11) {
         alert('CPF inválido. Deve conter exatamente 11 dígitos.');
         return false;
     }
 
-/*     if (!validateTelefone(telefone)) {
-        alert("Telefone inválido. Deve conter pelo menos 10 dígitos.");
-        return false;
-    }
- */
     const [ano, mes, dia] = dataNasc.split('-').map(Number);
 
     if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
@@ -83,9 +60,6 @@ async function ValidaRegistro(event) {
     }
 
     const NovoUsuario = new Usuario(nome, cpf, email, senha, RegistroFun, dataNasc);
-
-
-
 
     try {
         const response = await fetch('https://tchuu-tchuu-server-chat.onrender.com/api/usuarios', {

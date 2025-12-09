@@ -5,6 +5,7 @@ yarn-error.log
 yarn-debug.log
 .pnpm-debug.log*
 
+.env
 
 # Build
 /dist
@@ -36,6 +37,7 @@ lerna-debug.log*
 temp
 tmp
 
+.env
 # Cobertura
 coverage
 .nyc_output
