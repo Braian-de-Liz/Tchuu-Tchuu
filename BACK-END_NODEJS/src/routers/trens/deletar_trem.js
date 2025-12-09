@@ -7,8 +7,6 @@ const router = Router();
 router.delete("/trens", async (req, res) => {
 
     console.log(" ROTA DELETE /trens ACESSADA");
-    console.log(" Query params recebidos:", req.query);
-    console.log(" Headers recebidos:", req.headers);
 
     const { cpf_user, nome_trem } = req.query;
 

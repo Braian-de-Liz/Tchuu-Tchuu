@@ -1,4 +1,4 @@
- import { Router } from "express"
+import { Router } from "express"
 import { conectar } from "../../databases/conectar_banco.js"
 
 
@@ -31,8 +31,6 @@ router.patch('/trens', async (req, res) => {
             })
         }
 
-
-
     }
     catch (error) {
         console.error("Erro, não foi possível delear trem", error);
@@ -42,8 +40,6 @@ router.patch('/trens', async (req, res) => {
             mensagem: 'Erro interno desse servidor que alunos do ensimo médio programaram'
         });
     }
-
-
 
 });
 
