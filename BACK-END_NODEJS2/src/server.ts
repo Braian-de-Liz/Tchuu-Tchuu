@@ -28,6 +28,11 @@ import deletar_trem from "./routes/trens/deletar_trem.js";
 import atualizarTrem from "./routes/trens/atualizar_trem.js";
 import Mostrar_trens from "./routes/trens/mostrar_trem.js";
 
+// imports de manutenção
+import enviarTrem_manu from "./routes/trens_manutencao/enviar_manutencao.js";
+import tirar_trem_manu from "./routes/trens_manutencao/tirar_manutencao.js";
+import obterChamadosManutencao from "./routes/trens_manutencao/obter_manutencao.js";
+
 dotenv.config();
 
 const app: FastifyInstance = fastify({ logger: true });
@@ -49,6 +54,12 @@ await app.register(cadastroTREM, {prefix: '/api'});
 await app.register(deletar_trem, {prefix: '/api'});
 await app.register(atualizarTrem, {prefix: '/api'});
 await app.register(Mostrar_trens, {prefix: '/api'});
+
+// rotas de manutenção
+await app.register(enviarTrem_manu, {prefix: '/api'});
+await app.register(tirar_trem_manu, {prefix: '/api'});
+await app.register(obterChamadosManutencao, {prefix: '/api'});
+
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3250;
 
