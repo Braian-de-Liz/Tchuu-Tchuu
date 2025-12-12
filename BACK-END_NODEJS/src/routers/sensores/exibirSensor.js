@@ -46,7 +46,7 @@ router.get("/sensores", async (req, res) => {
 
         const resultado = await db.query(sql, [cpfTRUE]);
 
-        if (resultado.rows.length === 0) {
+        if (resultado.rowCount === 0) { 
             console.log(`Nenhum sensor encontrado para o CPF ${cpfTRUE}`);
             return res.status(404).json({
                 status: 'sucesso', 

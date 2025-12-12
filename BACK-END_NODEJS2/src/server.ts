@@ -4,7 +4,7 @@ import Cors from "@fastify/cors";
 import type { FastifyInstance } from "fastify";
 import dotenv from 'dotenv'
 
-// importando a conexão com o banco de dados e configs
+// importando a conexão com o banco de dados e configs e connections
 import pg from './databases/conectar_banco.js'
 import FastifyJWT from '@fastify/jwt';
 
@@ -13,6 +13,9 @@ if (!secret) {
     throw new Error('A variável de ambiente JWT_SECRET não está definida.');
 }
 const JWT_SECRET: string = secret;
+
+import chatServer from "./connections/chatServer.js";
+
 
 
 // import de usuario
@@ -33,36 +36,49 @@ import enviarTrem_manu from "./routes/trens_manutencao/enviar_manutencao.js";
 import tirar_trem_manu from "./routes/trens_manutencao/tirar_manutencao.js";
 import obterChamadosManutencao from "./routes/trens_manutencao/obter_manutencao.js";
 
+// imports de sensores
+import cadastrarSensor_req from "./routes/sensores/cadastrarSensor.js";
+import deletar_sensor from "./routes/sensores/deletarSensor.js";
+import alterarSensor from "./routes/sensores/alterarSensor.js";
+import listar_sensores from "./routes/sensores/exibirSensores.js";
+
 dotenv.config();
 
 const app: FastifyInstance = fastify({ logger: true });
 
-await app.register(FastifyJWT, {secret: JWT_SECRET });
-
+await app.register(FastifyJWT, { secret: JWT_SECRET });
+await app.register(chatServer);
 await app.register(pg);
 await app.register(Cors, { origin: true });
 
 // rotas de usuarios
-await app.register(usuariosRegistro, {prefix: '/api'});
-await app.register(logar_usario, {prefix: '/api'});
-await app.register(deletar_user, {prefix: '/api'});
-await app.register(alterar_user, {prefix: '/api'});
-await app.register(Mostrar_usuario, {prefix: '/api'});
+await app.register(usuariosRegistro, { prefix: '/api' });
+await app.register(logar_usario, { prefix: '/api' });
+await app.register(deletar_user, { prefix: '/api' });
+await app.register(alterar_user, { prefix: '/api' });
+await app.register(Mostrar_usuario, { prefix: '/api' });
 
 // rotas de trens
-await app.register(cadastroTREM, {prefix: '/api'});
-await app.register(deletar_trem, {prefix: '/api'});
-await app.register(atualizarTrem, {prefix: '/api'});
-await app.register(Mostrar_trens, {prefix: '/api'});
+await app.register(cadastroTREM, { prefix: '/api' });
+await app.register(deletar_trem, { prefix: '/api' });
+await app.register(atualizarTrem, { prefix: '/api' });
+await app.register(Mostrar_trens, { prefix: '/api' });
 
 // rotas de manutenção
-await app.register(enviarTrem_manu, {prefix: '/api'});
-await app.register(tirar_trem_manu, {prefix: '/api'});
-await app.register(obterChamadosManutencao, {prefix: '/api'});
+await app.register(enviarTrem_manu, { prefix: '/api' });
+await app.register(tirar_trem_manu, { prefix: '/api' });
+await app.register(obterChamadosManutencao, { prefix: '/api' });
+
+// rotas de sensores
+await app.register(cadastrarSensor_req, { prefix: '/api' });
+await app.register(deletar_sensor, { prefix: '/api' });
+await app.register(alterarSensor, { prefix: '/api' });
+await app.register(listar_sensores, { prefix: '/api' });
+
 
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3250;
 
-app.listen({ port: PORT, host: '0.0.0.0'}, () => {
+app.listen({ port: PORT, host: '0.0.0.0' }, () => {
     console.log(`server rodando no ${PORT}`)
 });

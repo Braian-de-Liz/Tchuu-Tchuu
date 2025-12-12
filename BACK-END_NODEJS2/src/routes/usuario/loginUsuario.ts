@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\usuario\loginUsuario.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 import bcrypt from 'bcryptjs';
 
