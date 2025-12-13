@@ -19,4 +19,6 @@ const conectar: FastifyPluginAsync = async (app, options) => {
     });
 }
 
-export default fp(conectar);
+export default fp(conectar, {
+    name: 'pg' 
+});

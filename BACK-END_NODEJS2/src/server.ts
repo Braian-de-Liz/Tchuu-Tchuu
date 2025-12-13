@@ -2,11 +2,13 @@
 import fastify from "fastify";
 import Cors from "@fastify/cors";
 import type { FastifyInstance } from "fastify";
+import fastifyWebsocket from '@fastify/websocket';
 import dotenv from 'dotenv'
 
-// importando a conexão com o banco de dados e configs e connections
 import pg from './databases/conectar_banco.js'
 import FastifyJWT from '@fastify/jwt';
+
+dotenv.config();
 
 const secret = process.env.JWT_SECRET;
 if (!secret) {
@@ -15,7 +17,7 @@ if (!secret) {
 const JWT_SECRET: string = secret;
 
 import chatServer from "./connections/chatServer.js";
-
+import espServerPlugin from './connections/ESP_Server.js';
 
 
 // import de usuario
@@ -42,14 +44,17 @@ import deletar_sensor from "./routes/sensores/deletarSensor.js";
 import alterarSensor from "./routes/sensores/alterarSensor.js";
 import listar_sensores from "./routes/sensores/exibirSensores.js";
 
-dotenv.config();
 
-const app: FastifyInstance = fastify({ logger: true });
+const app: FastifyInstance = fastify(/*{ logger: true }  */);
 
-await app.register(FastifyJWT, { secret: JWT_SECRET });
-await app.register(chatServer);
 await app.register(pg);
+await app.register(FastifyJWT, { secret: JWT_SECRET });
 await app.register(Cors, { origin: true });
+
+await app.register(fastifyWebsocket);
+await app.register(chatServer);
+await app.register(espServerPlugin);
+
 
 // rotas de usuarios
 await app.register(usuariosRegistro, { prefix: '/api' });
