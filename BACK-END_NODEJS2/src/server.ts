@@ -44,8 +44,11 @@ import deletar_sensor from "./routes/sensores/deletarSensor.js";
 import alterarSensor from "./routes/sensores/alterarSensor.js";
 import listar_sensores from "./routes/sensores/exibirSensores.js";
 
+// imports de alertas e dashboard
+import getAlertas from "./routes/dash/getAlertas.js";
 
-const app: FastifyInstance = fastify(/*{ logger: true }  */);
+
+const app: FastifyInstance = fastify({ logger: true });
 
 await app.register(pg);
 await app.register(FastifyJWT, { secret: JWT_SECRET });
@@ -80,6 +83,8 @@ await app.register(deletar_sensor, { prefix: '/api' });
 await app.register(alterarSensor, { prefix: '/api' });
 await app.register(listar_sensores, { prefix: '/api' });
 
+// rotas de Alertas e dash
+await app.register(getAlertas, { prefix: '/api' });
 
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3250;

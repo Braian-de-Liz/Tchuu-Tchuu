@@ -4,24 +4,21 @@ import { conectar } from "../../databases/conectar_banco.js";
 const router = Router();
 
 router.get("/ocorrencias", async (req, res) => {
-    // Recebe o CPF para filtrar apenas os sensores deste usuário
     const { cpf } = req.query;
 
     if (!cpf) {
-        return res.status(400).json({ 
-            status: 'erro', 
-            mensagem: 'CPF obrigatório.' 
+        return res.status(400).json({
+            status: 'erro',
+            mensagem: 'CPF obrigatório.'
         });
     }
 
-    // Remove pontos e traços do CPF, se houver
     const cpfLimpo = cpf.replace(/\D/g, '');
 
     let db;
     try {
         db = await conectar();
 
-        // Query com JOIN para pegar nome do sensor e tipo de alerta
         const sql = `
             SELECT 
                 oa.id_ocorrencia,
@@ -36,14 +33,14 @@ router.get("/ocorrencias", async (req, res) => {
             AND s.cpf_user = $1
             ORDER BY oa.timestamp_disparo DESC
         `;
-        
+
         const resultado = await db.query(sql, [cpfLimpo]);
 
         return res.status(200).json({
             status: 'sucesso',
             ocorrencias: resultado.rows
         });
-        
+
     } catch (error) {
         console.error("Erro ao listar ocorrências:", error);
         return res.status(500).json({
