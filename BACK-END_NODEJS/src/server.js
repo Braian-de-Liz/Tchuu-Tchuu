@@ -48,10 +48,6 @@ import enviar_manutencao from './routers/trens_manutencao/enviar_manutencao.js';
 import obter_manutencao from './routers/trens_manutencao/obter_manitencao.js';
 import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js';
 
-// alertas IOT
-// import alertas from './routers/alertas/getAlerts.js';
-
-
 // relatórios
 import dadosGrafico from './routers/dash/dadosgraficos.js';
 import getAlerts from './routers/dash/getalertas.js';
@@ -122,8 +118,6 @@ app.use('/api', obter_manutencao);
 app.use('/api', tirar_manutencao);
 
 // Rotas para Alertas
-app.use('/api', alertas);
-
 app.use('/api', dadosGrafico)
 app.use('/api', getAlerts)
 
