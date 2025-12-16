@@ -29,7 +29,6 @@ router.delete('/estacoes/:id', async (req, res) => {
     } catch (erroToken) {
         return res.status(401).json({ status: 'erro', mensagem: 'Token inválido ou expirado.' });
     }
-    // ---------------------------
 
     let db;
     try {
@@ -38,7 +37,7 @@ router.delete('/estacoes/:id', async (req, res) => {
 
         const checkUser = await db.query('SELECT id_usuario_criador FROM estacoes WHERE id = $1', [idEstacao]);
         
-        if (checkUser.rows.length === 0) {
+        if (checkUser.rowCount === 0) {
             await db.query('ROLLBACK');
             return res.status(404).json({ status: 'erro', mensagem: 'Estação não encontrada.' });
         }
