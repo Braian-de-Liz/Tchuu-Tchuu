@@ -49,7 +49,7 @@ import obter_manutencao from './routers/trens_manutencao/obter_manitencao.js';
 import tirar_manutencao from './routers/trens_manutencao/tirar_manutencao.js';
 
 // alertas IOT
-import alertas from './routers/alertas/getAlerts.js';
+// import alertas from './routers/alertas/getAlerts.js';
 
 
 // relatórios
