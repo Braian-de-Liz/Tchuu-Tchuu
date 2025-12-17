@@ -13,6 +13,8 @@ yarn-debug.log
 /nuxt
 /.nuxt
 
+BACK-END_NODEJS
+
 # Logs
 logs
 *.log
