@@ -5,7 +5,7 @@ import { autenticarJWT } from '../../hooks/autenticar_id_jwt.js';
 
 const Mostrar_trens: FastifyPluginAsync = async (app, options) => {
 
-    app.get("/trens", { preHandler: [autenticarJWT] }, async (request, reply) => {
+    app.get("/Trem_mostrar", { preHandler: [autenticarJWT] }, async (request, reply) => {
 
         const usuarioId: string = (request.user as { id: string }).id;
 
