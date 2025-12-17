@@ -1,14 +1,14 @@
 // BACK-END_NODEJS2/src/routes/rotas_e_estacoes/excluirEstacao.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 import { autenticarJWT } from "../../hooks/autenticar_id_jwt.js";
-import { PoolClient } from "pg"; // Importa o tipo do cliente do pool
+import { PoolClient } from "pg"; 
 
 interface DecodedUser {
-    id: string; // Esperamos ID como string do JWT
+    id: string; 
 }
 
 interface ParamsID {
-    id: string; // ID da estação da URL
+    id: string; 
 }
 
 const deletarEstacaoOptions: RouteShorthandOptions = {

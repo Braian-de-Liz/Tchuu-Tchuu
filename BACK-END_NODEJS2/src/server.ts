@@ -52,9 +52,12 @@ import dadosgraficos from "./routes/dash/dadosgraficos.js";
 import salvarEstacao from "./routes/rotas_e_estacoes/salvarEstacao.js";
 import obterEstacoes from "./routes/rotas_e_estacoes/obterEstacao.js";
 import excluirEstacao from "./routes/rotas_e_estacoes/excluirEstacao.js";
+import AtualizarEstacao from "./routes/rotas_e_estacoes/atualizarPosicaoEstacao.js";
 
 import salvarRota from "./routes/rotas_e_estacoes/salvarRota.js";
 import OObterRotas from "./routes/rotas_e_estacoes/obterRotas.js";
+import ExcluirRota from "./routes/rotas_e_estacoes/ExcluirRota.js";
+import AtualizarRota from "./routes/rotas_e_estacoes/Atualizar_Rota.js";
 
 const app: FastifyInstance = fastify({ logger: true });
 
@@ -99,9 +102,13 @@ await app.register(dadosgraficos, { prefix: '/api' });
 await app.register(salvarEstacao, { prefix: '/api' });
 await app.register(obterEstacoes, { prefix: '/api' });
 await app.register(excluirEstacao, { prefix: '/api' });
+await app.register(AtualizarEstacao, { prefix: '/api' });
 
 await app.register(salvarRota, { prefix: '/api' });
 await app.register(OObterRotas, { prefix: '/api' });
+await app.register(ExcluirRota, {prefix: '/api'});
+await app.register(AtualizarRota, {prefix: '/api'});
+
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3250;
 
