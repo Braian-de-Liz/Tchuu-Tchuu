@@ -15,9 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const userColor = userColors[Math.floor(Math.random() * userColors.length)];
 
   
-        ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com'); // Para produção
         // ws = new WebSocket('ws://localhost:3250/ws/chat'); // Para testes locais
-        // ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com/ws/chat'); // Para produção quando substituir o back-end
+        ws = new WebSocket('wss://tchuu-tchuu-server-chat.onrender.com/ws/chat'); // Para produção quando substituir o back-end
 
         ws.onopen = () => {
             console.log('Conectado ao WebSocket');
