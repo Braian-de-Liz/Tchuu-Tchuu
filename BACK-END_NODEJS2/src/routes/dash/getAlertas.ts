@@ -1,18 +1,21 @@
 // BACK-END_NODEJS2\src\routes\dash\getAlertas.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 
-
-interface reqAlert {
+interface reqAlertParams {
     cpf: string;
 }
 
 const schema_listarPorCpf: RouteShorthandOptions = {
     schema: {
-        querystring: {
+        params: { 
             type: 'object',
             required: ['cpf'],
             properties: {
-                cpf: { type: 'string', pattern: '^\\d{11}$', description: 'CPF do usuário para filtrar os resultados.' }
+                cpf: { 
+                    type: 'string', 
+                    pattern: '^\\d{11}$', 
+                    description: 'CPF do usuário na URL.' 
+                }
             },
             additionalProperties: false
         }
@@ -20,21 +23,21 @@ const schema_listarPorCpf: RouteShorthandOptions = {
 };
 
 const getAlertas: FastifyPluginAsync = async (app, options) => {
+    app.get<{ Params: reqAlertParams }>("/ocorrencias/:cpf", schema_listarPorCpf, async (request, reply) => {
+        
+        const { cpf } = request.params; 
 
-    app.get<{ Querystring: reqAlert }>("/ocorrencias", schema_listarPorCpf, async (request, reply) => {
-        const { cpf } = request.query
-
-        const cpfLimpo: string = cpf.replace(/\D/g, '');
-
+        const cpfLimpo = cpf.replace(/\D/g, '');
 
         try {
-            const sql: string = `
-            SELECT 
-                oa.id_ocorrencia,
-                oa.valor_lido,
-                oa.timestamp_disparo,
-                a.tipo_alerta,
-                s.nome_sensor
+            const sql = `
+                SELECT 
+                    oa.id_ocorrencia,
+                    oa.valor_lido,
+                    oa.timestamp_disparo,
+                    a.tipo_alerta,
+                    a.valor_limite, -- Adicionei aqui para sua tabela do front não ficar vazia
+                    s.nome_sensor
                 FROM ocorrencias_alertas oa
                 JOIN alertas a ON oa.id_alerta = a.id_alerta
                 JOIN sensores s ON a.id_sensor = s.id_sensor
@@ -46,21 +49,18 @@ const getAlertas: FastifyPluginAsync = async (app, options) => {
             const resultado = await app.pg.query(sql, [cpfLimpo]);
 
             if (resultado.rowCount === 0) {
-                app.log.warn(`Alertas abertos não encontrados para o CPF: ${cpf}`);
-
                 return reply.status(404).send({
                     status: 'erro',
-                    menssagem: 'alertas desse usuário não encontrados'
-                })
+                    mensagem: 'Nenhum alerta ativo encontrado para este usuário.'
+                });
             }
 
             return reply.status(200).send({
                 status: 'sucesso',
                 ocorrencias: resultado.rows
             });
-        }
-        catch (erro) {
-            console.error("Erro ao listar ocorrências:", erro);
+        } catch (erro) {
+            app.log.error(erro);
             return reply.status(500).send({
                 status: 'erro',
                 mensagem: 'Falha interna ao buscar alertas.'

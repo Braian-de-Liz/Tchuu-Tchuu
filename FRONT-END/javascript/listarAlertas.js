@@ -2,8 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const listaOcorrenciasDiv = document.getElementById("listaOcorrenciasAlertas");
+    const cpf = localStorage.getItem("usuario_cpf");
     
-    const API_URL_OCORRENCIAS = 'https://tchuu-tchuu-server-chat.onrender.com/api/ocorrencias'; 
+    const API_URL_OCORRENCIAS = `https://tchuu-tchuu-server-chat.onrender.com/api/ocorrencias/${cpf}`; 
 
     async function buscarOcorrencias() {
         listaOcorrenciasDiv.innerHTML = '<p>Buscando alertas ativos...</p>';
