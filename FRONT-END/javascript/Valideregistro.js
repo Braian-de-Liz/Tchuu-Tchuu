@@ -13,7 +13,6 @@ async function ValidaRegistro(event) {
     const dataNasc = document.getElementById('DataNasc').value.trim();
     const RegistroFun = crypto.randomUUID().substring(0, 20);
 
-    // 🔑 CORREÇÃO: Limpa o CPF antes de validar e enviar
     cpf = cpf.replace(/[^\d]/g, ''); 
 
     if (!cpf || !email || !senha || !dataNasc || !nome) {
