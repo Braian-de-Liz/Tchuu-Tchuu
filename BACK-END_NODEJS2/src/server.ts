@@ -63,7 +63,16 @@ const app: FastifyInstance = fastify({ logger: true });
 
 await app.register(pg);
 await app.register(FastifyJWT, { secret: JWT_SECRET });
-await app.register(Cors, { origin: true });
+
+await app.register(Cors, {
+    origin: [
+        'https://tchuu-tchuu-front-end.onrender.com',
+        'http://127.0.0.1:5500',
+        'http://localhost:5500'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    credentials: true
+});
 
 await app.register(fastifyWebsocket);
 await app.register(chatServer);
@@ -106,9 +115,19 @@ await app.register(AtualizarEstacao, { prefix: '/api' });
 
 await app.register(salvarRota, { prefix: '/api' });
 await app.register(OObterRotas, { prefix: '/api' });
-await app.register(ExcluirRota, {prefix: '/api'});
-await app.register(AtualizarRota, {prefix: '/api'});
+await app.register(ExcluirRota, { prefix: '/api' });
+await app.register(AtualizarRota, { prefix: '/api' });
 
+app.get('/acordar', async (request, reply) => {
+    const now = new Date().toISOString();
+    const userAgent = request.headers['user-agent'] || 'Unknown';
+    console.log(`ACORDA PREGUIÇOSO, OHHHH LÁPADA SECA ${now} | IP: ${request.ip} | Elias-testador: ${userAgent}`);
+    return {
+        status: 'funcionando',
+        server: 'Tchuu-Tchuu',
+        timestamp: now
+    };
+});
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3250;
 
