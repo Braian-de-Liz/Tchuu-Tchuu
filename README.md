@@ -50,47 +50,55 @@ Directory structure:
 └── braian-de-liz-tchuu-tchuu/
     ├── README.md
     ├── package.json
-    ├── BACK-END_NODEJS/
+    ├── BACK-END_NODEJS2/
     │   ├── package.json
     │   ├── TCHUU-TCHUU_DB.SQL
+    │   ├── tsconfig.json
     │   └── src/
-    │       ├── server.js
+    │       ├── server.ts
     │       ├── connections/
-    │       │   ├── chatServer.js
-    │       │   └── ESP_Server.js
+    │       │   ├── chatServer.ts
+    │       │   └── ESP_Server.ts
     │       ├── databases/
-    │       │   └── conectar_banco.js
-    │       └── routers/
-    │           ├── rotas_e_estacoes/
-    │           │   ├── atualizar_Rotas.js
-    │           │   ├── atualizarPosicaoEstacao.js
-    │           │   ├── excluirEstacao.js
-    │           │   ├── excluirRota.js
-    │           │   ├── obterEstacoes.js
-    │           │   ├── obterRotas.js
-    │           │   ├── salvarEstacao.js
-    │           │   └── salvarRota.js
-    │           ├── sensores/
-    │           │   ├── alterarSensor.js
-    │           │   ├── alterarSensor.ts
-    │           │   ├── cadastrarSensor.js
-    │           │   ├── deletarSensor.js
-    │           │   └── exibirSensor.js
-    │           ├── trens/
-    │           │   ├── atualizar_trem.js
-    │           │   ├── deletar_trem.js
-    │           │   ├── mostrar_trem.js
-    │           │   └── registrar_trem.js
-    │           ├── trens_manutencao/
-    │           │   ├── enviar_manutencao.js
-    │           │   ├── obter_manitencao.js
-    │           │   └── tirar_manutencao.js
-    │           └── usuario/
-    │               ├── atualizarUsuario.js
-    │               ├── deletarUsuarios.js
-    │               ├── loginUsuario.js
-    │               ├── mostrar_dadosUsuario.js
-    │               └── registrarUsuarios.js
+    │       │   └── conectar_banco.ts
+    │       ├── hooks/
+    │       │   ├── autenticar_id_jwt.ts
+    │       │   └── consultar_DB.ts
+    │       ├── routes/
+    │       │   ├── dash/
+    │       │   │   ├── dadosgraficos.ts
+    │       │   │   └── getAlertas.ts
+    │       │   ├── rotas_e_estacoes/
+    │       │   │   ├── Atualizar_Rota.ts
+    │       │   │   ├── atualizarPosicaoEstacao.ts
+    │       │   │   ├── excluirEstacao.ts
+    │       │   │   ├── ExcluirRota.ts
+    │       │   │   ├── obterEstacao.ts
+    │       │   │   ├── obterRotas.ts
+    │       │   │   ├── salvarEstacao.ts
+    │       │   │   └── salvarRota.ts
+    │       │   ├── sensores/
+    │       │   │   ├── alterarSensor.ts
+    │       │   │   ├── cadastrarSensor.ts
+    │       │   │   ├── deletarSensor.ts
+    │       │   │   └── exibirSensores.ts
+    │       │   ├── trens/
+    │       │   │   ├── atualizar_trem.ts
+    │       │   │   ├── deletar_trem.ts
+    │       │   │   ├── mostrar_trem.ts
+    │       │   │   └── registrar_trem.ts
+    │       │   ├── trens_manutencao/
+    │       │   │   ├── enviar_manutencao.ts
+    │       │   │   ├── obter_manutencao.ts
+    │       │   │   └── tirar_manutencao.ts
+    │       │   └── usuario/
+    │       │       ├── atualizarUsuario.ts
+    │       │       ├── deletarUsuario.ts
+    │       │       ├── loginUsuario.ts
+    │       │       ├── mostrar_dadosUsuario.ts
+    │       │       └── registrarUsuario.ts
+    │       └── types/
+    │           └── fastify.d.ts
     ├── Documentações/
     │   ├── Back-end_Nodejs.md
     │   └── LICENSE
@@ -129,6 +137,8 @@ Directory structure:
         │   ├── GestaoRota2.js
         │   ├── gestaoRotas.js
         │   ├── GraficoDesempenho.js
+        │   ├── graficoSensores.js
+        │   ├── listarAlertas.js
         │   ├── menu-hamburguer-PC.js
         │   ├── menu-Rotas.js
         │   ├── menu.js
