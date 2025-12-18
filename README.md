@@ -1,49 +1,45 @@
 # 🚆 Projeto TCHUU-TCHUU
 
-**TCHUU-TCHUU** é um projeto desenvolvido pelos alunos do **Curso Técnico em Desenvolvimento de Sistemas** da **Escola SESI de Referência**. Seu principal objetivo é **Gerenciar Ferroramas**, aplicando na prática os conhecimentos adquiridos ao longo do curso.
+**TCHUU-TCHUU** é um ecossistema de gerenciamento ferroviário inteligente desenvolvido pelos alunos do **Curso Técnico em Desenvolvimento de Sistemas** da **Escola SESI de Referência**. O sistema aplica conceitos avançados de computação para gerenciar ferroramas e simular operações ferroviárias reais.
 
-➡️ **Acesse agora:** [https://tchuu-tchuu-front-end.onrender.com](https://tchuu-tchuu-front-end.onrender.com)
+➡️ **Acesse o Web App:** [https://tchuu-tchuu-front-end.onrender.com](https://tchuu-tchuu-front-end.onrender.com)
 
-➡️ **Acesse Também Tchuu-Tchuu Desktop** [Tchuu-Tchuu Desktop](https://github.com/Guilherme-JSS/Tchuu-Tchuu_Desktop)
+➡️ **Acesse o Tchuu-Tchuu Desktop:** [Repositório Desktop](https://github.com/Guilherme-JSS/Tchuu-Tchuu_Desktop)
 
 ---
 
 ## 🎯 Propósito
 
-Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto no **Front-end** quanto no **Back-end**, por meio da criação de uma aplicação **completa, funcional e integrada**.
+Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto no **Front-end** quanto no **Back-end**, por meio da criação de uma aplicação **completa, funcional e integrada**, simulando um ambiente de produção real.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-
 ### 🎨 Front-end
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="30"/> **HTML5**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="30"/> **CSS3**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="30"/> **JavaScript**  
-- <img src="https://www.chartjs.org/media/logo-title.svg" alt="Chart.js" width="30"/> **Chart.js** — para criação de gráficos dinâmicos e interativos.
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="25"/> **HTML5** e <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="25"/> **CSS3** — Estrutura e estilização responsiva.
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="25"/> **JavaScript (Vanilla)** — Lógica de interface e interatividade.
+- <img src="https://www.chartjs.org/media/logo-title.svg" alt="Chart.js" width="25"/> **Chart.js** — Gráficos dinâmicos para telemetria e desempenho.
 
 ### ⚙️ Back-end
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="30"/> **Node.js**  
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" width="30"/> **Express** 
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="npm" width="30"/> **npm** — gerenciador de pacotes utilizado para instalar dependências e bibliotecas.  
-- <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="bcrypt.js" width="30"/> **bcrypt.js** — biblioteca para criptografia de senhas e segurança de autenticação.  
-- <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="WebSocket" width="30"/> **ws (WebSocket)** — biblioteca NPM utilizada para comunicação em tempo real entre servidor e clientes.
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="25"/> **TypeScript** — Base do desenvolvimento, garantindo segurança de tipos e código escalável.
+- <img src="https://fastify.dev/img/logos/fastify-white.svg" alt="Fastify" width="55"/> **Fastify** — Framework web de alta performance e baixo overhead para gerenciar APIs.
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="25"/> **Node.js** — Ambiente de execução do servidor.
+- <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="bcrypt" width="25"/> **Bcrypt** — Segurança rigorosa através de hashing de senhas.
+- <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="WebSocket" width="25"/> **ws (WebSocket)** — Comunicação bidirecional em tempo real para chat e sensores.
 
-  
 ### 💾 Banco de Dados
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="30"/> **PostgreSQL** (via [Neon.tech](https://neon.tech))
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="25"/> **PostgreSQL** — Banco de dados relacional robusto (via [Neon.tech](https://neon.tech)).
 
 ---
 
 ## ✨ Funcionalidades do Sistema
 
-- 🚉 Simulação de rotas e estações ferroviárias  
-- 💬 Chat em tempo real entre usuários  
-- 🌐 Interface web interativa e responsiva  
-- 🔐 Sistema de login e cadastro de usuários  
-- 📊 Gerenciamento de trens e sensores (IoT)  
-- 🔗 Integração entre front-end, back-end e banco de dados  
+- 🚉 **Gestão de Malha:** Simulação e controle de rotas, trens e estações ferroviárias.
+- 💬 **Real-time Chat:** Comunicação instantânea entre operadores via WebSocket.
+- 🔐 **Autenticação Segura:** Sistema completo de login, cadastro e recuperação de acesso.
+- 📊 **Monitoramento IoT:** Gerenciamento de sensores e telemetria de trens em tempo real.
+- 🛠️ **Módulo de Manutenção:** Registro e controle de status operacional da frota.
 
 ---
 
@@ -185,7 +181,7 @@ O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e desce
 | Componente | Tecnologia | Deploy | Observações |
 |-----------|------------|--------|-------------|
 | **Front-end** | HTML, CSS, JavaScript | [https://tchuu-tchuu-front-end.onrender.com](https://tchuu-tchuu-front-end.onrender.com) | Hospedado no **Render** como site estático. Não consome horas de instância. |
-| **Back-end Node.js** | Node.js + Express + WebSocket | [https://tchuu-tchuu-server-chat.onrender.com](https://tchuu-tchuu-server-chat.onrender.com) | Serviço **24/7** com keep-alive via `/acordar`. Responsável pelo chat e autenticação. |
+| **Back-end Node.js** | Node.js + Fastify + Typescript + WebSocket | [https://tchuu-tchuu-server-chat.onrender.com](https://tchuu-tchuu-server-chat.onrender.com) | Serviço **24/7** com keep-alive via `/acordar`. Responsável pelo chat e autenticação. |
 | **Banco de Dados** | PostgreSQL | [Neon.tech](https://neon.tech) | Hosted em nuvem, com conexão segura via SSL. Acesso controlado por variáveis de ambiente. |
 
 ### ✅ Vantagens dessa Arquitetura:
