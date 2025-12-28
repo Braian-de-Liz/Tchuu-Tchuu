@@ -8,42 +8,43 @@
 
 ---
 
-## 🎯 Propósito
+##  Propósito
 
 Este projeto visa o **aprimoramento das habilidades em tecnologias Web**, tanto no **Front-end** quanto no **Back-end**, por meio da criação de uma aplicação **completa, funcional e integrada**, simulando um ambiente de produção real.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
-### 🎨 Front-end
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="25"/> **HTML5** e <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="25"/> **CSS3** — Estrutura e estilização responsiva.
+###  Front-end
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="25"/> **HTML5**
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="25"/> **CSS3** 
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="25"/> **JavaScript (Vanilla)** — Lógica de interface e interatividade.
 - <img src="https://www.chartjs.org/media/logo-title.svg" alt="Chart.js" width="25"/> **Chart.js** — Gráficos dinâmicos para telemetria e desempenho.
 
-### ⚙️ Back-end
+###  Back-end
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="25"/> **TypeScript** — Base do desenvolvimento, garantindo segurança de tipos e código escalável.
 - <img src="https://fastify.dev/img/logos/fastify-white.svg" alt="Fastify" width="55"/> **Fastify** — Framework web de alta performance e baixo overhead para gerenciar APIs.
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="25"/> **Node.js** — Ambiente de execução do servidor.
 - <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="bcrypt" width="25"/> **Bcrypt** — Segurança rigorosa através de hashing de senhas.
 - <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="WebSocket" width="25"/> **ws (WebSocket)** — Comunicação bidirecional em tempo real para chat e sensores.
 
-### 💾 Banco de Dados
+###  Banco de Dados
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="25"/> **PostgreSQL** — Banco de dados relacional robusto (via [Neon.tech](https://neon.tech)).
 
 ---
 
-## ✨ Funcionalidades do Sistema
+##  Funcionalidades do Sistema
 
-- 🚉 **Gestão de Malha:** Simulação e controle de rotas, trens e estações ferroviárias.
-- 💬 **Real-time Chat:** Comunicação instantânea entre operadores via WebSocket.
-- 🔐 **Autenticação Segura:** Sistema completo de login, cadastro e recuperação de acesso.
-- 📊 **Monitoramento IoT:** Gerenciamento de sensores e telemetria de trens em tempo real.
-- 🛠️ **Módulo de Manutenção:** Registro e controle de status operacional da frota.
+-  **Gestão de Malha:** Simulação e controle de rotas, trens e estações ferroviárias.
+-  **Real-time Chat:** Comunicação instantânea entre operadores via WebSocket.
+-  **Autenticação Segura:** Sistema completo de login, cadastro e recuperação de acesso.
+-  **Monitoramento IoT:** Gerenciamento de sensores e telemetria de trens em tempo real.
+-  **Módulo de Manutenção:** Registro e controle de status operacional da frota.
 
 ---
 
-## 📁 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ````
 Directory structure:
@@ -184,7 +185,7 @@ Directory structure:
 
 ---
 
-## 🏗️ Arquitetura Modular com Múltiplos Deploys
+##  Arquitetura Modular com Múltiplos Deploys
 
 O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e descentralizada**, onde cada componente é **independente, escalável e implantado separadamente** — seguindo práticas reais de engenharia de software.
 
@@ -194,51 +195,51 @@ O sistema **TCHUU-TCHUU** foi desenvolvido com uma **arquitetura modular e desce
 | **Back-end Node.js** | Node.js + Fastify + Typescript + WebSocket | [https://tchuu-tchuu-server-chat.onrender.com](https://tchuu-tchuu-server-chat.onrender.com) | Serviço **24/7** com keep-alive via `/acordar`. Responsável pelo chat e autenticação. |
 | **Banco de Dados** | PostgreSQL | [Neon.tech](https://neon.tech) | Hosted em nuvem, com conexão segura via SSL. Acesso controlado por variáveis de ambiente. |
 
-### ✅ Vantagens dessa Arquitetura:
+###  Vantagens dessa Arquitetura:
 
-- 🌐 **Escalabilidade**: Cada serviço pode ser escalado individualmente.
-- 📈 **Profissionalismo**: Reflete arquiteturas reais de empresas como Spotify, Discord e GitHub.
+-  **Escalabilidade**: Cada serviço pode ser escalado individualmente.
+-  **Profissionalismo**: Reflete arquiteturas reais de empresas como Spotify, Discord e GitHub.
 
-> 💡 **Nenhum serviço depende do outro para funcionar.**  
+>  **Nenhum serviço depende do outro para funcionar.**  
 > Isso é **microserviços**.
 
 ---
 
 ---
 
-## 🔒 Segurança e Boas Práticas
+##  Segurança e Boas Práticas
 
 O **TCHUU-TCHUU** adota medidas de segurança essenciais para garantir a integridade e confidencialidade dos dados dos usuários e a confiabilidade da aplicação como um todo:
 
-- **🔐 Criptografia de Senhas com Bcrypt**  
+- ** Criptografia de Senhas com Bcrypt**  
   Todas as senhas são **criptografadas utilizando o algoritmo Bcrypt** antes de serem armazenadas no banco de dados.  
   Isso garante que mesmo em caso de vazamento, as credenciais permaneçam protegidas por hashes fortes e não reversíveis.
 
-- **🌐 Política de CORS (Cross-Origin Resource Sharing)**  
+- ** Política de CORS (Cross-Origin Resource Sharing)**  
   O servidor Node.js utiliza uma **configuração restritiva de CORS**, permitindo apenas o domínio oficial do front-end.  
   Essa medida impede que outras origens façam requisições não autorizadas, prevenindo ataques como *Cross-Site Request Forgery (CSRF)*.
 
-- **⚙️ Variáveis de Ambiente (.env)**  
+- ** Variáveis de Ambiente (.env)**  
   Informações sensíveis, como **chaves JWT, credenciais de banco e URLs privadas**, são armazenadas em **variáveis de ambiente** através do arquivo `.env`, que **não é versionado** no repositório.  
   Isso evita a exposição de dados confidenciais e segue as boas práticas de segurança recomendadas para aplicações em produção.
 
-> 🔒 *Essas práticas reforçam o compromisso do projeto com a segurança, privacidade e integridade das informações dos usuários.*
+>  *Essas práticas reforçam o compromisso do projeto com a segurança, privacidade e integridade das informações dos usuários.*
 
 
-## 📚 Aprendizados Envolvidos
+##  Aprendizados Envolvidos
 
 Durante o desenvolvimento do **TCHUU-TCHUU**, a equipe aplicou e desenvolveu habilidades em:
 
-- 🧠 Lógica de programação  
-- 🏗️ Estruturação de sistemas web completos  
-- 🔄 Integração cliente-servidor com WebSocket e APIs REST  
-- 🗃️ Gerenciamento de banco de dados relacional (PostgreSQL)  
-- 🛠️ Versionamento de código com Git e GitHub  
-- 🤝 Trabalho em equipe e organização com metodologias ágeis  
-- 🌍 Deploy e monitoramento de aplicações em nuvem (Render, Neon.tech)  
-- 🔒 Segurança de dados e uso de variáveis de ambiente  
+-  Lógica de programação  
+-  Estruturação de sistemas web completos  
+-  Integração cliente-servidor com WebSocket e APIs REST  
+-  Gerenciamento de banco de dados relacional (PostgreSQL)  
+-  Versionamento de código com Git e GitHub  
+-  Trabalho em equipe e organização com metodologias ágeis  
+-  Deploy e monitoramento de aplicações em nuvem (Render, Neon.tech)  
+-  Segurança de dados e uso de variáveis de ambiente  
 
 ---
 
-> 🎓 *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*  
+>  *Projeto educacional com foco em prática, colaboração e construção de soluções reais.*  
 > **Não é apenas um trabalho simples, é um sistema funcional, em produção, e com arquitetura distribuida.**
