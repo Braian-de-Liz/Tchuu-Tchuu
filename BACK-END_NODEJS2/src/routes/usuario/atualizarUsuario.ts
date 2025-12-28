@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\usuario\atualizarUsuario.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 import bcrypt from 'bcryptjs'
 
@@ -18,6 +19,29 @@ const schema_patch: RouteShorthandOptions = {
                 senha: { type: 'string', minLength: 8, description: 'Nova senha do usuário' }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };

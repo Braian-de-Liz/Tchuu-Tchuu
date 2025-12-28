@@ -14,13 +14,51 @@ const schema_listarPorCpf: RouteShorthandOptions = {
                 cpf: { type: 'string', pattern: '^\\d{11}$', description: 'CPF do usuário para filtrar os resultados.' }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    sensores: {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                id_sensor: { type: 'integer' },
+                                nome_sensor: { type: 'string' },
+                                tipo_sensor: { type: 'string' },
+                                data_registro: { type: 'string' },
+                                nome_trem: { type: 'string' }
+                            }
+                        }
+                    }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    sensores: { type: 'array', items: {} }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };
 
+
 const listar_sensores: FastifyPluginAsync = async (app, optios) => {
 
-    app.get<{ Querystring: listSensor }>("/sensores", async (request, reply) => {
+    app.get<{ Querystring: listSensor }>("/sensores", schema_listarPorCpf, async (request, reply) => {
         console.log("Rota GET para listar sensores iniciada");
         const { cpf } = request.query;
 

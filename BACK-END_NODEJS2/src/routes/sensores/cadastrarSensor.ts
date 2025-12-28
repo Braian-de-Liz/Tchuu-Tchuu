@@ -17,16 +17,40 @@ const schema_cadastrarSensor: RouteShorthandOptions = {
             type: 'object',
             required: ['nome_sensor', 'tipo_sensor', 'nome_trem', 'data', 'cpf'],
             properties: {
-                nome_sensor: { type: 'string', description: 'Nome único para identificar o sensor (Ex: Motor_Temp_1).'},
-                tipo_sensor: { type: 'string', description: 'Tipo de medição do sensor'},
-                nome_trem: { type: 'string', description: 'Nome do trem ao qual este sensor está associado.'},
-                data: { type: 'string', format: 'date-time', description: 'Data de instalação ou registro do sensor.'},
-                cpf: { type: 'string', pattern: '^\\d{11}$', description: 'CPF do usuário que está registrando o sensor.'}
+                nome_sensor: { type: 'string', description: 'Nome único para identificar o sensor (Ex: Motor_Temp_1).' },
+                tipo_sensor: { type: 'string', description: 'Tipo de medição do sensor' },
+                nome_trem: { type: 'string', description: 'Nome do trem ao qual este sensor está associado.' },
+                data: { type: 'string', format: 'date-time', description: 'Data de instalação ou registro do sensor.' },
+                cpf: { type: 'string', pattern: '^\\d{11}$', description: 'CPF do usuário que está registrando o sensor.' }
             },
             additionalProperties: false
         },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
     }
 }
+
 const cadastrarSensor_req: FastifyPluginAsync = async (app, optios) => {
 
     app.post<{ Body: cadastroSensor }>("/sensores", schema_cadastrarSensor, async (request, reply) => {

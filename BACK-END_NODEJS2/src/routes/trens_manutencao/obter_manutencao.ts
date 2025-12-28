@@ -18,12 +18,51 @@ async function obterCPFFromToken(app: any, idUsuario: number): Promise<string> {
     return cpfResult.rows[0].cpf;
 }
 
+const schema_obterManutencao = {
+    schema: {
+        response: {
+            200: {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    properties: {
+                        id_chamado: { type: 'integer' },
+                        id_trem: { type: 'integer' },
+                        descricao_problema: { type: 'string' },
+                        descricao_detalhada: { type: 'string', nullable: true },
+                        nome_trem: { type: 'string' },
+                        status: { type: 'string' },
+                        data_inicio: { type: 'string' },
+                        data_conclusao: { type: 'string', nullable: true },
+                        numero: { type: 'string' },
+                        fabricante: { type: 'string' }
+                    }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
+};
 
+// No app.get, utilize: { preHandler: [autenticarJWT], ...schema_obterManutencao }
 
 const obterChamadosManutencao: FastifyPluginAsync = async (app, options) => {
 
     
-    app.get("/manutencao", { preHandler: [autenticarJWT] }, async (request, reply) => { 
+    app.get("/manutencao", { preHandler: [autenticarJWT], ...schema_obterManutencao }, async (request, reply) => { 
         
         console.log("Iniciando rota GET /manutencao (Autenticada)");
 

@@ -13,10 +13,10 @@ const HistoricoSchema: RouteShorthandOptions = {
     schema: {
         params: {
             type: 'object',
+            required: ['id_sensor'],
             properties: {
                 id_sensor: { type: 'string', description: 'ID do sensor para o qual o histórico será buscado.' }
             },
-            required: ['id_sensor'],
             additionalProperties: false
         },
         querystring: {
@@ -25,6 +25,32 @@ const HistoricoSchema: RouteShorthandOptions = {
                 limite: { type: 'string', description: 'Número máximo de registros a serem retornados. Padrão: 20.' }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    dados: {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                valor: { type: 'number' },
+                                timestamp_leitura: { type: 'string' }
+                            }
+                        }
+                    }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };

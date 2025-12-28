@@ -18,6 +18,42 @@ const schema_listarPorCpf: RouteShorthandOptions = {
                 }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    ocorrencias: {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                id_ocorrencia: { type: 'integer' },
+                                valor_lido: { type: 'number' },
+                                timestamp_disparo: { type: 'string' },
+                                tipo_alerta: { type: 'string' },
+                                valor_limite: { type: 'number' },
+                                nome_sensor: { type: 'string' }
+                            }
+                        }
+                    }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };

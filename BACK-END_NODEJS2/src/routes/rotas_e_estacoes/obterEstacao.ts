@@ -8,7 +8,41 @@ interface DecodedUser {
 
 const ObterEstacoesOptions: RouteShorthandOptions = {
     preHandler: autenticarJWT,
-}
+    schema: {
+        response: {
+            200: {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    properties: {
+                        id: { type: 'integer' },
+                        nome: { type: 'string' },
+                        endereco: { type: 'string' },
+                        latitude: { type: 'number' },
+                        longitude: { type: 'number' },
+                        cidade: { type: 'string' },
+                        estado: { type: 'string' },
+                        data_criacao: { type: 'string' }
+                    }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' } 
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
+};
 
 const obterEstacoes: FastifyPluginAsync = async (app, options) => {
 

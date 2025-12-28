@@ -21,6 +21,58 @@ interface ParamsID {
 
 const atualizarEstacaoOptions: RouteShorthandOptions = {
     preHandler: autenticarJWT,
+    schema: {
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'string', pattern: '^[0-9]+$' }
+            }
+        },
+        body: {
+            type: 'object',
+            properties: {
+                nome: { type: 'string', minLength: 1 },
+                endereco: { type: 'string', minLength: 1 },
+                latitude: { type: ['string', 'number'] },
+                longitude: { type: ['string', 'number'] },
+                cidade: { type: 'string' },
+                estado: { type: 'string', minLength: 2, maxLength: 2 }
+            },
+            additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    id: { type: 'integer' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
 }
 
 const AtualizarEstacao: FastifyPluginAsync = async (app) => {

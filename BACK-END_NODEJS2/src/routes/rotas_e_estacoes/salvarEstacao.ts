@@ -18,20 +18,42 @@ const EstacaoOptions: RouteShorthandOptions = {
             type: 'object',
             required: ['nome', 'endereco', 'latitude', 'longitude', 'cidade', 'estado'],
             properties: {
-                nome: { type: 'string' },
-                endereco: { type: 'string' },
-                latitude: { type: 'string' },
-                longitude: { type: 'string' },
-                cidade: { type: 'string' },
-                estado: { type: 'string' },
+                nome: { type: 'string', minLength: 1 },
+                endereco: { type: 'string', minLength: 1 },
+                latitude: { type: 'string', description: 'Latitude em formato string para conversão' },
+                longitude: { type: 'string', description: 'Longitude em formato string para conversão' },
+                cidade: { type: 'string', minLength: 1 },
+                estado: { type: 'string', minLength: 2, maxLength: 2 },
             },
             additionalProperties: false
+        },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    id: { type: 'integer' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     },
-
     preHandler: autenticarJWT
 };
-
 
 const salvarEstacao: FastifyPluginAsync = async (app, options) => {
 

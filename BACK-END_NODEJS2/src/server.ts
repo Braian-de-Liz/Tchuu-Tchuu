@@ -121,7 +121,7 @@ await app.register(AtualizarRota, { prefix: '/api' });
 app.get('/acordar', async (request, reply) => {
     const now = new Date().toISOString();
     const userAgent = request.headers['user-agent'] || 'Unknown';
-    console.log(`ACORDA PREGUIÇOSO, OHHHH LÁPADA SECA ${now} | IP: ${request.ip} | Elias-testador: ${userAgent}`);
+    // console.log(`ACORDA PREGUIÇOSO, OHHHH LÁPADA SECA ${now} | IP: ${request.ip} | Elias-testador: ${userAgent}`);
     return {
         status: 'funcionando',
         server: 'Tchuu-Tchuu',

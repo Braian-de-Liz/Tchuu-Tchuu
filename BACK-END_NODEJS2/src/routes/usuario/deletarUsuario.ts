@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\usuario\deletarUsuario.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 
 interface req_deleteuser {
@@ -12,10 +13,40 @@ const Schema_deletaruser: RouteShorthandOptions = {
             type: 'object',
             required: ['cpf', 'id'],
             properties: {
-                cpf: { type: 'string', description: 'CPF do usuário (apenas dígitos).', pattern: '^[0-9]{11}$' },
-                id: { type: 'string', description: 'ID do usuário a ser excluído.', pattern: "^[0-9]+$" }
+                cpf: { type: 'string', pattern: '^[0-9]{11}$' },
+                id: { type: 'string', pattern: "^[0-9]+$" }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            403: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };

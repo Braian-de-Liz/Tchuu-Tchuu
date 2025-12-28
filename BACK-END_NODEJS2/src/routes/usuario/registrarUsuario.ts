@@ -23,6 +23,29 @@ const schema_cadastro: RouteShorthandOptions = {
                 RegistroFun: { type: 'string' },
                 dataNasc: { type: 'string', format: 'date' }
             }
+        },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };

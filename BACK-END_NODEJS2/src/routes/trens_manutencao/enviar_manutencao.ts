@@ -14,14 +14,45 @@ const schema_registrarManutencao: RouteShorthandOptions = {
             type: 'object',
             required: ['nomeTrem','numero_de_trem','descricao_problema','descricao_detalhada','cpf_user'],
             properties: {
-                nomeTrem: { type: 'string', description: 'Nome do trem que requer manutenção.', minLength: 1 },
-                numero_de_trem: { type: 'string', description: 'Número de identificação do trem.', minLength: 1 },
-                descricao_problema: { type: 'string', description: 'Descrição resumida do problema principal', minLength: 1 },
-                descricao_detalhada: { type: 'string', description: 'Descrição detalhada para manutenção.', minLength: 1 },
-                cpf_user: { type: 'string', description: 'CPF do usuário proprietário.', pattern: '^\\d{11}$' }
+                nomeTrem: { type: 'string', minLength: 1 },
+                numero_de_trem: { type: 'string', minLength: 1 },
+                descricao_problema: { type: 'string', minLength: 1 },
+                descricao_detalhada: { type: 'string', minLength: 1 },
+                cpf_user: { type: 'string', pattern: '^\\d{11}$' }
             },
             additionalProperties: false
         },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    id: { type: 'integer' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
     }
 }
 

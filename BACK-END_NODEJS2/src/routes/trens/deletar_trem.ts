@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\trens\deletar_trem.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 
 interface query_deleteTrem {
@@ -11,10 +12,33 @@ const schema_tremDEL: RouteShorthandOptions = {
             type: 'object',
             required: ['cpf_user', 'nome_trem'],
             properties: {
-                cpf_user: { type: 'string', description: 'CPF do usuário que está tentando excluir o trem.', pattern: '^\\d{11}$' },
-                nome_trem: { type: 'string', description: 'Nome do trem que irá ser deletado', minLength: 1, }
+                cpf_user: { type: 'string', pattern: '^\\d{11}$' },
+                nome_trem: { type: 'string', minLength: 1 }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 }

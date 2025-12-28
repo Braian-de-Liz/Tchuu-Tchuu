@@ -18,6 +18,39 @@ const schema_login: RouteShorthandOptions = {
                 senha: { type: 'string', minLength: 8 }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    token: { type: 'string' },
+                    usuario: {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'integer' },
+                            email: { type: 'string' },
+                            nome: { type: 'string' },
+                            cpf: { type: 'string' }
+                        }
+                    }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 };

@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\trens\atualizar_trem.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 
 interface req_atuaTrem {
@@ -17,6 +18,29 @@ const schema_atuaTrem: RouteShorthandOptions = {
                 novoNome_trem: { type: 'string', minLength: 1 }
             },
             additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 }

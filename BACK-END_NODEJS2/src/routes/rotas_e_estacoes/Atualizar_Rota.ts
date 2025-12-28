@@ -29,7 +29,61 @@ function calcularDistancia(lat1: number, lon1: number, lat2: number, lon2: numbe
 }
 
 const AtualizarRota: FastifyPluginAsync = async (app) => {
-    const options: RouteShorthandOptions = { preHandler: autenticarJWT };
+    const options: RouteShorthandOptions = { 
+    preHandler: autenticarJWT,
+    schema: {
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'string', pattern: '^[0-9]+$' }
+            }
+        },
+        body: {
+            type: 'object',
+            properties: {
+                nome: { type: 'string', minLength: 1 },
+                descricao: { type: 'string' },
+                estacoes: { 
+                    type: 'array', 
+                    minItems: 2,
+                    items: { type: 'integer' } 
+                }
+            },
+            additionalProperties: false
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
+};
 
     app.patch<{ Params: UpdateRotaParams; Body: UpdateRotaBody }>("/rotas/:id", options, async (request, reply) => {
             const idRota = parseInt(request.params.id);

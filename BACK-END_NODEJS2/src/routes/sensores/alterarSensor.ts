@@ -22,6 +22,40 @@ const schema_atualizarSensor: RouteShorthandOptions = {
             },
             additionalProperties: false,
         },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    sensor: {
+                        type: 'object',
+                        properties: {
+                            id_sensor: { type: 'integer' },
+                            nome_sensor: { type: 'string' },
+                            tipo_sensor: { type: 'string' },
+                            id_trem: { type: 'integer' },
+                            data_registro: { type: 'string' },
+                            cpf_user: { type: 'string' }
+                        }
+                    }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
     }
 };
 

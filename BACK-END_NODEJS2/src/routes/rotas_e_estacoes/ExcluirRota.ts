@@ -13,8 +13,40 @@ interface ParamsID {
 
 const deletarRotaOptions: RouteShorthandOptions = {
     preHandler: autenticarJWT,
+    schema: {
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'string', pattern: '^[0-9]+$', description: 'ID numérico da rota' }
+            }
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    id: { type: 'integer' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
 }
-
 const ExcluirRota: FastifyPluginAsync = async (app, options) => {
 
     app.delete<{ Params: ParamsID }>("/rotas/:id", deletarRotaOptions, async (request, reply) => {

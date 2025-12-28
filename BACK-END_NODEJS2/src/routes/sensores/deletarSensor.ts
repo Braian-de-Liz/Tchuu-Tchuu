@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\sensores\deletarSensor.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 
 interface dados_delete_sensor {
@@ -16,8 +17,32 @@ const schema_deletarSensor: RouteShorthandOptions = {
             },
             additionalProperties: false
         },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    messagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
     }
 };
+
 const deletar_sensor: FastifyPluginAsync = async (app, options) => {
 
     app.delete<{ Body: dados_delete_sensor }>("/sensores", schema_deletarSensor, async (request, reply) => {

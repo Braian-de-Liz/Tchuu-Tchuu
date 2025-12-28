@@ -48,12 +48,36 @@ const RotaOptions: RouteShorthandOptions = {
                 }
             },
             additionalProperties: false
+        },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    id: { type: 'integer' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    detalhe: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    detalhe: { type: 'string' }
+                }
+            }
         }
     },
     preHandler: autenticarJWT
 };
-
-
 const salvarRota: FastifyPluginAsync = async (app, options) => {
 
     app.post<{ Body: RotaBody }>("/rotas", RotaOptions, async (request, reply) => {

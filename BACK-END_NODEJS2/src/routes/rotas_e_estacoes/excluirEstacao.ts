@@ -13,6 +13,53 @@ interface ParamsID {
 
 const deletarEstacaoOptions: RouteShorthandOptions = {
     preHandler: autenticarJWT,
+    schema: {
+        params: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+                id: { type: 'string', pattern: '^[0-9]+$', description: 'ID numérico da estação' }
+            }
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    id: { type: 'integer' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            403: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
 }
 
 const excluirEstacao: FastifyPluginAsync = async (app, options) => {

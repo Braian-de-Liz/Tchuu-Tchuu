@@ -1,11 +1,52 @@
 // src/routes/trens/mostrar_trens.ts
-import { FastifyPluginAsync } from "fastify";
+import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 import { autenticarJWT } from '../../hooks/autenticar_id_jwt.js';
 
+const schema_mostrar_trens: RouteShorthandOptions = {
+    schema: {
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' },
+                    trens: {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                id: { type: 'integer' },
+                                nome_trem: { type: 'string' },
+                                numero: { type: 'integer' },
+                                fabricante: { type: 'string' },
+                                data_registro: { type: 'string' },
+                                created_at: { type: 'string' }
+                            }
+                        }
+                    }
+                }
+            },
+            '4xx': {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
+    }
+};
 
 const Mostrar_trens: FastifyPluginAsync = async (app, options) => {
 
-    app.get("/Trem_mostrar", { preHandler: [autenticarJWT] }, async (request, reply) => {
+    app.get("/Trem_mostrar", { preHandler: [autenticarJWT], ...schema_mostrar_trens }, async (request, reply) => {
 
         const usuarioId: string = (request.user as { id: string }).id;
 

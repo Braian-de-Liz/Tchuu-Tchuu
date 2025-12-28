@@ -15,6 +15,29 @@ const schemaAuth: RouteShorthandOptions = {
                 cpf_user: { type: 'string', description: 'CPF do usuário proprietário.', pattern: '^\\d{11}$' }
             },
             additionalProperties: false
+        },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    messagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
         }
     }
 }

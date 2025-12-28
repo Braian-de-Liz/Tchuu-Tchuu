@@ -1,3 +1,4 @@
+// BACK-END_NODEJS2\src\routes\trens\registrar_trem.ts
 import { FastifyPluginAsync, RouteShorthandOptions } from "fastify";
 
 interface dados_trem {
@@ -22,6 +23,36 @@ const Schema_trem: RouteShorthandOptions = {
             },
             additionalProperties: false
         },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    menssagem: { type: 'string' }
+                }
+            },
+            500: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    mensagem: { type: 'string' }
+                }
+            }
+        }
     }
 }
 
@@ -32,8 +63,6 @@ const cadastroTREM: FastifyPluginAsync = async (app, option) => {
         console.log("captando informações do Body");
 
         try {
-
-
 
             const usuarioExiste = await app.pg.query('SELECT cpf FROM usuarios WHERE cpf = $1', [cpfUser]);
 
