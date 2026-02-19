@@ -118,10 +118,25 @@ await app.register(OObterRotas, { prefix: '/api' });
 await app.register(ExcluirRota, { prefix: '/api' });
 await app.register(AtualizarRota, { prefix: '/api' });
 
-app.get('/acordar', async (request, reply) => {
+app.get('/acordar', {
+    schema: {
+        description: 'Endpoint para acordar o servidor e verificar status',
+        tags: ['Healthcheck'],
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    status: { type: 'string' },
+                    server: { type: 'string' },
+                    timestamp: { type: 'string', format: 'date-time' }
+                }
+            }
+        }
+    }
+}, async (request, reply) => {
     const now = new Date().toISOString();
     const userAgent = request.headers['user-agent'] || 'Unknown';
-    // console.log(`ACORDA PREGUIÇOSO, OHHHH LÁPADA SECA ${now} | IP: ${request.ip} | Elias-testador: ${userAgent}`);
+
     return {
         status: 'funcionando',
         server: 'Tchuu-Tchuu',
